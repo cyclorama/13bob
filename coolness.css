@@ -44,7 +44,7 @@ body
 }
 
 img { padding: 0.333em; animation: scale 1s; }
-img#nav { padding: 0em; margin:0px -15px 0px 0px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
+img#nav { margin:0px -15px 0px 0px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
 img#mixtape { cursor: url(little_finger.cur), pointer; }
 iframe { padding: 0.333em; margin:0px -15px 0px 0px; animation: scale 1s; }
 video:hover { cursor: none; }
