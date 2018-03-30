@@ -30,8 +30,7 @@ document.tape.title = "> Strawberry Switchblade - Trees And Flowers <";
 function playTape() {
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
-		tape.play();
-		mixtape.onended = function() { for (var i = 0; i < 2; i++) { tapePlay = !tapePlay; playTape(); } };
+		tape.play(); tape.onended = function() { tape.play(); };
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
 		tape.pause();
