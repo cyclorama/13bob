@@ -1,0 +1,63 @@
+/*
+   _     __    __              __                        __      
+ /' \  /'__`\ /\ \            /\ \                      /\ \__   
+/\_, \/\_\L\ \\ \ \____    ___\ \ \____      ___      __\ \ ,_\  
+\/_/\ \/_/_\_<_\ \ '__`\  / __`\ \ '__`\   /' _ `\  /'__`\ \ \/  
+   \ \ \/\ \L\ \\ \ \L\ \/\ \L\ \ \ \L\ \__/\ \/\ \/\  __/\ \ \_ 
+    \ \_\ \____/ \ \_,__/\ \____/\ \_,__/\_\ \_\ \_\ \____\\ \__\
+     \/_/\/___/   \/___/  \/___/  \/___/\/_/\/_/\/_/\/____/ \/__/
+*/
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heartbeat { from { font-weight: lighter; } to { font-weight: bold; } }
+@keyframes spacing_one { from { letter-spacing: -13px; } to { letter-spacing: 0px; } }
+@keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
+@keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
+
+* { cursor: url(open_hand.cur), pointer; animation: fade 1s; box-sizing: }
+
+a:link { color: white; text-decoration: none; }
+a:visited { color: white; text-decoration: none; }
+a:hover { color: white; text-decoration: none; cursor: url(little_finger.cur), pointer; }
+a:active { color: white; text-decoration: none; }
+
+h1
+{
+    text-align: center;
+    height: 1em;
+    margin: auto;
+    padding: 0.13em;
+    font-size: 175px; font-family: 'Press Start 2P', cursive;
+    animation: spacing_one 1s, heartbeat 1s alternate infinite;
+} h2 { font-family: 'Press Start 2P', cursive; animation: spacing_two 1s }
+
+body
+{
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    background-color: black; background-image: url(space.gif); background-repeat: repeat; background-attachment: fixed;
+}
+
+img { padding: 0.333em; animation: scale 1s; }
+img#nav { padding: 0em; margin:0px -15px 0px 0px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
+img#mixtape { padding: 0.333px; cursor: url(little_finger.cur), pointer; }
+iframe { padding: 0.333em; margin:0px -15px 0px 0px; animation: scale 1s; }
+video:hover { cursor: none; }
+
+#video_background
+{
+    position: fixed;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto; z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+}
+
+div#error {
+    padding: 0.404em;
+    font-size: 50px;
+    animation: spacing_two 1s;
+}
