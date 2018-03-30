@@ -13,8 +13,8 @@
            -....--'  /   `.'-...-'.'    '._         .'    `.'-...-'.'   
            `.. __..-'       `-...-'        '-....-'`         `-...-'    
 */
-var hornForward =			new Audio('vibrations/horn_forward.mp3');hornForward.volume=0.15;
-var hornReverse=			new Audio('vibrations/horn_reverse.mp3');hornReverse.volume=0.15;
+var hornForward =			new Audio('vibrations/flower_forward.mp3');hornForward.volume=0.15;
+var hornReverse=			new Audio('vibrations/flower_reverse.mp3');hornReverse.volume=0.15;
 var stretchForward =		new Audio('vibrations/stretch_forward.mp3');stretchForward.volume=0.15;
 var stretchReverse =		new Audio('vibrations/stretch_reverse.mp3');stretchReverse.volume=0.15;
 var space =					new Audio('vibrations/space.mp3');space.volume=0.15;
