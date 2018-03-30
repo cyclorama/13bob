@@ -39,12 +39,12 @@ var track =					0;
 
 function playTape() {
 	if (tapePlay) {
-		document.tape.src = 'stimuleye/framed_tape_forward.gif';
+		document.tape.src = 'photos/framed_tape_forward.gif';
 		mixtape.volume = 0.15; mixtape.play();
 		mixtape.onended = function() { for (var i = 0; i < 2; i++) { tapePlay = !tapePlay; playTape(); } };
 		highlightTrack(track + 1);
 	} else {
-		document.tape.src = 'stimuleye/framed_tape.gif';
+		document.tape.src = 'photos/framed_tape.gif';
 		mixtape.pause(); mixtape.currentTime = 0;
 		track = track < tracks.length - 1 ? track + 1 : 0;
 		mixtape = new Audio('mixtapes/E R R S T H E T I C/' + tracks[track]);
@@ -60,13 +60,13 @@ function highlightTrack(track) {
 
 function loadGifs() {
 	if (typeof window.orientation !== 'undefined') {
-		document.flower.src='stimuleye/framed_flower_forward.gif';document.flower.src='stimuleye/framed_flower_reverse.gif';document.flower.src='stimuleye/framed_flower.gif';
-		document.eye.src='stimuleye/framed_eye_forward.gif';document.eye.src='stimuleye/framed_eye_reverse.gif';document.eye.src='stimuleye/framed_eye.gif';
-		document.golden.src='stimuleye/framed_spiral_forward.gif';document.golden.src='stimuleye/framed_spiral.gif';
-		document.horse.src='stimuleye/framed_horse_forward.gif';document.horse.src='stimuleye/framed_horse_reverse.gif';document.horse.src='stimuleye/framed_horse.gif';
-		document.mouth.src='stimuleye/framed_mouth_forward.gif';document.mouth.src='stimuleye/framed_mouth.gif';
-		document.nuke.src='stimuleye/framed_nuke_forward.gif';document.nuke.src='stimuleye/framed_nuke_reverse.gif';document.nuke.src='stimuleye/framed_nuke.gif';
-		document.tape.src='stimuleye/framed_tape.gif';document.tape.src='stimuleye/framed_tape_forward.gif';
+		document.flower.src='photos/framed_flower_forward.gif';document.flower.src='photos/framed_flower_reverse.gif';document.flower.src='photos/framed_flower.gif';
+		document.eye.src='photos/framed_eye_forward.gif';document.eye.src='photos/framed_eye_reverse.gif';document.eye.src='photos/framed_eye.gif';
+		document.golden.src='photos/framed_spiral_forward.gif';document.golden.src='photos/framed_spiral.gif';
+		document.horse.src='photos/framed_horse_forward.gif';document.horse.src='photos/framed_horse_reverse.gif';document.horse.src='photos/framed_horse.gif';
+		document.mouth.src='photos/framed_mouth_forward.gif';document.mouth.src='photos/framed_mouth.gif';
+		document.nuke.src='photos/framed_nuke_forward.gif';document.nuke.src='photos/framed_nuke_reverse.gif';document.nuke.src='photos/framed_nuke.gif';
+		document.tape.src='photos/framed_tape.gif';document.tape.src='photos/framed_tape_forward.gif';
 	}
 }
 
