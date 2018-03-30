@@ -22,41 +22,21 @@ var projector =				new Audio('vibrations/projector.mp3');projector.volume=0.15;
 var chatter =				new Audio('vibrations/chatter.mp3');chatter.volume=0.15;
 var bombForward =			new Audio('vibrations/inflate.mp3');bombForward.volume=0.15;
 var bombReverse =			new Audio('vibrations/deflate.mp3');bombReverse.volume=0.15;
-var mixtape =				new Audio('mixtapes/E R R S T H E T I C/01 Strawberry Switchblade - Who Knows What Love Is.mp3');
-var tracks =			[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
-							"02 Pebbles - Why Do I Believe.mp3",
-							"03 Dee Dee Wilde - Lap of Luxury.mp3",
-							"04 Dionne Warwick - Can't Hide Love.mp3",
-							"05 The Jets - The Only Dance.mp3"	];
-var title = 				"E R R S T H E T I C  /  V O L U M E  O N E\n"+
-							"[01 Strawberry Switchblade - Who Knows What Love Is]\n"+
-							"[02 Pebbles - Why Do I Believe]\n"+
-							"[03 Dee Dee Wilde - Lap of Luxury]\n"+
-							"[04 Dionne Warwick - Can't Hide Love]\n"+
-							"[05 The Jets - The Only Dance]\n";
-var tapePlay =				true;
-var track =					0;
+var tape =					new Audio('tracks/17 - Strawberry Switchblade - Trees And Flowers.mp3'); tape.volume=0.1;
+var tapePlay =				1;
+
+document.tape.title = "> Strawberry Switchblade - Trees And Flowers <";
 
 function playTape() {
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
-		mixtape.volume = 0.15; mixtape.play();
+		tape.play();
 		mixtape.onended = function() { for (var i = 0; i < 2; i++) { tapePlay = !tapePlay; playTape(); } };
-		highlightTrack(track + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
-		mixtape.pause(); mixtape.currentTime = 0;
-		track = track < tracks.length - 1 ? track + 1 : 0;
-		mixtape = new Audio('mixtapes/E R R S T H E T I C/' + tracks[track]);
+		tape.pause();
 	}
 }
-
-function highlightTrack(track) {
-	trackTitle = title.split("\n");
-	if (track == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (track > 1) removeHighlight(track - 1);
-	trackTitle[track] = "> " + trackTitle[track] + " <"; title = "";
-	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i] + "\n"; title = title.substring(0, title.length - 1); document.tape.title = title;
-} function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
 function loadGifs() {
 	if (typeof window.orientation !== 'undefined') {
