@@ -1,17 +1,17 @@
 /*
-     __                    .----.                           .----.      
-...-'  |`. ..-'''-.       / .--. \                         / .--. \     
-|      |  |\.-'''\ \     ' '    ' '                       ' '    ' '    
-....   |  |       | |    \ \    / /                       \ \    / /    
-  -|   |  |    __/ /      `.`'--.'        .-''` ''-.       `.`'--.'     
-   |   |  |   |_  '.      / `'-. `.     .'          '.     / `'-. `.    
-...'   `--'      `.  \   ' /    `. \   /              `   ' /    `. \   
-|         |`.      \ '. / /       \ ' '                ' / /       \ '  
-` --------\ |       , || |         | ||         .-.    || |         | | 
- `---------'        | || |         | |.        |   |   .| |         | | 
-                   / ,' \ \       / /  .       '._.'  /  \ \       / /  
-           -....--'  /   `.'-...-'.'    '._         .'    `.'-...-'.'   
-           `.. __..-'       `-...-'        '-....-'`         `-...-'    
+     __                            .-'''-.               
+...-'  |`. ..-'''-.               '   _    \             
+|      |  |\.-'''\ \   /|       /   /` '.   \ /|         
+....   |  |       | |  ||      .   |     \  ' ||         
+  -|   |  |    __/ /   ||      |   '      |  '||         
+   |   |  |   |_  '.   ||  __  \    \     / / ||  __     
+...'   `--'      `.  \ ||/'__ '.`.   ` ..' /  ||/'__ '.  
+|         |`.      \ '.|:/`  '. '  '-...-'`   |:/`  '. ' 
+` --------\ |       , |||     | |             ||     | | 
+ `---------'        | |||\    / '             ||\    / ' 
+                   / ,'|/\'..' /              |/\'..' /  
+           -....--'  / '  `'-'`               '  `'-'`   
+           `.. __..-'                                     
 */
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heartbeat { from { font-weight: lighter; } to { font-weight: bold; } }
@@ -19,7 +19,7 @@
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
 
-* { cursor: url(open_hand.cur), pointer; animation: fade 1s; box-sizing: }
+* { cursor: url(open_hand.cur), pointer; animation: fade 1s; }
 
 a:link { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
