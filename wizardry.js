@@ -29,10 +29,10 @@ document.tape.title = "> Strawberry Switchblade - Trees And Flowers <";
 
 function playTape() {
 	if (tapePlay) {
-		document.tape.src = 'photos/whirlpool_framed_forward.gif';
+		document.tape.src = 'photos/framed_tape_forward.gif';
 		tape.play(); tape.onended = function() { tape.play(); };
 	} else {
-		document.tape.src = 'photos/whirlpool_framed.gif';
+		document.tape.src = 'photos/framed_tape.gif';
 		tape.pause();
 	}
 }
@@ -45,7 +45,7 @@ function loadGifs() {
 		document.horse.src='photos/framed_horse_forward.gif';document.horse.src='photos/framed_horse_reverse.gif';document.horse.src='photos/framed_horse.gif';
 		document.mouth.src='photos/framed_mouth_forward.gif';document.mouth.src='photos/framed_mouth.gif';
 		document.nuke.src='photos/framed_nuke_forward.gif';document.nuke.src='photos/framed_nuke_reverse.gif';document.nuke.src='photos/framed_nuke.gif';
-		document.tape.src='photos/whirlpool_framed_forward.gif';document.tape.src='photos/whirlpool_framed.gif';
+		document.tape.src='photos/framed_tape.gif';document.tape.src='photos/framed_tape_forward.gif';
 	}
 }
 
