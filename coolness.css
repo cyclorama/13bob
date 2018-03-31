@@ -19,7 +19,7 @@
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
 
-* { cursor: url(open_hand.cur), pointer; animation: fade 1s; }
+* { animation: fade 1s; }
 
 a:link { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
@@ -39,13 +39,14 @@ h1
 body
 {
     color: white;
+    cursor: url(open_hand.cur), pointer;
     font-family: 'Press Start 2P', cursive;
     background-color: black; background-image: url(space.gif); background-repeat: repeat; background-attachment: fixed;
 }
 
 img { animation: scale 1s; }
 img#nav { margin:0px -15px 0px 0px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
-img#mixtape { padding: 0.333em; cursor: url(little_finger.cur), pointer; }
+img#tape { padding: 0.333em; cursor: url(little_finger.cur), pointer; }
 iframe { padding: 0.333em; margin:0px -15px 0px 0px; animation: scale 1s; }
 video:hover { cursor: none; }
 
