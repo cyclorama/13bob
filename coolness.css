@@ -20,7 +20,7 @@
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
 @keyframes heat { from { color: white; } to { color: red; } }
 
-* { animation: fade 1s, heat 403s alternate infinite;}
+* { animation: fade 1s; }
 
 a:link { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
