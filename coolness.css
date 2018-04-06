@@ -46,8 +46,8 @@ body
 }
 
 img { animation: scale 1s; }
-img#nav { border-radius: 50px; cursor: url(little_finger.cur), pointer; }
-iframe { padding: 0.333em; margin:0px -15px 0px 0px; animation: scale 1s; }
+img#nav { margin:0px 0px 0px -15px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
+iframe { padding: 0.333em; animation: scale 1s; }
 video:hover { cursor: none; }
 
 #video_background
