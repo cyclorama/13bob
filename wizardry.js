@@ -55,7 +55,7 @@ function highlightTrack(track) {
 	trackTitle = title.split("\n");
 	if (track == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (track > 1) removeHighlight(track - 1);
 	trackTitle[track] = "> " + trackTitle[track] + " <"; title = "";
-	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i] + "\n"; title = title.substring(0, title.length - 1); document.tape.title = title;
+	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i+1] != null ? trackTitle[i] + "\n" : "" ; document.tape.title = title;
 } function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
 function loadGifs() {
