@@ -42,7 +42,7 @@ body
     color: white;
     cursor: url(open_hand.cur), pointer;
     font-family: 'Press Start 2P', cursive;
-    background-color: black; background-image: url(space.gif); background-repeat: repeat; background-attachment: fixed;
+    background-color: black; background-image: url('http://18.217.224.119/test.gif'); background-repeat: repeat; background-attachment: fixed;
 }
 
 img { animation: scale 1s; }
