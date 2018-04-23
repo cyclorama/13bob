@@ -14,7 +14,7 @@
            `.. __..-'                                    
 +-------------------------------------------------------+
 |	Author: ebob										|
-|	Description: Game code.								|
+|	Description: Brain of the game.						|
 +-------------------------------------------------------+
 */
 var update = function() {
