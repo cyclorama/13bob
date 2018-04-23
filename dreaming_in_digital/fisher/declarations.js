@@ -14,7 +14,7 @@
            `.. __..-'                                    
 +-------------------------------------------------------+
 |	Author: ebob										|
-|	Description: Declarations file.						|
+|	Description: Declarations.						|
 +-------------------------------------------------------+
 */
 var canvas = document.createElement("canvas");
