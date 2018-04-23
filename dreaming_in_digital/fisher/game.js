@@ -34,7 +34,6 @@ var update = function() {
 						}
 					}
 				}
-				//PLAYER_SCORE += PLAYER_REELS / PLAYER_CAUGHT;
 				reel.pause();
 				reel.currentTime = 0;
 				if (PLAYER_CAUGHT == fishes.length) {
