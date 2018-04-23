@@ -25,7 +25,7 @@ var update = function() {
 			hook.casting = false;
 			hook.reelIn = false;
 			sleepTime *= 10;
-			if (hook.x == hook.startX && hook.y == hook.startY) { // Calculate score
+			if (hook.x == hook.startX && hook.y == hook.startY) {
 				for (var i = 0; i < fishes.length; i++) {
 					if (fishes[i].caught) {
 						if (!fishes[i].counted) {
@@ -37,7 +37,7 @@ var update = function() {
 				reel.pause();
 				reel.currentTime = 0;
 				if (PLAYER_CAUGHT == fishes.length) {
-					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS;
+					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
 					document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
 					nextLevel();
 				}
