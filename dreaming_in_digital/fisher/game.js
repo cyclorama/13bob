@@ -75,8 +75,8 @@ var update = function() {
 		for (var i = 0; i < rocks.length; i++) {
 			if (rocks[i].scaleX == 1) {
 				if (hook.x == rocks[i].x &&
-					hook.y > rocks[i].y-rocks[i].scaleY &&
-					hook.y < rocks[i].y+rocks[i].scaleY) {
+					hook.y > rocks[i].y-rocks[i].scaleY-1 &&
+					hook.y < rocks[i].y+rocks[i].scaleY+1) {
 					reelIn();
 				}
 			} else if (	hook.x > rocks[i].x-(rocks[i].scaleX+1) &&
