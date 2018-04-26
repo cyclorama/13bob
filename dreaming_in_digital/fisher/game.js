@@ -96,8 +96,8 @@ var update = function() {
 		}
 		if (fishes[i].caught) { fishes[i].x = hook.x; fishes[i].y = hook.y; } else {
 			if (fishes[i].x < fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x++; if (fishes[i].fishImage.src != "img/fish_right.png") { fishes[i].fishImage.src = "img/fish_right.png"; } } 
-			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y < fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y++; }
 			if (fishes[i].x > fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x--; if (fishes[i].fishImage.src != "img/fish_left.png") { fishes[i].fishImage.src = "img/fish_left.png"; } }
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y < fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y++; }
 			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y > fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y--; }
 			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y == fishes[i].waypoints[fishes[i].point+3]))
 				fishes[i].point += fishes[i].point+4 < fishes[i].waypoints.length ? 2 : -(fishes[i].waypoints.length-2);
