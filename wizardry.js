@@ -38,10 +38,6 @@ tapePlay =					true,
 track =						0,
 menu = 						false;
 
-function showMenu(option) {
-	menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='games/fisher/fisher.png'/></a></marquee>" : "";
-}
-
 function playTape() {
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
@@ -75,6 +71,7 @@ function loadGifs() {
 	}
 }
 
+function showMenu(option) { menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='games/fisher/logo.png'/></a></marquee>" : ""; }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 function playHorn()			{ hornReverse.pause();hornReverse.currentTime=0;hornForward.play(); }
 function stopHorn()			{ hornForward.pause();hornForward.currentTime=0; hornReverse.play(); }
