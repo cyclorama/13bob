@@ -42,9 +42,9 @@ item =						0;
 
 function showMenu(window) {
 	if (menu) {
-		document.getElementByIdName("menu").innerHTML = "<img id='menu' src='dreaming_in_digital/menu_" + window + "_" + item + ".png'/>";
+		document.getElementById("menu").innerHTML = "<img id='menu' src='dreaming_in_digital/menu_" + window + "_" + item + ".png'/>";
 	} else {
-		document.getElementByIdName("menu").innerHTML = "";
+		document.getElementById("menu").innerHTML = "";
 	}
 }
 
