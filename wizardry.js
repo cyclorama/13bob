@@ -37,10 +37,9 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 tapePlay =					true,
 track =						0,
 menu = 						false;
-item =						0;
 
 function showMenu(option) {
-	menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></a></marquee>" : "";
+	menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='games/fisher/fisher.png'/></a></marquee>" : "";
 }
 
 function playTape() {
