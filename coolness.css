@@ -47,7 +47,7 @@ body
 
 img { animation: scale 1s; }
 img#nav { margin:0px 0px 0px -15px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
-img#menu { z-index: 13; position: absolute; margin-left: -200px; margin-top: -50em; margin-right: auto; margin-bottom: auto; margin-bottom: 25%;}
+img#menu { z-index: 13; position: fixed; margin-left: -200px; margin-top: -50em; margin-right: auto; margin-bottom: 15%; }
 iframe { padding: 0.333em; animation: scale 1s; }
 video:hover { cursor: none; }
 
