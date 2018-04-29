@@ -18,9 +18,9 @@
 @keyframes spacing_one { from { letter-spacing: -13px; } to { letter-spacing: 0px; } }
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
-@-moz-keyframes horizontally { 0% { -moz-transform: translateX(50%); } 100% { -moz-transform: translateX(-50%); } }
-@-webkit-keyframes horizontally { 0% { -webkit-transform: translateX(50%); } 100% { -webkit-transform: translateX(-50%); } }
-@keyframes horizontally { 0% { -moz-transform: translateX(50%); -webkit-transform: translateX(50%); transform: translateX(50%); } 100% { -moz-transform: translateX(-50%); -webkit-transform: translateX(-50%); transform: translateX(-50%); } }
+@-moz-keyframes marq { 0% { -moz-transform: translateX(50%); } 100% { -moz-transform: translateX(-50%); } }
+@-webkit-keyframes marq { 0% { -webkit-transform: translateX(50%); } 100% { -webkit-transform: translateX(-50%); } }
+@keyframes marq { 0% { -moz-transform: translateX(50%); -webkit-transform: translateX(50%); transform: translateX(50%); } 100% { -moz-transform: translateX(-50%); -webkit-transform: translateX(-50%); transform: translateX(-50%); } }
 
 * { animation: fade 1s; }
 
@@ -93,7 +93,7 @@ img#menu {
  -webkit-transform:translateX(50%); 
  transform:translateX(50%);
  /* Apply animation to this element */  
- -moz-animation: horizontally 5s linear infinite alternate;
- -webkit-animation: horizontally 5s linear infinite alternate;
- animation: horizontally 5s linear infinite alternate;
+ -moz-animation: marq 5s linear infinite alternate;
+ -webkit-animation: marq 5s linear infinite alternate;
+ animation: marq 5s linear infinite alternate;
 }
