@@ -114,7 +114,7 @@ var render = function() {
 	if (waterReady) {
 		for (var j = 0; j < LEVEL_HEIGHT; j++) {
 			for (var i = 0; i < LEVEL_WIDTH; i++) {
-				ctx.drawImage(waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Grid of water
+				ctx.drawImage(waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1); // Grid of water
 			}
 		}
 	}
