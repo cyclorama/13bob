@@ -27,15 +27,24 @@ var tracks =			[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
 							"02 Pebbles - Why Do I Believe.mp3",
 							"03 Dee Dee Wilde - Lap of Luxury.mp3",
 							"04 Dionne Warwick - Can't Hide Love.mp3",
-							"05 The Jets - The Only Dance.mp3"	];
-var title = 				"E R R S T H E T I C  /  V O L U M E  O N E\n"+
+							"05 The Jets - The Only Dance.mp3"	],
+title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 							"[01 Strawberry Switchblade - Who Knows What Love Is]\n"+
 							"[02 Pebbles - Why Do I Believe]\n"+
 							"[03 Dee Dee Wilde - Lap of Luxury]\n"+
 							"[04 Dionne Warwick - Can't Hide Love]\n"+
-							"[05 The Jets - The Only Dance]\n";
-var tapePlay =				true;
-var track =					0;
+							"[05 The Jets - The Only Dance]\n",
+tapePlay =					true,
+track =						0,
+menu = 						false;
+item =						0;
+
+
+function showMenu(window) {
+	if (menu) {
+		body.innerHTML += "<img src='dreaming_in_digital/menu_" + window + "_" + item + ".png'/>";
+	}
+}
 
 function playTape() {
 	if (tapePlay) {
