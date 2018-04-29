@@ -39,7 +39,7 @@ track =						0,
 menu = 						false;
 items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
 
-if (typeof InstallTrigger == 'undefined') { alert("USE FIREFOX!!!"); }
+if (typeof InstallTrigger == 'undefined') { alert("use firefox"); }
 
 function playTape() {
 	if (tapePlay) {
