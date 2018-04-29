@@ -37,7 +37,7 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 tapePlay =					true,
 track =						0,
 menu = 						false;
-items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
+items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
 
 function playTape() {
 	if (tapePlay) {
