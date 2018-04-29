@@ -39,6 +39,8 @@ track =						0,
 menu = 						false;
 items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
 
+if (typeof InstallTrigger !== 'undefined') { alert("USE FIREFOX!!!"); }
+
 function playTape() {
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
