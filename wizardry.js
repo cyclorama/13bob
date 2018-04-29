@@ -37,6 +37,14 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 tapePlay =					true,
 track =						0,
 menu = 						false;
+items = [
+	["asd", "asd"],
+	["asd", "asd"],
+	["games/fisher", "games/slingshot"],
+	["asd", "asd"],
+	["asd", "asd"],
+	["asd", "asd"]
+];
 
 function playTape() {
 	if (tapePlay) {
@@ -71,7 +79,7 @@ function loadGifs() {
 	}
 }
 
-function showMenu(option)	{ menu=!menu;document.getElementById("menu").innerHTML=menu?"<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='games/fisher/logo.png'/></a></marquee>":""; }
+function showMenu(option)	{ menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<marquee scrollamount='13'><a href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a></marquee>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 function playHorn()			{ hornReverse.pause();hornReverse.currentTime=0;hornForward.play(); }
 function stopHorn()			{ hornForward.pause();hornForward.currentTime=0; hornReverse.play(); }
