@@ -72,7 +72,7 @@ function loadGifs() {
 	}
 }
 
-function showMenu(option)	{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a href='"+items[option][i]+"'><img style='padding-top:13em;' id='menu' src='"+items[option][i]+"/logo.png'/></a><br><br>":"";} }
+function showMenu(option)	{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a href='"+items[option][i]+"'><img style='padding-bottom:13em;' id='menu' src='"+items[option][i]+"/logo.png'/></a><br>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 function playHorn()			{ hornReverse.pause();hornReverse.currentTime=0;hornForward.play(); }
 function stopHorn()			{ hornForward.pause();hornForward.currentTime=0; hornReverse.play(); }
