@@ -73,14 +73,6 @@ div#error {
     animation: spacing_two 1s;
 }
 
-#menu {
- height: 50px;  
- overflow: hidden;
- position: relative;
- background: yellow;
- color: orange;
- border: 1px solid orange;
-}
 img#menu {
  position: absolute;
  width: 100%;
