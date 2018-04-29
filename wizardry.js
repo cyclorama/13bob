@@ -42,7 +42,7 @@ item =						0;
 
 function showMenu(option) {
 	if (menu) {
-		document.getElementById("menu").innerHTML = "<marquee><img onscroll='item+=item<' id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></marquee>";
+		document.getElementById("menu").innerHTML = "<marquee scrollamount='30'><img onscroll='item+=item<' id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></marquee>";
 	} else { document.getElementById("menu").innerHTML = ""; }
 }
 
