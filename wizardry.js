@@ -42,10 +42,8 @@ item =						0;
 
 function showMenu(option) {
 	if (menu) {
-		document.getElementById("menu").innerHTML = "<img id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/>";
-	} else {
-		document.getElementById("menu").innerHTML = "";
-	}
+		document.getElementById("menu").innerHTML = "<marquee><img onscroll='item+=item<' id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></marquee>";
+	} else { document.getElementById("menu").innerHTML = ""; }
 }
 
 function playTape() {
