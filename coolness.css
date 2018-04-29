@@ -18,13 +18,12 @@
 @keyframes spacing_one { from { letter-spacing: -13px; } to { letter-spacing: 0px; } }
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
-@keyframes heat { from { color: white; } to { color: red; } }
 
 * { animation: fade 1s; }
 
 a:link { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
-a:hover { color: white; text-decoration: none; font-style: italic; cursor: url(little_finger.cur), pointer; }
+a:hover { color: white; text-decoration: none; cursor: url(little_finger.cur), pointer; }
 a:active { color: white; text-decoration: none; }
 
 h1
