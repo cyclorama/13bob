@@ -39,11 +39,8 @@ track =						0,
 menu = 						false;
 item =						0;
 
-
 function showMenu(option) {
-	if (menu) {
-		document.getElementById("menu").innerHTML = "<marquee scrollamount='30'><img onscroll='item+=item<' id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></marquee>";
-	} else { document.getElementById("menu").innerHTML = ""; }
+	document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><img onscroll='item+=item<' id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></marquee>" : "";
 }
 
 function playTape() {
