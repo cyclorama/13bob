@@ -10,7 +10,7 @@
  `---------'        | |||\    / '             ||\    / ' 
                    / ,'|/\'..' /              |/\'..' /  
            -....--'  / '  `'-'`               '  `'-'`   
-           `.. __..-'                                     
+           `.. __..-'                                    
 CONTROLS
 
 LEFT ARROW / RIGHT ARROW = MOVE LEFT / MOVE RIGHT
