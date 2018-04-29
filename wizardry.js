@@ -40,7 +40,7 @@ menu = 						false;
 item =						0;
 
 function showMenu(option) {
-	menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='dreaming_in_digital/fisher'><img id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></a></marquee>" : "";
+	menu=!menu; document.getElementById("menu").innerHTML = menu ? "<marquee scrollamount='13'><a href='games/fisher'><img id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/></a></marquee>" : "";
 }
 
 function playTape() {
