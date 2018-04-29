@@ -40,9 +40,9 @@ menu = 						false;
 item =						0;
 
 
-function showMenu(window) {
+function showMenu(option) {
 	if (menu) {
-		document.getElementById("menu").innerHTML = "<img id='menu' src='dreaming_in_digital/menu_" + window + "_" + item + ".png'/>";
+		document.getElementById("menu").innerHTML = "<img id='menu' src='dreaming_in_digital/menu_" + option + "_" + item + ".png'/>";
 	} else {
 		document.getElementById("menu").innerHTML = "";
 	}
