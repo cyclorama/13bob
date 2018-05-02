@@ -26,8 +26,7 @@ a:visited { color: white; text-decoration: none; }
 a:hover { color: white; text-decoration: none; cursor: url(little_finger.cur), pointer; }
 a:active { color: white; text-decoration: none; }
 
-h1
-{
+h1 {
     text-align: center;
     height: 1em;
     margin: auto;
@@ -36,8 +35,7 @@ h1
     animation: spacing_one 1s, heartbeat 1s alternate infinite;
 } h2 { font-size: 35px; font-family: 'Press Start 2P', cursive; animation: spacing_two 1s }
 
-body
-{
+body {
     color: white;
     overflow-x: hidden;
     cursor: url(open_hand.cur), pointer;
@@ -55,8 +53,7 @@ img#menu { z-index: 13; position: absolute; margin-left: -200px; margin-top: -56
 iframe { padding: 0.333em; animation: scale 1s; }
 video:hover { cursor: none; }
 
-#video_background
-{
+#video_background {
     position: fixed;
     top: 50%; left: 50%;
     min-width: 100%; min-height: 100%;
