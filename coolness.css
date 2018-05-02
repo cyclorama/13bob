@@ -46,7 +46,7 @@ body
 }
 
 ::-webkit-scrollbar { 
-    display: none; 
+    display: none;
 }
 
 img { animation: scale 1s; }
