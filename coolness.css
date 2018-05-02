@@ -45,6 +45,10 @@ body
     background-color: black; background-image: url(space.gif); background-repeat: repeat; background-attachment: fixed;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 img { animation: scale 1s; }
 img#nav { margin:0px 0px 0px -15px; border-radius: 50px; cursor: url(little_finger.cur), pointer; }
 img#menu { z-index: 13; position: absolute; margin-left: -200px; margin-top: -56em; margin-right: auto; margin-bottom: auto; }
