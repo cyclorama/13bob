@@ -80,7 +80,7 @@ function sound(s) {
 	if (s == 11) { sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play(); }
 }
 
-function play(n, s, d)		{ document.getElementsByName(document.querySelectorAll('[id=nav]')[n].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[n].name+(d==1?'_forward.gif':d==2?'_reverse.gif':'.gif');sound(s); }
+function play(x, y, z)		{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[x].name+(z==1?'_forward.gif':d==2?'_reverse.gif':'.gif');sound(y); }
 function showMenu(option)	{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 
