@@ -62,7 +62,7 @@ function init() {
 	if (typeof window.orientation !== 'undefined')
 		for (var x = 0; x < sounds.length; x++)
 			for (var y = 0; y < (sounds[x].length + 1); y++)
-				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward" : y == 1 ? "_reverse" : "");
+				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward.gif" : y == 1 ? "_reverse.gif" : ".gif");
 }
 
 function sound(s) {
