@@ -59,11 +59,10 @@ function highlightTrack(track) {
 } function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
 function init() {
-	if (typeof window.orientation !== 'undefined') {
+	if (typeof window.orientation !== 'undefined')
 		for (var x = 0; x < sounds.length; x++)
 			for (var y = 0; y < (sounds[x].length + 1); y++)
 				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward" : y == 1 ? "_reverse" : "");
-	}
 }
 
 function showMenu(option)	{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
