@@ -60,13 +60,9 @@ function highlightTrack(track) {
 
 function init() {
 	if (typeof window.orientation !== 'undefined') {
-		document.flower.src='photos/framed_flower_forward.gif';document.flower.src='photos/framed_flower_reverse.gif';document.flower.src='photos/framed_flower.gif';
-		document.eye.src='photos/framed_eye_forward.gif';document.eye.src='photos/framed_eye_reverse.gif';document.eye.src='photos/framed_eye.gif';
-		document.golden.src='photos/framed_spiral_forward.gif';document.golden.src='photos/framed_spiral.gif';
-		document.horse.src='photos/framed_horse_forward.gif';document.horse.src='photos/framed_horse_reverse.gif';document.horse.src='photos/framed_horse.gif';
-		document.mouth.src='photos/framed_mouth_forward.gif';document.mouth.src='photos/framed_mouth.gif';
-		document.nuke.src='photos/framed_nuke_forward.gif';document.nuke.src='photos/framed_nuke_reverse.gif';document.nuke.src='photos/framed_nuke.gif';
-		document.tape.src='photos/framed_tape.gif';document.tape.src='photos/framed_tape_forward.gif';
+		for (var x = 0; x < sounds.length; x++)
+			for (var y = 0; y < (sounds[x].length + 1); y++)
+				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward" : y == 1 ? "_reverse" : "");
 	}
 }
 
