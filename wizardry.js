@@ -35,6 +35,7 @@ tapePlay =					true,
 track =						0,
 menu = 						false;
 items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
+for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
 function playTape() {
 	if (tapePlay) {
@@ -57,7 +58,7 @@ function highlightTrack(track) {
 	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i+1] != null ? trackTitle[i] + "\n" : "" ; document.tape.title = title;
 } function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
-function init() { for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
+function init() {
 	if (typeof window.orientation !== 'undefined') {
 		document.flower.src='photos/framed_flower_forward.gif';document.flower.src='photos/framed_flower_reverse.gif';document.flower.src='photos/framed_flower.gif';
 		document.eye.src='photos/framed_eye_forward.gif';document.eye.src='photos/framed_eye_reverse.gif';document.eye.src='photos/framed_eye.gif';
