@@ -65,19 +65,22 @@ function init() {
 				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward" : y == 1 ? "_reverse" : "");
 }
 
+function sound(sound) {
+	if (sound == 0)  { sounds[0][0].pause();sounds[0][0].currentTime=0; sounds[0][1].play(); }
+	if (sound == 1)  { sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play(); }
+	if (sound == 2)  { sounds[1][0].pause();sounds[1][0].currentTime=0;sounds[1][1].play(); }
+	if (sound == 3)  { sounds[2][0].play(); }
+	if (sound == 4)  { sounds[2][0].pause();sounds[2][0].currentTime=0; }
+	if (sound == 5)  { sounds[3][0].play(); }
+	if (sound == 6)  { sounds[3][0].pause();sounds[3][0].currentTime=0; }
+	if (sound == 7)  { sounds[4][0].play(); }
+	if (sound == 8)  { sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play(); }
+	if (sound == 9)  { sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play(); }
+	if (sound == 10) { sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play(); }
+}
+
+function play(frame, d)		{ document.getElementByName(document.getElementById("nav")[frame]).src='photos/framed_'+document.getElementById("nav")[frame]+((d%2)==0?'_forward.gif':'_reverse.gif');sound(frame); }
 function showMenu(option)	{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
-function playHorn()			{ sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
-function stopHorn()			{ sounds[0][0].pause();sounds[0][0].currentTime=0; sounds[0][1].play(); }
-function playStretch()		{ sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play(); }
-function stopStretch()		{ sounds[1][0].pause();sounds[1][0].currentTime=0;sounds[1][1].play(); }
-function playSpace()		{ sounds[2][0].play(); }
-function stopSpace()		{ sounds[2][0].pause();sounds[2][0].currentTime=0; }
-function playProjector()	{ sounds[3][0].play(); }
-function stopProjector()	{ sounds[3][0].pause();sounds[3][0].currentTime=0; }
-function playChatter()		{ sounds[4][0].play(); }
-function stopChatter()		{ sounds[4][0].pause();sounds[4][0].currentTime=0; }
-function playBomb()			{ sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play(); }
-function stopBomb()			{ sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play(); }
 
 playTape();
