@@ -59,7 +59,6 @@ function highlightTrack(track) {
 
 function loadGifs() {
 	if (typeof window.orientation !== 'undefined') {
-		for (var i = 0; i < )
 		document.flower.src='photos/framed_flower_forward.gif';document.flower.src='photos/framed_flower_reverse.gif';document.flower.src='photos/framed_flower.gif';
 		document.eye.src='photos/framed_eye_forward.gif';document.eye.src='photos/framed_eye_reverse.gif';document.eye.src='photos/framed_eye.gif';
 		document.golden.src='photos/framed_spiral_forward.gif';document.golden.src='photos/framed_spiral.gif';
