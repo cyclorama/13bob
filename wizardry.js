@@ -31,16 +31,16 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 							"[03 Dee Dee Wilde - Lap of Luxury]\n"+
 							"[04 Dionne Warwick - Can't Hide Love]\n"+
 							"[05 The Jets - The Only Dance]\n",
-tapePlay =					false,
+tapeP =						false,
 track =						0,
 items =						[ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
-function pTape() { tapePlay = !tapePlay;
+function pTape() { tapeP = !tapeP;
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		mixtape.volume = 0.15; mixtape.play();
-		mixtape.onended = function() { for (var i = 0; i < 2; i++) tape(); };
+		mixtape.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
 		highlightTrack(track + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
