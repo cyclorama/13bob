@@ -33,7 +33,7 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 							"[05 The Jets - The Only Dance]\n",
 tapeP =						false,
 track =						0,
-items =						[ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
+items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ];
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
 function pTape() { tapeP = !tapeP;
@@ -80,7 +80,7 @@ function pSound(s) {
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[x].name+(z==1?'_forward.gif':z==2?'_reverse.gif':'.gif');pSound(y); }
-function sMenu(option)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
+function sMenu(o, m)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[o].length;i++){document.getElementById("menu").innerHTML+=menu?(m==0?"<a style='padding:13em;' href='"+items[o][i]+"'><img id='menu' src='"+items[o][i]+"/logo.png'/></a>"):m==1?"<video id='video_background' autoplay><source src='"+items[o][i]+".mp4'></video>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 
 pTape();
