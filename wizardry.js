@@ -31,7 +31,7 @@ title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
 							"[03 Dee Dee Wilde - Lap of Luxury]\n"+
 							"[04 Dionne Warwick - Can't Hide Love]\n"+
 							"[05 The Jets - The Only Dance]\n",
-tapePlay =					true,
+tapePlay =					false,
 track =						0,
 menu = 						false;
 items = [ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
