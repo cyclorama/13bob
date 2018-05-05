@@ -36,7 +36,7 @@ track =						0,
 items =						[ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["5", "5"] ];
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
-function tape() { tapePlay = !tapePlay;
+function pTape() { tapePlay = !tapePlay;
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		mixtape.volume = 0.15; mixtape.play();
@@ -64,7 +64,7 @@ function init() {
 				document.getElementById("nav")[x].src = "photos/framed_" + document.getElementById("nav")[x].name + (y == 0 ? "_forward.gif" : y == 1 ? "_reverse.gif" : ".gif");
 }
 
-function sound(s) {
+function pSound(s) {
 	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
 	if (s == 1)  { sounds[0][0].pause();sounds[0][0].currentTime=0;sounds[0][1].play(); }
 	if (s == 2)  { sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play(); }
@@ -79,8 +79,8 @@ function sound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function play(x, y, z)		{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[x].name+(z==1?'_forward.gif':z==2?'_reverse.gif':'.gif');sound(y); }
-function menu(option)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
+function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[x].name+(z==1?'_forward.gif':z==2?'_reverse.gif':'.gif');pSound(y); }
+function sMenu(option)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 
 tape();
