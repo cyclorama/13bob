@@ -41,7 +41,7 @@ function playTape() { tapePlay = !tapePlay;
 	if (tapePlay) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		mixtape.volume = 0.15; mixtape.play();
-		mixtape.onended = function() { for (var i = 0; i < 2; i++) { tapePlay = !tapePlay; playTape(); } };
+		mixtape.onended = function() { for (var i = 0; i < 2; i++) playTape(); };
 		highlightTrack(track + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
