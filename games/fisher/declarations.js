@@ -14,7 +14,6 @@
            `.. __..-'                                    
 +-------------------------------------------------------+
 |	Author: ebob										|
-|	Description: This is like a header, okay?			|
 +-------------------------------------------------------+
 */
 var canvas =				document.createElement("canvas");
