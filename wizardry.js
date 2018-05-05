@@ -84,4 +84,4 @@ function play(x, y, z)		{ document.getElementsByName(document.querySelectorAll('
 function menu(option)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[option].length;i++){document.getElementById("menu").innerHTML+=menu?"<a style='padding:13em;' href='"+items[option][i]+"'><img id='menu' src='"+items[option][i]+"/logo.png'/></a>":"";} }
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 
-playTape();
+tape();
