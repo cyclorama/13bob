@@ -80,7 +80,7 @@ function pSound(s) {
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src='photos/framed_'+document.querySelectorAll('[id=nav]')[x].name+(z==1?'_forward.gif':z==2?'_reverse.gif':'.gif');pSound(y); }
-function sMenu(o, m)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[o].length;i++){document.getElementById("menu").innerHTML+=menu?(m==0?"<a style='padding:13em;' href='"+items[o][i]+"'><img id='menu' src='"+items[o][i]+"/logo.png'/></a>":m==1?"<video onclick='sMenu("+o+",1)' style='z-index:13;' id='video_background' autoplay><source src='movies/"+items[o][i]+".mp4'></video>":""):"";}mixtape.pause();}
+function sMenu(o, m)		{ document.getElementById("menu").innerHTML="";menu=!menu;for(var i=0;i<items[o].length;i++){document.getElementById("menu").innerHTML+=menu?(m==0?"<a style='padding:13em;' href='"+items[o][i]+"'><img id='menu' src='"+items[o][i]+"/logo.png'/></a>":m==1?"<video onclick='sMenu("+o+",1)' style='z-index:13;' id='video_background' autoplay><source src='movies/"+items[o][i]+".mp4'></video>":""):"";}pTape();}
 function fibonacci(nterms)	{ var n1=0;var n2=1;var next;var goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(next+" (Golden ratio = "+goldenRatio+")");} }
 
 pTape();
