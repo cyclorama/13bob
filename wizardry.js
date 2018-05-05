@@ -37,7 +37,7 @@ items =						[ ["0", "0"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
 function pTape() { tapeP = !tapeP;
-	if (tapePlay) {
+	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		mixtape.volume = 0.15; mixtape.play();
 		mixtape.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
