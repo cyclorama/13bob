@@ -19,34 +19,19 @@ var sounds = 			[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibr
 			 				[ new Audio('vibrations/projector.mp3') ],
 			 				[ new Audio('vibrations/chatter.mp3') ],
 			 				[ new Audio('vibrations/inflate.mp3'), new Audio('vibrations/deflate.mp3')] ]
-var mixtape =				new Audio('mixtapes/E R R S T H E T I C/01 Strawberry Switchblade - Who Knows What Love Is.mp3');
-var tracks =			[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
-							"02 Pebbles - Why Do I Believe.mp3",
-							"03 Dee Dee Wilde - Lap of Luxury.mp3",
-							"04 Dionne Warwick - Can't Hide Love.mp3",
-							"05 The Jets - The Only Dance.mp3"	],
-title = 					"E R R S T H E T I C  /  V O L U M E  O N E\n"+
-							"[01 Strawberry Switchblade - Who Knows What Love Is]\n"+
-							"[02 Pebbles - Why Do I Believe]\n"+
-							"[03 Dee Dee Wilde - Lap of Luxury]\n"+
-							"[04 Dionne Warwick - Can't Hide Love]\n"+
-							"[05 The Jets - The Only Dance]\n",
-tapeP =						false,
-track =						0,
+var track =					  new Audio("tracks/17 - Strawberry Switchblade - Trees And Flowers.mp3");
 items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ];
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
+document.getElementsByName
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
-		mixtape.volume = 0.15; mixtape.play();
-		mixtape.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
-		highlightTrack(track + 1);
+		mixtape.volume = 0.15; track.play();
+		tape.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
-		mixtape.pause(); mixtape.currentTime = 0;
-		track = track < tracks.length - 1 ? track + 1 : 0;
-		mixtape = new Audio('mixtapes/E R R S T H E T I C/' + tracks[track]);
+		tape.pause(); tape.currentTime = 0;
 	}
 }
 
