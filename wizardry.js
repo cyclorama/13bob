@@ -27,11 +27,11 @@ document.getElementsByName
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
-		mixtape.volume = 0.15; track.play();
-		tape.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
+		track.volume = 0.15; track.play();
+		track.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
-		tape.pause(); tape.currentTime = 0;
+		track.pause(); track.currentTime = 0;
 	}
 }
 
