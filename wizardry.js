@@ -23,7 +23,6 @@ track =					  	  new Audio("tracks/17 - Strawberry Switchblade - Trees And Flowe
 items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
 tapeP =						false;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
-document.getElementsByName
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
