@@ -27,6 +27,7 @@ for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y+
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
+		document.tape.title = "Strawberry Switchblade - Trees And Flowers";
 		track.volume = 0.15; track.play();
 		track.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
 	} else {
