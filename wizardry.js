@@ -28,7 +28,7 @@ function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		track.volume = 0.15; track.play();
-		track.onended = function() { for (var i = 0; i < 2; i++) pTape(); };
+		track.onended = function() { pTape(); pTape(); };
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
