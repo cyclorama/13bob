@@ -19,7 +19,7 @@ var sounds = 			[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibr
 			 				[ new Audio('vibrations/projector.mp3') ],
 			 				[ new Audio('vibrations/chatter.mp3') ],
 			 				[ new Audio('vibrations/inflate.mp3'), new Audio('vibrations/deflate.mp3')] ],
-track =					  	  new Audio("tracks/17 - Strawberry Switchblade - Trees And Flowers.mp3"),
+track =					  	  new Audio("tracks/16 - Strawberry Switchblade - Black Taxi.mp3"),
 items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
 tapeP =						false;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
