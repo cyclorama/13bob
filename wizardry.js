@@ -38,7 +38,7 @@ function pTape() { tapeP = !tapeP;
 function init() {
 	if (typeof window.orientation !== 'undefined')
 		for (var x = 0; x < sounds.length; x++)
-			for (var y = 0; y < (sounds[x].length + 1); y++)
+			for (var y = 0; y < sounds[x].length; y++)
 				document.querySelectorAll('[id=nav]')[x].src = "photos/framed_" + document.querySelectorAll('[id=nav]')[x].name + (y == 0 ? "_forward.gif" : y == 1 ? "_reverse.gif" : ".gif");
 }
 
