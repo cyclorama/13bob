@@ -35,13 +35,6 @@ function pTape() { tapeP = !tapeP;
 	}
 }
 
-function init() {
-	if (typeof window.orientation !== 'undefined')
-		for (var x = 0; x < sounds.length; x++)
-			for (var y = 0; y < sounds[x].length; y+=sounds[x].length>1?1:2)
-				document.querySelectorAll('[id=nav]')[x].src = "photos/framed_" + document.querySelectorAll('[id=nav]')[x].name + (y == 0 ? "_forward.gif" : y == 1 ? "_reverse.gif" : ".gif");
-}
-
 function pSound(s) {
 	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
 	if (s == 1)  { sounds[0][0].pause();sounds[0][0].currentTime=0;sounds[0][1].play(); }
