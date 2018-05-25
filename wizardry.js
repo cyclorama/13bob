@@ -37,7 +37,7 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		track.volume = 0.15; track.play();
 		track.onended = function() { pTape(); pTape(); };
-		highlightTrack(track + 1);
+		highlightTrack(trackN + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
 		track.currentTime = 0;
@@ -46,12 +46,12 @@ function pTape() { tapeP = !tapeP;
 	}
 }
 
-function highlightTrack(track) {
+function highlightTrack(trackN) {
 	trackTitle = title.split("\n");
-	if (track == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (track > 1) removeHighlight(track - 1);
-	trackTitle[track] = "> " + trackTitle[track] + " <"; title = "";
+	if (trackN == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (trackN > 1) removeHighlight(trackN - 1);
+	trackTitle[trackN] = "> " + trackTitle[trackN] + " <"; title = "";
 	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i+1] != null ? trackTitle[i] + "\n" : "" ; document.tape.title = title;
-} function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
+} function removeHighlight(trackN) { trackTitle[trackN] = trackTitle[trackN].substring(2, trackTitle[trackN].length - 2); }
 
 function pSound(s) {
 	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
