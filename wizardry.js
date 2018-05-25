@@ -35,22 +35,11 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		track.volume = 0.15; track.play();
 		track.onended = function() { pTape(); pTape(); };
+		highlightTrack(track + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
-	}
-}
-
-function pTape() { tapeP = !tapeP;
-	if (tapeP) {
-		document.tape.src = 'photos/framed_tape_forward.gif';
-		track.volume = 0.15; track.play();
-		track.onended = function() { pTape(); pTape(); };
-		highlightTrack(trackN + 1);
-	} else {
-		document.tape.src = 'photos/framed_tape.gif';
-		track.pause(); track.currentTime = 0;
-		trackN = trackN < tracks.length - 1 ? track + 1 : 0;
+		track = track < tracks.length - 1 ? track + 1 : 0;
 		track = new Audio('mixtapes/E R R S T H E T I C/' + tracks[trackN]);
 	}
 }
@@ -59,7 +48,7 @@ function highlightTrack(track) {
 	trackTitle = title.split("\n");
 	if (track == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (track > 1) removeHighlight(track - 1);
 	trackTitle[track] = "> " + trackTitle[track] + " <"; title = "";
-	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i] + "\n"; title = title.substring(0, title.length - 1); document.tape.title = title;
+	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i+1] != null ? trackTitle[i] + "\n" : "" ; document.tape.title = title;
 } function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
 function pSound(s) {
