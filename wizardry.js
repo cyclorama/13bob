@@ -27,7 +27,8 @@ tracks =				[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
 							"05 The Jets - The Only Dance.mp3"	];
 items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
 tapeP =						false;
-trackN =					0;
+trackN =					0,
+title =						"";
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 for (var i = 0; i < tracks.length; i++) { title += title[i].replace(".mp3", "") + "\n"; }
 
