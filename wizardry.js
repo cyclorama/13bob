@@ -19,9 +19,15 @@ var sounds = 			[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibr
 			 				[ new Audio('vibrations/projector.mp3') ],
 			 				[ new Audio('vibrations/chatter.mp3') ],
 			 				[ new Audio('vibrations/inflate.mp3'), new Audio('vibrations/deflate.mp3')] ],
-track =					  	  new Audio("tracks/16 - Strawberry Switchblade - Black Taxi.mp3"),
+track =					  	  new Audio("mixtapes/E R R S T H E T I C/01 Strawberry Switchblade - Who Knows What Love Is.mp3"),
+tracks =				[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
+							"02 Pebbles - Why Do I Believe.mp3",
+							"03 Dee Dee Wilde - Lap of Luxury.mp3",
+							"04 Dionne Warwick - Can't Hide Love.mp3",
+							"05 The Jets - The Only Dance.mp3"	];
 items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
 tapeP =						false;
+trackN =					0;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 
 function pTape() { tapeP = !tapeP;
@@ -34,6 +40,27 @@ function pTape() { tapeP = !tapeP;
 		track.pause(); track.currentTime = 0;
 	}
 }
+
+function pTape() { tapeP = !tapeP;
+	if (tapeP) {
+		document.tape.src = 'photos/framed_tape_forward.gif';
+		track.volume = 0.15; track.play();
+		track.onended = function() { pTape(); pTape(); };
+		highlightTrack(trackN + 1);
+	} else {
+		document.tape.src = 'photos/framed_tape.gif';
+		track.pause(); track.currentTime = 0;
+		trackN = trackN < tracks.length - 1 ? track + 1 : 0;
+		track = new Audio('mixtapes/E R R S T H E T I C/' + tracks[trackN]);
+	}
+}
+
+function highlightTrack(track) {
+	trackTitle = title.split("\n");
+	if (track == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (track > 1) removeHighlight(track - 1);
+	trackTitle[track] = "> " + trackTitle[track] + " <"; title = "";
+	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i] + "\n"; title = title.substring(0, title.length - 1); document.tape.title = title;
+} function removeHighlight(track) { trackTitle[track] = trackTitle[track].substring(2, trackTitle[track].length - 2); }
 
 function pSound(s) {
 	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
