@@ -29,6 +29,7 @@ items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3
 tapeP =						false;
 trackN =					0;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
+for (var i = 0; i < tracks.length; i++) { title += title[i].replace(".mp3", "") + "\n"; }
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
