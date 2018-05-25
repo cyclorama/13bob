@@ -40,7 +40,7 @@ function pTape() { tapeP = !tapeP;
 		highlightTrack(trackN + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
-		track.currentTime = 0;
+		track.pause(); track.currentTime = 0;
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
 		track = new Audio('mixtapes/E R R S T H E T I C/' + tracks[trackN]);
 	}
