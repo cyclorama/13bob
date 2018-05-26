@@ -42,7 +42,8 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
-		track = new Audio(track.src.replace(tracks[trackN - 1], tracks[trackN]));
+		console.log(tracks[trackN])
+		track = new Audio(track.src.replace(tracks[trackN], tracks[trackN + 1]));
 	}
 }
 
