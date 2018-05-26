@@ -42,7 +42,7 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
-		track = new Audio('mixtapes/E R R S T H E T I C/' + tracks[trackN]);
+		track = new Audio(track.src.replace(tracks[trackN - 1], tracks[trackN]));
 	}
 }
 
