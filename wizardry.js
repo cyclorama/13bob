@@ -13,22 +13,22 @@
            -....--'  / '  `'-'`               '  `'-'`   
            `.. __..-'                                    
 */
-var sounds = 			[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibrations/flower_reverse.mp3') ],
-			 				[ new Audio('vibrations/stretch_forward.mp3'), new Audio('vibrations/stretch_reverse.mp3') ],
-			 				[ new Audio('vibrations/space.mp3') ],
-			 				[ new Audio('vibrations/projector.mp3') ],
-			 				[ new Audio('vibrations/chatter.mp3') ],
-			 				[ new Audio('vibrations/inflate.mp3'), new Audio('vibrations/deflate.mp3')] ],
-track =						  new Audio("mixtapes/E R R S T H E T I C/" + tracks[0]),
-title =						"E R R S T H E T I C  /  V O L U M E  O N E\n",
-tracks =				[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
-							"02 Pebbles - Why Do I Believe.mp3",
-							"03 Dee Dee Wilde - Lap of Luxury.mp3",
-							"04 Dionne Warwick - Can't Hide Love.mp3",
-							"05 The Jets - The Only Dance.mp3"	],
-items =						[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
-tapeP =						false;
-trackN =					0,
+var sounds = 	[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibrations/flower_reverse.mp3') ],
+			 		[ new Audio('vibrations/stretch_forward.mp3'), new Audio('vibrations/stretch_reverse.mp3') ],
+			 		[ new Audio('vibrations/space.mp3') ],
+					[ new Audio('vibrations/projector.mp3') ],
+		 			[ new Audio('vibrations/chatter.mp3') ],
+		 			[ new Audio('vibrations/inflate.mp3'), new Audio('vibrations/deflate.mp3')] ],
+title =				"E R R S T H E T I C  /  V O L U M E  O N E\n",
+tracks =		[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
+					"02 Pebbles - Why Do I Believe.mp3",
+					"03 Dee Dee Wilde - Lap of Luxury.mp3",
+					"04 Dionne Warwick - Can't Hide Love.mp3",
+					"05 The Jets - The Only Dance.mp3"	],
+track =				new Audio("mixtapes/E R R S T H E T I C/" + tracks[0]),
+items =				[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
+tapeP =				false;
+trackN =			0,
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 for (var i = 0; i < tracks.length; i++) { title += "[" + tracks[i].replace(".mp3", "") + "]" + "\n"; }
 
