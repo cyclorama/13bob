@@ -26,7 +26,7 @@ tracks =		[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
 					"04 Dionne Warwick - Can't Hide Love.mp3",
 					"05 The Jets - The Only Dance.mp3"	],
 track =				new Audio("mixtapes/E R R S T H E T I C/" + tracks[0]),
-items =				[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot"], ["3", "3"], ["4", "4"], ["-"] ],
+items =				[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot/slingshoot.zip"], ["3", "3"], ["4", "4"], ["-"] ],
 tapeP =				false,
 trackN =			0;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
