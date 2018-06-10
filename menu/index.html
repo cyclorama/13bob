@@ -25,6 +25,16 @@
 	<body>
 		<script src="three.js"></script>
 		<script>
+			function objCube(x, y, z, vX, vY, vZ) = {
+				var ret = {};
+				ret.x = x;
+				ret.y = y;
+				ret.z = z;
+				ret.vX = vX;
+				ret.vY = vY;
+				ret.vZ = vZ;
+			}; cubes = [];
+
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -32,18 +42,24 @@
 			renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
 			document.body.appendChild(renderer.domElement);
 
-			var geometry = new THREE.BoxGeometry(1, 1, 1);
-			var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-			var cube = new THREE.Mesh(geometry, material);
-			scene.add(cube);
+			camera.position.z = 5; // Push back camera
 
-			camera.position.z = 5;
+			function addCube(x, y, z) {
+				var geometry = new THREE.BoxGeometry(x, y, z);
+				var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+				var cube = new THREE.Mesh(geometry, material);
+				cubes.add(new objCube(x, y, z, vX, vY, vZ));
+				scene.add(cube);
+			}
 
 			function animate() {
 				requestAnimationFrame(animate);
 
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+				for (var i = 0; i < cubes.length; i++) {
+					cubes[i].x += cubes[i].aX;
+					cubes[i].y += cubes[i].aY;
+					cubes[i].z += cubes[i].aZ;
+				}
 
 				renderer.render(scene, camera);
 			}
