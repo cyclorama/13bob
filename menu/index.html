@@ -54,6 +54,13 @@
 				scene.add(cubes[cubes.length-1].mesh);
 			}
 
+			function letThereBeLight() {
+				var light = new THREE.PointLight(0xff0000, 1, 100);
+				light.position.set(0, 0, 0);
+				scene.add(light);
+			}
+
+			letThereBeLight();
 			addCube(0, 0, 0, 0.1, 0.2, 0.3);
 
 			var dX, dY, dZ;
