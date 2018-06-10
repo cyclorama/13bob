@@ -70,6 +70,10 @@
 					cubes[i].mesh.position.x += dX ? cubes[i].vX : -cubes[i].vX;
 					cubes[i].mesh.position.y += dY ? cubes[i].vY : -cubes[i].vY;
 					cubes[i].mesh.position.z += dZ ? cubes[i].vZ : -cubes[i].vZ;
+
+					cubes[i].mesh.rotation.x += cubes[i].vX;
+					cubes[i].mesh.rotation.y += cubes[i].vY;
+					cubes[i].mesh.rotation.z += cubes[i].vZ;
 				}
 				renderer.render(scene, camera);
 			}
