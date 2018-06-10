@@ -57,9 +57,9 @@
 				requestAnimationFrame(animate);
 
 				for (var i = 0; i < cubes.length; i++) {
-					cubes[i].x += cubes[i].aX;
-					cubes[i].y += cubes[i].aY;
-					cubes[i].z += cubes[i].aZ;
+					cubes[i].x += cubes[i].vX;
+					cubes[i].y += cubes[i].vY;
+					cubes[i].z += cubes[i].vZ;
 				}
 				renderer.render(scene, camera);
 			}
