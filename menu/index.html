@@ -54,7 +54,7 @@
 				var cube = new THREE.Mesh(geometry, material);
 				obJcubes.push(new objCube(x, y, z, vX, vY, vZ));
 				cubes.push(cube);
-				scene.add(cube);
+				scene.add(cubes[cubes.length-1]);
 			}
 
 			addCube(0, 0, 0, 1, 0, 0);
