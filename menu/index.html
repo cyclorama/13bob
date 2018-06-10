@@ -33,6 +33,7 @@
 				ret.vX = vX;
 				ret.vY = vY;
 				ret.vZ = vZ;
+				return ret;
 			}; cubes = [];
 
 			var scene = new THREE.Scene();
@@ -60,7 +61,6 @@
 					cubes[i].y += cubes[i].aY;
 					cubes[i].z += cubes[i].aZ;
 				}
-
 				renderer.render(scene, camera);
 			}
 			animate();
