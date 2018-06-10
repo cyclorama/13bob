@@ -60,9 +60,9 @@
 				requestAnimationFrame(animate);
 
 				for (var i = 0; i < cubes.length; i++) {
-					cubes[i].x += cubes[i].vX;
-					cubes[i].y += cubes[i].vY;
-					cubes[i].z += cubes[i].vZ;
+					cubes[i].mesh.x += cubes[i].vX;
+					cubes[i].mesh.y += cubes[i].vY;
+					cubes[i].mesh.z += cubes[i].vZ;
 				}
 				renderer.render(scene, camera);
 			}
