@@ -46,9 +46,9 @@
 
 			camera.position.z = 15; // Push back camera
 
-			function addCube(x, y, z, vX, vY, vZ) {
+			function addCube(x, y, z, vX, vY, vZ, col) {
 				var geometry = new THREE.BoxGeometry(x, y, z);
-				var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+				var material = new THREE.MeshBasicMaterial({ color: col });
 				var cube = new THREE.Mesh(geometry, material);
 				cube.castShadow = true;
 				cube.receiveShadow = true;
@@ -57,7 +57,7 @@
 			}
 
 			function letThereBeLight() {
-				var light = new THREE.PointLight(0xff0000, 1, 100);
+				var light = new THREE.PointLight(0xffffff, 1, 100);
 				light.position.set(0, 0, 0);
 				light.castShadow = true;
 				scene.add(light);
@@ -68,9 +68,9 @@
 			}
 
 			letThereBeLight();
-			addCube(0, 0, 0, 0, 0, 0);
+			addCube(0, 0, 0, 0, 0, 0, 0xff0000);
 			cubes[0].mesh.scale.set(20, 20, 20);
-			addCube(0, 0, 0, 0.1, 0.2, 0.3);
+			addCube(0, 0, 0, 0.1, 0.2, 0.3, 0x00ff00);
 
 			var dX, dY, dZ;
 
