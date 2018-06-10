@@ -34,7 +34,10 @@
 				ret.vY = vY;
 				ret.vZ = vZ;
 				return ret;
-			} cubes = [];
+			} 
+
+			obJcubes = [];
+			cubes = [];
 
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -49,11 +52,12 @@
 				var geometry = new THREE.BoxGeometry(x, y, z);
 				var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 				var cube = new THREE.Mesh(geometry, material);
-				cubes.push(new objCube(x, y, z, vX, vY, vZ));
+				obJcubes.push(new objCube(x, y, z, vX, vY, vZ));
+				cubes.push(cube);
 				scene.add(cube);
 			}
 
-			addCube(0, 0, 0, 0.1, 0, 0);
+			addCube(0, 0, 0, 1, 0, 0);
 
 			function animate() {
 				requestAnimationFrame(animate);
