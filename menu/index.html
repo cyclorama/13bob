@@ -42,6 +42,8 @@
 
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize(window.innerWidth * 0.995, window.innerHeight * 0.99);
+			renderer.shadowMap.enabled = true;
+			renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 			document.body.appendChild(renderer.domElement);
 
 			camera.position.z = 15; // Push back camera
