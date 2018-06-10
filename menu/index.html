@@ -49,7 +49,7 @@
 				var geometry = new THREE.BoxGeometry(x, y, z);
 				var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 				var cube = new THREE.Mesh(geometry, material);
-				cubes.add(new objCube(x, y, z, vX, vY, vZ));
+				cubes.push(new objCube(x, y, z, vX, vY, vZ));
 				scene.add(cube);
 			}
 
