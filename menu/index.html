@@ -41,10 +41,10 @@
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 			var renderer = new THREE.WebGLRenderer();
-			renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+			renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
 			document.body.appendChild(renderer.domElement);
 
-			camera.position.z = 5; // Push back camera
+			camera.position.z = 15; // Push back camera
 
 			function addCube(x, y, z, vX, vY, vZ) {
 				var geometry = new THREE.BoxGeometry(x, y, z);
