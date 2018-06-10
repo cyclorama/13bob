@@ -45,7 +45,7 @@
 
 			camera.position.z = 5; // Push back camera
 
-			function addCube(x, y, z) {
+			function addCube(x, y, z, vX, vY, vZ) {
 				var geometry = new THREE.BoxGeometry(x, y, z);
 				var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 				var cube = new THREE.Mesh(geometry, material);
