@@ -68,6 +68,7 @@
 			}
 
 			letThereBeLight();
+			addCube(0, 0, 0, 0, 0, 0);
 			addCube(0, 0, 0, 0.1, 0.2, 0.3);
 
 			var dX, dY, dZ;
@@ -81,9 +82,9 @@
 					if (cubes[i].mesh.position.y < -8 || cubes[i].mesh.position.y > 8) dY = !dY;
 					if (cubes[i].mesh.position.z < -8 || cubes[i].mesh.position.z > 8) dZ = !dZ;
 
-					cubes[i].mesh.position.x += dX ? cubes[i].vX : -cubes[i].vX;
-					cubes[i].mesh.position.y += dY ? cubes[i].vY : -cubes[i].vY;
-					cubes[i].mesh.position.z += dZ ? cubes[i].vZ : -cubes[i].vZ;
+					cubes[i].mesh.position.x += dX ? cubes[i].vX / 10 : -cubes[i].vX / 10;
+					cubes[i].mesh.position.y += dY ? cubes[i].vY / 10 : -cubes[i].vY / 10;
+					cubes[i].mesh.position.z += dZ ? cubes[i].vZ / 10 : -cubes[i].vZ / 10;
 
 					cubes[i].mesh.rotation.x += cubes[i].vX / 100;
 					cubes[i].mesh.rotation.y += cubes[i].vY / 100;
