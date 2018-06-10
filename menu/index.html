@@ -57,7 +57,7 @@
 			function letThereBeLight() {
 				var light = new THREE.PointLight(0xff0000, 1, 100);
 				light.position.set(0, 0, 0);
-				light.castShadow(true);
+				light.castShadow = true;
 				scene.add(light);
 				light.shadow.mapSize.width = 512;
 				light.shadow.mapSize.height = 512;
