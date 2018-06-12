@@ -214,13 +214,7 @@
 
 				addSkybox();
 				addLight();
-
-				var plane = new THREE.Mesh(new THREE.PlaneGeometry(25, 25), new THREE.MeshStandardMaterial({color: 0xff0000}));
-				plane.castShadow = false;
-				plane.receiveShadow = true;
-				plane.position.set(0, 0, -15);
-				scene.add(plane);
-
+				
 				var qInitial = new THREE.Quaternion().setFromAxisAngle(yAxis, -Math.PI / 8);
 				var qFinal = new THREE.Quaternion().setFromAxisAngle(yAxis, Math.PI / 32);
 
