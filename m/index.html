@@ -65,13 +65,15 @@
 				return ret;
 			}
 
-			function lineObj(line, x, y, z, sequences) {
+			function lineObj(line, x1, y1, z1, x2, y2, z2) {
 				var ret = {};
 				ret.line = line;
-				ret.x = x;
-				ret.y = y;
-				ret.z = z;
-				ret.sequences = sequences;
+				ret.x1 = x1;
+				ret.y1 = y1;
+				ret.z1 = z1;
+				ret.x2 = x2;
+				ret.y2 = y2;
+				ret.z2 = z2;
 				return ret;
 			}
 
@@ -183,13 +185,13 @@
 				}
 			}
 
-			function addLine(x, y, z, sequences) {
+			function addLine(x1, y1, z1, x2, y2, z2) {
 				var material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
 				var geometry = new THREE.Geometry();
-				geometry.vertices.push(new THREE.Vector3(10, 0, -13));
-				geometry.vertices.push(new THREE.Vector3(x, y, z));
+				geometry.vertices.push(new THREE.Vector3(x1, y1, z1));
+				geometry.vertices.push(new THREE.Vector3(x2, y2, z2));
 				var line = new THREE.Line(geometry, material);
-				objects.push(new lightObj(line, x, y, z, sequences));
+				objects.push(new lineObj(line, x1, y1, z1, x2, y2, z2));
 				scene.add(line);
 			}
 
@@ -222,8 +224,8 @@
 				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
 				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
 				//addLight(0, 0, 0, 0, null);
-				addLight(1, 0, 0, -13, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 64], [0, 0, -13, 10, 0, 13])]);
-				addLine(0, 0, -13, 13, 0, 13, []);
+				addLight(1, 0, 0, -13, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 64], [13, 0, -13, 13, 0, 13])]);
+				addLine(130, 0, -130, 130, 0, 130);
 				// Action
 
 				//new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])
