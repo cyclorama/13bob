@@ -229,8 +229,8 @@
 				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
 				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
 				//addLight(0, 0, 0, 0, null);
-				addLight(1, 0, 0, -13, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 64], [10, 0, -13, 10, 0, 13])]);
-				addLine(0, 0.28, -13, 13, 0.28, 3.3, [new THREE.VectorKeyframeTrack('.position', [0, 64], [13, 0, -13, 13, 0, 3.3])]);
+				addLight(1, 0, 0, -13, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 64], [0, 0, -13, 10, 0, 13])]);
+				addLine(0, 0, -13, 13, 0, 13, [])]);
 				// Action
 
 				//new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])
