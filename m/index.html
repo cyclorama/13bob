@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="description" content="Menu">
+		<meta name="description" content="Welcome!">
 		<link rel="icon" href="//13bob.net/world.gif">
 		<title>13bob</title>
 		<style> html { background-color: black; overflow: hidden; } canvas { width: 100%; height: 100%; position: center; } </style>
@@ -157,7 +157,7 @@
 						clips.push(clipAction);
 					break;
 					case 1:
-						var light = new THREE.DirectionalLight(0xff9999, 1.0);
+						var light = new THREE.DirectionalLight(0xffffff, 1.0);
 						light.position.set(x, y, z);
 						light.target = target;
 						light.castShadow = true;
@@ -199,14 +199,14 @@
 
 			function updatePositions() {
 				var positions = line.geometry.attributes.position.array, index = 0;
-				if (objects.length > 3) { // Light loaded?
+				if (mixers.length > 3) { // Light loaded?
 					for (var i = 0, l = MAX_POINTS; i < l; i++) {
 						positions[index++] = ex;
 						positions[index++] = wy;
 						positions[index++] = ze;
-					    ex += objects[3].light.position.x;
-					    wy += objects[3].light.position.y;
-					    ze += objects[3].light.position.z;
+					    ex = mixers[3].getRoot().position.x;
+					    wy = mixers[3].getRoot().position.y;
+					    ze = mixers[3].getRoot().position.z;
 					}
 				}
 			}
@@ -230,6 +230,17 @@
 				ambient.intensity = 0.0333;
 				scene.add(ambient);
 
+				addSkybox();
+				var qInitial = new THREE.Quaternion().setFromAxisAngle(yAxis, -Math.PI / 8);
+				var qFinal = new THREE.Quaternion().setFromAxisAngle(yAxis, Math.PI / 32);
+
+				// Action
+
+				addObj(0, 0, 0, 3, false, "earth.jpg", false, false, []);
+				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
+				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
+				addLight(1, ex, wy, ze, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 32], [ex, wy, ze, ex, wy, ze + 13])]);
+
 				// Line
 				var geometry = new THREE.BufferGeometry();
 				var positions = new Float32Array(MAX_POINTS * 3); // 3 vertices per point
@@ -241,18 +252,6 @@
 				scene.add(line);
 				updatePositions();
 
-
-				addSkybox();
-				var qInitial = new THREE.Quaternion().setFromAxisAngle(yAxis, -Math.PI / 8);
-				var qFinal = new THREE.Quaternion().setFromAxisAngle(yAxis, Math.PI / 32);
-
-				// Action
-				addObj(0, 0, 0, 3, false, "earth.jpg", false, false, []);
-				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
-				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
-				//addLight(0, 0, 0, 0, null);
-				addLight(1, ex, wy, ze, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 32], [ex, wy, ze, ex, wy, ze + 13])]);
-				//addLine(130, -10, -130, 130, -10, 130);
 				// Action
 
 				//new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])
@@ -269,8 +268,7 @@
 
 				for (var m = 0; m < mixers.length; m++) {
 					mixers[m].update(delta);
-				}
-				renderer.render(scene, camera);
+				} renderer.render(scene, camera);
 			}
 
 			function anim() {
