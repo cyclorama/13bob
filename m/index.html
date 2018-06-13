@@ -26,15 +26,17 @@
 		<script src="three.js"></script>
 		<script src="Lensflare.js"></script>
 		<script>
-			var audio = new Audio("01 - Strawberry Switchblade - Since Yesterday.mp3"),
-			scene, camera, renderer,
+			//var audio = new Audio("01 - Strawberry Switchblade - Since Yesterday.mp3"),
+			var scene, camera, renderer,
 			xAxis = new THREE.Vector3(1, 0, 0),
 			yAxis = new THREE.Vector3(0, 1, 0),
 			zAxis = new THREE.Vector3(0, 0, 1),
 			clock = new THREE.Clock(),
 			mixers = [], duration = 177, clips = [],
 			cameraLook = false,
-			objects = [], lights = [];
+			objects = [], lights = [],
+			line, MAX_POINTS = 50000, drawCount,
+			ex = 13, wy = 0, ze = -13;
 
 			function pivotObj(pivot, sequences) {
 				var ret = {};
@@ -101,7 +103,7 @@
 			function addObj(x, y, z, radius, cthru, tex, cShadow, rShadow, sequences) {
 					var texture = new THREE.Texture(tex);
 					var material;
-					var loader = new Promise(function (resolve) { material = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture(tex, THREE.SphericalRefractionMapping)});}).then(audio.play());
+					var loader = new Promise(function (resolve) { material = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture(tex, THREE.SphericalRefractionMapping)});}).then(/*audio.play()*/);
 					if (cthru) { material.transparent = true; material.opacity = 0.5; }
 					//material.wireframe = true;
 					var mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 100, 100), material);
@@ -155,7 +157,7 @@
 						clips.push(clipAction);
 					break;
 					case 1:
-						var light = new THREE.DirectionalLight(0xffffff, 1.0);
+						var light = new THREE.DirectionalLight(0xff9999, 1.0);
 						light.position.set(x, y, z);
 						light.target = target;
 						light.castShadow = true;
@@ -186,13 +188,27 @@
 			}
 
 			function addLine(x1, y1, z1, x2, y2, z2) {
-				var material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
+				var material = new THREE.LineBasicMaterial({color: 0xff0000});
 				var geometry = new THREE.Geometry();
 				geometry.vertices.push(new THREE.Vector3(x1, y1, z1));
 				geometry.vertices.push(new THREE.Vector3(x2, y2, z2));
 				var line = new THREE.Line(geometry, material);
 				objects.push(new lineObj(line, x1, y1, z1, x2, y2, z2));
 				scene.add(line);
+			}
+
+			function updatePositions() {
+				var positions = line.geometry.attributes.position.array, index = 0;
+				if (objects.length > 3) { // Light loaded?
+					for (var i = 0, l = MAX_POINTS; i < l; i++) {
+						positions[index++] = ex;
+						positions[index++] = wy;
+						positions[index++] = ze;
+					    ex += objects[3].light.position.x;
+					    wy += objects[3].light.position.y;
+					    ze += objects[3].light.position.z;
+					}
+				}
 			}
 
 			function init() {
@@ -214,8 +230,19 @@
 				ambient.intensity = 0.0333;
 				scene.add(ambient);
 
+				// Line
+				var geometry = new THREE.BufferGeometry();
+				var positions = new Float32Array(MAX_POINTS * 3); // 3 vertices per point
+				geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+				drawCount = 2; // Draw the first 2 points only
+				geometry.setDrawRange(0, drawCount);
+				var material = new THREE.LineBasicMaterial({color: 0xff0000, linewidth: 2});
+				line = new THREE.Line(geometry, material);
+				scene.add(line);
+				updatePositions();
+
+
 				addSkybox();
-				addLight();
 				var qInitial = new THREE.Quaternion().setFromAxisAngle(yAxis, -Math.PI / 8);
 				var qFinal = new THREE.Quaternion().setFromAxisAngle(yAxis, Math.PI / 32);
 
@@ -224,8 +251,8 @@
 				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
 				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
 				//addLight(0, 0, 0, 0, null);
-				addLight(1, 0, 0, -13, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 64], [13, 0, -13, 13, 0, 13])]);
-				addLine(130, -10, -130, 130, -10, 130);
+				addLight(1, ex, wy, ze, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 32], [ex, wy, ze, ex, wy, ze + 13])]);
+				//addLine(130, -10, -130, 130, -10, 130);
 				// Action
 
 				//new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])
@@ -243,19 +270,20 @@
 				for (var m = 0; m < mixers.length; m++) {
 					mixers[m].update(delta);
 				}
-
-				//if (cameraLook) camera.lookAt(new THREE.Vector3(objects[0].mesh.position.x, objects[0].mesh.position.y, objects[0].mesh.position.z));
+				renderer.render(scene, camera);
 			}
-
-			init();
 
 			function anim() {
 				requestAnimationFrame(anim);
-				renderer.render(scene, camera);
+				drawCount = (drawCount + 1) % MAX_POINTS;
+				line.geometry.setDrawRange(0, drawCount);
+
+				if (drawCount === 0) {
+					updatePositions();
+					line.geometry.attributes.position.needsUpdate = true; // Required after the first render
+				}
 				render();
-			}
-			anim();
-			//audio.play();
+			} init(); anim();
 		</script>
 	</body>
 </html>
