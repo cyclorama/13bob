@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="description" content="Welcome!">
+		<meta name="description" content="Welcome">
 		<link rel="icon" href="//13bob.net/world.gif">
 		<title>13bob</title>
 		<style> html { background-color: black; overflow: hidden; } canvas { width: 100%; height: 100%; position: center; } </style>
@@ -26,7 +26,6 @@
 		<script src="three.js"></script>
 		<script src="Lensflare.js"></script>
 		<script>
-			//var audio = new Audio("01 - Strawberry Switchblade - Since Yesterday.mp3"),
 			var scene, camera, renderer,
 			xAxis = new THREE.Vector3(1, 0, 0),
 			yAxis = new THREE.Vector3(0, 1, 0),
@@ -187,6 +186,7 @@
 				}
 			}
 
+			/*
 			function addLine(x1, y1, z1, x2, y2, z2) {
 				var material = new THREE.LineBasicMaterial({color: 0xff0000});
 				var geometry = new THREE.Geometry();
@@ -196,6 +196,7 @@
 				objects.push(new lineObj(line, x1, y1, z1, x2, y2, z2));
 				scene.add(line);
 			}
+			*/
 
 			function updatePositions() {
 				var positions = line.geometry.attributes.position.array, index = 0;
@@ -206,7 +207,7 @@
 						positions[index++] = ze;
 					    ex = mixers[3].getRoot().position.x;
 					    wy = mixers[3].getRoot().position.y;
-					    ze = mixers[3].getRoot().position.z;
+					    ze = mixers[3].getRoot().position.z + ((mixers[3].time/32) * 13);
 					}
 				}
 			}
@@ -217,7 +218,7 @@
 
 				renderer = new THREE.WebGLRenderer({ antialias: true });
 				renderer.setPixelRatio(window.devicePixelRatio);
-				renderer.setSize(window.innerWidth * 0.995, window.innerHeight * 0.99);
+				renderer.setSize(window.innerWidth, window.innerHeight);
 				renderer.shadowMap.enabled = true;
 				renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 				document.body.appendChild(renderer.domElement);
@@ -230,12 +231,11 @@
 				ambient.intensity = 0.0333;
 				scene.add(ambient);
 
-				addSkybox();
 				var qInitial = new THREE.Quaternion().setFromAxisAngle(yAxis, -Math.PI / 8);
 				var qFinal = new THREE.Quaternion().setFromAxisAngle(yAxis, Math.PI / 32);
 
 				// Action
-
+				addSkybox();
 				addObj(0, 0, 0, 3, false, "earth.jpg", false, false, []);
 				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
 				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
@@ -251,24 +251,17 @@
 				line = new THREE.Line(geometry, material);
 				scene.add(line);
 				updatePositions();
-
 				// Action
-
-				//new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])
-
-				// first beat: 0.7
-				// second: 2.67
-				// 16 seconds to get to vocals.
 
 				for (var c = 0; c < clips.length; c++) clips[c].play();
 			}
 
 			function render() {
 				var delta = clock.getDelta();
-
+				renderer.render(scene, camera);
 				for (var m = 0; m < mixers.length; m++) {
 					mixers[m].update(delta);
-				} renderer.render(scene, camera);
+				}
 			}
 
 			function anim() {
