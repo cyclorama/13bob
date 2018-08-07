@@ -33,7 +33,7 @@ h1 {
     padding: 0.13em;
     font-size: 175px; font-family: 'Press Start 2P', cursive;
     animation: spacing_one 1s, heartbeat 1s alternate infinite;
-} h2 { font-size: 35px; font-family: 'Press Start 2P', cursive; letter-spacing: 0px; animation: spacing_two 1s }
+} h2 { font-size: 35px; font-family: 'Press Start 2P', cursive; animation: spacing_two 1s }
 
 body {
     color: white;
