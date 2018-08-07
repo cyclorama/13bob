@@ -72,6 +72,9 @@ div#error {
 }
 
 textarea {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
     overflow: auto;
     outline: none;
     resize: none;
