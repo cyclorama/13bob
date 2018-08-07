@@ -70,3 +70,7 @@ div#error {
     font-size: 50px;
     animation: spacing_two 1s;
 }
+
+textarea {
+    animation: scale 1s;
+}
