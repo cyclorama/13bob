@@ -72,6 +72,7 @@ div#error {
 }
 
 textarea {
+    overflow: auto;
     outline: none;
     resize: none;
 }
