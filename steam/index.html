@@ -30,14 +30,14 @@
 			<script>
 				function beautify() {
 					var ci, l, lc, c = document.getElementsByName('chat')[0].value.split(':\n');
-					document.getElementsByName('chat')[0].value='';
+					document.getElementsByName('chat')[0].value = '';
 					for(var i = 1; i < c.length; i++) {
-						il = c[i-1].split('\n');
+						il = c[i - 1].split('\n');
 						l = c[i].split('\n');
-						ci = il[il.length-2];
-						lc = i < c.length-1 ? l.length-2 : l.length;
+						ci = il[il.length - 2];
+						lc = i < c.length - 1 ? l.length - 2 : l.length;
 						for(var j = 0; j < lc; j++) {
-							document.getElementsByName('chat')[0].value+=ci+' : '+l[j]+'\n';
+							document.getElementsByName('chat')[0].value += ci + ' : ' + l[j] + '\n';
 						}
 					}
 				}
