@@ -78,4 +78,5 @@ textarea {
     overflow: auto;
     outline: none;
     resize: none;
+    font-family: "Verdana", Geneva, sans-serif;
 }
