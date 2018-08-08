@@ -85,7 +85,6 @@ input[type=submit] {
     color: white;
     background-color: black;
     border: 1px solid white;
-    text-decoration: none;
     padding: 13px;
     cursor: url(little_finger.cur), pointer;
-}
+} input[type=submit]:hover { text-decoration: bold; }
