@@ -80,7 +80,7 @@ textarea {
     outline: none;
     resize: none;
     font-family: "Verdana", Geneva, sans-serif;
-}
+} textarea:focus { animation: blessed 3s; }
 
 input[type=submit] {
     color: white;
@@ -89,7 +89,3 @@ input[type=submit] {
     padding: 13px;
     cursor: url(little_finger.cur), pointer;
 } input[type=submit]:hover { font-weight: bold; }
-
-form:active {
-    animation: blessed 3s;
-}
