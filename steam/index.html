@@ -27,7 +27,7 @@
 		<h1><a href="//13bob.net/">13bob</a></h1>
 		<center>
 			<h2>Chat Beautifier</h2>
-			<script>function beautify(){var ci,l,c=document.getElementsByName('chat')[0].value.split(':\n');document.getElementsByName('chat')[0].value='';for(var i=1;i<c.length;i++){il=c[i-1].split('\n');l=c[i].split('\n');ci=il[il.length-2];for(var j=0;j<(i<c.length-1?l.length-2:l.length);j++){document.getElementsByName('chat')[0].value+=ci+' : '+l[j]+'\n';}}}</script>
+			<script>function beautify(){var ci,l,lc,c=document.getElementsByName('chat')[0].value.split(':\n');document.getElementsByName('chat')[0].value='';for(var i=1;i<c.length;i++){il=c[i-1].split('\n');l=c[i].split('\n');ci=il[il.length-2];lc=i<c.length-1?l.length-2:l.length;for(var j=0;j<lc;j++){document.getElementsByName('chat')[0].value+=ci+' : '+l[j]+'\n';}}}</script>
 			<form action="javascript:beautify();">
 				<textarea placeholder="Paste an ugly (new) Steam chat log here..." type="text" name="chat" cols=100 rows=27></textarea><br><br>
 				<input type="submit" value="BEAUTIFY">
