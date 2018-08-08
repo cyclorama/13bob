@@ -80,3 +80,13 @@ textarea {
     resize: none;
     font-family: "Verdana", Geneva, sans-serif;
 }
+
+input[type=submit] {
+    color: black;
+    background-color: #FFFFFF;
+    border: 1px solid white;
+    text-decoration: none;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: url(little_finger.cur), pointer;
+}
