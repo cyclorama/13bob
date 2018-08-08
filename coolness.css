@@ -18,6 +18,7 @@
 @keyframes spacing_one { from { letter-spacing: -13px; } to { letter-spacing: 0px; } }
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
+@keyframes blessed { from { box-shadow: 0 0 5px rgba(81, 203, 238, 1); } to { transform: scale(1.0, 1.0); } }
 
 * { animation: fade 1s; }
 
@@ -88,3 +89,7 @@ input[type=submit] {
     padding: 13px;
     cursor: url(little_finger.cur), pointer;
 } input[type=submit]:hover { font-weight: bold; }
+
+form:active {
+    animation: blessed 1s;
+}
