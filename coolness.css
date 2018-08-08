@@ -82,11 +82,10 @@ textarea {
 }
 
 input[type=submit] {
-    color: black;
-    background-color: #FFFFFF;
+    color: white;
+    background-color: black;
     border: 1px solid white;
     text-decoration: none;
-    padding: 16px 32px;
-    margin: 4px 2px;
+    padding: 13px;
     cursor: url(little_finger.cur), pointer;
 }
