@@ -80,7 +80,7 @@ textarea {
     outline: none;
     resize: none;
     font-family: "Verdana", Geneva, sans-serif;
-} textarea:focus { animation: blessed 3s; }
+} textarea:focus { animation: blessed 1s; }
 
 input[type=submit] {
     color: white;
