@@ -79,7 +79,7 @@ textarea {
     outline: none;
     resize: none;
     font-family: "Verdana", Geneva, sans-serif;
-}
+} textarea:hover { cursor: url(little_finger.cur), pointer; }
 
 input[type=submit] {
     color: white;
