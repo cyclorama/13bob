@@ -27,21 +27,6 @@
 		<h1><a href="//13bob.net/">13bob</a></h1>
 		<center>
 			<h2>Chat Beautifier</h2>
-			<script>
-				function beautify() {
-					var usr, ul, lc, c = document.getElementById('chat').value.split(':\n'), l = (m) => m.split('\n');
-					document.getElementById('chat').value = '';
-					for (var i = 1; i < c.length; i++) {
-						ul = l(c[i - 1]);
-						msg = l(c[i]);
-						usr = ul[ul.length - 2];
-						lc = i < c.length - 1 ? msg.length - 2 : msg.length;
-						for (var j = 0; j < lc; j++) {
-							document.getElementById('chat').value += usr + ' : ' + msg[j] + '\n';
-						}
-					}
-				}
-			</script>
 			<form action="javascript:beautify();">
 				<textarea placeholder="Paste an ugly (new) Steam chat log here..." type="text" id="chat" cols=100 rows=27></textarea><br><br>
 				<input type="submit" value="BEAUTIFY">
