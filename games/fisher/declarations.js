@@ -14,15 +14,15 @@
            `.. __..-'                                    
 */
 var canvas =				document.createElement("canvas"),
-ctx =						canvas.getContext("2d"),
-canvas.width =				window.innerHeight,
-canvas.height =				canvas.width,
-canvas.setAttribute('style', "border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;"),
-document.body.appendChild(canvas),
-ctx.font =					"50px Arial",
-ctx.textAlign =				"center",
-ctx.fillStyle =				"white",
-	LEVEL_WIDTH =			25,
+ctx =						canvas.getContext("2d");
+canvas.width =				window.innerHeight;
+canvas.height =				canvas.width;
+canvas.setAttribute('style', "border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;");
+document.body.appendChild(canvas);
+ctx.font =					"50px Arial";
+ctx.textAlign =				"center";
+ctx.fillStyle =				"white";
+var LEVEL_WIDTH =			25,
 	LEVEL_HEIGHT =			25,
 	LEVEL =					0,
 	BLOCK_SIZE =			canvas.width / LEVEL_WIDTH,
@@ -30,9 +30,9 @@ ctx.fillStyle =				"white",
 	PLAYER_REELS =			0,
 	PLAYER_CAUGHT =			0,
 	PLAYER_SCORE =			0,
-	PLAYER_SCORE_CHECK =	0;
-var	music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
-var	reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
+	PLAYER_SCORE_CHECK =	0,
+	music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
+	reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
 
 function loadLevel(lvl) {
     var f = new XMLHttpRequest();
