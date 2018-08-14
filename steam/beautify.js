@@ -14,11 +14,10 @@
            `.. __..-'                                    
 */
 function beautify() {
-	var ul, msg, usr, lc, c = document.getElementById('chat').value.split(':\n'), l = (m) => m.split('\n');
-	document.getElementById('chat').value = '';
-	for (var i = 1; i < c.length; i++) {
+	var ul, msg, usr, lc, i = 1, j, a = () => document.getElementById('chat'), l = (m) => m.split('\n'), c = a.value.split(':\n'); e().value = '';
+	for (i < c.length; i++) {
 		msg = l(c[i]); ul = l(c[i - 1]); usr = ul[ul.length - 2];
 		lc = i < c.length - 1 ? msg.length - 2 : msg.length;
-		[...Array(lc)].forEach((_, j) => (document.getElementById('chat').value += usr + ' : ' + msg[j] + '\n'));
+		for (j = 0; j < lc;) { e().value += usr + ' : ' + msg[j++] + '\n'; }
 	}
 }
