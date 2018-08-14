@@ -13,210 +13,168 @@
            -....--'  / '  `'-'`               '  `'-'`   
            `.. __..-'                                    
 */
-var canvas =				document.createElement("canvas"),
-ctx =						canvas.getContext("2d"),
-draw = (i, x, y, i, j) =>  	ctx.drawImage(i, x, y, i, j),
-canvas.width =				window.innerHeight,
-canvas.height =				canvas.width,
-canvas.setAttribute('style', "border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;"),
-document.body.appendChild(canvas),
-ctx.font =					"50px Arial",
-ctx.textAlign =				"center",
-ctx.fillStyle =				"white",
-	LEVEL_WIDTH =			25,
-	LEVEL_HEIGHT =			25,
-	LEVEL =					0,
-	BLOCK_SIZE =			canvas.width / LEVEL_WIDTH,
-	sleepTime =				700,
-	PLAYER_REELS =			0,
-	PLAYER_CAUGHT =			0,
-	PLAYER_SCORE =			0,
-	PLAYER_SCORE_CHECK =	0,
-	music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25,
-	reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
-
-function loadLevel(lvl) {
-    var f = new XMLHttpRequest();
-    f.open("GET", "lvls/"+lvl+".txt", false);
-    f.onreadystatechange = function () {
-    	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
-            var lines = f.responseText.split('\n');
-            for (var i = 0; i < lines.length; i++) {
-            	switch(lines[i].split('=')[0]) {
-                	case "fish":
-						var fishPoints = lines[i].split('=')[1].split('/');
-						for (var l = 0; l < fishPoints.length; l++)
-							fishes.push(fish(fishPoints[l].split(',')));
-                	break;
-                	case "rock":
-                		var rockPoints = lines[i].split('=')[1].split('/');
-                		for (var l = 0; l < rockPoints.length; l++) {
-                			var rockX = rockPoints[l].split('.')[0].split(',')[0];
-                			var rockY = rockPoints[l].split('.')[0].split(',')[1];
-                			var rockScaleX = rockPoints[l].split('.')[1].split(',')[0];
-                			var rockScaleY = rockPoints[l].split('.')[1].split(',')[1];
-                			rocks.push(rock(rockX, rockY, rockScaleX, rockScaleY));
-                		}
-                	break;
-                }
-            }
-        }
-    }
-    f.send(null);
+var update = function() {
+	if (hook.reelIn) {
+	if (hook.x != hook.startX || hook.y != hook.startY) {
+		hook.y = hook.prev.pop(); hook.x = hook.prev.pop(); // Reverse hook position
+		} else {
+			hook.casting = false;
+			hook.reelIn = false;
+			sleepTime *= 10;
+			if (hook.x == hook.startX && hook.y == hook.startY) {
+				for (var i = 0; i < fishes.length; i++) {
+					if (fishes[i].caught) {
+						if (!fishes[i].counted) {
+							fishes[i].counted = true;
+							PLAYER_CAUGHT++;
+						}
+					}
+				}
+				reel.pause();
+				reel.currentTime = 0;
+				if (PLAYER_CAUGHT == fishes.length) {
+					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
+					document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
+					nextLevel();
+				}
+			}
+		}
+	} else {
+		if (40 in keysDown) { // DOWN ARROW - Speed up
+			sleepTime = 70;
+			keysDown = [];
+		} else {
+			sleepTime = 700;
+		}
+		if (32 in keysDown) { // SPACEBAR - Reel in
+			if (!hook.casting) {
+				PLAYER_REELS++;
+				hook.casting = true;
+				music.play();
+				keysDown = [];
+			} else {
+				sleepTime /= 10;
+				hook.casting = false;
+				hook.reelIn = true;
+				music.pause();
+				reel.play();
+				keysDown = [];
+			}
+		}
+		if (hook.casting && hook.y < LEVEL_HEIGHT-1) { // Save previous X and Y hook positions and move hook down
+			if (37 in keysDown) { hook.x -= 1; keysDown = []; } // LEFT ARROW - Move left
+			if (39 in keysDown) { hook.x += 1; keysDown = []; } // RIGHT ARROW - Move right
+			hook.prev.push(hook.x);
+			hook.prev.push(hook.y);
+			hook.y += 1;
+		}
+		for (var i = 0; i < rocks.length; i++) {
+			if (rocks[i].scaleX == 1) {
+				if (hook.x == rocks[i].x &&
+					hook.y > rocks[i].y-rocks[i].scaleY-1 &&
+					hook.y < rocks[i].y+rocks[i].scaleY+1) {
+					reelIn();
+				}
+			} else if (	hook.x > rocks[i].x-(rocks[i].scaleX+1) &&
+						hook.x < rocks[i].x+(rocks[i].scaleX+1) &&
+						hook.y > rocks[i].y-(rocks[i].scaleY+1) &&
+						hook.y < rocks[i].y+(rocks[i].scaleY+1)) {
+				reelIn();
+			}
+		}
+	}
+	for (var i = 0; i < fishes.length; i++) { // Waypoint mechanic
+		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1)) {
+			fishes[i].caught = true;
+		}
+		if (fishes[i].x == 12 && fishes[i].y == 0) {
+			fishes[i].onBoat = true;
+		}
+		if (fishes[i].caught) { fishes[i].x = hook.x; fishes[i].y = hook.y; } else {
+			if (fishes[i].x < fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x++; if (fishes[i].fishImage.src != "img/fish_right.png") { fishes[i].fishImage.src = "img/fish_right.png"; } } 
+			if (fishes[i].x > fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x--; if (fishes[i].fishImage.src != "img/fish_left.png") { fishes[i].fishImage.src = "img/fish_left.png"; } }
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y < fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y++; }
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y > fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y--; }
+			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y == fishes[i].waypoints[fishes[i].point+3]))
+				fishes[i].point += fishes[i].point+4 < fishes[i].waypoints.length ? 2 : -(fishes[i].waypoints.length-2);
+		}
+	}
 }
 
-function nextLevel() {
+function reelIn() {
+	sleepTime /= 10; hook.reelIn = true; music.pause(); reel.play();
+}
+
+var render = function() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	fishes = [];
-	rocks = [];
-	PLAYER_REELS = 0;
-	PLAYER_CAUGHT = 0;
-	LEVEL += 1;
-	loadLevel(LEVEL);
+	if (waterReady) {
+		for (var j = 0; j < LEVEL_HEIGHT; j++) {
+			for (var i = 0; i < LEVEL_WIDTH; i++) {
+				ctx.drawImage(waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1); // Grid of water
+			}
+		}
+	}
+	if (hookReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
+	if (lineReady && lineLeftDownReady && lineRightDownReady && lineLeftUpReady && lineRightUpReady) { // Render line image
+		for (var i = 0; i < hook.prev.length; i+=2) {
+			if (hook.prev[i] > hook.prev[i+2]) {
+				ctx.drawImage(lineImageLeftDown, (hook.prev[i]-1) * BLOCK_SIZE, (hook.prev[i+1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+				ctx.drawImage(lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i+1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			} else if (hook.prev[i] < hook.prev[i+2]) {
+				ctx.drawImage(lineImageRightDown, (hook.prev[i]+1) * BLOCK_SIZE, (hook.prev[i+1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+				ctx.drawImage(lineImageRightUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i+1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			} else {
+				ctx.drawImage(lineImage, hook.prev[i] * BLOCK_SIZE, hook.prev[i+1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			}
+		}
+		if (hook.x == hook.prev[hook.prev.length-2]+1) { // Account for left and right reverse hook movement graphics
+			ctx.drawImage(lineImageRightDown, (hook.prev[hook.prev.length-2]+1) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(waterImage, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(lineImageRightUp, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		} else if (hook.x == hook.prev[hook.prev.length-2]-1) {
+			ctx.drawImage(lineImageLeftDown, (hook.prev[hook.prev.length-2]-1) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(waterImage, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(lineImageLeftUp, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length-1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		}
+	}
+	for (var i = 0; i < fishes.length; i++) { // Render fish
+		if (fishes[i].fishImageRightReady && fishes[i].fishImageRightReady && !fishes[i].onBoat) {
+			ctx.drawImage(fishes[i].fishImage, fishes[i].x * BLOCK_SIZE, fishes[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		}
+	}
+	for (var i = 0; i < rocks.length; i++) { // Render different types of rock
+		if (rocks[i].rockImageCornerTopLeftReady && rocks[i].rockImageSingleReady && rocks[i].rockImageLeftReady && rocks[i].rockImageCornerTopRightReady && rocks[i].rockImageHorizTopReady &&
+			rocks[i].rockImageVertLeftReady && rocks[i].rockImageHorizReady && rocks[i].rockImageRightReady && rocks[i].rockImageCenterReady && rocks[i].rockImageUpReady && rocks[i].rockImageVertRightReady &&
+			rocks[i].rockImageCornerBottomLeftReady && rocks[i].rockImageVertReady && rocks[i].rockImageDownReady && rocks[i].rockImageCornerBottomRightReady && rocks[i].rockImageHorizBottomReady) {
+			if (rocks[i].scaleX == 1 && rocks[i].scaleY == 1) { // Single rock
+				ctx.drawImage(rocks[i].rockImageSingle, rocks[i].x * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY == 1) { // Scalable horizontal rock
+				ctx.drawImage(rocks[i].rockImageLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+				for (var r = rocks[i].x-rocks[i].scaleX+1; r < rocks[i].x+rocks[i].scaleX; r++) ctx.drawImage(rocks[i].rockImageHoriz, r * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE);
+				ctx.drawImage(rocks[i].rockImageRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			} else if (rocks[i].scaleX == 1 && rocks[i].scaleY > 1) { // Scalable vertical rock
+				ctx.drawImage(rocks[i].rockImageUp, rocks[i].x * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+				for (var r = rocks[i].y-rocks[i].scaleY+1; r < rocks[i].y+rocks[i].scaleY; r++) ctx.drawImage(rocks[i].rockImageVert, rocks[i].x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE+1);
+				ctx.drawImage(rocks[i].rockImageDown, rocks[i].x * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY > 1) { // Scalable block
+				ctx.drawImage(rocks[i].rockImageCornerTopLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				for (var r = rocks[i].x-rocks[i].scaleX+1; r < rocks[i].x+rocks[i].scaleX; r++) ctx.drawImage(rocks[i].rockImageHorizTop, r * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				ctx.drawImage(rocks[i].rockImageCornerTopRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				for (var r = rocks[i].y-rocks[i].scaleY+1; r < rocks[i].y+rocks[i].scaleY; r++) ctx.drawImage(rocks[i].rockImageVertLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				for (var rX = rocks[i].x-rocks[i].scaleX+1; rX < rocks[i].x+rocks[i].scaleX; rX++)
+				for (var rY = rocks[i].y-rocks[i].scaleY+1; rY < rocks[i].y+rocks[i].scaleY; rY++)
+				ctx.drawImage(rocks[i].rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				for (var r = rocks[i].y-rocks[i].scaleY+1; r < rocks[i].y+rocks[i].scaleY; r++) ctx.drawImage(rocks[i].rockImageVertRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE+1);
+				ctx.drawImage(rocks[i].rockImageCornerBottomLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+				for (var r = rocks[i].x-rocks[i].scaleX+1; r < rocks[i].x+rocks[i].scaleX; r++) ctx.drawImage(rocks[i].rockImageHorizBottom, r * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE);
+				ctx.drawImage(rocks[i].rockImageCornerBottomRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE+1, BLOCK_SIZE+1);
+			}
+		}
+	}
+	document.getElementById("boat").src = "img/boat"+PLAYER_CAUGHT+".png";
 }
 
-function sleep (time) { return new Promise((resolve) => setTimeout(resolve, time)); }
-
-var hook = {
-	x: 12,
-	y: 0,
-	startX: 12,
-	startY: 0,
-	prev: [],
-	casting: false,
-	reelIn: false
-};
-
-function fish(waypoints) {
-	var ret = {};
-	ret.x = parseInt(waypoints[0]);
-	ret.y = parseInt(waypoints[1]);
-	ret.waypoints = waypoints;
-	ret.point = 0;
-	ret.direction = true;
-	ret.caught = false;
-	ret.onBoat = false;
-	ret.counted = false;
-	ret.blocks;
-	ret.fishImageLeftReady = false;
-	ret.fishImageRightReady = false;
-	ret.fishImage = new Image();
-	ret.fishImageLeft = new Image();
-	ret.fishImageRight = new Image();
-	ret.fishImageLeft.src = "img/fish_left.png";
-	ret.fishImageRight.src = "img/fish_right.png";
-	ret.fishImageLeft.onload = function() { ret.fishImageLeftReady = true; };
-	ret.fishImageRight.onload = function() { ret.fishImageRightReady = true; };
-	return ret;
-} fishes = [];
-
-function rock(x, y, scaleX, scaleY) {
-	var ret = {};
-	ret.x = parseInt(x);
-	ret.y = parseInt(y);
-	ret.scaleX = parseInt(scaleX);
-	ret.scaleY = parseInt(scaleY);
-	ret.rockImageSingleReady = false;
-	ret.rockImageCornerTopLeftReady = false;
-	ret.rockImageCornerTopRightReady = false;
-	ret.rockImageCornerBottomLeftReady = false;
-	ret.rockImageCornerBottomRightReady = false;
-	ret.rockImageLeftReady = false;
-	ret.rockImageHorizTopReady = false;
-	ret.rockImageHorizReady = false;
-	ret.rockImageHorizBottomReady = false;
-	ret.rockImageRightReady = false;
-	ret.rockImageCenterReady = false;
-	ret.rockImageUpReady = false;
-	ret.rockImageVertLeftReady = false;
-	ret.rockImageVertReady = false;
-	ret.rockImageVertRightReady = false;
-	ret.rockImageDownReady = false;
-	ret.rockImageSingle = new Image();
-	ret.rockImageCornerTopLeft = new Image();
-	ret.rockImageCornerTopRight = new Image();
-	ret.rockImageCornerBottomLeft = new Image();
-	ret.rockImageCornerBottomRight = new Image();
-	ret.rockImageLeft = new Image();
-	ret.rockImageHorizTop = new Image();
-	ret.rockImageHoriz = new Image();
-	ret.rockImageHorizBottom = new Image();
-	ret.rockImageRight = new Image();
-	ret.rockImageCenter = new Image();
-	ret.rockImageUp = new Image();
-	ret.rockImageVertLeft = new Image();
-	ret.rockImageVert = new Image();
-	ret.rockImageVertRight = new Image();
-	ret.rockImageDown = new Image();
-	ret.rockImageSingle.src = "img/rock_single.png";
-	ret.rockImageCornerTopLeft.src = "img/rock_corner_top_left.png";
-	ret.rockImageCornerTopRight.src = "img/rock_corner_top_right.png";
-	ret.rockImageCornerBottomLeft.src = "img/rock_corner_bottom_left.png";
-	ret.rockImageCornerBottomRight.src = "img/rock_corner_bottom_right.png";
-	ret.rockImageLeft.src = "img/rock_left.png";
-	ret.rockImageHorizTop.src = "img/rock_horiz_top.png";
-	ret.rockImageHoriz.src = "img/rock_horiz.png";
-	ret.rockImageHorizBottom.src = "img/rock_horiz_bottom.png"
-	ret.rockImageRight.src = "img/rock_right.png";
-	ret.rockImageCenter.src = "img/rock_center.png";
-	ret.rockImageUp.src = "img/rock_up.png";
-	ret.rockImageVertLeft.src = "img/rock_vert_left.png";
-	ret.rockImageVert.src = "img/rock_vert.png";
-	ret.rockImageVertRight.src = "img/rock_vert_right.png";
-	ret.rockImageDown.src = "img/rock_down.png";
-	ret.rockImageSingle.onload = function() { ret.rockImageSingleReady = true; };
-	ret.rockImageCornerTopLeft.onload = function() { ret.rockImageCornerTopLeftReady = true; }
-	ret.rockImageCornerTopRight.onload = function() { ret.rockImageCornerTopRightReady = true; }
-	ret.rockImageCornerBottomLeft.onload = function() { ret.rockImageCornerBottomLeftReady = true; }
-	ret.rockImageCornerBottomRight.onload = function() { ret.rockImageCornerBottomRightReady = true; }
-	ret.rockImageLeft.onload = function() { ret.rockImageLeftReady = true; };
-	ret.rockImageHorizTop.onload = function() { ret.rockImageHorizTopReady = true; };
-	ret.rockImageHoriz.onload = function() { ret.rockImageHorizReady = true; };
-	ret.rockImageHorizBottom.onload = function() { ret.rockImageHorizBottomReady = true; };
-	ret.rockImageRight.onload = function() { ret.rockImageRightReady = true; };
-	ret.rockImageCenter.onload = function() { ret.rockImageCenterReady = true; };
-	ret.rockImageUp.onload = function() { ret.rockImageUpReady = true; };
-	ret.rockImageVertLeft.onload = function() { ret.rockImageVertLeftReady = true; };
-	ret.rockImageVert.onload = function() { ret.rockImageVertReady = true; };
-	ret.rockImageVertRight.onload = function() { ret.rockImageVertRightReady = true; };
-	ret.rockImageDown.onload = function() { ret.rockImageDownReady = true; };
-	return ret;
-} rocks = [];
-
-var keysDown = {};
-addEventListener("keydown", function(e) { keysDown[e.keyCode] = true; }, false);
-
-var hookReady = false;
-var hookImage = new Image();
-hookImage.src = "img/hook.png";
-hookImage.onload = function() { hookReady = true; };
-
-var waterReady = false;
-var waterImage = new Image();
-waterImage.src = "img/water.png";
-waterImage.onload = function() { waterReady = true; };
-
-var lineReady = false;
-var lineImage = new Image();
-lineImage.src = "img/line.png";
-lineImage.onload = function() { lineReady = true; };
-
-var lineLeftDownReady = false;
-var lineImageLeftDown = new Image();
-lineImageLeftDown.src = "img/line_left_down.png";
-lineImageLeftDown.onload = function() { lineLeftDownReady = true; };
-
-var lineRightDownReady = false;
-var lineImageRightDown = new Image();
-lineImageRightDown.src = "img/line_right_down.png";
-lineImageRightDown.onload = function() { lineRightDownReady = true; };
-
-var lineLeftUpReady = false;
-var lineImageLeftUp = new Image();
-lineImageLeftUp.src = "img/line_left_up.png";
-lineImageLeftUp.onload = function() { lineLeftUpReady = true; };
-
-var lineRightUpReady = false;
-var lineImageRightUp = new Image();
-lineImageRightUp.src = "img/line_right_up.png";
-lineImageRightUp.onload = function() { lineRightUpReady = true; };
+var main = function() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
+main();
+loadLevel(LEVEL);
+document.getElementById("score").innerText = PLAYER_SCORE;
