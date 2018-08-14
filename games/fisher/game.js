@@ -1,7 +1,7 @@
 var update = function() {
 	if (hook.reelIn) {
-	if (hook.x != hook.startX || hook.y != hook.startY) {
-		hook.y = hook.prev.pop(); hook.x = hook.prev.pop(); // Reverse hook position
+		if (hook.x != hook.startX || hook.y != hook.startY) {
+			hook.y = hook.prev.pop(); hook.x = hook.prev.pop(); // Reverse hook position
 		} else {
 			hook.casting = false;
 			hook.reelIn = false;
