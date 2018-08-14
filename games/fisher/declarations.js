@@ -15,7 +15,7 @@
 */
 var canvas =				document.createElement("canvas"),
 ctx =						canvas.getContext("2d"),
-draw = (p) =>  				ctx.drawImage(p),
+draw = (i, x, y, i, j) =>  	ctx.drawImage(i, x, y, i, j),
 canvas.width =				window.innerHeight,
 canvas.height =				canvas.width,
 canvas.setAttribute('style', "border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;"),
