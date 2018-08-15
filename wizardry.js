@@ -25,12 +25,12 @@ tracks =		[	"01 Strawberry Switchblade - Who Knows What Love Is.mp3",
 					"03 Dee Dee Wilde - Lap of Luxury.mp3",
 					"04 Dionne Warwick - Can't Hide Love.mp3",
 					"05 The Jets - The Only Dance.mp3"	],
-track =				new Audio("mixtapes/E R R S T H E T I C/" + tracks[0]),
+track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ["+"], ["1", "1"], ["games/fisher", "games/slingshoot", "steam"], ["3", "3"], ["https://discord.gg/7RHA34y"], ["-"] ],
 tapeP =				false,
 trackN =			0;
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
-for (var i = 0; i < tracks.length; i++) { title += "[" + tracks[i].replace(".mp3", "") + "]" + "\n"; }
+for (var i = 0; i < tracks.length; i++) { title += `[${tracks[i].replace('.mp3', '')}]\n` }
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
@@ -42,14 +42,14 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
-		track = new Audio("mixtapes/E R R S T H E T I C/" + tracks[trackN]);
+		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
 	}
 }
 
 function highlightTrack(trackN) {
 	trackTitle = title.split("\n");
 	if (trackN == 1 && trackTitle[5].includes(">")) removeHighlight(5); if (trackN > 1) removeHighlight(trackN - 1);
-	trackTitle[trackN] = "> " + trackTitle[trackN] + " <"; title = "";
+	trackTitle[trackN] = `> ${trackTitle[trackN]} <`; title = "";
 	for (var i = 0; i < trackTitle.length; i++) title += trackTitle[i+1] != null ? trackTitle[i] + "\n" : "" ; document.tape.title = title;
 } function removeHighlight(trackN) { trackTitle[trackN] = trackTitle[trackN].substring(2, trackTitle[trackN].length - 2); }
 
