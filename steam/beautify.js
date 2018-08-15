@@ -18,6 +18,6 @@ function beautify() {
 	for (; i < c.length; i++) {
 		msg = l(c[i]); ul = l(c[i - 1]); usr = ul[ul.length - 2];
 		lc = i < c.length - 1 ? msg.length - 2 : msg.length;
-		a().value += [...Array(lc)].forEach(_, j) => { `${usr} : ${msg[j]}\n` }
+		a().value += [...Array(lc)].forEach((_, j) => { `${usr} : ${msg[j]}\n` });
 	}
 }
