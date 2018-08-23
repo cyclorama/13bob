@@ -15,12 +15,12 @@
 
 ------------------------------------------------------------------------------
 
-		Controls
+				Controls
 
-LEFT ARROW  = LEFT
-RIGHT ARROW = RIGHT
-DOWN ARROW  = SPEED UP
-SPACE       = CAST / REEL IN
+			LEFT ARROW  = LEFT
+			RIGHT ARROW = RIGHT
+			DOWN ARROW  = SPEED UP
+			SPACE       = CAST / REEL IN
 
 ------------------------------------------------------------------------------
 
