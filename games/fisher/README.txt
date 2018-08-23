@@ -12,7 +12,8 @@
            -....--'  / '  `'-'`               '  `'-'`   
            `.. __..-'                                    
 
-+---------------------------+
+
+------------------------------------------------------------------------------
 
 		Controls
 
@@ -21,7 +22,7 @@ RIGHT ARROW = RIGHT
 DOWN ARROW  = SPEED UP
 SPACE       = CAST / REEL IN
 
-+---------------------------+
+------------------------------------------------------------------------------
 
 SCORE = FISH CAUGHT / REELS (E.G. 2 FISH / 1 REELS = 2 | 2 FISH / 2 REELS = 1)
 BEST SCORE = MOST AMOUNT OF FISH IN THE LEAST AMOUNT OF REELS
