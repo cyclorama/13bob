@@ -21,9 +21,10 @@
                        :
                        :
 
-Use the gravitational pull of the planets to hit the target. The longer the trajectory to the target, the higher the score.
+Use the gravitational pull of the planets to hit the target.
 
 MOUSE = AIM
 F = FIRE
 R = RESTART
 ESC = QUIT
+(SCORE = TRAJECTORY DISTANCE)
