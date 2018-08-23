@@ -1,29 +1,29 @@
-     __                            .-'''-.               
-...-'  |`. ..-'''-.               '   _    \             
-|      |  |\.-'''\ \   /|       /   /` '.   \ /|         
-....   |  |       | |  ||      .   |     \  ' ||         
-  -|   |  |    __/ /   ||      |   '      |  '||         
-   |   |  |   |_  '.   ||  __  \    \     / / ||  __     
-...'   `--'      `.  \ ||/'__ '.`.   ` ..' /  ||/'__ '.  
-|         |`.      \ '.|:/`  '. '  '-...-'`   |:/`  '. ' 
-` --------\ |       , |||     | |             ||     | | 
- `---------'        | |||\    / '             ||\    / ' 
-                   / ,'|/\'..' /              |/\'..' /  
-           -....--'  / '  `'-'`               '  `'-'`   
-           `.. __..-'                                    
-+-------------------------------------------------------+
-|	Description: Space-physics game.					|
-|	Demo: https://www.youtube.com/watch?v=sdxegudH0-0	|
-+-------------------------------------------------------+
+                       :
+                       :
+                       :
+                       :
+        .              :
+         '.            :           .'
+           '.          :         .'
+             '.   .-""""""-.   .'                                   .'':
+               '."          ".'                               .-""""-.'         .---.          .----.        .-"""-.
+                :            :                _    _        ."     .' ".    ..."     "...    ."      ".    ."       ".
+        .........            .........    o  (_)  (_)  ()   :    .'    :   '..:.......:..'   :        :    :         :   o
+                :            :                              :  .'      :       '.....'       '.      .'    '.       .'
+                 :          :                             .'.'.      .'                        `''''`        `'''''`
+                  '........'                              ''   ``````
+                 .'    :   '.
+               .'      :     '.
+             .'        :       '.
+           .'          :         '.
+                       :
+                       :
+                       :
+                       :
 
-+-----------------+
-|    Controls     |
-|                 |
-| MOUSE = AIM     |
-| F 	= FIRE 	  |
-| R     = RESTART |
-| ESC   = QUIT    |
-|			      |
-+-----------------+
+Use the gravitational pull of the planets to hit the target. The longer the trajectory to the target, the higher the score.
 
-Run executable (install the C++ redistributable packages if you get errors pertaining to that). Use the gravitational pull of the planets to hit the target. The longer the trajectory to the target, the higher the score.
+MOUSE = AIM
+F = FIRE
+R = RESTART
+ESC = QUIT
