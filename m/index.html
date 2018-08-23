@@ -1,17 +1,12 @@
 <!--
-     __                            .-'''-.               
-...-'  |`. ..-'''-.               '   _    \             
-|      |  |\.-'''\ \   /|       /   /` '.   \ /|         
-....   |  |       | |  ||      .   |     \  ' ||         
-  -|   |  |    __/ /   ||      |   '      |  '||         
-   |   |  |   |_  '.   ||  __  \    \     / / ||  __     
-...'   `--'      `.  \ ||/'__ '.`.   ` ..' /  ||/'__ '.  
-|         |`.      \ '.|:/`  '. '  '-...-'`   |:/`  '. ' 
-` --------\ |       , |||     | |             ||     | | 
- `---------'        | |||\    / '             ||\    / ' 
-                   / ,'|/\'..' /              |/\'..' /  
-           -....--'  / '  `'-'`               '  `'-'`   
-           `.. __..-'                                    
+                              .:'
+                 ....     _.::'
+               .:-""-:.  (_.'
+             .:/      \:.
+             :|        |:
+             ':\      /:'
+              '::-..-::'
+                `''''`
 -->
 <!DOCTYPE html>
 <html>
@@ -207,7 +202,7 @@
 						positions[index++] = ze;
 					    ex = mixers[3].getRoot().position.x;
 					    wy = mixers[3].getRoot().position.y;
-					    ze = mixers[3].getRoot().position.z + ((mixers[3].time/32) * 13);
+					    if (mixers.length > 2) ze = mixers[3].getRoot().position.z; // New method: have two lines, one rendered, one deleted, then alternate with new pos
 					}
 				}
 			}
@@ -240,6 +235,10 @@
 				addObj(0, 0, 0, 3.005, true, "clouds.jpg", false, false, []);
 				addPivot(1.6, 0.7, 0, 3.3, [new THREE.QuaternionKeyframeTrack('.quaternion', [0, 16], [qInitial.x, qInitial.y, qInitial.z, qInitial.w, qFinal.x, qFinal.y, qFinal.z, qFinal.w])]);
 				addLight(1, ex, wy, ze, objects[0].mesh, [new THREE.NumberKeyframeTrack('.intensity', [0.7, 1.7], [0, 1.5]), new THREE.VectorKeyframeTrack('.position', [0, 32], [ex, wy, ze, ex, wy, ze + 13])]);
+
+				// first beat: 0.7
+				// second: 2.67
+				// 16 seconds to get to vocals.
 
 				// Line
 				var geometry = new THREE.BufferGeometry();
