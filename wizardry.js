@@ -1,34 +1,3 @@
-/*
-                              '             .           .
-                           o       '   o  .     '   . O
-                        '   .   ' .   _____  '    .      .
-                         .     .   .mMMMMMMMm.  '  o  '   .
-                       '   .     .MMXXXXXXXXXMM.    .   ' 
-                      .       . /XX77:::::::77XX\ .   .   .
-                         o  .  ;X7:::''''''':::7X;   .  '
-                        '    . |::'.:'        '::| .   .  .
-                           .   ;:.:.            :;. o   .
-                        '     . \'.:            /.    '   .
-                           .     `.':.        .'.  '    .
-                         '   . '  .`-._____.-'   .  . '  .
-                          ' o   '  .   O   .   '  o    '
-                           . ' .  ' . '  ' O   . '  '   '
-                            . .   '    '  .  '   . '  '
-                             . .'..' . ' ' . . '.  . '
-                              `.':.'        ':'.'.'
-                                `\\_  |     _//'
-                                  \(  |\    )/
-                                  //\ |_\  /\\
-                                 (/ /\(  )/\ \)
-                                  \/\ (  ) /\/
-                                     |(  )|
-                                     | \( \
-                                     |  )  \
-                                     |      \
-                                     |       \
-                                     |        `.__,
-                                     \_________.-'
-*/
 var sounds = 	[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibrations/flower_reverse.mp3') ],
 			 		[ new Audio('vibrations/stretch_forward.mp3'), new Audio('vibrations/stretch_reverse.mp3') ],
 			 		[ new Audio('vibrations/space.mp3') ],
