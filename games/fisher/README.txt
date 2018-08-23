@@ -15,7 +15,7 @@
 
 ------------------------------------------------------------------------------
 
-				Controls
+				CONTROLS
 
 			LEFT ARROW  = LEFT
 			RIGHT ARROW = RIGHT
