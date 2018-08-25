@@ -20,7 +20,12 @@ var update = function() {
 				if (PLAYER_CAUGHT == fishes.length) {
 					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
 					document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
-					if (LEVEL == 7) { LEVEL = -1; nextLevel(); } else { nextLevel(); }
+					if (LEVEL == 7) {
+						LEVEL = -1;
+						PLAYER_SCORE = 0;
+						document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
+						nextLevel();
+					} else { nextLevel(); }
 				}
 			}
 		}
