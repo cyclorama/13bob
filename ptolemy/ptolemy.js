@@ -32,14 +32,13 @@ window.onload = function() {
 			//drawText(`P: ${pDist} / Q: ${qDist} / R: ${rDist}`, width / 4, height / 4, 'red');
 			drawCircle(width / 2, height / 2, mouseDist, 0, 2 * Math.PI, 'white');
 
-
-
-			drawRectangle(width / 5, (height / 2) - (pDist / 2), 100, pDist, 'cyan'); // P
-			drawRectangle((width / 5) + 100, (height / 2) - (qDist / 2), 100, qDist, 'yellow'); // Q
-			drawRectangle((width / 5) + 200, (height / 2) - (rDist / 2), 100, rDist, 'magenta'); // R
+			// Graph
+			drawRectangle(width / 4, (height / 2) - (pDist / 2), 50, pDist, 'cyan'); // P
+			drawRectangle((width / 4) + 50, (height / 2) - (qDist / 2), 50, qDist, 'yellow'); // Q
+			drawRectangle((width / 4) + 100, (height / 2) - (rDist / 2), 50, rDist, 'magenta'); // R
 
 			switch(example) {
-				case 0:
+				case 0: // Equilateral Triangle
 					drawTriangle(width / 2, height / 2, mouseDist, 'red');
 					drawLine(width / 2, (height / 2) - mouseDist, mouseX, mouseY, 'cyan'); // P
 					drawLine((width / 2) + pointAX, (height / 2) + pointAY, mouseX, mouseY, 'yellow'); // Q
