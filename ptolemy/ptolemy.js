@@ -7,7 +7,9 @@ window.onload = function() {
 		pointAX, pointAY,
 		pointBX, pointBY,
 		pointCX, pointCY,
-		pDist, qDist, rDist;
+		pDist, qDist, rDist,
+		autoX = 0, autoY = 0, pointAutoX, pointAutoY
+		movePointX = 0, movePointY = 0;
 
 		canvas.addEventListener('mousemove', function(evt) {
 		    var mousePos = getMousePos(canvas, evt);
@@ -16,33 +18,37 @@ window.onload = function() {
 
 		function update() {
 			mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
+
+			if (mouseDist > width / 6) mouseDist = (width / 6) + 1;
+			movePointX = mouseDist > width / 6 ? pointAutoX : mouseX;
+			movePointY = mouseDist > width / 6 ? pointAutoY : mouseY;
+
 			pointAX = getCoordFromAngle(150, mouseDist).x;
 			pointAY = getCoordFromAngle(150, mouseDist).y;
 			pointBX = getCoordFromAngle(30, mouseDist).x;
 			pointBY = getCoordFromAngle(30, mouseDist).y;
 			pointCX = getCoordFromAngle(270, mouseDist).x;
 			pointCY = getCoordFromAngle(270, mouseDist).y;
-			pDist = parseInt(getDistance(width / 2, (height / 2) - mouseDist, mouseX, mouseY));
-			qDist = parseInt(getDistance((width / 2) + pointAX, (height / 2) + pointAY, mouseX, mouseY));
-			rDist = parseInt(getDistance((width / 2) + pointBX, (height / 2) + pointBY, mouseX, mouseY));
+			pDist = parseInt(getDistance(width / 2, (height / 2) - mouseDist, movePointX, movePointY));
+			qDist = parseInt(getDistance((width / 2) + pointAX, (height / 2) + pointAY, movePointX, movePointY));
+			rDist = parseInt(getDistance((width / 2) + pointBX, (height / 2) + pointBY, movePointX, movePointY));
+			pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
+			pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
 		}
 
 		function render() {
-			clearScreen();
-			//drawText(`P: ${pDist} / Q: ${qDist} / R: ${rDist}`, width / 4, height / 4, 'red');
-			drawCircle(width / 2, height / 2, mouseDist, 0, 2 * Math.PI, 'white');
-
-			// Graph
-			drawRectangle(width / 4, (height / 2) - (pDist / 2), 50, pDist, 'cyan'); // P
-			drawRectangle((width / 4) + 50, (height / 2) - (qDist / 2), 50, qDist, 'yellow'); // Q
-			drawRectangle((width / 4) + 100, (height / 2) - (rDist / 2), 50, rDist, 'magenta'); // R
-
 			switch(example) {
-				case 0: // Equilateral Triangle
-					drawTriangle(width / 2, height / 2, mouseDist, 'red');
-					drawLine(width / 2, (height / 2) - mouseDist, mouseX, mouseY, 'cyan'); // P
-					drawLine((width / 2) + pointAX, (height / 2) + pointAY, mouseX, mouseY, 'yellow'); // Q
-					drawLine((width / 2) + pointBX, (height / 2) + pointBY, mouseX, mouseY, 'magenta'); // R
+				case 0:
+					clearScreen();
+					drawCircle(width / 2, height / 2, mouseDist, 0, 2 * Math.PI, 'white');
+					drawTriangle(width / 2, height / 2, mouseDist, 'red'); // Equilateral Triangle
+					drawLine(width / 2, (height / 2) - mouseDist, movePointX, movePointY, 'cyan'); // P
+					drawLine((width / 2) + pointAX, (height / 2) + pointAY, movePointX, movePointY, 'yellow'); // Q
+					drawLine((width / 2) + pointBX, (height / 2) + pointBY, movePointX, movePointY, 'magenta'); // R
+					// Graph
+					drawRectangle(width / 4, (height / 2) - (pDist / 2), 50, pDist, 'cyan'); // P
+					drawRectangle((width / 4) + 50, (height / 2) - (qDist / 2), 50, qDist, 'yellow'); // Q
+					drawRectangle((width / 4) + 100, (height / 2) - (rDist / 2), 50, rDist, 'magenta'); // R
 					break;
 			}
 		}
