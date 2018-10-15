@@ -14,8 +14,8 @@ window.onload = function() {
 		scaleLock = width / 6;
 
 		canvas.addEventListener('mousemove', function(evt) {
-		    var mousePos = getMousePos(canvas, evt);
-		    mouseX = mousePos.x; mouseY = mousePos.y;
+			var mousePos = getMousePos(canvas, evt);
+			mouseX = mousePos.x; mouseY = mousePos.y;
 		}, false);
 
 		function update() {
@@ -61,10 +61,10 @@ window.onload = function() {
 			context.strokeStyle = colour;
 			context.lineWidth = 5;
 			context.beginPath();
-		    context.moveTo(x1, y1);
-		    context.lineTo(x2, y2);
-		    context.closePath();
-		    context.stroke();
+			context.moveTo(x1, y1);
+			context.lineTo(x2, y2);
+			context.closePath();
+			context.stroke();
 		}
 
 		function drawCircle(x, y, radius, colour) {
@@ -85,20 +85,20 @@ window.onload = function() {
 			context.strokeStyle = colour;
 			context.lineWidth = 5;
 			context.beginPath();
-		    context.moveTo(x, y - radius);
-		    context.lineTo(x + pointAX, y + pointAY);
-		    context.lineTo(x + pointBX, y + pointBY);
-		    context.lineTo(x + pointCX, y + pointCY);
-		    context.closePath();
-		    context.stroke();
+			context.moveTo(x, y - radius);
+			context.lineTo(x + pointAX, y + pointAY);
+			context.lineTo(x + pointBX, y + pointBY);
+			context.lineTo(x + pointCX, y + pointCY);
+			context.closePath();
+			context.stroke();
 		}
 
 		function getMousePos(canvas, evt) {
-		    var rect = canvas.getBoundingClientRect();
-		    return {
-		        x: evt.clientX - rect.left,
-		        y: evt.clientY - rect.top
-		    };
+			var rect = canvas.getBoundingClientRect();
+			return {
+				x: evt.clientX - rect.left,
+				y: evt.clientY - rect.top
+			};
 		}
 
 		function getDistance(x1, y1, x2, y2) {
