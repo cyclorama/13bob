@@ -36,6 +36,7 @@ window.onload = function() {
 			pDist = parseInt(getDistance(centerX, centerY - mouseDist, movePointX, movePointY));
 			qDist = parseInt(getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY));
 			rDist = parseInt(getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY));
+			
 			pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
 			pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
 		}
