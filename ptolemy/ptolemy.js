@@ -8,13 +8,10 @@ window.onload = function() {
 		pointAX, pointAY,
 		pointBX, pointBY,
 		pointCX, pointCY,
-		pointDX, pointDY,
-		pointEX, pointEY,
 		pDist, qDist, rDist,
 		autoX = 0, autoY = 0, pointAutoX, pointAutoY
 		movePointX = 0, movePointY = 0,
-		scaleLock = width / 6,
-		mouseSet = false;
+		scaleLock = width / 6;
 
 		canvas.addEventListener('mousemove', function(evt) {
 		    var mousePos = getMousePos(canvas, evt);
