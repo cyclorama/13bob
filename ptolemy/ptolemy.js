@@ -3,13 +3,18 @@ window.onload = function() {
 		context = canvas.getContext('2d'),
 		width = canvas.width = window.innerWidth,
 		height = canvas.height = window.innerHeight,
-		mouseX, mouseY, mouseDist, example = 0,
+		centerX = width / 2, centerY = height / 2,
+		mouseX, mouseY, mouseDist,
 		pointAX, pointAY,
 		pointBX, pointBY,
 		pointCX, pointCY,
+		pointDX, pointDY,
+		pointEX, pointEY,
 		pDist, qDist, rDist,
 		autoX = 0, autoY = 0, pointAutoX, pointAutoY
-		movePointX = 0, movePointY = 0;
+		movePointX = 0, movePointY = 0,
+		scaleLock = width / 6,
+		mouseSet = false;
 
 		canvas.addEventListener('mousemove', function(evt) {
 		    var mousePos = getMousePos(canvas, evt);
@@ -19,9 +24,10 @@ window.onload = function() {
 		function update() {
 			mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
 
-			if (mouseDist > width / 6) mouseDist = (width / 6) + 1;
-			movePointX = mouseDist > width / 6 ? pointAutoX : mouseX;
-			movePointY = mouseDist > width / 6 ? pointAutoY : mouseY;
+			if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
+
+			movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
+			movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
 			pointAX = getCoordFromAngle(150, mouseDist).x;
 			pointAY = getCoordFromAngle(150, mouseDist).y;
@@ -29,39 +35,29 @@ window.onload = function() {
 			pointBY = getCoordFromAngle(30, mouseDist).y;
 			pointCX = getCoordFromAngle(270, mouseDist).x;
 			pointCY = getCoordFromAngle(270, mouseDist).y;
-			pDist = parseInt(getDistance(width / 2, (height / 2) - mouseDist, movePointX, movePointY));
-			qDist = parseInt(getDistance((width / 2) + pointAX, (height / 2) + pointAY, movePointX, movePointY));
-			rDist = parseInt(getDistance((width / 2) + pointBX, (height / 2) + pointBY, movePointX, movePointY));
+
+			pDist = parseInt(getDistance(centerX, centerY - mouseDist, movePointX, movePointY));
+			qDist = parseInt(getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY));
+			rDist = parseInt(getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY));
 			pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
 			pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
 		}
 
 		function render() {
-			switch(example) {
-				case 0:
-					clearScreen();
-					drawCircle(width / 2, height / 2, mouseDist, 0, 2 * Math.PI, 'white');
-					drawTriangle(width / 2, height / 2, mouseDist, 'red'); // Equilateral Triangle
-					drawLine(width / 2, (height / 2) - mouseDist, movePointX, movePointY, 'cyan'); // P
-					drawLine((width / 2) + pointAX, (height / 2) + pointAY, movePointX, movePointY, 'yellow'); // Q
-					drawLine((width / 2) + pointBX, (height / 2) + pointBY, movePointX, movePointY, 'magenta'); // R
-					// Graph
-					drawRectangle(width / 4, (height / 2) - (pDist / 2), 50, pDist, 'cyan'); // P
-					drawRectangle((width / 4) + 50, (height / 2) - (qDist / 2), 50, qDist, 'yellow'); // Q
-					drawRectangle((width / 4) + 100, (height / 2) - (rDist / 2), 50, rDist, 'magenta'); // R
-					break;
-			}
+			clearScreen();
+			drawCircle(centerX, centerY, mouseDist, 'white');
+			drawTriangle(centerX, centerY, mouseDist, 'red');
+			drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan'); // P
+			drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow'); // Q
+			drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta'); // R
+			drawRectangle(centerX / 2, centerY - (pDist / 2), 50, pDist, 'cyan'); // P
+			drawRectangle((centerX / 2) + 50, centerY - (qDist / 2), 50, qDist, 'yellow'); // Q
+			drawRectangle((centerX / 2) + 100, centerY - (rDist / 2), 50, rDist, 'magenta'); // R
 		}
 
 		function clearScreen() {
 			context.fillStyle = 'black';
 			context.fillRect(0, 0, canvas.width, canvas.height);
-		}
-
-		function drawText(text, x, y, colour) {
-			context.font = '30px Arial';
-			context.fillStyle = colour;
-			context.fillText(text, x, y);
 		}
 
 		function drawLine(x1, y1, x2, y2, colour) {
@@ -74,11 +70,11 @@ window.onload = function() {
 		    context.stroke();
 		}
 
-		function drawCircle(x, y, radius, sAngle, eAngle, colour) {
+		function drawCircle(x, y, radius, colour) {
 			context.strokeStyle = colour;
 			context.lineWidth = 5;
 			context.beginPath();
-			context.arc(x, y, radius, sAngle, eAngle);
+			context.arc(x, y, radius, 0, 2 * Math.PI);
 			context.closePath();
 			context.stroke();
 		}
@@ -88,7 +84,7 @@ window.onload = function() {
 			context.fillRect(x, y, width, height);
 		}
 
-		function drawTriangle(x, y, radius, colour) { // Equilateral
+		function drawTriangle(x, y, radius, colour) {
 			context.strokeStyle = colour;
 			context.lineWidth = 5;
 			context.beginPath();
@@ -113,7 +109,7 @@ window.onload = function() {
 		}
 
 		function getCoordFromAngle(angle, distance) {
-			angle *= Math.PI / 180 // To radians
+			angle *= Math.PI / 180
 			return {
 				x: distance * Math.cos(angle),
 				y: distance * Math.sin(angle)
