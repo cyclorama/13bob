@@ -11,7 +11,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'04 Dionne Warwick - Can\'t Hide Love.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
-items =				[ ['+'], ['1', '1'], ['fisher', 'slingshoot', 'ptolemy'], ['3', '3'], ['http://steamcommunity.com/id/huh'], ['-'] ],
+items =				[ ['+'], ['', ''], ['fisher', 'slingshoot', 'ptolemy'], ['', ''], ['http://steamcommunity.com/id/huh'], ['-'] ],
 images =			new Array(),
 tapeP =				false,
 trackN =			0;
@@ -55,12 +55,12 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function preload() { var index = 0;
+function preload() { var img = 0;
 	for (var i = 0; i < (document.querySelectorAll('[id=nav]').length - 1) * 2; i+=2) {
 		images[i] = new Image(); images[i + 1] = new Image();
-		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[index].name}_forward.gif`;
-		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[index].name}_reverse.gif`;
-		index++;
+		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[img].name}_forward.gif`;
+		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[img].name}_reverse.gif`;
+		img++;
 	}
 }
 
