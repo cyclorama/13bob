@@ -9,7 +9,7 @@ window.onload = function() {
 		pointBX, pointBY,
 		pointCX, pointCY,
 		pDist, qDist, rDist,
-		autoX = 0, autoY = 0, pointAutoX, pointAutoY
+		autoX = 0, autoY = 0, pointAutoX, pointAutoY,
 		movePointX = 0, movePointY = 0,
 		scaleLock = width / 6;
 
@@ -36,7 +36,7 @@ window.onload = function() {
 			pDist = parseInt(getDistance(centerX, centerY - mouseDist, movePointX, movePointY));
 			qDist = parseInt(getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY));
 			rDist = parseInt(getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY));
-			
+
 			pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
 			pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
 		}
@@ -48,9 +48,9 @@ window.onload = function() {
 			drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan'); // P
 			drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow'); // Q
 			drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta'); // R
-			drawRectangle(centerX / 2, centerY - (pDist / 2), 50, pDist, 'cyan'); // P
-			drawRectangle((centerX / 2) + 50, centerY - (qDist / 2), 50, qDist, 'yellow'); // Q
-			drawRectangle((centerX / 2) + 100, centerY - (rDist / 2), 50, rDist, 'magenta'); // R
+			drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan'); // P
+			drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow'); // Q
+			drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, 'magenta'); // R
 		}
 
 		function clearScreen() {
