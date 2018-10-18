@@ -111,10 +111,6 @@ var update = function() {
 	}
 }
 
-function reelIn() {
-	sleepTime /= 10; hook.reelIn = true; music.pause(); reel.play();
-}
-
 function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -201,6 +197,13 @@ function render() {
 		}
 	}
 	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
+}
+
+function reelIn() {
+	sleepTime /= 10;
+	hook.reelIn = true;
+	music.pause();
+	reel.play();
 }
 
 function main() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
