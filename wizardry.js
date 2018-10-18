@@ -55,11 +55,12 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function preload() {
-	for (var i = 0; i < document.querySelectorAll('[id=nav]').length - 1; i++) {
+function preload() { var index = 0;
+	for (var i = 0; i < (document.querySelectorAll('[id=nav]').length - 1) * 2; i+=2) {
 		images[i] = new Image(); images[i + 1] = new Image();
-		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[i].name}_forward.gif`;
-		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[i].name}_reverse.gif`;
+		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[index].name}_forward.gif`;
+		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[index].name}_reverse.gif`;
+		index++;
 	}
 }
 
