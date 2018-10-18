@@ -1,4 +1,4 @@
-var update = function() {
+function update() {
 	if (hook.reelIn) {
 		if (hook.x != hook.startX || hook.y != hook.startY) {
 			hook.y = hook.prev.pop();
