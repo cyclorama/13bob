@@ -54,11 +54,12 @@ function sleep (time) { return new Promise((resolve) => setTimeout(resolve, time
 
 function nextLevel() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	music.currentTime = 0;
 	fishes = [];
 	rocks = [];
 	PLAYER_REELS = 0;
 	PLAYER_CAUGHT = 0;
-	LEVEL += 1;
+	LEVEL++;
 	loadLevel(LEVEL);
 }
 
