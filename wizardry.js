@@ -12,8 +12,10 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ['+'], ['1', '1'], ['fisher', 'slingshoot', 'ptolemy'], ['3', '3'], ['http://steamcommunity.com/id/huh'], ['-'] ],
+images =			new Array(),
 tapeP =				false,
 trackN =			0;
+
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
 for (var i = 0; i < tracks.length; i++) { title += `[${tracks[i].replace('.mp3', '')}]\n` }
 
@@ -53,8 +55,17 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
+function preload() {
+	for (var i = 0; i < document.querySelectorAll('[id=nav]').length - 1; i++) {
+		images[i] = new Image(); images[i + 1] = new Image();
+		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[i].name}_forward.gif`;
+		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[i].name}_reverse.gif`;
+	}
+}
+
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`photos/framed_${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
 function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;for(var i=0;i<items[o].length;i++){document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${items[o][i]}'><img id='menu' src='${items[o][i]}/logo.png'/></a>`:m==1?`<video onclick='sMenu("+o+",1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${items[o][i]}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
 function fibonacci(nterms)	{ var n1=0,n2=1,next,goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(`${next} (Golden ratio = ${goldenRatio})`);} }
 
+preload();
 pTape();
