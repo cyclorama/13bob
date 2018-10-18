@@ -18,9 +18,12 @@ window.onload = function() {
 			mouseX = mousePos.x; mouseY = mousePos.y;
 		}, false);
 
-		function update() {
-			mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
+		function init() {
+			mouseDist = (width / 6) + 1;
+		}
 
+		function update() {
+			if (mouseX != null) mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
 			if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
 
 			movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
@@ -114,5 +117,5 @@ window.onload = function() {
 			};
 		}
 
-		function anim() { requestAnimationFrame(anim); render(); update(); } anim();
+		function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
 }
