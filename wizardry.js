@@ -13,11 +13,12 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
 images =			new Array(),
+menu =				false,
 tapeP =				false,
 trackN =			0;
 
 for (var x = 0; x < sounds.length; x++) for (var y = 0; y < sounds[x].length; y++) sounds[x][y].volume = 0.15;
-for (var i = 0; i < tracks.length; i++) { title += `[${tracks[i].replace('.mp3', '')}]\n` }
+for (var i = 0; i < tracks.length; i++) title += `[${tracks[i].replace('.mp3', '')}]\n`
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
