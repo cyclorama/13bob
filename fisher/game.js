@@ -164,7 +164,7 @@ var render = function() {
 	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
 }
 
-var main = function() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
+function main() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
 main();
 loadLevel(LEVEL);
 document.getElementById('score').innerText = PLAYER_SCORE;
