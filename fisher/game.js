@@ -19,11 +19,11 @@ var update = function() {
 				reel.currentTime = 0;
 				if (PLAYER_CAUGHT == fishes.length) {
 					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
-					document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
+					document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
 					if (LEVEL == 7) {
 						LEVEL = -1;
 						PLAYER_SCORE = 0;
-						document.getElementById("score").innerText = parseInt(PLAYER_SCORE);
+						document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
 						nextLevel();
 					} else { nextLevel(); }
 				}
@@ -81,8 +81,8 @@ var update = function() {
 			fishes[i].onBoat = true;
 		}
 		if (fishes[i].caught) { fishes[i].x = hook.x; fishes[i].y = hook.y; } else {
-			if (fishes[i].x < fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x++; if (fishes[i].fishImage.src != "img/fish_right.png") { fishes[i].fishImage.src = "img/fish_right.png"; } } 
-			if (fishes[i].x > fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x--; if (fishes[i].fishImage.src != "img/fish_left.png") { fishes[i].fishImage.src = "img/fish_left.png"; } }
+			if (fishes[i].x < fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x++; if (fishes[i].fishImage.src != 'img/fish_right.png') { fishes[i].fishImage.src = "img/fish_right.png"; } } 
+			if (fishes[i].x > fishes[i].waypoints[fishes[i].point+2]) { fishes[i].x--; if (fishes[i].fishImage.src != 'img/fish_left.png') { fishes[i].fishImage.src = "img/fish_left.png"; } }
 			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y < fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y++; }
 			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y > fishes[i].waypoints[fishes[i].point+3]) { fishes[i].y--; }
 			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y == fishes[i].waypoints[fishes[i].point+3]))
@@ -161,10 +161,10 @@ var render = function() {
 			}
 		}
 	}
-	document.getElementById("boat").src = "img/boat"+PLAYER_CAUGHT+".png";
+	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
 }
 
 var main = function() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
 main();
 loadLevel(LEVEL);
-document.getElementById("score").innerText = PLAYER_SCORE;
+document.getElementById('score').innerText = PLAYER_SCORE;
