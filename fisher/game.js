@@ -37,6 +37,7 @@ function update() {
 		} else {
 			sleepTime = 700;
 		}
+
 		if (32 in keysDown) { // SPACEBAR - Reel in
 			if (!hook.casting) {
 				PLAYER_REELS++;
@@ -52,6 +53,7 @@ function update() {
 				keysDown = [];
 			}
 		}
+
 		if (hook.casting && hook.y < LEVEL_HEIGHT-1) { // Save previous X and Y hook positions and move hook down
 			if (37 in keysDown) { hook.x -= 1; keysDown = []; } // LEFT ARROW - Move left
 			if (39 in keysDown) { hook.x += 1; keysDown = []; } // RIGHT ARROW - Move right
@@ -59,6 +61,7 @@ function update() {
 			hook.prev.push(hook.y);
 			hook.y += 1;
 		}
+
 		for (var i = 0; i < rocks.length; i++) {
 			if (rocks[i].scaleX == 1) {
 				if (hook.x == rocks[i].x &&
@@ -74,6 +77,7 @@ function update() {
 			}
 		}
 	}
+	
 	for (var i = 0; i < fishes.length; i++) { // Waypoint mechanic
 		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1))
 			fishes[i].caught = true;
