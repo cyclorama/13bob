@@ -1,8 +1,8 @@
 function update() {
 	if (hook.reelIn) {
-		if (hook.x != hook.startX || hook.y != hook.startY) {
+		if (hook.x != hook.startX || hook.y != hook.startY) { // Reverse hook position
 			hook.y = hook.prev.pop();
-			hook.x = hook.prev.pop(); // Reverse hook position
+			hook.x = hook.prev.pop();
 		} else {
 			hook.casting = false;
 			hook.reelIn = false;
@@ -77,7 +77,7 @@ function update() {
 			}
 		}
 	}
-	
+
 	for (var i = 0; i < fishes.length; i++) { // Waypoint mechanic
 		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1))
 			fishes[i].caught = true;
