@@ -21,7 +21,7 @@ var LEVEL_WIDTH =			25,
 
 function loadLevel(lvl) {
     var f = new XMLHttpRequest();
-    f.open('GET', 'lvls/'+lvl+'.txt', false);
+    f.open('GET', `lvls/${lvl}.txt`, false);
     f.onreadystatechange = function () {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
             var lines = f.responseText.split('\n');
@@ -96,7 +96,7 @@ function fish(waypoints) {
 		fishImageLeft: fishImageLeft,
 		fishImageRight: fishImageRight,
 		fishImageLeftReady: fishImageLeftReady,
-		fishImageRightReady: fishImageRightReady,
+		fishImageRightReady: fishImageRightReady
 	};
 } fishes = [];
 
@@ -186,7 +186,7 @@ function rock(x, y, scaleX, scaleY) {
 		rockImageVertLeftReady: rockImageVertLeftReady,
 		rockImageVertReady: rockImageVertReady,
 		rockImageVertRightReady: rockImageVertRightReady,
-		rockImageDownReady: rockImageDownReady,
+		rockImageDownReady: rockImageDownReady
 	};
 } rocks = [];
 
