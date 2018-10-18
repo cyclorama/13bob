@@ -21,7 +21,8 @@ var LEVEL_WIDTH =			25,
 
 function loadLevel(lvl) {
     var f = new XMLHttpRequest();
-    f.open('GET', `lvls/${lvl}.txt`, false);
+    f.responseType = 'text';
+    f.open('GET', `lvls/${lvl}.txt`, true);
     f.onreadystatechange = function () {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
             var lines = f.responseText.split('\n');
@@ -76,11 +77,7 @@ function fish(waypoints) {
 	fishImageLeft = new Image(),
 	fishImageRight = new Image(),
 	fishImageLeft.src = 'img/fish_left.png',
-	fishImageRight.src = 'img/fish_right.png',
-	fishImageLeftReady = false,
-	fishImageRightReady = false,
-	fishImageLeft.onload = function() { fishImageLeftReady = true; },
-	fishImageRight.onload = function() { fishImageRightReady = true; };
+	fishImageRight.src = 'img/fish_right.png';
 
 	return {
 		x: parseInt(waypoints[0]),
@@ -95,8 +92,8 @@ function fish(waypoints) {
 		fishImage: fishImage,
 		fishImageLeft: fishImageLeft,
 		fishImageRight: fishImageRight,
-		fishImageLeftReady: fishImageLeftReady,
-		fishImageRightReady: fishImageRightReady
+		fishImageLeftReady: fishImageLeft.onload = function() { return true; },
+		fishImageRightReady: fishImageRight.onload = function() { return true; }
 	};
 } fishes = [];
 
@@ -132,61 +129,45 @@ function rock(x, y, scaleX, scaleY) {
 	rockImageVertLeft.src = 'img/rock_vert_left.png',
 	rockImageVert.src = 'img/rock_vert.png',
 	rockImageVertRight.src = 'img/rock_vert_right.png',
-	rockImageDown.src = 'img/rock_down.png',
-	rockImageSingleReady = false, // rockImageSingleReady = rockImageSingle.onload = function() { return true; }
-	rockImageCornerTopLeftReady = false,
-	rockImageCornerTopRightReady = false,
-	rockImageCornerBottomLeftReady = false,
-	rockImageCornerBottomRightReady = false,
-	rockImageLeftReady = false,
-	rockImageHorizTopReady = false,
-	rockImageHorizReady = false,
-	rockImageHorizBottomReady = false,
-	rockImageRightReady = false,
-	rockImageCenterReady = false,
-	rockImageUpReady = false,
-	rockImageVertLeftReady = false,
-	rockImageVertReady = false,
-	rockImageVertRightReady = false,
-	rockImageDownReady = false,
-	rockImageSingle.onload = function() { rockImageSingleReady = true; },
-	rockImageCornerTopLeft.onload = function() { rockImageCornerTopLeftReady = true; },
-	rockImageCornerTopRight.onload = function() { rockImageCornerTopRightReady = true; },
-	rockImageCornerBottomLeft.onload = function() { rockImageCornerBottomLeftReady = true; },
-	rockImageCornerBottomRight.onload = function() { rockImageCornerBottomRightReady = true; },
-	rockImageLeft.onload = function() { rockImageLeftReady = true; },
-	rockImageHorizTop.onload = function() { rockImageHorizTopReady = true; },
-	rockImageHoriz.onload = function() { rockImageHorizReady = true; },
-	rockImageHorizBottom.onload = function() { rockImageHorizBottomReady = true; },
-	rockImageRight.onload = function() { rockImageRightReady = true; },
-	rockImageCenter.onload = function() { rockImageCenterReady = true; },
-	rockImageUp.onload = function() { rockImageUpReady = true; },
-	rockImageVertLeft.onload = function() { rockImageVertLeftReady = true; },
-	rockImageVert.onload = function() { rockImageVertReady = true; },
-	rockImageVertRight.onload = function() { rockImageVertRightReady = true; },
-	rockImageDown.onload = function() { rockImageDownReady = true; }
+	rockImageDown.src = 'img/rock_down.png';
 
 	return {
 		x: parseInt(x),
 		y: parseInt(y),
 		scaleX: parseInt(scaleX),
 		scaleY: parseInt(scaleY),
-		rockImageSingleReady: rockImageSingleReady,
-		rockImageCornerTopLeftReady: rockImageCornerTopLeftReady,
-		rockImageCornerTopRightReady: rockImageCornerTopRightReady,
-		rockImageCornerBottomLeftReady: rockImageCornerBottomLeftReady,
-		rockImageCornerBottomRightReady: rockImageCornerBottomRightReady,
-		rockImageLeftReady: rockImageLeftReady,
-		rockImageHorizTopReady: rockImageHorizTopReady,
-		rockImageHorizReady: rockImageHorizReady,
-		rockImageHorizBottomReady: rockImageHorizBottomReady,
-		rockImageRightReady: rockImageRightReady,
-		rockImageCenterReady: rockImageCenterReady,
-		rockImageUpReady: rockImageUpReady,
-		rockImageVertLeftReady: rockImageVertLeftReady,
-		rockImageVertReady: rockImageVertReady,
-		rockImageVertRightReady: rockImageVertRightReady,
-		rockImageDownReady: rockImageDownReady
+		rockImageSingle: rockImageSingle,
+		rockImageCornerTopLeft: rockImageCornerTopLeft,
+		rockImageCornerTopRight: rockImageCornerTopRight,
+		rockImageCornerBottomLeft: rockImageCornerBottomLeft,
+		rockImageCornerBottomRight: rockImageCornerBottomRight,
+		rockImageLeft: rockImageLeft,
+		rockImageHorizTop: rockImageHorizTop,
+		rockImageHoriz: rockImageHoriz,
+		rockImageHorizBottom: rockImageHorizBottom,
+		rockImageRight: rockImageRight,
+		rockImageCenter: rockImageCenter,
+		rockImageUp: rockImageUp,
+		rockImageVertLeft: rockImageVertLeft,
+		rockImageVert: rockImageVert,
+		rockImageVertRight: rockImageVertRight,
+		rockImageDown: rockImageDown,
+		rockImageSingleReady: rockImageSingle.onload = function() { return true; },
+		rockImageCornerTopLeftReady: rockImageCornerTopLeft.onload = function() { return true; },
+		rockImageCornerTopRightReady: rockImageCornerTopRight.onload = function() { return true; },
+		rockImageCornerBottomLeftReady: rockImageCornerBottomLeft.onload = function() { return true; },
+		rockImageCornerBottomRightReady: rockImageCornerBottomRight.onload = function() { return true; },
+		rockImageLeftReady: rockImageLeft.onload = function() { return true; },
+		rockImageHorizTopReady: rockImageHorizTop.onload = function() { return true; },
+		rockImageHorizReady: rockImageHoriz.onload = function() { return true; },
+		rockImageHorizBottomReady: rockImageHorizBottom.onload = function() { return true; },
+		rockImageRightReady: rockImageRight.onload = function() { return true; },
+		rockImageCenterReady: rockImageCenter.onload = function() { return true; },
+		rockImageUpReady: rockImageUp.onload = function() { return true; },
+		rockImageVertLeftReady: rockImageVertLeft.onload = function() { return true; },
+		rockImageVertReady: rockImageVert.onload = function() { return true; },
+		rockImageVertRightReady: rockImageVertRight.onload = function() { return true; },
+		rockImageDownReady: rockImageDown.onload = function() { return true; }
 	};
 } rocks = [];
 
