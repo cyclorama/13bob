@@ -54,7 +54,7 @@ function update() {
 			}
 		}
 
-		if (hook.casting && hook.y < LEVEL_HEIGHT-1) { // Save previous X and Y hook positions and move hook down
+		if (hook.casting && hook.y < LEVEL_HEIGHT - 1) { // Save previous X and Y hook positions and move hook down
 			if (37 in keysDown) { hook.x -= 1; keysDown = []; } // LEFT ARROW - Move left
 			if (39 in keysDown) { hook.x += 1; keysDown = []; } // RIGHT ARROW - Move right
 			hook.prev.push(hook.x);
@@ -65,14 +65,14 @@ function update() {
 		for (var i = 0; i < rocks.length; i++) {
 			if (rocks[i].scaleX == 1) {
 				if (hook.x == rocks[i].x &&
-					hook.y > rocks[i].y-rocks[i].scaleY-1 &&
-					hook.y < rocks[i].y+rocks[i].scaleY+1) {
+					hook.y > rocks[i].y-rocks[i].scaleY - 1 &&
+					hook.y < rocks[i].y+rocks[i].scaleY + 1) {
 					reelIn();
 				}
-			} else if (	hook.x > rocks[i].x-(rocks[i].scaleX+1) &&
-						hook.x < rocks[i].x+(rocks[i].scaleX+1) &&
-						hook.y > rocks[i].y-(rocks[i].scaleY+1) &&
-						hook.y < rocks[i].y+(rocks[i].scaleY+1)) {
+			} else if (	hook.x > rocks[i].x-(rocks[i].scaleX + 1) &&
+						hook.x < rocks[i].x+(rocks[i].scaleX + 1) &&
+						hook.y > rocks[i].y-(rocks[i].scaleY + 1) &&
+						hook.y < rocks[i].y+(rocks[i].scaleY + 1)) {
 				reelIn();
 			}
 		}
@@ -103,14 +103,14 @@ function update() {
 					fishes[i].fishImage.src = "img/fish_left.png";
 			}
 
-			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y < fishes[i].waypoints[fishes[i].point+3])
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y < fishes[i].waypoints[fishes[i].point + 3])
 				fishes[i].y++;
 
-			if (fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y > fishes[i].waypoints[fishes[i].point+3])
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y > fishes[i].waypoints[fishes[i].point + 3])
 				fishes[i].y--;
 
-			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point+2] && fishes[i].y == fishes[i].waypoints[fishes[i].point+3]))
-				fishes[i].point += fishes[i].point+4 < fishes[i].waypoints.length ? 2 : -(fishes[i].waypoints.length-2);
+			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y == fishes[i].waypoints[fishes[i].point + 3]))
+				fishes[i].point += fishes[i].point + 4 < fishes[i].waypoints.length ? 2 : -(fishes[i].waypoints.length - 2);
 		}
 	}
 }
@@ -129,7 +129,7 @@ function render() {
 	if (hookReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
 
 	if (lineReady && lineLeftDownReady && lineRightDownReady && lineLeftUpReady && lineRightUpReady) { // Render line image
-		for (var i = 0; i < hook.prev.length; i += 2) {
+		for (var i = 0; i < hook.prev.length; i+=2) {
 			if (hook.prev[i] > hook.prev[i + 2]) {
 				ctx.drawImage(lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
