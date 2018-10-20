@@ -3,6 +3,7 @@
 @keyframes spacing_one { from { letter-spacing: -13px; } to { letter-spacing: 0px; } }
 @keyframes spacing_two { from { letter-spacing: -3px; } to { letter-spacing: 0px; } }
 @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
+
 * { animation: fade 1s; }
 
 a:link { color: white; text-decoration: none; }
