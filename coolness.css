@@ -74,3 +74,5 @@ input[type=submit] {
     padding: 13px;
     cursor: url(little_finger.cur), pointer;
 }
+
+.blockchain-btn { cursor: url(little_finger.cur), pointer; }
