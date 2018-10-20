@@ -75,4 +75,4 @@ input[type=submit] {
     cursor: url(little_finger.cur), pointer;
 }
 
-.blockchain-btn { cursor: url(little_finger.cur), pointer; }
+div.blockchain-btn { cursor: url(little_finger.cur), pointer; }
