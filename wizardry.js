@@ -11,7 +11,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'04 Dionne Warwick - Can\'t Hide Love.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
-items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
+items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc', 'btc2'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
 images =			new Array(),
 menu =				false,
 tapeP =				false,
@@ -67,7 +67,7 @@ function preload() { var img = 0;
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`photos/framed_${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
-function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;var fTop=0;for(var i=0;i<items[o].length;i++){fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='${i>2?'padding-top:'+400*fTop+'px;':''}padding:13em;' href='${items[o][i]}'><img style='' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${items[o][i]}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
+function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;var fTop=0;for(var i=0;i<items[o].length;i++){fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?'margin-top:'+400*fTop+'px;':''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${items[o][i]}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
 function fibonacci(nterms)	{ var n1=0,n2=1,next,goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(`${next} (Golden ratio = ${goldenRatio})`);} }
 
 preload();
