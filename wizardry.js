@@ -34,11 +34,12 @@ function pTape() { tapeP = !tapeP;
 	}
 }
 
-function addHighlight(trackN) {
-	trackT = title.split('\n');
-	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5); if (trackN > 1) rmHighlight(trackN - 1);
-	trackT[trackN] = `> ${trackT[trackN]} <`; title = '';
-	for (var i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ; document.tape.title = title;
+function addHighlight(trackN) { trackT = title.split('\n'); title = '';
+	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
+	if (trackN > 1) rmHighlight(trackN - 1);
+	trackT[trackN] = `> ${trackT[trackN]} <`;
+	for (var i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ;
+	document.tape.title = title;
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
 function pSound(s) {
