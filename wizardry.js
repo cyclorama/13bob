@@ -29,14 +29,14 @@ function pTape() { tapeP = !tapeP;
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
 		track.pause(); track.currentTime = 0;
-		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
+		trackN = trackN < tracks.length - 1 ? trackN + 1 : 1;
 		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
 	}
 }
 
 function addHighlight(trackN) {
 	trackT = title.split('\n');
-	if (trackN == 1 && trackT[5].includes('>')) trackT(5); if (trackN > 1) rmHighlight(trackN - 1);
+	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(trackN[5]); if (trackN > 1) rmHighlight(trackN - 1);
 	trackT[trackN] = `> ${trackT[trackN]} <`; title = '';
 	for (var i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ; document.tape.title = title;
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
