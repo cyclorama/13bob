@@ -74,7 +74,3 @@ input[type=submit] {
     padding: 13px;
     cursor: url(little_finger.cur), pointer;
 }
-
-.blockchain-btn {
-    text-align: center;
-}
