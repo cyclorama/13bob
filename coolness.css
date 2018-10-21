@@ -76,5 +76,3 @@ input[type=submit] {
 }
 
 div.blockchain-btn { cursor: url(little_finger.cur), pointer; }
-
-p.qr-code { width: 250px; }
