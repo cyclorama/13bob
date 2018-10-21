@@ -25,7 +25,7 @@
 			    <div class="blockchain stage-ready">
 			         <p align="center">Absurdly Generous Donations To:<br><br><b>[[address]]</b></p>
 			         <p align="center" class="qr-code"></p>
-			         <script>var qr=document.getElementByClassName('qr-code').src;qr.src=qr.substring(0,qr.src.length-3)+'250'</script>
+			         <script>var qr=document.getElementsByClassName('qr-code')[0].src;qr.src=qr.substring(0,qr.src.length-3)+'250'</script>
 			    </div>
 			    <div class="blockchain stage-paid">
 			         Donation of <b>[[value]] BTC</b> Received. Thank You.
