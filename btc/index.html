@@ -26,9 +26,8 @@
 			         <p align="center">Absurdly Generous Donations To:<br><br><b>[[address]]</b></p>
 			         <p align="center" class="qr-code"></p>
 			         <script>
-			         	var qr = document.getElementsByClassName('qr-code');
-			         	var img = qr.getElementsByTagName('img')[0];
-			         	img.src = img.src.substring(0, qr.src.length - 3) + '250';
+			         	var qr = document.getElementsByTagName('img')[1];
+			         	qr.src = qr.src.substring(0, qr.src.length - 3) + '250';
 			         </script>
 			    </div>
 			    <div class="blockchain stage-paid">
