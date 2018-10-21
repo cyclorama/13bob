@@ -77,4 +77,4 @@ input[type=submit] {
 
 div.blockchain-btn { cursor: url(little_finger.cur), pointer; }
 
-img.qr-code { width: 250px; }
+p.qr-code { width: 250px; }
