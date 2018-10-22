@@ -17,13 +17,13 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-for (var j = 0; j < sounds.length; j++) for (var i = 0; i < sounds[j].length; i++) sounds[j][i].volume = 0.15;
+for (var j = 0; j < sounds.length; j++) for (var i = 0; i < sounds[j].length; i++) sounds[j][i].volume = 0.1;
 for (var i = 0; i < tracks.length; i++) title += `[${tracks[i].replace('.mp3', '')}]\n`
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
-		track.volume = 0.15; track.play();
+		track.volume = 0.1; track.play();
 		track.onended = function() { pTape(); pTape(); };
 		addHighlight(trackN + 1);
 	} else {
