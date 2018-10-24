@@ -81,7 +81,7 @@ window.onload = function() {
 	}
 
 	function drawRectangle(x, y, width, height, colour) {
-		context.fillStyle = colour
+		context.fillStyle = colour;
 		context.fillRect(x, y, width, height);
 	}
 
