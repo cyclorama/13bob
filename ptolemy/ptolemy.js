@@ -110,7 +110,7 @@ window.onload = function() {
 	}
 
 	function getCoordFromAngle(angle, distance) {
-		angle *= Math.PI / 180
+		angle *= Math.PI / 180;
 		return {
 			x: distance * Math.cos(angle),
 			y: distance * Math.sin(angle)
