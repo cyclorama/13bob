@@ -93,8 +93,8 @@ function fish(waypoints) {
 		fishImage: fishImage,
 		fishImageLeft: fishImageLeft,
 		fishImageRight: fishImageRight,
-		fishImageLeftReady: fishImageLeft.onload = function() { return true; },
-		fishImageRightReady: fishImageRight.onload = function() { return true; }
+		fishImageLeftReady: fishImageLeft.onload = () => { return true; },
+		fishImageRightReady: fishImageRight.onload = () => { return true; }
 	};
 } fishes = [];
 
@@ -153,59 +153,52 @@ function rock(x, y, scaleX, scaleY) {
 		rockImageVert: rockImageVert,
 		rockImageVertRight: rockImageVertRight,
 		rockImageDown: rockImageDown,
-		rockImageSingleReady: rockImageSingle.onload = function() { return true; },
-		rockImageCornerTopLeftReady: rockImageCornerTopLeft.onload = function() { return true; },
-		rockImageCornerTopRightReady: rockImageCornerTopRight.onload = function() { return true; },
-		rockImageCornerBottomLeftReady: rockImageCornerBottomLeft.onload = function() { return true; },
-		rockImageCornerBottomRightReady: rockImageCornerBottomRight.onload = function() { return true; },
-		rockImageLeftReady: rockImageLeft.onload = function() { return true; },
-		rockImageHorizTopReady: rockImageHorizTop.onload = function() { return true; },
-		rockImageHorizReady: rockImageHoriz.onload = function() { return true; },
-		rockImageHorizBottomReady: rockImageHorizBottom.onload = function() { return true; },
-		rockImageRightReady: rockImageRight.onload = function() { return true; },
-		rockImageCenterReady: rockImageCenter.onload = function() { return true; },
-		rockImageUpReady: rockImageUp.onload = function() { return true; },
-		rockImageVertLeftReady: rockImageVertLeft.onload = function() { return true; },
-		rockImageVertReady: rockImageVert.onload = function() { return true; },
-		rockImageVertRightReady: rockImageVertRight.onload = function() { return true; },
-		rockImageDownReady: rockImageDown.onload = function() { return true; }
+		rockImageSingleReady: rockImageSingle.onload = () => { return true; },
+		rockImageCornerTopLeftReady: rockImageCornerTopLeft.onload = () => { return true; },
+		rockImageCornerTopRightReady: rockImageCornerTopRight.onload = () => { return true; },
+		rockImageCornerBottomLeftReady: rockImageCornerBottomLeft.onload = () => { return true; },
+		rockImageCornerBottomRightReady: rockImageCornerBottomRight.onload = () => { return true; },
+		rockImageLeftReady: rockImageLeft.onload = () => { return true; },
+		rockImageHorizTopReady: rockImageHorizTop.onload = () => { return true; },
+		rockImageHorizReady: rockImageHoriz.onload = () => { return true; },
+		rockImageHorizBottomReady: rockImageHorizBottom.onload = () => { return true; },
+		rockImageRightReady: rockImageRight.onload = () => { return true; },
+		rockImageCenterReady: rockImageCenter.onload = () => { return true; },
+		rockImageUpReady: rockImageUp.onload = () => { return true; },
+		rockImageVertLeftReady: rockImageVertLeft.onload = () => { return true; },
+		rockImageVertReady: rockImageVert.onload = () => { return true; },
+		rockImageVertRightReady: rockImageVertRight.onload = () => { return true; },
+		rockImageDownReady: rockImageDown.onload = () => { return true; }
 	};
 } rocks = [];
 
 var keysDown = {};
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
 
-var hookReady = false;
 var hookImage = new Image();
 hookImage.src = 'img/hook.png';
-hookImage.onload = function() { hookReady = true; };
+hookImageReady = hookImage.onload = () => { return true; };
 
-var waterReady = false;
 var waterImage = new Image();
 waterImage.src = 'img/water.png';
-waterImage.onload = function() { waterReady = true; };
+waterImageReady = waterImage.onload = () => { return true; };
 
-var lineReady = false;
 var lineImage = new Image();
 lineImage.src = 'img/line.png';
-lineImage.onload = function() { lineReady = true; };
+lineImageReady = lineImage.onload = () => { return true; };
 
-var lineLeftDownReady = false;
 var lineImageLeftDown = new Image();
 lineImageLeftDown.src = 'img/line_left_down.png';
-lineImageLeftDown.onload = function() { lineLeftDownReady = true; };
+lineImageLeftDownReady = lineImageLeftDown.onload = () => { return true; };
 
-var lineRightDownReady = false;
 var lineImageRightDown = new Image();
 lineImageRightDown.src = 'img/line_right_down.png';
-lineImageRightDown.onload = function() { lineRightDownReady = true; };
+lineImageRightDownReady = lineImageRightDown.onload = () => { return true; };
 
-var lineLeftUpReady = false;
 var lineImageLeftUp = new Image();
 lineImageLeftUp.src = 'img/line_left_up.png';
-lineImageLeftUp.onload = function() { lineLeftUpReady = true; };
+lineImageLeftUpReady = lineImageLeftUp.onload = () => { return true; };
 
-var lineRightUpReady = false;
 var lineImageRightUp = new Image();
 lineImageRightUp.src = 'img/line_right_up.png';
-lineImageRightUp.onload = function() { lineRightUpReady = true; };
+lineImageRightUpReady = lineImageRightUp.onload = () => { return true; };
