@@ -9,7 +9,7 @@ function update() {
 			sleepTime *= 10;
 
 			if (hook.x == hook.startX && hook.y == hook.startY) {
-				for (var i = 0; i < fishes.length; i++) {
+				for (let i = 0; i < fishes.length; i++) {
 					if (fishes[i].caught && !fishes[i].counted) {
 						fishes[i].counted = true;
 						PLAYER_CAUGHT++;
@@ -62,7 +62,7 @@ function update() {
 			hook.y += 1;
 		}
 
-		for (var i = 0; i < rocks.length; i++) {
+		for (let i = 0; i < rocks.length; i++) {
 			if (rocks[i].scaleX == 1) {
 				if (hook.x == rocks[i].x &&
 					hook.y > rocks[i].y-rocks[i].scaleY - 1 &&
@@ -78,7 +78,7 @@ function update() {
 		}
 	}
 
-	for (var i = 0; i < fishes.length; i++) { // Waypoint mechanic
+	for (let i = 0; i < fishes.length; i++) { // Waypoint mechanic
 		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1))
 			fishes[i].caught = true;
 
@@ -119,8 +119,8 @@ function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if (waterImageReady) {
-		for (var j = 0; j < LEVEL_HEIGHT; j++) {
-			for (var i = 0; i < LEVEL_WIDTH; i++) {
+		for (let j = 0; j < LEVEL_HEIGHT; j++) {
+			for (let i = 0; i < LEVEL_WIDTH; i++) {
 				ctx.drawImage(waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1); // Grid of water
 			}
 		}
@@ -129,7 +129,7 @@ function render() {
 	if (hookImageReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
 
 	if (lineImageReady && lineImageLeftDownReady && lineImageRightDownReady && lineImageLeftUpReady && lineImageRightUpReady) { // Render line image
-		for (var i = 0; i < hook.prev.length; i+=2) {
+		for (let i = 0; i < hook.prev.length; i+=2) {
 			if (hook.prev[i] > hook.prev[i + 2]) {
 				ctx.drawImage(lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -152,45 +152,45 @@ function render() {
 		}
 	}
 
-	for (var i = 0; i < fishes.length; i++) { // Render fish
+	for (let i = 0; i < fishes.length; i++) { // Render fish
 		if (fishes[i].fishImageRightReady && fishes[i].fishImageRightReady && !fishes[i].onBoat) {
 			ctx.drawImage(fishes[i].fishImage, fishes[i].x * BLOCK_SIZE, fishes[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		}
 	}
 
-	for (var i = 0; i < rocks.length; i++) { // Render different types of rock
+	for (let i = 0; i < rocks.length; i++) { // Render different types of rock
 		if (rocks[i].rockImageCornerTopLeftReady && rocks[i].rockImageSingleReady && rocks[i].rockImageLeftReady && rocks[i].rockImageCornerTopRightReady && rocks[i].rockImageHorizTopReady &&
 			rocks[i].rockImageVertLeftReady && rocks[i].rockImageHorizReady && rocks[i].rockImageRightReady && rocks[i].rockImageCenterReady && rocks[i].rockImageUpReady && rocks[i].rockImageVertRightReady &&
 			rocks[i].rockImageCornerBottomLeftReady && rocks[i].rockImageVertReady && rocks[i].rockImageDownReady && rocks[i].rockImageCornerBottomRightReady && rocks[i].rockImageHorizBottomReady) {
 			if (rocks[i].scaleX == 1 && rocks[i].scaleY == 1) { // Single rock
 				ctx.drawImage(rocks[i].rockImageSingle, rocks[i].x * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY == 1) { // Scalable horizontal rock
-				for (var r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
 					ctx.drawImage(rocks[i].rockImageHoriz, r * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
 
 				ctx.drawImage(rocks[i].rockImageLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(rocks[i].rockImageRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX == 1 && rocks[i].scaleY > 1) { // Scalable vertical rock
-				for (var r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
 					ctx.drawImage(rocks[i].rockImageVert, rocks[i].x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
 
 				ctx.drawImage(rocks[i].rockImageUp, rocks[i].x * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(rocks[i].rockImageDown, rocks[i].x * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY > 1) { // Scalable block
-				for (var r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
 					ctx.drawImage(rocks[i].rockImageHorizTop, r * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
-				for (var r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
 					ctx.drawImage(rocks[i].rockImageVertLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
-				for (var rX = rocks[i].x-rocks[i].scaleX + 1; rX < rocks[i].x+rocks[i].scaleX; rX++)
-					for (var rY = rocks[i].y-rocks[i].scaleY + 1; rY < rocks[i].y+rocks[i].scaleY; rY++)
+				for (let rX = rocks[i].x-rocks[i].scaleX + 1; rX < rocks[i].x+rocks[i].scaleX; rX++)
+					for (let rY = rocks[i].y-rocks[i].scaleY + 1; rY < rocks[i].y+rocks[i].scaleY; rY++)
 						ctx.drawImage(rocks[i].rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
-				for (var r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
 					ctx.drawImage(rocks[i].rockImageVertRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
 
-				for (var r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
 					ctx.drawImage(rocks[i].rockImageHorizBottom, r * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
 
 				ctx.drawImage(rocks[i].rockImageCornerTopRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
