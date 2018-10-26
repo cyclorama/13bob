@@ -118,7 +118,7 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (waterReady) {
+	if (waterImageReady) {
 		for (var j = 0; j < LEVEL_HEIGHT; j++) {
 			for (var i = 0; i < LEVEL_WIDTH; i++) {
 				ctx.drawImage(waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1); // Grid of water
@@ -126,9 +126,9 @@ function render() {
 		}
 	}
 
-	if (hookReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
+	if (hookImageReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
 
-	if (lineReady && lineLeftDownReady && lineRightDownReady && lineLeftUpReady && lineRightUpReady) { // Render line image
+	if (lineImageReady && lineImageLeftDownReady && lineImageRightDownReady && lineImageLeftUpReady && lineImageRightUpReady) { // Render line image
 		for (var i = 0; i < hook.prev.length; i+=2) {
 			if (hook.prev[i] > hook.prev[i + 2]) {
 				ctx.drawImage(lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
