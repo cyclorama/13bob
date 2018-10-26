@@ -1,4 +1,4 @@
-var sounds = 	[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibrations/flower_reverse.mp3') ],
+sounds = 	[ 	[ new Audio('vibrations/flower_forward.mp3'), new Audio('vibrations/flower_reverse.mp3') ],
 			 		[ new Audio('vibrations/stretch_forward.mp3'), new Audio('vibrations/stretch_reverse.mp3') ],
 			 		[ new Audio('vibrations/space.mp3') ],
 					[ new Audio('vibrations/projector.mp3') ],
@@ -17,8 +17,8 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-for (var j = 0; j < sounds.length; j++) for (var i = 0; i < sounds[j].length; i++) sounds[j][i].volume = 0.1;
-for (var i = 0; i < tracks.length; i++) title += `[${tracks[i].replace('.mp3', '')}]\n`
+for (let j = 0; j < sounds.length; j++) for (let i = 0; i < sounds[j].length; i++) sounds[j][i].volume = 0.1;
+for (let i = 0; i < tracks.length; i++) title += `[${tracks[i].replace('.mp3', '')}]\n`
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
@@ -38,7 +38,7 @@ function addHighlight(trackN) { trackT = title.split('\n'); title = '';
 	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
 	if (trackN > 1) rmHighlight(trackN - 1);
 	trackT[trackN] = `> ${trackT[trackN]} <`;
-	for (var i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ;
+	for (let i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ;
 	document.tape.title = title;
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
@@ -57,8 +57,8 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function preload() { var img = 0;
-	for (var i = 0; i < (document.querySelectorAll('[id=nav]').length - 1) * 2; i+=2) {
+function preload() { let img = 0;
+	for (let i = 0; i < (document.querySelectorAll('[id=nav]').length - 1) * 2; i+=2) {
 		images[i] = new Image(); images[i + 1] = new Image();
 		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[img].name}_forward.gif`;
 		images[i + 1].src = `photos/framed_${document.querySelectorAll('[id=nav]')[img].name}_reverse.gif`;
@@ -67,8 +67,8 @@ function preload() { var img = 0;
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`photos/framed_${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
-function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;var fTop=0;for(var i=0;i<items[o].length;i++){fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${items[o][i]}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
-function fibonacci(nterms)	{ var n1=0,n2=1,next,goldenRatio;for(var i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(`${next} (Golden ratio = ${goldenRatio})`);} }
+function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;let fTop=0;for(let i=0;i<items[o].length;i++){fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${items[o][i]}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
+function fibonacci(nterms)	{ let n1=0,n2=1,next,goldenRatio;for(let i=0;i<nterms;i++){next=n1+n2;n1=n2;n2=next;goldenRatio=n2/n1;console.log(`${next} (Golden ratio = ${goldenRatio})`);} }
 
 preload();
 pTape();
