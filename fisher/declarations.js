@@ -1,4 +1,4 @@
-var canvas =				document.createElement('canvas'),
+canvas =				document.createElement('canvas'),
 ctx =						canvas.getContext('2d');
 canvas.width =				window.innerHeight;
 canvas.height =				canvas.width;
@@ -7,39 +7,39 @@ document.body.appendChild(canvas);
 ctx.font =					'50px Arial';
 ctx.textAlign =				'center';
 ctx.fillStyle =				'white';
-var LEVEL_WIDTH =			25,
-	LEVEL_HEIGHT =			25,
-	LEVEL =					0,
-	BLOCK_SIZE =			canvas.width / LEVEL_WIDTH,
-	sleepTime =				700,
-	PLAYER_REELS =			0,
-	PLAYER_CAUGHT =			0,
-	PLAYER_SCORE =			0,
-	PLAYER_SCORE_CHECK =	0,
-	music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
-	reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
+LEVEL_WIDTH =			25,
+LEVEL_HEIGHT =			25,
+LEVEL =					0,
+BLOCK_SIZE =			canvas.width / LEVEL_WIDTH,
+sleepTime =				700,
+PLAYER_REELS =			0,
+PLAYER_CAUGHT =			0,
+PLAYER_SCORE =			0,
+PLAYER_SCORE_CHECK =	0,
+music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
+reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
 
 function loadLevel(lvl) {
-    var f = new XMLHttpRequest();
+    let f = new XMLHttpRequest();
     f.responseType = 'text';
     f.open('GET', `lvls/${lvl}.txt`, true);
     f.onreadystatechange = function () {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
-            var lines = f.responseText.split('\n');
-            for (var i = 0; i < lines.length; i++) {
+            let lines = f.responseText.split('\n');
+            for (let i = 0; i < lines.length; i++) {
             	switch(lines[i].split('=')[0]) {
                 	case 'fish':
-						var fishPoints = lines[i].split('=')[1].split('/');
-						for (var l = 0; l < fishPoints.length; l++)
+						let fishPoints = lines[i].split('=')[1].split('/');
+						for (let l = 0; l < fishPoints.length; l++)
 							fishes.push(fish(fishPoints[l].split(',')));
                 	break;
                 	case 'rock':
-                		var rockPoints = lines[i].split('=')[1].split('/');
-                		for (var l = 0; l < rockPoints.length; l++) {
-                			var rockX = rockPoints[l].split('.')[0].split(',')[0];
-                			var rockY = rockPoints[l].split('.')[0].split(',')[1];
-                			var rockScaleX = rockPoints[l].split('.')[1].split(',')[0];
-                			var rockScaleY = rockPoints[l].split('.')[1].split(',')[1];
+                		let rockPoints = lines[i].split('=')[1].split('/');
+                		for (let l = 0; l < rockPoints.length; l++) {
+                			let rockX = rockPoints[l].split('.')[0].split(',')[0];
+                			let rockY = rockPoints[l].split('.')[0].split(',')[1];
+                			let rockScaleX = rockPoints[l].split('.')[1].split(',')[0];
+                			let rockScaleY = rockPoints[l].split('.')[1].split(',')[1];
                 			rocks.push(rock(rockX, rockY, rockScaleX, rockScaleY));
                 		}
                 	break;
@@ -63,7 +63,7 @@ function nextLevel() {
 	loadLevel(LEVEL);
 }
 
-var hook = {
+hook = {
 	x: 12,
 	y: 0,
 	startX: 12,
@@ -172,33 +172,33 @@ function rock(x, y, scaleX, scaleY) {
 	};
 } rocks = [];
 
-var keysDown = {};
+keysDown = {};
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
 
-var hookImage = new Image();
+hookImage = new Image();
 hookImage.src = 'img/hook.png';
 hookImageReady = hookImage.onload = () => { return true; };
 
-var waterImage = new Image();
+waterImage = new Image();
 waterImage.src = 'img/water.png';
 waterImageReady = waterImage.onload = () => { return true; };
 
-var lineImage = new Image();
+lineImage = new Image();
 lineImage.src = 'img/line.png';
 lineImageReady = lineImage.onload = () => { return true; };
 
-var lineImageLeftDown = new Image();
+lineImageLeftDown = new Image();
 lineImageLeftDown.src = 'img/line_left_down.png';
 lineImageLeftDownReady = lineImageLeftDown.onload = () => { return true; };
 
-var lineImageRightDown = new Image();
+lineImageRightDown = new Image();
 lineImageRightDown.src = 'img/line_right_down.png';
 lineImageRightDownReady = lineImageRightDown.onload = () => { return true; };
 
-var lineImageLeftUp = new Image();
+lineImageLeftUp = new Image();
 lineImageLeftUp.src = 'img/line_left_up.png';
 lineImageLeftUpReady = lineImageLeftUp.onload = () => { return true; };
 
-var lineImageRightUp = new Image();
+lineImageRightUp = new Image();
 lineImageRightUp.src = 'img/line_right_up.png';
 lineImageRightUpReady = lineImageRightUp.onload = () => { return true; };
