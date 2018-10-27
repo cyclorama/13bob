@@ -57,7 +57,7 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-(() => { let img = 0; console.log('sd')
+(() => { let img = 0;
 	for (let i = 0; i < (document.querySelectorAll('[id=nav]').length - 1) * 2; i+=2) {
 		images[i] = new Image(); images[i + 1] = new Image();
 		images[i].src = `photos/framed_${document.querySelectorAll('[id=nav]')[img].name}_forward.gif`;
