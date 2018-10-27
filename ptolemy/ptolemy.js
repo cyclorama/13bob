@@ -1,5 +1,5 @@
 window.onload = function() {
-	var canvas = document.getElementById('canvas'),
+	let canvas = document.getElementById('canvas'),
 		context = canvas.getContext('2d'),
 		width = canvas.width = window.innerWidth,
 		height = canvas.height = window.innerHeight,
@@ -14,7 +14,7 @@ window.onload = function() {
 		scaleLock = width / 6;
 
 	canvas.addEventListener('mousemove', function(evt) {
-		var mousePos = getMousePos(canvas, evt);
+		let mousePos = getMousePos(canvas, evt);
 		mouseX = mousePos.x; mouseY = mousePos.y;
 	}, false);
 
@@ -98,7 +98,7 @@ window.onload = function() {
 	}
 
 	function getMousePos(canvas, evt) {
-		var rect = canvas.getBoundingClientRect();
+		let rect = canvas.getBoundingClientRect();
 		return {
 			x: evt.clientX - rect.left,
 			y: evt.clientY - rect.top
