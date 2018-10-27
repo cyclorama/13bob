@@ -17,7 +17,7 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-sounds.forEach((s, i) => { s.forEach((v) => { v.volume = 0.1;})});
+sounds.forEach((s) => { s.forEach((v) => { v.volume = 0.1;})});
 tracks.forEach((t) => { title += `[${t.replace('.mp3', '')}]\n` });
 
 function pTape() { tapeP = !tapeP;
