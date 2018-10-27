@@ -17,8 +17,8 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-for (let j = 0; j < sounds.length; j++) for (let i = 0; i < sounds[j].length; i++) sounds[j][i].volume = 0.1;
-for (let i = 0; i < tracks.length; i++) title += `[${tracks[i].replace('.mp3', '')}]\n`
+sounds.forEach((s, i) => { s.forEach((v) => { v.volume = 0.1;})});
+tracks.forEach((t) => { title += `[${t.replace('.mp3', '')}]\n` });
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
@@ -38,7 +38,7 @@ function addHighlight(trackN) { trackT = title.split('\n'); title = '';
 	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
 	if (trackN > 1) rmHighlight(trackN - 1);
 	trackT[trackN] = `> ${trackT[trackN]} <`;
-	for (let i = 0; i < trackT.length; i++) title += trackT[i+1] != null ? trackT[i] + '\n' : '' ;
+	trackT.forEach((t, i) => { title += trackT[i + 1] != null ? t + '\n' : '' ; });
 	document.tape.title = title;
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
@@ -57,11 +57,12 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-document.querySelectorAll('[id=nav]').forEach((pic, i) => {
-	images[i * 2] = new Image();
-	images[(i * 2) - 1] = new Image();
-	images[i * 2].src = `photos/framed_${pic.name}_forward.gif`;
-	images[(i * 2) - 1].src = `photos/framed_${pic.name}_reverse.gif`;
+document.querySelectorAll('[id=nav]').forEach((p, i) => {
+    let f = 'photos/framed_';
+    [`${f}${p.name}_forward.gif`, `${f}${p.name}_reverse.gif`].forEach((s, n) => {
+        images[i * 2 + n] = new Image();
+        images[i * 2 + n].src = s;
+    });
 });
 
 function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`photos/framed_${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
