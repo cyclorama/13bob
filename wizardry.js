@@ -30,12 +30,12 @@ const images = [...document.querySelectorAll('[id=nav]')].map(p => {
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
-		document.tape.src = 'photos/framed_tape_forward.gif';
+		document.tape.src = `${frame}tape_forward.gif`;
 		track.volume = 0.1; track.play();
 		track.onended = () => { pTape(); pTape(); };
 		addHighlight(trackN + 1);
 	} else {
-		document.tape.src = 'photos/framed_tape.gif';
+		document.tape.src = `${frame}tape.gif`;
 		track.pause(); track.currentTime = 0;
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : 0;
 		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
@@ -65,7 +65,7 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`photos/framed_${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
+function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`${frame}${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
 function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;let fTop=0;items[o].forEach((item,i)=>{fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${item}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${item}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${item},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${item}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=${item};'/>`:''):'';});if(!track.paused)pTape();}
 
 pTape();
