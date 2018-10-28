@@ -12,6 +12,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
+frame =				'photos/framed_';
 menu =				false,
 tapeP =				false,
 trackN =			0;
@@ -20,8 +21,7 @@ sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 const images = [...document.querySelectorAll('[id=nav]')].map(p => {
-    let f = 'photos/framed_';
-    return [`${f}${p.name}_forward.gif`, `${f}${p.name}_reverse.gif`].map(s => {
+    return [`${frame}${p.name}_forward.gif`, `${frame}${p.name}_reverse.gif`].map(s => {
         let p = new Image();
         p.src = s;
         return p;
