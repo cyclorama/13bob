@@ -12,19 +12,19 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
-images =			new Array(),
 menu =				false,
 tapeP =				false,
 trackN =			0;
 
-sounds.forEach(s => s.forEach(v => v.volume = 0.1));
-tracks.forEach(t => title += `[${t.replace('.mp3', '')}]\n`);
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
+tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
-document.querySelectorAll('[id=nav]').forEach((p, i) => {
+const images = [...document.querySelectorAll('[id=nav]')].map(p => {
     let f = 'photos/framed_';
-    [`${f}${p.name}_forward.gif`, `${f}${p.name}_reverse.gif`].forEach((s, n) => {
-        images[i * 2 + n] = new Image();
-        images[i * 2 + n].src = s;
+    return [`${f}${p.name}_forward.gif`, `${f}${p.name}_reverse.gif`].map(s => {
+        let p = new Image();
+        p.src = s;
+        return p;
     });
 });
 
@@ -32,7 +32,7 @@ function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = 'photos/framed_tape_forward.gif';
 		track.volume = 0.1; track.play();
-		track.onended = function() { pTape(); pTape(); };
+		track.onended = () => { pTape(); pTape(); };
 		addHighlight(trackN + 1);
 	} else {
 		document.tape.src = 'photos/framed_tape.gif';
