@@ -12,7 +12,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
-frame =				'photos/framed_';
+frame =				'photos/framed_',
 menu =				false,
 tapeP =				false,
 trackN =			0;
