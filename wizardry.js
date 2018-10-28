@@ -10,7 +10,8 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'04 Dionne Warwick - Can\'t Hide Love.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
 items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steamcommunity.com/id/huh'], ['-'] ],
-frame =				'photos/framed_';
+frame =				'photos/framed_',
+nav =				document.querySelectorAll('[id=nav]');
 title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 menu =				false,
@@ -20,7 +21,7 @@ trackN =			0;
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
-const images = [...document.querySelectorAll('[id=nav]')].map(p => {
+const images = [...nav].map(p => {
     return [`${frame}${p.name}_forward.gif`, `${frame}${p.name}_reverse.gif`].map(s => {
         let p = new Image();
         p.src = s;
@@ -65,7 +66,7 @@ function pSound(s) {
 	if (s == 8)  { sounds[4][0].play(); }
 }
 
-function pFrame(x, y, z)	{ document.getElementsByName(document.querySelectorAll('[id=nav]')[x].name)[0].src=`${frame}${document.querySelectorAll('[id=nav]')[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
+function pFrame(x, y, z)	{ document.getElementsByName(nav[x].name)[0].src=`${frame}${nav[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
 function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;let fTop=0;items[o].forEach((item,i)=>{fTop+=(i!=0&&i%3==0);document.getElementById('menu').innerHTML+=menu?(m==0?`<a style='padding:13em;' href='${item}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${item}/logo.png'/></a>${i!=0&&i%2==0?'<br>':''}`:m==1?`<video onclick='sMenu(${item},1)' style='z-index:13;' id='video_background' autoplay><source src='movies/${item}.mp4'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=${item};'/>`:''):'';});if(!track.paused)pTape();}
 
 pTape();
