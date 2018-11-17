@@ -50,7 +50,7 @@ function loadLevel(lvl) {
     f.send(null);
 }
 
-function sleep (time) { return new Promise((resolve) => setTimeout(resolve, time)); }
+function sleep(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
 
 function nextLevel() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
