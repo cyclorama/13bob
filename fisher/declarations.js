@@ -1,12 +1,12 @@
 canvas =				document.createElement('canvas'),
-ctx =						canvas.getContext('2d');
-canvas.width =				window.innerHeight;
-canvas.height =				canvas.width;
+ctx =					canvas.getContext('2d');
+canvas.width =			window.innerHeight;
+canvas.height =			canvas.width;
 canvas.setAttribute('style', 'border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;');
 document.body.appendChild(canvas);
-ctx.font =					'50px Arial';
-ctx.textAlign =				'center';
-ctx.fillStyle =				'white';
+ctx.font =				'50px Arial';
+ctx.textAlign =			'center';
+ctx.fillStyle =			'white';
 LEVEL_WIDTH =			25,
 LEVEL_HEIGHT =			25,
 LEVEL =					0,
@@ -16,8 +16,12 @@ PLAYER_REELS =			0,
 PLAYER_CAUGHT =			0,
 PLAYER_SCORE =			0,
 PLAYER_SCORE_CHECK =	0,
+scores = 				[],
+displayScores = 		false;
 music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
 reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
+ctx.font = 'Bold 40px Arial';
+ctx.textAlign = 'center';
 
 function loadLevel(lvl) {
     let f = new XMLHttpRequest();
@@ -50,6 +54,19 @@ function loadLevel(lvl) {
     f.send(null);
 }
 
+function menu() { let shift = -100;
+	('← & → TO MOVE\n' + 
+	'↓ TO SPEED UP\n' +
+	'[SPACE] TO REEL OUT & IN\n' +
+	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach(txt => { shift += 100;
+		ctx.fillText(txt, canvas.width / 2, canvas.height / 4 + shift);
+	});
+
+	window.addEventListener('keydown', start);
+}
+
+let start = () => { window.removeEventListener('keydown', start); main(); };
+
 function sleep(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
 
 function nextLevel() {
@@ -72,6 +89,13 @@ hook = {
 	casting: false,
 	reelIn: false
 };
+
+function reelIn() {
+	sleepTime /= 10;
+	hook.reelIn = true;
+	music.pause();
+	reel.play();
+}
 
 function fish(waypoints) {
 	fishImage = new Image(),
