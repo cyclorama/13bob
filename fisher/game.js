@@ -210,7 +210,30 @@ function reelIn() {
 	reel.play();
 }
 
-function main() { update(); render(); sleep(sleepTime).then(() => { requestAnimationFrame(main) }); }
-main();
+function menu() {
+	ctx.font = 'Bold 40px Arial';
+	ctx.textAlign = 'center';
+
+	let shift = -100;
+	('← → TO MOVE\n' + 
+	'↓ TO SPEED UP\n' +
+	'[SPACE] TO REEL OUT & IN\n' +
+	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach(txt => { shift += 100;
+		ctx.fillText(txt, canvas.width / 2, canvas.height / 4 + shift);
+	});
+
+	window.addEventListener('keydown', start);
+}
+
+let start = () => { window.removeEventListener('keydown', start); main(); };
+
+function main() {
+	update();
+	render();
+	sleep(sleepTime).then(() => { requestAnimationFrame(main) });
+}
+
+menu();
+
 loadLevel(LEVEL);
 document.getElementById('score').innerText = PLAYER_SCORE;
