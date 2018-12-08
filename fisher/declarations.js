@@ -54,12 +54,12 @@ function loadLevel(lvl) {
     f.send(null);
 }
 
-function menu() { let shift = -100;
+function menu() {
 	('← & → TO MOVE\n' + 
 	'↓ TO SPEED UP\n' +
 	'[SPACE] TO REEL OUT & IN\n' +
-	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach(txt => { shift += 100;
-		ctx.fillText(txt, canvas.width / 2, canvas.height / 4 + shift);
+	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach((txt, i) => {
+		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
 
 	window.addEventListener('keydown', start);
