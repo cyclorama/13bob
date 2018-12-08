@@ -215,7 +215,7 @@ function menu() {
 	ctx.textAlign = 'center';
 
 	let shift = -100;
-	('← → TO MOVE\n' + 
+	('← & → TO MOVE\n' + 
 	'↓ TO SPEED UP\n' +
 	'[SPACE] TO REEL OUT & IN\n' +
 	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach(txt => { shift += 100;
