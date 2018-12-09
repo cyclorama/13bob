@@ -27,7 +27,7 @@ function loadLevel(lvl) {
     let f = new XMLHttpRequest();
     f.responseType = 'text';
     f.open('GET', `lvls/${lvl}.txt`, true);
-    f.onreadystatechange = function () {
+    f.onreadystatechange = () => {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
             let lines = f.responseText.split('\n');
             for (let i = 0; i < lines.length; i++) {
