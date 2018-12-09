@@ -4,7 +4,6 @@ canvas.width =			window.innerHeight;
 canvas.height =			canvas.width;
 canvas.setAttribute('style', 'border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;');
 document.body.appendChild(canvas);
-ctx.font =				'50px Arial';
 ctx.textAlign =			'center';
 ctx.fillStyle =			'white';
 LEVEL_WIDTH =			25,
@@ -20,7 +19,7 @@ scores = 				[],
 displayScores = 		false;
 music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
 reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
-ctx.font = 'Bold 40px Arial';
+ctx.font = 'Bold 64px Arial';
 ctx.textAlign = 'center';
 
 function loadLevel(lvl) {
