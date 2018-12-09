@@ -39,7 +39,7 @@ window.onload = function() {
 		console.log(planets);
 		
 		planets.forEach(p => {
-			let planet = particle.create(width / 4, height / 4, 0, 0, 0);
+			let planet = particle.create(window.innerWidth / 4, window.innerHeight / 4, 0, 0, 0);
 			console.log(planet);
 			planet.radius = 20;
 			planet.mass = 1000;
