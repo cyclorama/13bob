@@ -29,25 +29,26 @@ function loadLevel(lvl) {
     f.onreadystatechange = () => {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
             let lines = f.responseText.split('\n');
-            for (let i = 0; i < lines.length; i++) {
-            	switch(lines[i].split('=')[0]) {
+            lines.forEach(line => {
+				switch(line.split('=')[0]) {
                 	case 'fish':
-						let fishPoints = lines[i].split('=')[1].split('/');
-						for (let l = 0; l < fishPoints.length; l++)
-							fishes.push(fish(fishPoints[l].split(',')));
+						let fishPoints = line.split('=')[1].split('/');
+						fishPoints.forEach(point => {
+							fishes.push(fish(point.split(',')));
+						});
                 	break;
                 	case 'rock':
-                		let rockPoints = lines[i].split('=')[1].split('/');
-                		for (let l = 0; l < rockPoints.length; l++) {
-                			let rockX = rockPoints[l].split('.')[0].split(',')[0];
-                			let rockY = rockPoints[l].split('.')[0].split(',')[1];
-                			let rockScaleX = rockPoints[l].split('.')[1].split(',')[0];
-                			let rockScaleY = rockPoints[l].split('.')[1].split(',')[1];
+                		let rockPoints = line.split('=')[1].split('/');
+                		rockPoints.forEach(point => {
+                			let rockX = point.split('.')[0].split(',')[0];
+                			let rockY = point.split('.')[0].split(',')[1];
+                			let rockScaleX = point.split('.')[1].split(',')[0];
+                			let rockScaleY = point.split('.')[1].split(',')[1];
                 			rocks.push(rock(rockX, rockY, rockScaleX, rockScaleY));
-                		}
+                		});
                 	break;
                 }
-            }
+            });
         }
     }
     f.send(null);
