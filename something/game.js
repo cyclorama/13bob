@@ -2,14 +2,22 @@ window.onload = function() {
 	let canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext('2d'),
 		width = canvas.width = window.innerWidth,
-		height = canvas.height = window.innerHeight;
-		
+		height = canvas.height = window.innerHeight,
+		blockSize = canvas.width / 100,
+		centerX = (window.innerWidth / blockSize) / 2,
+		centerY = (window.innerHeight / blockSize) / 2,
+		levels = [
+		[[centerX, centerY / 3], [centerX, centerY / 1.5], [centerX / 2, centerY]],
+		[[centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY]]
+		], lvl = 0;
+
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
-		ball.radius = 7;
+		ball.radius = 10;
 		ball.mass = 1;
 		attract = false;
 		mouseX = 0;
 		mouseY = 0;
+		planets = [], particles = [];
 
 		sineWave = new Pizzicato.Sound({
 			source: 'wave', 
@@ -19,9 +27,16 @@ window.onload = function() {
 		    }
 		});
 
-	function init() {
-		loadLevel(0);
+	function loadLevel(lvl) {
+		levels[lvl].forEach(planet => {
+			let p = particle.create(planet[0] * blockSize, planet[1] * blockSize, 0, 0, 0);
+			p.radius = 20;
+			p.mass = 1000;
+			particles.push(p);
+		});
+	}
 
+	function init() {
 		document.body.addEventListener('mousedown', event => {
 			mouseX = event.clientX;
 			mouseY = event.clientY;
@@ -34,32 +49,7 @@ window.onload = function() {
 			sineWave.stop();
 		});
 
-		let blockSize = canvas.width / 25;
-
-		console.log(planets);
-		
-		planets.forEach(p => {
-			let planet = particle.create(window.innerWidth / 4, window.innerHeight / 4, 0, 0, 0);
-			console.log(planet);
-			planet.radius = 20;
-			planet.mass = 1000;
-			particles.push(planet);
-		});
-
-		console.log(particles);
-		
-		/*
-		for (let i = 0; i < 2; i++) {
-			let x = Math.floor(Math.random() * width);
-			let y = Math.floor(Math.random() * height);
-
-			let p = particle.create(x, y, 0, 0, 0);
-			p.radius = 20;
-			p.mass = 1000;
-			particles.push(p);
-		}
-		*/
-		
+		loadLevel(lvl);
 	}
 
 	function update() {
@@ -67,13 +57,24 @@ window.onload = function() {
 
 		if (attract) {
 			particles.forEach(p => {
-				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) < p.radius) {
-					console.log(p.position.getX() + ' ' + p.position.getY());
+				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
+					//console.log(p.position.getX() + ' ' + p.position.getY()); // Print position of particle
 					sineWave.frequency = ball.distanceTo(p);
 					ball.gravitateTo(p);
 				}
 			});
 		}
+
+		particles.forEach(p => {
+			if (p.distanceTo(ball) <= ball.radius && (p.position.getX() / blockSize) == levels[0][0][0] && (p.position.getY() / blockSize) == levels[0][0][1]) {
+				particles = null;
+				loadLevel(lvl++);
+			} else if (p.distanceTo(ball) <= ball.radius) {
+				ball.position.setX(width / 2);
+				ball.position.setY(height / 2);
+				ball.velocity = vector.create(0, 0);
+			}
+		});
 
 		if (ball.position.getX() < 0 || ball.position.getY() < 0 || ball.position.getX() > width || ball.position.getY() > height) {
 			ball.position.setX(width / 2);
@@ -83,19 +84,22 @@ window.onload = function() {
 	}
 
 	function render() {
-		ctx.fillStyle = 'black';
+		ctx.fillStyle = 'navy';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+		ctx.lineWidth = 1;
 		ctx.fillStyle = 'white';
 		ctx.beginPath();
 		ctx.arc(ball.position.getX(), ball.position.getY(), ball.radius, 0, Math.PI * 2, false);
 		ctx.fill();
+		ctx.stroke();
 		ctx.closePath();
 
 		particles.forEach(p => {
 			ctx.beginPath();
 			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
 			ctx.fill();
+			ctx.stroke();
 			ctx.closePath();
 		});
 	}		
