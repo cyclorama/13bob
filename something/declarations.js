@@ -126,29 +126,3 @@ particle = {
 		this.velocity.addTo(grav);
 	}
 };
-
-particles = [], planets = [];
-
-function loadLevel(lvl) {
-    let f = new XMLHttpRequest();
-    f.responseType = 'text';
-    f.open('GET', `lvls/${lvl}.txt`, true);
-    f.onreadystatechange = () => {
-    	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
-            let lines = f.responseText.split('\n');
-            for (let i = 0; i < lines.length; i++) {
-            	switch(lines[i].split('=')[0]) {
-                	case 'planet':
-						let planetPoints = lines[i].split('=')[1];
-						planets.push(planetPoints.split(','));
-                	break;
-                	case 'target':
-                		let targetPoint = lines[i].split('=')[1];
-                		// ...
-                	break;
-                }
-            }
-        }
-    }
-    f.send(null);
-}
