@@ -23,7 +23,7 @@ window.onload = function() {
 			source: 'wave', 
 		    options: {
 		    	frequency: -1,
-		    	volume: 0.1
+		    	volume: 0.05
 		    }
 		});
 
