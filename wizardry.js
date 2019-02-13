@@ -18,7 +18,7 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.025));
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.0225));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 const images = [...nav].map(p => {
