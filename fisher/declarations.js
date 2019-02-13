@@ -57,7 +57,7 @@ function loadLevel(lvl) {
 function menu() {
 	('← & → TO MOVE\n' + 
 	'↓ TO SPEED UP\n' +
-	'[SPACE] TO REEL OUT & IN\n' +
+	'[SPACE] TO REEL IN & OUT\n' +
 	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach((txt, i) => {
 		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
