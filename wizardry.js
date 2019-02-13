@@ -32,7 +32,7 @@ const images = [...nav].map(p => {
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = `${frame}tape_forward.gif`;
-		track.volume = 0.05; track.play();
+		track.volume = 0.0225; track.play();
 		track.onended = () => { pTape(); pTape(); };
 		addHighlight(trackN + 1);
 	} else {
