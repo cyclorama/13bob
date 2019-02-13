@@ -19,7 +19,7 @@ scores = 				[],
 displayScores = 		false;
 music =					new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
 reel =					new Audio('sound/reel_in.ogg');reel.volume=0.75;
-ctx.font = 'Bold 32px Arial';
+ctx.font = 'Bold 42px Arial';
 ctx.textAlign = 'center';
 
 function loadLevel(lvl) {
