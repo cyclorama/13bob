@@ -7,20 +7,23 @@ window.onload = function() {
 		centerX = (window.innerWidth / blockSize) / 2,
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
-		[[centerX, centerY / 3], [centerX, centerY / 1.5], [centerX / 2, centerY]],
-		[[centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY]]
-		], lvl = 0;
+		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX, centerY * 0.5, centerX / 2, 50] ] ],
+		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY] ], [centerX / 4, centerX * 2] ]
+		], lvl = 0; // levels[level_number][0 - orbs, 1 - walls][0][0]
 
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
 		ball.radius = 10;
-		ball.mass = 1;
+		ball.mass = 10;
 		attract = false;
 		mouseX = 0;
 		mouseY = 0;
-		planets = [], particles = [];
+		particles = [], walls = [];
+
+		targetX = 0;
+		targetY = 0;
 
 		sineWave = new Pizzicato.Sound({
-			source: 'wave', 
+			source: 'wave',
 		    options: {
 		    	frequency: -1,
 		    	volume: 0.05
@@ -28,12 +31,18 @@ window.onload = function() {
 		});
 
 	function loadLevel(lvl) {
-		levels[lvl].forEach(planet => {
+		targetX = levels[lvl][0][0][0];
+		targetY = levels[lvl][0][0][1];
+		walls.push(levels[lvl][0][1][0]);
+		console.log(walls);
+		console.log(targetX + ' ' + targetY);
+		levels[lvl][0].forEach(planet => {
 			let p = particle.create(planet[0] * blockSize, planet[1] * blockSize, 0, 0, 0);
 			p.radius = 20;
 			p.mass = 1000;
 			particles.push(p);
 		});
+		console.log(lvl);
 	}
 
 	function init() {
@@ -66,10 +75,25 @@ window.onload = function() {
 		}
 
 		particles.forEach(p => {
-			if (p.distanceTo(ball) <= ball.radius && (p.position.getX() / blockSize) == levels[0][0][0] && (p.position.getY() / blockSize) == levels[0][0][1]) {
-				particles = null;
-				loadLevel(lvl++);
-			} else if (p.distanceTo(ball) <= ball.radius) {
+			if (p.distanceTo(ball) <= p.radius + ball.radius && (p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY) {
+				particles = [];
+				ball.position.setX(width / 2);
+				ball.position.setY(height / 2);
+				ball.velocity = vector.create(0, 0);
+				lvl++;
+				loadLevel(lvl);
+			} else if (p.distanceTo(ball) <= ball.radius + p.radius) {
+				ball.position.setX(width / 2);
+				ball.position.setY(height / 2);
+				ball.velocity = vector.create(0, 0);
+			}
+		});
+
+		walls.forEach(wall => {
+			if (ball.position.getX() > wall[0] - wall[2] &&
+				ball.position.getX() < wall[0] + wall[2] &&
+				ball.position.getY() > wall[1] - wall[3] &&
+				ball.position.getY() < wall[1] + wall[3]) {
 				ball.position.setX(width / 2);
 				ball.position.setY(height / 2);
 				ball.velocity = vector.create(0, 0);
@@ -99,8 +123,17 @@ window.onload = function() {
 			ctx.beginPath();
 			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
 			ctx.fill();
+
+			if ((p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY) {
+				ctx.strokeStyle = 'red';
+			} else ctx.strokeStyle = 'black';
+
 			ctx.stroke();
 			ctx.closePath();
+		});
+
+		walls.forEach(wall => {
+			ctx.fillRect(wall[0], wall[1], wall[2] * 2, wall[3] * 2);
 		});
 	}		
 	function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
