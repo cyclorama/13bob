@@ -18,6 +18,7 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.01));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 const images = [...nav].map(p => {
@@ -51,18 +52,18 @@ function addHighlight(trackN) { trackT = title.split('\n'); title = '';
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
 function pSound(s) {
-	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play();sounds[0][0].volume=0.1; }
-	if (s == 1)  { sounds[0][0].pause();sounds[0][0].currentTime=0;sounds[0][1].play();sounds[0][1].volume=0.1; }
-	if (s == 2)  { sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play();sounds[1][0].volume=0.1; }
-	if (s == 3)  { sounds[1][0].pause();sounds[1][0].currentTime=0;sounds[1][1].play();sounds[1][1].volume=0.1; }
-	if (s == 10) { sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play();sounds[5][0].volume=0.1; }
-	if (s == 11) { sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play();sounds[5][1].volume=0.1; }
+	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
+	if (s == 1)  { sounds[0][0].pause();sounds[0][0].currentTime=0;sounds[0][1].play(); }
+	if (s == 2)  { sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play(); }
+	if (s == 3)  { sounds[1][0].pause();sounds[1][0].currentTime=0;sounds[1][1].play(); }
+	if (s == 10) { sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play(); }
+	if (s == 11) { sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play(); }
 	if (s == 5)  { sounds[2][0].pause();sounds[2][0].currentTime=0; }
 	if (s == 7)  { sounds[3][0].pause();sounds[3][0].currentTime=0; }
 	if (s == 9)  { sounds[4][0].pause();sounds[4][0].currentTime=0; }
-	if (s == 4)  { sounds[2][0].play();sounds[2][0].volume=0.1; }
-	if (s == 6)  { sounds[3][0].play();sounds[3][0].volume=0.1; }
-	if (s == 8)  { sounds[4][0].play();sounds[4][0].volume=0.1; }
+	if (s == 4)  { sounds[2][0].play(); }
+	if (s == 6)  { sounds[3][0].play(); }
+	if (s == 8)  { sounds[4][0].play(); }
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(nav[x].name)[0].src=`${frame}${nav[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
