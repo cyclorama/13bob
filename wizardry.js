@@ -15,8 +15,8 @@ nav =				document.querySelectorAll('[id=nav]');
 title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 menu =				false,
-tapeP =				false,
-trackN =			-1;
+tapeP =				true,
+trackN =			0;
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
