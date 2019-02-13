@@ -15,7 +15,7 @@ nav =				document.querySelectorAll('[id=nav]');
 title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 menu =				false,
-tapeP =				true,
+tapeP =				false,
 trackN =			0;
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
