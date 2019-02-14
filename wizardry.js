@@ -18,7 +18,7 @@ menu =				false,
 tapeP =				false,
 trackN =			0;
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.0225));
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 const images = [...nav].map(p => {
@@ -32,7 +32,7 @@ const images = [...nav].map(p => {
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
 		document.tape.src = `${frame}tape_forward.gif`;
-		track.volume = 0.0225; track.play();
+		track.volume = 0.1; track.play();
 		track.onended = () => { pTape(); pTape(); };
 		addHighlight(trackN + 1);
 	} else {
