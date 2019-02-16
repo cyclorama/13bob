@@ -7,7 +7,7 @@ window.onload = function() {
 		centerX = (window.innerWidth / blockSize) / 2,
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
-		[ [ [centerX, centerY / 3], [centerX, centerY / 1.28],[centerX / 2, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
+		[ [ [centerX, centerY / 2.5], [centerX, centerY / 1.4],[centerX / 1.5, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
 		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX, centerY * 1.5], [centerX / 4, centerX * 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ]
 		], lvl = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
