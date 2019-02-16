@@ -91,8 +91,8 @@ window.onload = function() {
 			});
 		}
 
-		particles.forEach(p => {
-			if (p.distanceTo(ball) <= p.radius + ball.radius && (p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY) {
+		particles.forEach((p, i) => {
+			if (i == 0 && p.distanceTo(ball) <= p.radius + ball.radius) {
 				particles = [];
 				ball.position.setX(width / 2);
 				ball.position.setY(height / 2);
@@ -115,7 +115,10 @@ window.onload = function() {
 			}
 		});
 
-		if (ball.position.getX() < 0 || ball.position.getY() < 0 || ball.position.getX() > width || ball.position.getY() > height) {
+		if (ball.position.getX() < 0 ||
+			ball.position.getY() < 0 ||
+			ball.position.getX() > width ||
+			ball.position.getY() > height) {
 			reset();
 		}
 	}
