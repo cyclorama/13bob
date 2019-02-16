@@ -7,9 +7,9 @@ window.onload = function() {
 		centerX = (window.innerWidth / blockSize) / 2,
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
-		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX, centerY * 0.5, centerX / 2, 50] ] ],
+		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX - 5, centerY * 0.5, centerX / 2, 50] ] ],
 		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY] ], [centerX / 4, centerX * 2] ]
-		], lvl = 0; // levels[level_number][0 - orbs, 1 - walls][0][0]
+		], lvl = 0; // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
 		ball.radius = 10;
@@ -19,8 +19,10 @@ window.onload = function() {
 		mouseY = 0;
 		particles = [], walls = [];
 
-		targetX = 0;
+		targetX = 0,
 		targetY = 0;
+
+		pressedOrb = [];
 
 		sineWave = new Pizzicato.Sound({
 			source: 'wave',
@@ -31,26 +33,40 @@ window.onload = function() {
 		});
 
 	function loadLevel(lvl) {
-		targetX = levels[lvl][0][0][0];
-		targetY = levels[lvl][0][0][1];
-		walls.push(levels[lvl][0][1][0]);
-		console.log(walls);
-		console.log(targetX + ' ' + targetY);
-		levels[lvl][0].forEach(planet => {
-			let p = particle.create(planet[0] * blockSize, planet[1] * blockSize, 0, 0, 0);
+		targetX = levels[lvl][0][0][0]; // First particle is always the target
+		targetY = levels[lvl][0][0][1]; // ''
+
+		levels[lvl][0].forEach((orb, i) => {
+			console.log(`orb[${i}] {\nx: ${orb[0] * blockSize}\ny: ${orb[1] * blockSize}\n}`);
+			let p = particle.create(orb[0] * blockSize, orb[1] * blockSize, 0, 0, 0);
 			p.radius = 20;
 			p.mass = 1000;
 			particles.push(p);
 		});
-		console.log(lvl);
+
+		levels[lvl][1].forEach((wall, i) => {
+			console.log(`wall[${i}] {\nx: ${wall[0] * blockSize}\ny: ${wall[1] * blockSize}\nwidth: ${wall[2]}\nheight: ${wall[3]}\n}`);
+			walls.push(wall);
+		})
+	}
+
+	function reset() {
+		ball.position.setX(width / 2);
+		ball.position.setY(height / 2);
+		ball.velocity = vector.create(0, 0);
 	}
 
 	function init() {
 		document.body.addEventListener('mousedown', event => {
 			mouseX = event.clientX;
 			mouseY = event.clientY;
-			attract = true;
-			sineWave.play();
+
+			particles.forEach(p => {
+				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
+					attract = true;
+					sineWave.play();
+				}
+			});
 		});
 
 		document.body.addEventListener('mouseup', event => {
@@ -68,6 +84,8 @@ window.onload = function() {
 			particles.forEach(p => {
 				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
 					//console.log(p.position.getX() + ' ' + p.position.getY()); // Print position of particle
+					pressedOrb[0] = p.position.getX();
+					pressedOrb[1] = p.position.getY();
 					sineWave.frequency = ball.distanceTo(p);
 					ball.gravitateTo(p);
 				}
@@ -90,26 +108,34 @@ window.onload = function() {
 		});
 
 		walls.forEach(wall => {
-			if (ball.position.getX() > wall[0] - wall[2] &&
-				ball.position.getX() < wall[0] + wall[2] &&
-				ball.position.getY() > wall[1] - wall[3] &&
-				ball.position.getY() < wall[1] + wall[3]) {
-				ball.position.setX(width / 2);
-				ball.position.setY(height / 2);
-				ball.velocity = vector.create(0, 0);
+			if (ball.position.getX() > wall[0] - (wall[2] / 2) && ball.position.getY() > wall[1] - (wall[3] / 2) &&
+				ball.position.getX() < wall[0] + (wall[2] / 2) && ball.position.getY() < wall[1] + (wall[3] / 2)) {
+				reset();
 			}
 		});
 
 		if (ball.position.getX() < 0 || ball.position.getY() < 0 || ball.position.getX() > width || ball.position.getY() > height) {
-			ball.position.setX(width / 2);
-			ball.position.setY(height / 2);
-			ball.velocity = vector.create(0, 0);
+			reset();
 		}
 	}
 
 	function render() {
 		ctx.fillStyle = 'navy';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		if (attract) {
+			ctx.strokeStyle = '#ff0000';
+			ctx.beginPath();
+			ctx.moveTo(ball.position.getX(), ball.position.getY());
+			ctx.lineTo(pressedOrb[0], pressedOrb[1]);
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(pressedOrb[0], pressedOrb[1], 35 - Math.sin((Math.PI / 180) * ball.distanceTo(particle.create(pressedOrb[0], pressedOrb[1], 0, 0, 0)) * 20), 0, 2 * Math.PI);
+			ctx.stroke(); 
+			ctx.closePath();
+		}
 
 		ctx.lineWidth = 1;
 		ctx.fillStyle = 'white';
@@ -124,16 +150,15 @@ window.onload = function() {
 			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
 			ctx.fill();
 
-			if ((p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY) {
-				ctx.strokeStyle = 'red';
-			} else ctx.strokeStyle = 'black';
+			if ((p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY)
+				ctx.strokeStyle = '#ff0000'; else ctx.strokeStyle = 'black';
 
 			ctx.stroke();
 			ctx.closePath();
 		});
 
 		walls.forEach(wall => {
-			ctx.fillRect(wall[0], wall[1], wall[2] * 2, wall[3] * 2);
+			ctx.fillRect((wall[0] * blockSize) - (wall[2] / 2), (wall[1] * blockSize) - (wall[3] / 2), wall[2], wall[3]);
 		});
 	}		
 	function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
