@@ -137,7 +137,7 @@ window.onload = function() {
 			ctx.closePath();
 		}
 
-		ctx.lineWidth = 1;
+		ctx.lineWidth = 2;
 		ctx.fillStyle = 'white';
 		ctx.beginPath();
 		ctx.arc(ball.position.getX(), ball.position.getY(), ball.radius, 0, Math.PI * 2, false);
