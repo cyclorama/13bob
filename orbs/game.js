@@ -63,6 +63,8 @@ window.onload = function() {
 
 			particles.forEach((p, i) => {
 				if (i != 0 && p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
+					pressedOrbX = p.position.getX();
+					pressedOrbY = p.position.getY();
 					attract = true;
 					sineWave.play();
 				}
@@ -83,8 +85,6 @@ window.onload = function() {
 		if (attract) {
 			particles.forEach(p => {
 				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
-					pressedOrbX = p.position.getX();
-					pressedOrbY = p.position.getY();
 					sineWave.frequency = ball.distanceTo(p);
 					ball.gravitateTo(p);
 				}
@@ -154,8 +154,7 @@ window.onload = function() {
 			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
 			ctx.fill();
 
-			if (i == 0)
-				ctx.strokeStyle = '#ff0000'; else ctx.strokeStyle = 'black';
+			ctx.strokeStyle = i == 0 ? '#ff0000' : '#ffffff';
 
 			ctx.stroke();
 			ctx.closePath();
