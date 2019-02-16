@@ -107,8 +107,8 @@ window.onload = function() {
 		});
 
 		walls.forEach(wall => {
-			if (ball.position.getX() > ((wall[0] * blockSize) - (wall[2] / 2)) + ball.radius &&
-				ball.position.getY() > ((wall[1] * blockSize) - (wall[3] / 2)) + ball.radius &&
+			if (ball.position.getX() > ((wall[0] * blockSize) - (wall[2] / 2)) - ball.radius &&
+				ball.position.getY() > ((wall[1] * blockSize) - (wall[3] / 2)) - ball.radius &&
 				ball.position.getX() < ((wall[0] * blockSize) + (wall[2] / 2)) + ball.radius &&
 				ball.position.getY() < ((wall[1] * blockSize) + (wall[3] / 2)) + ball.radius) {
 				reset();
