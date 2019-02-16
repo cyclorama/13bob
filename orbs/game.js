@@ -7,22 +7,20 @@ window.onload = function() {
 		centerX = (window.innerWidth / blockSize) / 2,
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
-		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
-		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY] ], [centerX / 4, centerX * 2] ]
-		], lvl = 0; // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
-
+		[ [ [centerX, centerY / 3], [centerX, centerY / 1.28],[centerX / 2, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
+		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX, centerY * 1.5], [centerX / 4, centerX * 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ]
+		], lvl = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
 		ball.radius = 10;
 		ball.mass = 10;
-		attract = false;
-		mouseX = 0;
-		mouseY = 0;
-		particles = [], walls = [];
-
+		attract = false,
+		mouseX = 0,
+		mouseY = 0,
+		particles = [], walls = [],
 		targetX = 0,
-		targetY = 0;
-
-		pressedOrb = [];
+		targetY = 0,
+		pressedOrbX = 0,
+		pressedOrbY = 0;
 
 		sineWave = new Pizzicato.Sound({
 			source: 'wave',
@@ -35,6 +33,9 @@ window.onload = function() {
 	function loadLevel(lvl) {
 		targetX = levels[lvl][0][0][0]; // First particle is always the target
 		targetY = levels[lvl][0][0][1]; // ''
+
+		console.clear();
+		console.log(`target {\nx: ${targetX * blockSize}\ny: ${targetY * blockSize}\n}`);
 
 		levels[lvl][0].forEach((orb, i) => {
 			console.log(`orb[${i}] {\nx: ${orb[0] * blockSize}\ny: ${orb[1] * blockSize}\n}`);
@@ -58,11 +59,10 @@ window.onload = function() {
 
 	function init() {
 		document.body.addEventListener('mousedown', event => {
-			mouseX = event.clientX;
-			mouseY = event.clientY;
+			mouseX = event.clientX, mouseY = event.clientY;
 
-			particles.forEach(p => {
-				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
+			particles.forEach((p, i) => {
+				if (i != 0 && p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
 					attract = true;
 					sineWave.play();
 				}
@@ -74,7 +74,7 @@ window.onload = function() {
 			sineWave.stop();
 		});
 
-		loadLevel(lvl);
+		loadLevel(lvl );
 	}
 
 	function update() {
@@ -83,8 +83,8 @@ window.onload = function() {
 		if (attract) {
 			particles.forEach(p => {
 				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
-					pressedOrb[0] = p.position.getX();
-					pressedOrb[1] = p.position.getY();
+					pressedOrbX = p.position.getX();
+					pressedOrbY = p.position.getY();
 					sineWave.frequency = ball.distanceTo(p);
 					ball.gravitateTo(p);
 				}
@@ -128,12 +128,12 @@ window.onload = function() {
 			ctx.strokeStyle = '#ff0000';
 			ctx.beginPath();
 			ctx.moveTo(ball.position.getX(), ball.position.getY());
-			ctx.lineTo(pressedOrb[0], pressedOrb[1]);
+			ctx.lineTo(pressedOrbX, pressedOrbY);
 			ctx.stroke();
 			ctx.closePath();
 
 			ctx.beginPath();
-			ctx.arc(pressedOrb[0], pressedOrb[1], 35 - Math.sin((Math.PI / 180) * ball.distanceTo(particle.create(pressedOrb[0], pressedOrb[1], 0, 0, 0)) * 20), 0, 2 * Math.PI);
+			ctx.arc(pressedOrbX, pressedOrbY, 35 - Math.sin((Math.PI / 180) * ball.distanceTo(particle.create(pressedOrbX, pressedOrbY, 0, 0, 0)) * 20), 0, 2 * Math.PI);
 			ctx.stroke(); 
 			ctx.closePath();
 		}
@@ -146,12 +146,12 @@ window.onload = function() {
 		ctx.stroke();
 		ctx.closePath();
 
-		particles.forEach(p => {
+		particles.forEach((p, i) => {
 			ctx.beginPath();
 			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
 			ctx.fill();
 
-			if ((p.position.getX() / blockSize) == targetX && (p.position.getY() / blockSize) == targetY)
+			if (i == 0)
 				ctx.strokeStyle = '#ff0000'; else ctx.strokeStyle = 'black';
 
 			ctx.stroke();
