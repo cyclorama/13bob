@@ -7,7 +7,7 @@ window.onload = function() {
 		centerX = (window.innerWidth / blockSize) / 2,
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
-		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX - 5, centerY * 0.5, centerX / 2, 50] ] ],
+		[ [ [centerX, centerY / 3], [centerX, centerY / 1.25], [centerX / 2, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
 		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX / 3, centerY] ], [centerX / 4, centerX * 2] ]
 		], lvl = 0; // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 
@@ -83,7 +83,6 @@ window.onload = function() {
 		if (attract) {
 			particles.forEach(p => {
 				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
-					//console.log(p.position.getX() + ' ' + p.position.getY()); // Print position of particle
 					pressedOrb[0] = p.position.getX();
 					pressedOrb[1] = p.position.getY();
 					sineWave.frequency = ball.distanceTo(p);
@@ -108,8 +107,10 @@ window.onload = function() {
 		});
 
 		walls.forEach(wall => {
-			if (ball.position.getX() > wall[0] - (wall[2] / 2) && ball.position.getY() > wall[1] - (wall[3] / 2) &&
-				ball.position.getX() < wall[0] + (wall[2] / 2) && ball.position.getY() < wall[1] + (wall[3] / 2)) {
+			if (ball.position.getX() > ((wall[0] * blockSize) - (wall[2] / 2)) + ball.radius &&
+				ball.position.getY() > ((wall[1] * blockSize) - (wall[3] / 2)) + ball.radius &&
+				ball.position.getX() < ((wall[0] * blockSize) + (wall[2] / 2)) + ball.radius &&
+				ball.position.getY() < ((wall[1] * blockSize) + (wall[3] / 2)) + ball.radius) {
 				reset();
 			}
 		});
@@ -158,7 +159,10 @@ window.onload = function() {
 		});
 
 		walls.forEach(wall => {
+			ctx.beginPath();
 			ctx.fillRect((wall[0] * blockSize) - (wall[2] / 2), (wall[1] * blockSize) - (wall[3] / 2), wall[2], wall[3]);
+			ctx.strokeRect((wall[0] * blockSize) - (wall[2] / 2), (wall[1] * blockSize) - (wall[3] / 2), wall[2], wall[3]);
+			ctx.closePath();
 		});
 	}		
 	function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
