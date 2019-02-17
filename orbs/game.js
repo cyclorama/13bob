@@ -8,7 +8,8 @@ window.onload = function() {
 		centerY = (window.innerHeight / blockSize) / 2,
 		levels = [
 		[ [ [centerX, centerY / 2.5], [centerX, centerY / 1.4],[centerX / 1.5, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
-		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX, centerY * 1.5], [centerX / 4, centerX * 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ]
+		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ],
+		[ [ [centerX + 4, centerY], [centerX, centerY / 4.5], [centerX * 0.75, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ]
 		], lvl = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
 		ball.radius = 10;
@@ -76,7 +77,7 @@ window.onload = function() {
 			sineWave.stop();
 		});
 
-		loadLevel(lvl );
+		loadLevel(lvl);
 	}
 
 	function update() {
@@ -94,6 +95,7 @@ window.onload = function() {
 		particles.forEach((p, i) => {
 			if (i == 0 && p.distanceTo(ball) <= p.radius + ball.radius) {
 				particles = [];
+				walls = [];
 				ball.position.setX(width / 2);
 				ball.position.setY(height / 2);
 				ball.velocity = vector.create(0, 0);
@@ -126,6 +128,10 @@ window.onload = function() {
 	function render() {
 		ctx.fillStyle = 'navy';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		ctx.fillStyle = 'white';
+		ctx.font = "30px Arial";
+		ctx.fillText(`${lvl}`, 100, 100);
 
 		if (attract) {
 			ctx.strokeStyle = '#ff0000';
