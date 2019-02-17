@@ -9,7 +9,8 @@ window.onload = function() {
 		levels = [
 		[ [ [centerX, centerY / 2.5], [centerX, centerY / 1.4],[centerX / 1.5, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
 		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ],
-		[ [ [centerX + 4, centerY], [centerX, centerY / 4.5], [centerX * 0.75, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ]
+		[ [ [centerX + 4, centerY], [centerX, centerY / 4.5], [centerX * 0.75, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ],
+		[ [ [centerX, centerY + 2], [centerX, centerY / 4.5], [centerX * 1.25, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ]
 		], lvl = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
 		ball = particle.create(width / 2, height / 2, 0, 0, 0);
 		ball.radius = 10;
@@ -59,9 +60,11 @@ window.onload = function() {
 	}
 
 	function init() {
-		document.body.addEventListener('mousedown', event => {
+		document.body.addEventListener('mousemove', event => {
 			mouseX = event.clientX, mouseY = event.clientY;
+		});
 
+		document.body.addEventListener('mousedown', event => {
 			particles.forEach((p, i) => {
 				if (i != 0 && p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
 					pressedOrbX = p.position.getX();
@@ -77,7 +80,7 @@ window.onload = function() {
 			sineWave.stop();
 		});
 
-		loadLevel(lvl);
+		loadLevel(lvl + 3);
 	}
 
 	function update() {
