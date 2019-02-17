@@ -80,7 +80,7 @@ window.onload = function() {
 			sineWave.stop();
 		});
 
-		loadLevel(lvl + 3);
+		loadLevel(lvl);
 	}
 
 	function update() {
