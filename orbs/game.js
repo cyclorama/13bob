@@ -130,7 +130,7 @@ window.onload = function() {
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 		ctx.fillStyle = 'white';
-		ctx.font = "30px Arial";
+		ctx.font = "50px Arial";
 		ctx.fillText(`${lvl}`, 100, 100);
 
 		if (attract) {
