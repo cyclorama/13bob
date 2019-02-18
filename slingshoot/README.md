@@ -5,4 +5,5 @@ A 3D physics-based space game written in C++/OpenGL.
 
 ## Elements
 **Eccentricity indictor:**  
+  
 ![](ss_1.jpg)
