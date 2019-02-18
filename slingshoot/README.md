@@ -12,7 +12,7 @@ A 3D physics-based space game written in C++/OpenGL.
   
 ![](ss_2.jpg)
   
-**Angle:**  
+**Aim angle (x|y):**  
   
 ![](ss_3.jpg)
 
