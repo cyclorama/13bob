@@ -33,9 +33,8 @@ function loadLevel(lvl) {
 				switch(line.split('=')[0]) {
                 	case 'fish':
 						line.split('=')[1].split('/').forEach((point, i) => {
-							let p = point.split(',');
 							console.log(`fish[${i}] {\n${point}\n}`);
-							fishes.push(fish(p));
+							fishes.push(fish(point.split(',')));
 						});
                 	break;
                 	case 'rock':
