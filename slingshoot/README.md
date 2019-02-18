@@ -1,4 +1,4 @@
 ### Slingshoot
-A 3D physics-based space game written with C++/OpenGL.
+A 3D physics-based space game written in C++/OpenGL.
 
 ![](ss.jpg)
