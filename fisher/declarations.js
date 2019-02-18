@@ -32,19 +32,18 @@ function loadLevel(lvl) {
             lines.forEach(line => {
 				switch(line.split('=')[0]) {
                 	case 'fish':
-						let fishPoints = line.split('=')[1].split('/');
-						fishPoints.forEach(point => {
-							fishes.push(fish(point.split(',')));
+						line.split('=')[1].split('/').forEach((point, i) => {
+							let p = point.split(',');
+							console.log(`fish[${i}] {\n${point}\n}`);
+							fishes.push(fish(p));
 						});
                 	break;
                 	case 'rock':
-                		let rockPoints = line.split('=')[1].split('/');
-                		rockPoints.forEach(point => {
-                			let rockX = point.split('.')[0].split(',')[0];
-                			let rockY = point.split('.')[0].split(',')[1];
-                			let rockScaleX = point.split('.')[1].split(',')[0];
-                			let rockScaleY = point.split('.')[1].split(',')[1];
-                			rocks.push(rock(rockX, rockY, rockScaleX, rockScaleY));
+                		line.split('=')[1].split('/').forEach((point, i) => {
+                			let coords = point.split('.')[0].split(',');
+                			let scales = point.split('.')[1].split(',');
+                			console.log(`rock[${i}] {\nx: ${coords[0]}\ny: ${coords[1]}\nwidth: ${scales[0]}\nheight: ${scales[1]}\n}`);
+                			rocks.push(rock(coords[0], coords[1], scales[0], scales[1]));
                 		});
                 	break;
                 }
@@ -57,7 +56,7 @@ function loadLevel(lvl) {
 function menu() {
 	('← & → TO MOVE\n' + 
 	'↓ TO SPEED UP\n' +
-	'[SPACE] TO REEL IN & OUT\n' +
+	'[SPACE] TO REEL OUT & IN\n' +
 	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach((txt, i) => {
 		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
