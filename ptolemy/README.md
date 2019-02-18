@@ -3,4 +3,4 @@ An interactive equilateral triangle corollary of [Ptolemy's theorem](https://en.
 
 ![](ss.jpg)
 
-13bob.net/ptolemy
+http://13bob.net/ptolemy
