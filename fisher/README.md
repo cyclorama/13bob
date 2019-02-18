@@ -8,4 +8,4 @@ A fishing game written in HTML+CSS+JavaScript.
 ← - MOVE LEFT  
 → - MOVE RIGHT  
 ↓ - SPEED UP  
-[SPACE] - REEL IN
+SPACE - REEL IN
