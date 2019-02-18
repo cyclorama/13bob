@@ -16,4 +16,9 @@ A 3D physics-based space game written in C++/OpenGL.
   
 ![](ss_3.jpg)
 
+## Libraries
+- GLM
+- GLFW
+- irrKlang
+
 Click [here](http://13bob.net/slingshoot/slingshoot.zip) to try.
