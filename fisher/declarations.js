@@ -67,6 +67,7 @@ let start = () => { window.removeEventListener('keydown', start); main(); };
 function sleep(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
 
 function nextLevel() {
+	console.clear();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	music.currentTime = 0;
 	fishes = [];
