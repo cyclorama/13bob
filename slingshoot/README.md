@@ -1,3 +1,3 @@
 ### Slingshoot
-A 3D physics space game.
+A 3D physics-based space game.
 ![]()
