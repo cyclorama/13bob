@@ -5,7 +5,7 @@ A fishing game written in HTML+CSS+JavaScript.
 
 ## Controls
 
-← : MOVE LEFT  
-→ : MOVE RIGHT  
-↓ : SPEED UP  
-SPACE : REEL IN/OUT
+← : Move left
+→ : Move right 
+↓ : Speed up  
+SPACE : Reel in/out
