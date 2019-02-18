@@ -1,7 +1,7 @@
 ### Slingshoot
 A 3D physics-based space game written in C++/OpenGL.
 
-![](ss.jpg)
+![](ss_0.jpg)
 
 ## Elements
 **Orbital eccentricity indicator:**  
