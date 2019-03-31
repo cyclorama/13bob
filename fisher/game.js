@@ -26,7 +26,9 @@ function update() {
 						PLAYER_SCORE = 0;
 						document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
 						nextLevel();
-					} else { nextLevel(); }
+					} else {
+						nextLevel();
+					}
 				}
 			}
 		}
@@ -55,8 +57,13 @@ function update() {
 		}
 
 		if (hook.casting && hook.y < LEVEL_HEIGHT - 1) { // Save previous X and Y hook positions and move hook down
-			if (37 in keysDown) { hook.x -= 1; keysDown = []; } // LEFT ARROW - Move left
-			if (39 in keysDown) { hook.x += 1; keysDown = []; } // RIGHT ARROW - Move right
+			if (37 in keysDown) {
+				hook.x -= 1; keysDown = []; // LEFT ARROW - Move left
+			}
+			if (39 in keysDown) {
+				hook.x += 1; keysDown = []; // RIGHT ARROW - Move right
+			}
+
 			hook.prev.push(hook.x);
 			hook.prev.push(hook.y);
 			hook.y += 1;
@@ -79,38 +86,45 @@ function update() {
 	}
 
 	for (let i = 0; i < fishes.length; i++) { // Waypoint mechanic
-		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1))
+		if (hook.reelIn && fishes[i].x == hook.x && (fishes[i].y == hook.y || fishes[i].y == hook.y - 1 || fishes[i].y == hook.y + 1)) {
 			fishes[i].caught = true;
+		}
 
-		if (fishes[i].x == 12 && fishes[i].y == 0)
+		if (fishes[i].x == 12 && fishes[i].y == 0) {
 			fishes[i].onBoat = true;
+		}
 
 		if (fishes[i].caught) {
 			fishes[i].x = hook.x;
 			fishes[i].y = hook.y;
 		} else {
-			if (fishes[i].x < fishes[i].waypoints[fishes[i].point + 2]) {
+			if (fishes[i].x < fishes[i].waypoints[fishes[i].point].x) {
 				fishes[i].x++;
 
-				if (fishes[i].fishImage.src != 'img/fish_right.png')
+				if (fishes[i].fishImage.src != 'img/fish_right.png') {
 					fishes[i].fishImage.src = "img/fish_right.png";
+				}
 			}
 
-			if (fishes[i].x > fishes[i].waypoints[fishes[i].point + 2]) {
+			if (fishes[i].x > fishes[i].waypoints[fishes[i].point].x) {
 				fishes[i].x--;
 
-				if (fishes[i].fishImage.src != 'img/fish_left.png')
+				if (fishes[i].fishImage.src != 'img/fish_left.png') {
 					fishes[i].fishImage.src = "img/fish_left.png";
+				}
 			}
 
-			if (fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y < fishes[i].waypoints[fishes[i].point + 3])
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point].x && fishes[i].y < fishes[i].waypoints[fishes[i].point].y) {
 				fishes[i].y++;
+			}
 
-			if (fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y > fishes[i].waypoints[fishes[i].point + 3])
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point].x && fishes[i].y > fishes[i].waypoints[fishes[i].point].y) {
 				fishes[i].y--;
+			}
 
-			if ((fishes[i].x == fishes[i].waypoints[fishes[i].point + 2] && fishes[i].y == fishes[i].waypoints[fishes[i].point + 3]))
-				fishes[i].point += fishes[i].point + 4 < fishes[i].waypoints.length ? 2 : -(fishes[i].waypoints.length - 2);
+			if (fishes[i].x == fishes[i].waypoints[fishes[i].point].x && fishes[i].y == fishes[i].waypoints[fishes[i].point].y) {
+				fishes[i].point += (fishes[i].point < fishes[i].waypoints.length - 1) ? 1 : -(fishes[i].waypoints.length - 1);
+			}
 		}
 	}
 }
@@ -129,7 +143,7 @@ function render() {
 	if (hookImageReady) ctx.drawImage(hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
 
 	if (lineImageReady && lineImageLeftDownReady && lineImageRightDownReady && lineImageLeftUpReady && lineImageRightUpReady) { // Render line image
-		for (let i = 0; i < hook.prev.length; i+=2) {
+		for (let i = 0; i < hook.prev.length; i += 2) {
 			if (hook.prev[i] > hook.prev[i + 2]) {
 				ctx.drawImage(lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -159,39 +173,47 @@ function render() {
 	}
 
 	for (let i = 0; i < rocks.length; i++) { // Render different types of rock
-		if (rocks[i].rockImageCornerTopLeftReady && rocks[i].rockImageSingleReady && rocks[i].rockImageLeftReady && rocks[i].rockImageCornerTopRightReady && rocks[i].rockImageHorizTopReady &&
-			rocks[i].rockImageVertLeftReady && rocks[i].rockImageHorizReady && rocks[i].rockImageRightReady && rocks[i].rockImageCenterReady && rocks[i].rockImageUpReady && rocks[i].rockImageVertRightReady &&
-			rocks[i].rockImageCornerBottomLeftReady && rocks[i].rockImageVertReady && rocks[i].rockImageDownReady && rocks[i].rockImageCornerBottomRightReady && rocks[i].rockImageHorizBottomReady) {
+		if (rocks[i].rockImageCornerTopLeftReady && rocks[i].rockImageSingleReady && rocks[i].rockImageLeftReady &&
+			rocks[i].rockImageCornerTopRightReady && rocks[i].rockImageHorizTopReady && rocks[i].rockImageVertLeftReady &&
+			rocks[i].rockImageHorizReady && rocks[i].rockImageRightReady && rocks[i].rockImageCenterReady &&
+			rocks[i].rockImageUpReady && rocks[i].rockImageVertRightReady && rocks[i].rockImageCornerBottomLeftReady &&
+			rocks[i].rockImageVertReady && rocks[i].rockImageDownReady && rocks[i].rockImageCornerBottomRightReady &&
+			rocks[i].rockImageHorizBottomReady) {
 			if (rocks[i].scaleX == 1 && rocks[i].scaleY == 1) { // Single rock
 				ctx.drawImage(rocks[i].rockImageSingle, rocks[i].x * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY == 1) { // Scalable horizontal rock
-				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x - rocks[i].scaleX + 1; r < rocks[i].x + rocks[i].scaleX; r++)
 					ctx.drawImage(rocks[i].rockImageHoriz, r * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
 
 				ctx.drawImage(rocks[i].rockImageLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(rocks[i].rockImageRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX == 1 && rocks[i].scaleY > 1) { // Scalable vertical rock
-				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y - rocks[i].scaleY + 1; r < rocks[i].y + rocks[i].scaleY; r++)
 					ctx.drawImage(rocks[i].rockImageVert, rocks[i].x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
 
 				ctx.drawImage(rocks[i].rockImageUp, rocks[i].x * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 				ctx.drawImage(rocks[i].rockImageDown, rocks[i].x * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			} else if (rocks[i].scaleX > 1 && rocks[i].scaleY > 1) { // Scalable block
-				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x - rocks[i].scaleX + 1; r < rocks[i].x + rocks[i].scaleX; r++)
 					ctx.drawImage(rocks[i].rockImageHorizTop, r * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
-				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++) {
 					ctx.drawImage(rocks[i].rockImageVertLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+				}
 
-				for (let rX = rocks[i].x-rocks[i].scaleX + 1; rX < rocks[i].x+rocks[i].scaleX; rX++)
-					for (let rY = rocks[i].y-rocks[i].scaleY + 1; rY < rocks[i].y+rocks[i].scaleY; rY++)
+				for (let rX = rocks[i].x - rocks[i].scaleX + 1; rX < rocks[i].x + rocks[i].scaleX; rX++) {
+					for (let rY = rocks[i].y - rocks[i].scaleY + 1; rY < rocks[i].y + rocks[i].scaleY; rY++) {
 						ctx.drawImage(rocks[i].rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+					}
+				}
 
-				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++)
+				for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++) {
 					ctx.drawImage(rocks[i].rockImageVertRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
+				}
 
-				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++)
+				for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++) {
 					ctx.drawImage(rocks[i].rockImageHorizBottom, r * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
+				}
 
 				ctx.drawImage(rocks[i].rockImageCornerTopRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 				ctx.drawImage(rocks[i].rockImageCornerTopLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
@@ -206,10 +228,12 @@ function render() {
 function main() {
 	update();
 	render();
-	sleep(sleepTime).then(() => { requestAnimationFrame(main) });
+
+	sleep(sleepTime).then(() => {
+		requestAnimationFrame(main)
+	});
 }
 
-loadLevel(LEVEL);
 document.getElementById('score').innerText = PLAYER_SCORE;
-
+loadLevel(LEVEL);
 menu();
