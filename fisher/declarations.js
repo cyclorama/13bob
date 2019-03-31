@@ -35,8 +35,6 @@ function loadLevel(lvl) {
 			for (let i = 0; i < Object.keys(json.levels[lvl].rocks).length - 1; i++) {
 				rocks.push(new rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
 			}
-			console.log(fishes);
-			console.log(rocks);
         }
     }
     f.send(null);
