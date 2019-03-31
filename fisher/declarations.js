@@ -25,46 +25,41 @@ ctx.textAlign = 'center';
 function loadLevel(lvl) {
     let f = new XMLHttpRequest();
     f.responseType = 'text';
-    f.open('GET', `lvls/${lvl}.txt`, true);
+    f.open('GET', 'levels.json', true);
     f.onreadystatechange = () => {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
-            let lines = f.responseText.split('\n');
-            lines.forEach(line => {
-				switch(line.split('=')[0]) {
-                	case 'fish':
-						line.split('=')[1].split('/').forEach((point, i) => {
-							console.log(`fish[${i}] {\n${point}\n}`);
-							fishes.push(fish(point.split(',')));
-						});
-                	break;
-                	case 'rock':
-                		line.split('=')[1].split('/').forEach((point, i) => {
-                			let coords = point.split('.')[0].split(',');
-                			let scales = point.split('.')[1].split(',');
-                			console.log(`rock[${i}] {\nx: ${coords[0]}\ny: ${coords[1]}\nwidth: ${scales[0]}\nheight: ${scales[1]}\n}`);
-                			rocks.push(rock(coords[0], coords[1], scales[0], scales[1]));
-                		});
-                	break;
-                }
-            });
+			let json = JSON.parse(f.responseText);
+			for (let i = 0; i < Object.keys(json.levels[lvl].fish).length; i++) {
+				fishes.push(new fish(json.levels[lvl].fish[i].waypoints));
+			}
+			for (let i = 0; i < Object.keys(json.levels[lvl].rocks).length - 1; i++) {
+				rocks.push(new rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
+			}
+			console.log(fishes);
+			console.log(rocks);
         }
     }
     f.send(null);
 }
 
 function menu() {
-	('← & → TO MOVE\n' + 
-	'↓ TO SPEED UP\n' +
-	'[SPACE] TO REEL OUT & IN\n' +
-	'[PRESS ANY KEY TO PLAY]\n').split('\n').forEach((txt, i) => {
+	['← & → TO MOVE',
+	'↓ TO SPEED UP',
+	'[SPACE] TO REEL OUT & IN',
+	'[PRESS ANY KEY TO PLAY]'].forEach((txt, i) => {
 		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
 	window.addEventListener('keydown', start);
 }
 
-let start = () => { window.removeEventListener('keydown', start); main(); };
+let start = () => {
+	window.removeEventListener('keydown', start);
+	main();
+};
 
-function sleep(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
+function sleep(time) {
+	return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 function nextLevel() {
 	console.clear();
@@ -103,8 +98,8 @@ function fish(waypoints) {
 	fishImageRight.src = 'img/fish_right.png';
 
 	return {
-		x: parseInt(waypoints[0]),
-		y: parseInt(waypoints[1]),
+		x: parseInt(waypoints[0].x),
+		y: parseInt(waypoints[0].y),
 		waypoints: waypoints,
 		point: 0,
 		direction: true,
