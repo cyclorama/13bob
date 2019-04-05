@@ -32,7 +32,7 @@ function loadLevel(lvl) {
 			for (let i = 0; i < Object.keys(json.levels[lvl].fish).length; i++) {
 				fishes.push(new fish(json.levels[lvl].fish[i].waypoints));
 			}
-			for (let i = 0; i < Object.keys(json.levels[lvl].rocks).length - 1; i++) {
+			for (let i = 0; i < Object.keys(json.levels[lvl].rocks).length; i++) {
 				rocks.push(new rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
 			}
         }
@@ -96,8 +96,8 @@ function fish(waypoints) {
 	fishImageRight.src = 'img/fish_right.png';
 
 	return {
-		x: parseInt(waypoints[0].x),
-		y: parseInt(waypoints[0].y),
+		x: waypoints[0].x,
+		y: waypoints[0].y,
 		waypoints: waypoints,
 		point: 0,
 		direction: true,
@@ -148,10 +148,10 @@ function rock(x, y, scaleX, scaleY) {
 	rockImageDown.src = 'img/rock_down.png';
 
 	return {
-		x: parseInt(x),
-		y: parseInt(y),
-		scaleX: parseInt(scaleX),
-		scaleY: parseInt(scaleY),
+		x: x,
+		y: y,
+		scaleX: scaleX,
+		scaleY: scaleY,
 		rockImageSingle: rockImageSingle,
 		rockImageCornerTopLeft: rockImageCornerTopLeft,
 		rockImageCornerTopRight: rockImageCornerTopRight,
