@@ -34,7 +34,7 @@ function pTape() { tapeP = !tapeP;
 		document.tape.src = `${frame}tape_forward.gif`;
 		track.volume = 0.1; track.play();
 		track.onended = () => { pTape(); pTape(); };
-		addHighlight(trackN + 1);
+		mkHighlight(trackN + 1);
 	} else {
 		document.tape.src = `${frame}tape.gif`;
 		track.pause(); track.currentTime = 0;
@@ -43,7 +43,7 @@ function pTape() { tapeP = !tapeP;
 	}
 }
 
-function addHighlight(trackN) { trackT = title.split('\n'); title = '';
+function mkHighlight(trackN) { trackT = title.split('\n'); title = '';
 	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
 	if (trackN > 1) rmHighlight(trackN - 1);
 	trackT[trackN] = `> ${trackT[trackN]} <`;
