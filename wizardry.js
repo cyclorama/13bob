@@ -9,7 +9,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'03 Dee Dee Wilde - Lap of Luxury.mp3',
 					'04 Dionne Warwick - Can\'t Hide Love.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
-items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy', 'btc'], [''], ['http://steam.13bob.net'], ['-'] ],
+items =				[ ['+'], [''], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steam.13bob.net'], ['-'] ],
 frame =				'photos/framed_',
 nav =				document.querySelectorAll('[id=nav]');
 title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
