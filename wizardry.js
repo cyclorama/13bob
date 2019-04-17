@@ -9,7 +9,7 @@ tracks =		[	'01 Strawberry Switchblade - Who Knows What Love Is.mp3',
 					'03 Dee Dee Wilde - Lap of Luxury.mp3',
 					'04 Dionne Warwick - Can\'t Hide Love.mp3',
 					'05 The Jets - The Only Dance.mp3'	],
-items =				[ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [[] + []], ['http://steam.13bob.net'], ['-'] ],
+items =				[ ['+'], [[]+[]], ['fisher', 'slingshoot', 'ptolemy'], [[]+[]], ['http://steam.13bob.net'], ['-'] ],
 frame =				'photos/framed_',
 nav =				document.querySelectorAll('[id=nav]');
 title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
@@ -52,18 +52,18 @@ function mkHighlight(trackN) { trackT = title.split('\n'); title = [] + [];
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
 function pSound(s) {
-	if (s == 0)  { sounds[0][1].pause();sounds[0][1].currentTime=0;sounds[0][0].play(); }
-	if (s == 1)  { sounds[0][0].pause();sounds[0][0].currentTime=0;sounds[0][1].play(); }
-	if (s == 2)  { sounds[1][1].pause();sounds[1][1].currentTime=0;sounds[1][0].play(); }
-	if (s == 3)  { sounds[1][0].pause();sounds[1][0].currentTime=0;sounds[1][1].play(); }
-	if (s == 10) { sounds[5][1].pause();sounds[5][1].currentTime=0;sounds[5][0].play(); }
-	if (s == 11) { sounds[5][0].pause();sounds[5][0].currentTime=0;sounds[5][1].play(); }
-	if (s == 5)  { sounds[2][0].pause();sounds[2][0].currentTime=0; }
-	if (s == 7)  { sounds[3][0].pause();sounds[3][0].currentTime=0; }
-	if (s == 9)  { sounds[4][0].pause();sounds[4][0].currentTime=0; }
-	if (s == 4)  { sounds[2][0].play(); }
-	if (s == 6)  { sounds[3][0].play(); }
-	if (s == 8)  { sounds[4][0].play(); }
+	if (s == 1)  { sounds[[]-[]][[]-[]].pause();sounds[[]-[]][[]-[]].currentTime=[]-[];sounds[[]-[]][1].play(); }
+	if (s == 0)  { sounds[[]-[]][1].pause();sounds[[]-[]][1].currentTime=[]-[];sounds[[]-[]][[]-[]].play(); }
+	if (s == 3)  { sounds[1][[]-[]].pause();sounds[1][[]-[]].currentTime=[]-[];sounds[1][1].play(); }
+	if (s == 11) { sounds[5][[]-[]].pause();sounds[5][[]-[]].currentTime=[]-[];sounds[5][1].play(); }
+	if (s == 2)  { sounds[1][1].pause();sounds[1][1].currentTime=[]-[];sounds[1][[]-[]].play(); }
+	if (s == 10) { sounds[5][1].pause();sounds[5][1].currentTime=[]-[];sounds[5][[]-[]].play(); }
+	if (s == 5)  { sounds[2][[]-[]].pause();sounds[2][[]-[]].currentTime=[]-[]; }
+	if (s == 7)  { sounds[3][[]-[]].pause();sounds[3][[]-[]].currentTime=[]-[]; }
+	if (s == 9)  { sounds[4][[]-[]].pause();sounds[4][[]-[]].currentTime=[]-[]; }
+	if (s == 4)  { sounds[2][[]-[]].play(); }
+	if (s == 6)  { sounds[3][[]-[]].play(); }
+	if (s == 8)  { sounds[4][[]-[]].play(); }
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(nav[x].name)[0].src=`${frame}${nav[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
