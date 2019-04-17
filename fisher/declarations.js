@@ -21,8 +21,8 @@ const music            = new Audio('sound/the_fishing_hole_8bit.ogg');
 const reel             = new Audio('sound/reel_in.ogg');
 ctx.font               = 'Bold 42px Arial';
 ctx.textAlign          = 'center';
-music.volume=0.25;
-reel.volume=0.75;
+music.volume           = 0.25;
+reel.volume            = 0.75;
 
 function loadLevel(lvl) {
     let f = new XMLHttpRequest();
