@@ -16,7 +16,7 @@ title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 menu =				false,
 tapeP =				false,
-trackN =			[] + [] - '';
+trackN =			[] - '';
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
@@ -37,8 +37,8 @@ function pTape() { tapeP = !tapeP;
 		mkHighlight(trackN + 1);
 	} else {
 		document.tape.src = `${frame}tape.gif`;
-		track.pause(); track.currentTime = [] + [] - '';
-		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] + [] - '';
+		track.pause(); track.currentTime = [] - '';
+		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - '';
 		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
 	}
 }
@@ -67,7 +67,7 @@ function pSound(s) {
 }
 
 function pFrame(x, y, z)	{ document.getElementsByName(nav[x].name)[0].src=`${frame}${nav[x].name}${z==1?'_forward.gif':z==2?'_reverse.gif':'.gif'}`;pSound(y); }
-function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]+[]-'';for(let i=[]+[]-'';i<items[o].length;i++){fTop+=(i!=[]+[]-''&&i%3==[]+[]-'');document.getElementById('menu').innerHTML+=menu?(m==[]+[]-''?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]+[]-''&&i%2==[]+[]-''?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
-function fib(nt)			{ let n1=[]+[]-'',n2=1,nth,c=[]+[]-'';while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;}}
+function sMenu(o, m)		{ document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]-'';for(let i=[]-'';i<items[o].length;i++){fTop+=(i!=[]-''&&i%3==[]-'');document.getElementById('menu').innerHTML+=menu?(m==[]-''?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]-''&&i%2==[]-''?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape();}
+function fib(nt)			{ let n1=[]-'',n2=1,nth,c=[]-'';while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;}}
 
 pTape();
