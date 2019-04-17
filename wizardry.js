@@ -16,7 +16,7 @@ title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
 track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[0]}`),
 menu =				false,
 tapeP =				false,
-trackN =			0;
+trackN =			{} + [];
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
