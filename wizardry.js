@@ -21,13 +21,11 @@ trackN =			[] - [];
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
-const images = [...nav].map(p => {
-    return [`${frame}${p.name}_forward.gif`, `${frame}${p.name}_reverse.gif`].map(s => {
+[...nav].map(p => [`${frame}${p.name}_forward.gif`, `${frame}${p.name}_reverse.gif`].map(s => {
         let p = new Image();
         p.src = s;
-        return p;
-    });
-});
+		return p;
+	}));
 
 function pTape() { tapeP = !tapeP;
 	if (tapeP) {
