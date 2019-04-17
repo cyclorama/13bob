@@ -48,8 +48,8 @@ function mkHighlight(trackN) { trackT = title.split('\n'); title = [] + [];
 	document.tape.title = title;
 } function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
 
-function pSound(s) {
-	switch (s) {
+function pSound(soundtrack) {
+	switch (soundtrack) {
 		case 0  : sounds[0][1].pause(); sounds[0][1].currentTime=0; sounds[0][0].play();  break;
 		case 1  : sounds[0][0].pause(); sounds[0][0].currentTime=0; sounds[0][1].play();  break;
 		case 2  : sounds[1][1].pause(); sounds[1][1].currentTime=0; sounds[1][0].play();  break;
