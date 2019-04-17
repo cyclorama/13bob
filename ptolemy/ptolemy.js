@@ -120,5 +120,12 @@ window.onload = function() {
 			y: distance * Math.sin(angle)
 		};
 	}
-	function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
+	
+	function anim() {
+		requestAnimationFrame(anim);
+		render();
+		update();
+	}
+	anim();
+	init();
 }
