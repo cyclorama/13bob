@@ -4,19 +4,19 @@ const sounds = 	[   [ new Audio('vibrations/horn_forward.ogg'), new Audio('vibra
                     [ new Audio('vibrations/projector.ogg')                                                    ],
                     [ new Audio('vibrations/chatter.ogg')                                                      ],
                     [ new Audio('vibrations/inflate.ogg'), new Audio('vibrations/deflate.ogg')                ]],
-tracks =            [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
+tracks       =      [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
                       '02 Pebbles - Why Do I Believe.mp3',
                       '03 Dee Dee Wilde - Lap of Luxury.mp3',
                       '04 Dionne Warwick - Can\'t Hide Love.mp3',
                       '05 The Jets - The Only Dance.mp3' ],
-items =				[ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [[] + []], ['http://steam.13bob.net'], ['-'] ],
-frame =				'photos/framed_',
-nav =				document.querySelectorAll('[id=nav]');
-title =				'E R R S T H E T I C  /  V O L U M E  O N E\n',
-track =				new Audio(`mixtapes/E R R S T H E T I C/${tracks[[] - []]}`),
-menu =				false,
-tapeP =				false,
-trackN =			[] - [];
+items        =      [ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [[] + []], ['http://steam.13bob.net'], ['-'] ],
+frame        =      'photos/framed_',
+nav          =      document.querySelectorAll('[id=nav]');
+title        =      'E R R S T H E T I C  /  V O L U M E  O N E\n',
+track        =      new Audio(`mixtapes/E R R S T H E T I C/${tracks[[] - []]}`),
+menu         =      false,
+tapeP        =      false,
+trackN       =      [] - [];
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
