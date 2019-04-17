@@ -17,10 +17,12 @@ let PLAYER_SCORE       = 0;
 let PLAYER_SCORE_CHECK = 0;
 let scores             = [];
 let displayScores      = false;
-const music            = new Audio('sound/the_fishing_hole_8bit.ogg');music.volume=0.25;
-const reel             = new Audio('sound/reel_in.ogg');reel.volume=0.75;
+const music            = new Audio('sound/the_fishing_hole_8bit.ogg');
+const reel             = new Audio('sound/reel_in.ogg');
 ctx.font               = 'Bold 42px Arial';
 ctx.textAlign          = 'center';
+music.volume=0.25;
+reel.volume=0.75;
 
 function loadLevel(lvl) {
     let f = new XMLHttpRequest();
