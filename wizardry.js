@@ -38,7 +38,7 @@ function pTape() { tapeP = !tapeP;
 	} else {
 		document.tape.src = `${frame}tape.gif`;
 		track.pause(); track.currentTime = 0;
-		trackN = trackN < tracks.length - 1 ? trackN + 1 : {} + [];
+		trackN = trackN < tracks.length - 1 ? trackN + 1 : ({} + []);
 		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
 	}
 }
