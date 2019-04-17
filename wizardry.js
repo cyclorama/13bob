@@ -11,7 +11,7 @@ const tracks =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
                    '05 The Jets - The Only Dance.mp3' ];
 const items  =   [ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [[] + []], ['http://steam.13bob.net'], ['-'] ];
 const frame  =   'photos/framed_';
-const nav    =   document.querySelectorAll('[class=nav]');
+const nav    =   document.getElementsByClassName('nav');
 let title    =   'E R R S T H E T I C  /  V O L U M E  O N E\n';
 let track    =   new Audio(`mixtapes/E R R S T H E T I C/${tracks[[] - []]}`);
 let menu     =   false;
