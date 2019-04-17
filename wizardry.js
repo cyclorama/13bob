@@ -57,12 +57,12 @@ function pSound(s) {
 		case 3:		sounds[1][0].pause(); sounds[1][0].currentTime=0; sounds[1][1].play();	break;
 		case 10:	sounds[5][1].pause(); sounds[5][1].currentTime=0; sounds[5][0].play();	break;
 		case 11:	sounds[5][0].pause(); sounds[5][0].currentTime=0; sounds[5][1].play();	break;
-		case 5:		sounds[2][0].pause(); sounds[2][0].currentTime=0;			break;
-		case 7:		sounds[3][0].pause(); sounds[3][0].currentTime=0;			break;
-		case 9:		sounds[4][0].pause(); sounds[4][0].currentTime=0;			break;
-		case 4:		sounds[2][0].play();							break;
-		case 6:		sounds[3][0].play();							break;
-		case 8:		sounds[4][0].play();							break;
+		case 5:		sounds[2][0].pause(); sounds[2][0].currentTime=0;						break;
+		case 7:		sounds[3][0].pause(); sounds[3][0].currentTime=0;						break;
+		case 9:		sounds[4][0].pause(); sounds[4][0].currentTime=0;						break;
+		case 4:		sounds[2][0].play();													break;
+		case 6:		sounds[3][0].play();													break;
+		case 8:		sounds[4][0].play();													break;
 	}
 }
 
