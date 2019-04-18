@@ -61,10 +61,10 @@ body {
 
 img {
     animation: scale 1s;
-    display: inline-block;
 }
 
 img#nav {
+    display: inline-block;
     margin:0px 0px 0px -15px;
     border-radius: 50px;
     cursor: url(little_finger.cur), pointer;
