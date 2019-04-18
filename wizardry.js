@@ -22,9 +22,9 @@ let trackN   =   [] - [];
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
-[...nav].forEach(p => [`${frame}${p.id}_forward`, `${frame}${p.id}_reverse`].forEach(s => {
+[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
 	let i = new Image();
-	i.src = `${s}.gif`;
+	i.src = s;
 }));
 
 function pTape() {
