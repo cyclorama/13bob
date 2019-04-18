@@ -29,12 +29,14 @@ tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 function pTape() {
 	if (tapeP = !tapeP) {
 		document.tape.src = `${frame}tape_forward.gif`;
-		track.volume = 0.1; track.play();
+		track.volume = 0.1;
+		track.play();
 		track.onended = () => { pTape(); pTape(); };
 		mkHighlight(trackN + 1);
 	} else {
 		document.tape.src = `${frame}tape.gif`;
-		track.pause(); track.currentTime = [] - [];
+		track.pause();
+		track.currentTime = [] - [];
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
 		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
 	}
