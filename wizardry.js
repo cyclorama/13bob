@@ -73,8 +73,8 @@ function pSound(trackN) {
 const body = document.querySelector("body");
 
 body.addEventListener('mousemove', (e) => {
-	body.style.backgroundPositionX = -e.offsetX * 0.1 + "px";
-	body.style.backgroundPositionY = -e.offsetY * 0.1 + "px";
+	body.style.backgroundPositionX = -e.offsetX * 0.5 + "px";
+	body.style.backgroundPositionY = -e.offsetY * 0.5 + "px";
 });
 
 function pFrame(x, y, z)    { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); }
