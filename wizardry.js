@@ -70,11 +70,11 @@ function pSound(trackN) {
 	}
 }
 
-const el = document.querySelector("body");
+const body = document.querySelector("body");
 
-el.addEventListener('mousemove', (e) => {
-	el.style.backgroundPositionX = -e.offsetX + "px";
-	el.style.backgroundPositionY = -e.offsetY + "px";
+body.addEventListener('mousemove', (e) => {
+	el.style.backgroundPositionX = -e.offsetX * 0.1 + "px";
+	el.style.backgroundPositionY = -e.offsetY * 0.1 + "px";
 });
 
 function pFrame(x, y, z)    { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); }
