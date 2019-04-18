@@ -13,7 +13,8 @@ const items  =   [ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [''], 
 const frame  =   'photos/framed_';
 const nav    =   document.getElementsByClassName('nav');
 let title    =   'E R R S T H E T I C  /  V O L U M E  O N E\n';
-let track    =   new Audio(`mixtapes/E R R S T H E T I C/${tracks[[] - []]}`);
+let dir      =   'mixtapes/E R R S T H E T I C/';
+let track    =   new Audio(`${dir}${tracks[[] - []]}`);
 let menu     =   false;
 let tapeP    =   false;
 let trackN   =   [] - [];
@@ -21,9 +22,9 @@ let trackN   =   [] - [];
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
-[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
+[...nav].forEach(p => [`${frame}${p.id}_forward`, `${frame}${p.id}_reverse`].forEach(s => {
 	let i = new Image();
-	i.src = s;
+	i.src = `${s}.gif`;
 }));
 
 function pTape() {
@@ -38,7 +39,7 @@ function pTape() {
 		track.pause();
 		track.currentTime = [] - [];
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
-		track = new Audio(`mixtapes/E R R S T H E T I C/${tracks[trackN]}`);
+		track = new Audio(`${dir}${tracks[trackN]}`);
 	}
 }
 
