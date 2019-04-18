@@ -25,7 +25,7 @@ body {
     overflow-x: hidden;
     cursor: url(open_hand.cur), pointer;
     font-family: 'Press Start 2P', cursive;
-    background-color: black; background-image: url(space.gif); background-repeat: repeat; background-attachment: scroll;
+    background-color: black; background-image: url(space.gif); background-repeat: space; background-attachment: fixed;
 }
 
 ::-webkit-scrollbar { 
