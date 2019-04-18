@@ -43,7 +43,7 @@ function pTape() {
 }
 
 function mkHighlight(trackN) {
-	trackT = title.split('\n');
+	var trackT = title.split('\n');
 	title = [] + [];
 	if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
 	if (trackN > 1) rmHighlight(trackN - 1);
