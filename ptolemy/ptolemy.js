@@ -48,11 +48,11 @@ window.onload = function() {
 		clearScreen();
 		drawCircle(centerX, centerY, mouseDist, 'white');
 		drawTriangle(centerX, centerY, mouseDist, 'red');
-		drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan'); // P
-		drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow'); // Q
-		drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta'); // R
-		drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan'); // P
-		drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow'); // Q
+		drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan');                              // P
+		drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow');                    // Q
+		drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta');                   // R
+		drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan');            // P
+		drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow');   // Q
 		drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, 'magenta'); // R
 		drawCircle(centerX + pointBX, centerY + pointBY, 2, "magenta");
 		drawCircle(centerX + pointAX, centerY + pointAY, 2, "yellow");
