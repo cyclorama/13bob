@@ -178,14 +178,14 @@ class Hook {
 		for (let i = 0; i < rocks.length; i++) {
 			if (this.scaleX == 1) {
 				if (this._x == this.x &&
-					this._y > this.y - this.scaleY - 1 &&
-					this._y < this.y + this.scaleY + 1) {
+					this._y > this.y - this._scaleY - 1 &&
+					this._y < this.y + this._scaleY + 1) {
 					this.reelHook();
 				}
-			} else if (	this._x > this.x - (this.scaleX + 1) &&
-						this._x < this.x + (this.scaleX + 1) &&
-						this._y > this.y - (this.scaleY + 1) &&
-						this._y < this.y + (this.scaleY + 1)) {
+			} else if (	this._x > this.x - (this._scaleX + 1) &&
+						this._x < this.x + (this._scaleX + 1) &&
+						this._y > this.y - (this._scaleY + 1) &&
+						this._y < this.y + (this._scaleY + 1)) {
 				this.reelHook();
 			}
 		}
