@@ -49,7 +49,14 @@ function menu() {
 	'[PRESS ANY KEY TO PLAY]'].forEach((txt, i) => {
 		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
-	window.addEventListener('keydown', start);
+
+	Object.values(gameImages).forEach(image => {
+		console.log(image.ready);
+	});
+
+	if (Object.values(gameImages).some(image => image.ready != true)) {
+		window.addEventListener('keydown', start);
+	}
 }
 
 function start() {
@@ -70,13 +77,6 @@ function nextLevel() {
 	PLAYER_CAUGHT = 0;
 	LEVEL++;
 	loadLevel(LEVEL);
-}
-
-function reelIn() {
-	sleepTime /= 10;
-	hook.reelIn = true;
-	music.pause();
-	reel.play();
 }
 
 let gameImages = {
@@ -113,6 +113,140 @@ Object.entries(gameImages).forEach(image => {
 	gameImages[image[0]].onload = () => gameImages[image[0]].ready = true;
 });
 
+class Hook {
+    constructor() {
+		this._x = 12;
+		this._y = 0;
+		this._startX = this._x,
+		this._startY = this._y,
+		this._prev = [],
+		this._casting =  false,
+		this._reelIn = false
+	}
+
+	get x()            { return this._x;        }
+	set x(x)           { this._x = x;           }
+
+	get y()            { return this._y;        }
+	set y(y)           { this._y = y;           }
+
+	get startX()       { return this._startX;   }
+	set startX(startX) { this._startX = startX; }
+
+	get startY()       { return this._startY;   }
+	set startY(startY) { this._startY = startY; }
+
+	get casting()      { return this._casting;  }
+	set casting(cast)  { this._casting = cast;  }
+
+	get prev()         { return this._prev;     }
+
+	get reelIn()       { return this._reelIn;   }
+
+	update() {
+		if (this._reelIn) {
+			this.reverseHook();
+		} else {
+			if (40 in keysDown) { // DOWN ARROW - Speed up
+				sleepTime = 70;
+				keysDown = [];
+			} else {
+				sleepTime = 700;
+			}
+	
+			if (32 in keysDown) { // SPACEBAR - Reel in
+				if (!this._casting) {
+					PLAYER_REELS++;
+					this._casting = true;
+					music.play();
+					keysDown = [];
+				} else {
+					sleepTime /= 10;
+					this._casting = false;
+					this._reelIn = true;
+					music.pause();
+					reel.play();
+					keysDown = [];
+				}
+			}
+			this.moveHook();
+		}
+		this.checkCollision();
+	}
+
+	render() {
+
+	}
+
+	checkCollision() {
+		for (let i = 0; i < rocks.length; i++) {
+			if (rocks[i].scaleX == 1) {
+				if (this._x == rocks[i].x &&
+					this._y > rocks[i].y - rocks[i].scaleY - 1 &&
+					this._y < rocks[i].y + rocks[i].scaleY + 1) {
+					this.reelHook();
+				}
+			} else if (	this._x > rocks[i].x - (rocks[i].scaleX + 1) &&
+						this._x < rocks[i].x + (rocks[i].scaleX + 1) &&
+						this._y > rocks[i].y - (rocks[i].scaleY + 1) &&
+						this._y < rocks[i].y + (rocks[i].scaleY + 1)) {
+				this.reelHook();
+			}
+		}
+	}
+
+	moveHook() {
+		if (this._casting && this._y < LEVEL_HEIGHT - 1) { // Save previous X and Y hook positions and move hook down
+			if (37 in keysDown) {
+				this._x -= 1; keysDown = []; // LEFT ARROW - Move left
+			}
+			if (39 in keysDown) {
+				this._x += 1; keysDown = []; // RIGHT ARROW - Move right
+			}
+
+			this._prev.push(this._x);
+			this._prev.push(this._y);
+			this._y += 1;
+		}
+	}
+
+	reverseHook() {
+		if (this._x != this._startX || this._y != this._startY) {
+			this._y = this._prev.pop();
+			this._x = this._prev.pop();
+		} else {
+			this._casting = false;
+			this._reelIn = false;
+			sleepTime *= 10;
+
+			if (this._x == this._startX && this._y == this._startY) {
+				reel.pause();
+				reel.currentTime = 0;
+
+				if (PLAYER_CAUGHT == fishes.length) {
+					PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
+					document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
+					if (LEVEL == 7) {
+						LEVEL = -1;
+						PLAYER_SCORE = 0;
+						document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
+						nextLevel();
+					} else {
+						nextLevel();
+					}
+				}
+			}
+		}
+	}
+
+	reelHook() {
+		sleepTime /= 10;
+		this._reelIn = true;
+		music.pause();
+		reel.play();
+	}
+}
+
 class Fish {
 	constructor(waypoints) {
 		this._fishImage = new Image();
@@ -143,6 +277,69 @@ class Fish {
 
 	get point()           { return this._point;         }
 	set point(point)      { this._point = point;        }
+
+	get onBoat()          { return this._onBoat;        }
+
+	update() {
+		this.updateCount();
+		this.updatePos();
+	}
+
+	render() {
+
+	}
+
+	updateCount() {
+		if (hook.reelIn && hook.x == hook.startX && hook.y == hook.startY) {
+			if (this._caught && !this._counted) {
+				this._counted = true;
+				PLAYER_CAUGHT++;
+			}
+		}
+	}
+
+	updatePos() {
+		if (hook.reelIn && this._x == hook.x && (this._y == hook.y || this._y == hook.y - 1 || this._y == hook.y + 1)) {
+			this._caught = true;
+		}
+
+		if (this._x == 12 && this._y == 0) {
+			this._onBoat = true;
+		}
+
+		if (this._caught) {
+			this._x = hook.x;
+			this._y = hook.y;
+		} else {
+			if (this._x < this._waypoints[this._point].x) {
+				this._x++;
+
+				if (this._fishImageSrc != gameImages.fishImageRight.src) {
+					this._fishImage = gameImages.fishImageRight;
+				}
+			}
+
+			if (this._x > this._waypoints[this._point].x) {
+				this._x--;
+
+				if (this._fishImageSrc != gameImages.fishImageLeft.src) {
+					this._fishImage = gameImages.fishImageLeft;
+				}
+			}
+
+			if (this._x == this._waypoints[this._point].x && this._y < this._waypoints[this._point].y) {
+				this._y++;
+			}
+
+			if (this._x == this._waypoints[this._point].x && this._y > this._waypoints[this._point].y) {
+				this._y--;
+			}
+
+			if (this._x == this._waypoints[this._point].x && this._y == this._waypoints[this._point].y) {
+				this._point += (this._point < this._waypoints.length - 1) ? 1 : -(this._waypoints.length - 1);
+			}
+		}
+	}
 }
 
 class Rock {
@@ -163,14 +360,6 @@ class Rock {
 	get scaleY() { return this._scaleY; }
 }
 
-let hook = {
-	x: 12,
-	y: 0,
-	startX: 12,
-	startY: 0,
-	prev: [],
-	casting: false,
-	reelIn: false
-}, fishes = [], rocks = [], keysDown = {};
+let hook = new Hook(), fishes = [], rocks = [], keysDown = {};
 
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
