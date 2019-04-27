@@ -139,6 +139,7 @@ class Fish {
 	}
 
 	get fishImage()       { return this._fishImage;     }
+	set fishImage(image)  { this._fishImage = image;    }
 
 	get fishImageSrc()    { return this._fishImage.src; }
 	set fishImageSrc(src) { this._fishImage.src = src;  }
