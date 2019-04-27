@@ -91,11 +91,11 @@ function reelIn() {
 }
 
 let gameImages = {
-    hookImage: 'hook',
-    waterImage: 'water',
-    lineImage: 'line',
-    lineImageLeftDown: 'line_left_down',
-    lineImageRightDown: 'line_right_down',
+	hookImage: 'hook',
+	waterImage: 'water',
+	lineImage: 'line',
+	lineImageLeftDown: 'line_left_down',
+	lineImageRightDown: 'line_right_down',
 	lineImageLeftUp: 'line_left_up',
 	lineImageRightUp: 'line_right_up',
 	fishImageLeft: 'fish_left',
@@ -120,8 +120,8 @@ let gameImages = {
 
 Object.entries(gameImages).forEach(image => {
 	gameImages[image[0]] = new Image();
-    gameImages[image[0]].src = `img/${image[1]}.png`;
-    gameImages[image[0]].onload = () => gameImages[image[0]].ready = true;
+	gameImages[image[0]].src = `img/${image[1]}.png`;
+	gameImages[image[0]].onload = () => gameImages[image[0]].ready = true;
 });
 
 class Fish {
