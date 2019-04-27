@@ -96,7 +96,7 @@ let gameImages = {
     lineImage: 'line',
     lineImageLeftDown: 'line_left_down',
     lineImageRightDown: 'line_right_down',
-    lineImageLeftUp: 'line_left_up',
+	lineImageLeftUp: 'line_left_up',
 	lineImageRightUp: 'line_right_up',
 	fishImageLeft: 'fish_left',
 	fishImageRight: 'fish_right',
