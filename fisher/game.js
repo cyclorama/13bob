@@ -22,13 +22,12 @@ function render() {
 	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
 }
 
-function main() {
+async function main() {
 	update();
 	render();
 
-	sleep(sleepTime).then(() => {
-		requestAnimationFrame(main)
-	});
+	await sleep(sleepTime);
+	requestAnimationFrame(main);
 }
 
 document.getElementById('score').innerText = PLAYER_SCORE;
