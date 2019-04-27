@@ -101,16 +101,16 @@ function update() {
 			if (fishes[i].x < fishes[i].waypoints[fishes[i].point].x) {
 				fishes[i].x++;
 
-				if (fishes[i].fishImageSrc != 'img/fish_right.png') {
-					fishes[i].fishImageSrc = 'img/fish_right.png';
+				if (fishes[i].fishImageSrc != gameImages.fishImageRight.src) {
+					fishes[i].fishImage = gameImages.fishImageRight;
 				}
 			}
 
 			if (fishes[i].x > fishes[i].waypoints[fishes[i].point].x) {
 				fishes[i].x--;
 
-				if (fishes[i].fishImageSrc != 'img/fish_left.png') {
-					fishes[i].fishImageSrc = 'img/fish_left.png';
+				if (fishes[i].fishImageSrc != gameImages.fishImageLeft.src) {
+					fishes[i].fishImage = gameImages.fishImageLeft;
 				}
 			}
 
