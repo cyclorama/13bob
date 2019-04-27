@@ -50,10 +50,6 @@ function menu() {
 		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
 	});
 
-	Object.values(gameImages).forEach(image => {
-		console.log(image.ready);
-	});
-
 	if (Object.values(gameImages).some(image => image.ready != true)) {
 		window.addEventListener('keydown', start);
 	}
@@ -175,21 +171,21 @@ class Hook {
 	}
 
 	render() {
-
+		ctx.drawImage(gameImages.hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 
 	checkCollision() {
 		for (let i = 0; i < rocks.length; i++) {
-			if (rocks[i].scaleX == 1) {
-				if (this._x == rocks[i].x &&
-					this._y > rocks[i].y - rocks[i].scaleY - 1 &&
-					this._y < rocks[i].y + rocks[i].scaleY + 1) {
+			if (this.scaleX == 1) {
+				if (this._x == this.x &&
+					this._y > this.y - this.scaleY - 1 &&
+					this._y < this.y + this.scaleY + 1) {
 					this.reelHook();
 				}
-			} else if (	this._x > rocks[i].x - (rocks[i].scaleX + 1) &&
-						this._x < rocks[i].x + (rocks[i].scaleX + 1) &&
-						this._y > rocks[i].y - (rocks[i].scaleY + 1) &&
-						this._y < rocks[i].y + (rocks[i].scaleY + 1)) {
+			} else if (	this._x > this.x - (this.scaleX + 1) &&
+						this._x < this.x + (this.scaleX + 1) &&
+						this._y > this.y - (this.scaleY + 1) &&
+						this._y < this.y + (this.scaleY + 1)) {
 				this.reelHook();
 			}
 		}
@@ -286,7 +282,9 @@ class Fish {
 	}
 
 	render() {
-
+		if (!this._onBoat) {
+			ctx.drawImage(this._fishImage, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		}
 	}
 
 	updateCount() {
@@ -358,6 +356,61 @@ class Rock {
 
 	get scaleX() { return this._scaleX; }
 	get scaleY() { return this._scaleY; }
+
+	render() {
+		if (this._scaleX == 1 && this._scaleY == 1) {
+			this.renderSingle();
+		} else if (this._scaleX > 1 && this._scaleY == 1) {
+			this.renderHorizontal();
+		} else if (this._scaleX == 1 && this._scaleY > 1) {
+			this.renderVertical();
+		} else if (this._scaleX > 1 && this._scaleY > 1) {
+			this.renderBlock();
+		}
+	}
+
+	renderSingle() {
+		ctx.drawImage(gameImages.rockImageSingle, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+	}
+
+	renderHorizontal() {
+			for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++)
+				ctx.drawImage(gameImages.rockImageHoriz, r * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
+
+			ctx.drawImage(gameImages.rockImageLeft, (this._x - this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(gameImages.rockImageRight, (this._x + this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+	}
+
+	renderVertical() {
+			for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
+				ctx.drawImage(gameImages.rockImageVert, this._x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
+
+			ctx.drawImage(gameImages.rockImageUp, this._x * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			ctx.drawImage(gameImages.rockImageDown, this._x * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+	}
+
+	renderBlock() {
+		for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++)
+			ctx.drawImage(gameImages.rockImageHorizTop, r * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+
+		for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
+			ctx.drawImage(gameImages.rockImageVertLeft, (this._x - this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+
+		for (let rX = this._x - this._scaleX + 1; rX < this._x + this._scaleX; rX++) 
+			for (let rY = this._y - this._scaleY + 1; rY < this._y + this._scaleY; rY++) 
+				ctx.drawImage(gameImages.rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+
+		for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
+			ctx.drawImage(gameImages.rockImageVertRight, (this._x + this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
+
+		for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++) 
+			ctx.drawImage(gameImages.rockImageHorizBottom, r * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
+
+		ctx.drawImage(gameImages.rockImageCornerTopRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		ctx.drawImage(gameImages.rockImageCornerTopLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		ctx.drawImage(gameImages.rockImageCornerBottomLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		ctx.drawImage(gameImages.rockImageCornerBottomRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+	}
 }
 
 let hook = new Hook(), fishes = [], rocks = [], keysDown = {};
