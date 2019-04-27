@@ -31,11 +31,11 @@ function loadLevel(lvl) {
     f.onreadystatechange = () => {
     	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
 			let json = JSON.parse(f.responseText);
-			for (let i = 0; i < Object.keys(json.levels[lvl].fish).length; i++) {
-				fishes.push(new fish(json.levels[lvl].fish[i].waypoints));
+			for (let i = 0; i < json.levels[lvl].fish.length; i++) {
+				fishes.push(new Fish(json.levels[lvl].fish[i].waypoints));
 			}
-			for (let i = 0; i < Object.keys(json.levels[lvl].rocks).length; i++) {
-				rocks.push(new rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
+			for (let i = 0; i < json.levels[lvl].rocks.length; i++) {
+				rocks.push(new Rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
 			}
         }
     }
@@ -90,132 +90,118 @@ function reelIn() {
 	reel.play();
 }
 
-function fish(waypoints) {
-	fishImage = new Image(),
-	fishImageLeft = new Image(),
-	fishImageRight = new Image(),
-	fishImageLeft.src = 'img/fish_left.png',
-	fishImageRight.src = 'img/fish_right.png';
+let gameImages = {
+    hookImage: 'hook',
+    waterImage: 'water',
+    lineImage: 'line',
+    lineImageLeftDown: 'line_left_down',
+    lineImageRightDown: 'line_right_down',
+    lineImageLeftUp: 'line_left_up',
+	lineImageRightUp: 'line_right_up',
+	fishImageLeft: 'fish_left',
+	fishImageRight: 'fish_right',
+	rockImageSingle: 'rock_single',
+	rockImageCornerTopLeft: 'rock_corner_top_left',
+	rockImageCornerTopRight: 'rock_corner_top_right',
+	rockImageCornerBottomLeft: 'rock_corner_bottom_left',
+	rockImageCornerBottomRight: 'rock_corner_bottom_right',
+	rockImageLeft: 'rock_left',
+	rockImageHorizTop: 'rock_horiz_top',
+	rockImageHoriz: 'rock_horiz',
+	rockImageHorizBottom: 'rock_horiz_bottom',
+	rockImageRight: 'rock_right',
+	rockImageCenter: 'rock_center',
+	rockImageUp: 'rock_up',
+	rockImageVertLeft: 'rock_vert_left',
+	rockImageVert: 'rock_vert',
+	rockImageVertRight: 'rock_vert_right',
+	rockImageDown: 'rock_down'
+};
 
-	return {
-		x: waypoints[0].x,
-		y: waypoints[0].y,
-		waypoints: waypoints,
-		point: 0,
-		direction: true,
-		caught: false,
-		onBoat: false,
-		counted: false,
-		blocks: null,
-		fishImage: fishImage,
-		fishImageLeft: fishImageLeft,
-		fishImageRight: fishImageRight,
-		fishImageLeftReady: fishImageLeft.onload = () => { return true; },
-		fishImageRightReady: fishImageRight.onload = () => { return true; }
-	};
-} fishes = [];
+Object.entries(gameImages).forEach(image => {
+	gameImages[image[0]] = new Image();
+    gameImages[image[0]].src = `img/${image[1]}.png`;
+    gameImages[image[0]].onload = () => gameImages[image[0]].ready = true;
+});
 
-function rock(x, y, scaleX, scaleY) {
-	rockImageSingle = new Image(),
-	rockImageCornerTopLeft = new Image(),
-	rockImageCornerTopRight = new Image(),
-	rockImageCornerBottomLeft = new Image(),
-	rockImageCornerBottomRight = new Image(),
-	rockImageLeft = new Image(),
-	rockImageHorizTop = new Image(),
-	rockImageHoriz = new Image(),
-	rockImageHorizBottom = new Image(),
-	rockImageRight = new Image(),
-	rockImageCenter = new Image(),
-	rockImageUp = new Image(),
-	rockImageVertLeft = new Image(),
-	rockImageVert = new Image(),
-	rockImageVertRight = new Image(),
-	rockImageDown = new Image();
-	rockImageSingle.src = 'img/rock_single.png',
-	rockImageCornerTopLeft.src = 'img/rock_corner_top_left.png',
-	rockImageCornerTopRight.src = 'img/rock_corner_top_right.png',
-	rockImageCornerBottomLeft.src = 'img/rock_corner_bottom_left.png',
-	rockImageCornerBottomRight.src = 'img/rock_corner_bottom_right.png',
-	rockImageLeft.src = 'img/rock_left.png',
-	rockImageHorizTop.src = 'img/rock_horiz_top.png',
-	rockImageHoriz.src = 'img/rock_horiz.png',
-	rockImageHorizBottom.src = 'img/rock_horiz_bottom.png',
-	rockImageRight.src = 'img/rock_right.png',
-	rockImageCenter.src = 'img/rock_center.png',
-	rockImageUp.src = 'img/rock_up.png',
-	rockImageVertLeft.src = 'img/rock_vert_left.png',
-	rockImageVert.src = 'img/rock_vert.png',
-	rockImageVertRight.src = 'img/rock_vert_right.png',
-	rockImageDown.src = 'img/rock_down.png';
+class Fish {
+	constructor(waypoints) {
+		this._fishImage = new Image();
+		this._x         = waypoints[0].x;
+		this._y         = waypoints[0].y;
+		this._waypoints = waypoints;
+		this._point     = 0;
+		this._direction = true;
+		this._caught    = false;
+		this._onBoat    = false;
+		this._counted   = false;
+		this._blocks    = null;
+	}
 
-	return {
-		x: x,
-		y: y,
-		scaleX: scaleX,
-		scaleY: scaleY,
-		rockImageSingle: rockImageSingle,
-		rockImageCornerTopLeft: rockImageCornerTopLeft,
-		rockImageCornerTopRight: rockImageCornerTopRight,
-		rockImageCornerBottomLeft: rockImageCornerBottomLeft,
-		rockImageCornerBottomRight: rockImageCornerBottomRight,
-		rockImageLeft: rockImageLeft,
-		rockImageHorizTop: rockImageHorizTop,
-		rockImageHoriz: rockImageHoriz,
-		rockImageHorizBottom: rockImageHorizBottom,
-		rockImageRight: rockImageRight,
-		rockImageCenter: rockImageCenter,
-		rockImageUp: rockImageUp,
-		rockImageVertLeft: rockImageVertLeft,
-		rockImageVert: rockImageVert,
-		rockImageVertRight: rockImageVertRight,
-		rockImageDown: rockImageDown,
-		rockImageSingleReady: rockImageSingle.onload = () => { return true; },
-		rockImageCornerTopLeftReady: rockImageCornerTopLeft.onload = () => { return true; },
-		rockImageCornerTopRightReady: rockImageCornerTopRight.onload = () => { return true; },
-		rockImageCornerBottomLeftReady: rockImageCornerBottomLeft.onload = () => { return true; },
-		rockImageCornerBottomRightReady: rockImageCornerBottomRight.onload = () => { return true; },
-		rockImageLeftReady: rockImageLeft.onload = () => { return true; },
-		rockImageHorizTopReady: rockImageHorizTop.onload = () => { return true; },
-		rockImageHorizReady: rockImageHoriz.onload = () => { return true; },
-		rockImageHorizBottomReady: rockImageHorizBottom.onload = () => { return true; },
-		rockImageRightReady: rockImageRight.onload = () => { return true; },
-		rockImageCenterReady: rockImageCenter.onload = () => { return true; },
-		rockImageUpReady: rockImageUp.onload = () => { return true; },
-		rockImageVertLeftReady: rockImageVertLeft.onload = () => { return true; },
-		rockImageVertReady: rockImageVert.onload = () => { return true; },
-		rockImageVertRightReady: rockImageVertRight.onload = () => { return true; },
-		rockImageDownReady: rockImageDown.onload = () => { return true; }
-	};
-} rocks = [];
+	get fishImage()       { return this._fishImage;     }
+
+	get fishImageSrc()    { return this._fishImage.src; }
+	set fishImageSrc(src) { this._fishImage.src = src;  }
+
+	get x()               { return this._x;             }
+	set x(x)              { this._x = x;                }
+
+	get y()               { return this._y;             }
+	set y(y)              { this._y = y;                }
+
+	get waypoints()       { return this._waypoints;     }
+
+	get point()           { return this._point;         }
+	set point(point)      { this._point = point;        }
+}
+
+class Rock {
+	constructor(x, y, scaleX, scaleY) {
+		this._x      = x;
+		this._y      = y;
+		this._scaleX = scaleX;
+		this._scaleY = scaleY;
+	}
+
+	get x()      { return this._x;      }
+	set x(x)     { this._x = x;         }
+
+	get y()      { return this._y;      }
+	set y(y)     { this._y = y;         }
+
+	get scaleX() { return this._scaleX; }
+	get scaleY() { return this._scaleY; }
+}
+
+let fishes = [], rocks = [];
 
 keysDown = {};
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
 
 hookImage = new Image();
 hookImage.src = 'img/hook.png';
-hookImageReady = hookImage.onload = () => { return true; };
+hookImageReady = hookImage.onload = () => hookImage.ready = true;
 
 waterImage = new Image();
 waterImage.src = 'img/water.png';
-waterImageReady = waterImage.onload = () => { return true; };
+waterImageReady = waterImage.onload = () => waterImage.ready = true;
 
 lineImage = new Image();
 lineImage.src = 'img/line.png';
-lineImageReady = lineImage.onload = () => { return true; };
+lineImageReady = lineImage.onload = () => lineImage.ready = true;
 
 lineImageLeftDown = new Image();
 lineImageLeftDown.src = 'img/line_left_down.png';
-lineImageLeftDownReady = lineImageLeftDown.onload = () => { return true; };
+lineImageLeftDownReady = lineImageLeftDown.onload = () => lineImageLeftDown = true;
 
 lineImageRightDown = new Image();
 lineImageRightDown.src = 'img/line_right_down.png';
-lineImageRightDownReady = lineImageRightDown.onload = () => { return true; };
+lineImageRightDownReady = lineImageRightDown.onload = () => lineImageRightDown = true;
 
 lineImageLeftUp = new Image();
 lineImageLeftUp.src = 'img/line_left_up.png';
-lineImageLeftUpReady = lineImageLeftUp.onload = () => { return true; };
+lineImageLeftUpReady = lineImageLeftUp.onload = () => lineImageLeftUp = true;
 
 lineImageRightUp = new Image();
 lineImageRightUp.src = 'img/line_right_up.png';
-lineImageRightUpReady = lineImageRightUp.onload = () => { return true; };
+lineImageRightUpReady = lineImageRightUp.onload = () => lineImageRightUp = true;
