@@ -192,12 +192,12 @@ class Hook {
 	}
 
 	moveHook() {
-		if (this._casting && this._y < LEVEL_HEIGHT - 1) { // Save previous X and Y hook positions and move hook down
-			if (37 in keysDown) {
-				this._x -= 1; keysDown = []; // LEFT ARROW - Move left
+		if (this._casting && this._y < LEVEL_HEIGHT - 1) {
+			if (37 in keysDown) { // LEFT ARROW (Move left)
+				this._x -= 1; keysDown = [];
 			}
-			if (39 in keysDown) {
-				this._x += 1; keysDown = []; // RIGHT ARROW - Move right
+			if (39 in keysDown) { // RIGHT ARROW (Move right)
+				this._x += 1; keysDown = [];
 			}
 
 			this._prev.push(this._x);
