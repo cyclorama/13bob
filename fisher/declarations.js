@@ -178,14 +178,14 @@ class Hook {
 		if (this._reelIn) {
 			this.reverseHook();
 		} else {
-			if (40 in keysDown) { // DOWN ARROW (Speed up)
+			if (40 in keysDown) { // DOWN_ARROW
 				sleepTime = 70;
 				keysDown = [];
 			} else {
 				sleepTime = 700;
 			}
 	
-			if (32 in keysDown) { // SPACEBAR (Reel in)
+			if (32 in keysDown) { // SPACEBAR
 				if (!this._casting) {
 					PLAYER_REELS++;
 					this._casting = true;
@@ -228,10 +228,10 @@ class Hook {
 
 	moveHook() {
 		if (this._casting && this._y < LEVEL_HEIGHT - 1) {
-			if (37 in keysDown) { // LEFT ARROW (Move left)
+			if (37 in keysDown) { // LEFT_ARROW
 				this._x -= 1; keysDown = [];
 			}
-			if (39 in keysDown) { // RIGHT ARROW (Move right)
+			if (39 in keysDown) { // RIGHT_ARROW
 				this._x += 1; keysDown = [];
 			}
 
