@@ -29,7 +29,7 @@ function loadLevel(lvl) {
     f.responseType = 'text';
     f.open('GET', 'levels.json', true);
     f.onreadystatechange = () => {
-    	if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
+		if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
 			let json = JSON.parse(f.responseText);
 			for (let i = 0; i < json.levels[lvl].fish.length; i++) {
 				fishes.push(new Fish(json.levels[lvl].fish[i].waypoints));
@@ -37,8 +37,8 @@ function loadLevel(lvl) {
 			for (let i = 0; i < json.levels[lvl].rocks.length; i++) {
 				rocks.push(new Rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
 			}
-        }
-    }
+		}
+	}
     f.send(null);
 }
 
