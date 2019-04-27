@@ -11,13 +11,25 @@ function render() {
 
 	for (let j = 0; j < LEVEL_HEIGHT; j++) {
 		for (let i = 0; i < LEVEL_WIDTH; i++) {
-			ctx.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1); // Grid of water
+			ctx.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 		}
 	}
 
-	ctx.drawImage(gameImages.hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); // Render hook image
+	hook.render();
+	renderLine();
 
-	for (let i = 0; i < hook.prev.length; i += 2) { // Render line image
+	for (let i = 0; i < fishes.length; i++) {
+		fishes[i].render();
+	}
+
+	for (let i = 0; i < rocks.length; i++) {
+		rocks[i].render();
+	}
+	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
+}
+
+function renderLine() {
+	for (let i = 0; i < hook.prev.length; i += 2) {
 		if (hook.prev[i] > hook.prev[i + 2]) {
 			ctx.drawImage(gameImages.lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 			ctx.drawImage(gameImages.lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -28,8 +40,11 @@ function render() {
 			ctx.drawImage(gameImages.lineImage, hook.prev[i] * BLOCK_SIZE, hook.prev[i + 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		}
 	}
+	fixArtifact();
+}
 
-	if (hook.x == hook.prev[hook.prev.length - 2] + 1) { // Account for left and right reverse hook movement graphics
+function fixArtifact() {
+	if (hook.x == hook.prev[hook.prev.length - 2] + 1) {
 		ctx.drawImage(gameImages.lineImageRightDown, (hook.prev[hook.prev.length - 2] + 1) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		ctx.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		ctx.drawImage(gameImages.lineImageRightUp, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -38,57 +53,6 @@ function render() {
 		ctx.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		ctx.drawImage(gameImages.lineImageLeftUp, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
-
-	for (let i = 0; i < fishes.length; i++) { // Render fish
-		if (!fishes[i].onBoat) {
-			ctx.drawImage(fishes[i].fishImage, fishes[i].x * BLOCK_SIZE, fishes[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		}
-	}
-
-	for (let i = 0; i < rocks.length; i++) { // Render different types of rock
-		if (rocks[i].scaleX == 1 && rocks[i].scaleY == 1) { // Single rock
-			ctx.drawImage(gameImages.rockImageSingle, rocks[i].x * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		} else if (rocks[i].scaleX > 1 && rocks[i].scaleY == 1) { // Scalable horizontal rock
-			for (let r = rocks[i].x - rocks[i].scaleX + 1; r < rocks[i].x + rocks[i].scaleX; r++)
-				ctx.drawImage(gameImages.rockImageHoriz, r * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
-
-			ctx.drawImage(gameImages.rockImageLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.rockImageRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, rocks[i].y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		} else if (rocks[i].scaleX == 1 && rocks[i].scaleY > 1) { // Scalable vertical rock
-			for (let r = rocks[i].y - rocks[i].scaleY + 1; r < rocks[i].y + rocks[i].scaleY; r++)
-				ctx.drawImage(gameImages.rockImageVert, rocks[i].x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
-
-			ctx.drawImage(gameImages.rockImageUp, rocks[i].x * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.rockImageDown, rocks[i].x * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		} else if (rocks[i].scaleX > 1 && rocks[i].scaleY > 1) { // Scalable block
-			for (let r = rocks[i].x - rocks[i].scaleX + 1; r < rocks[i].x + rocks[i].scaleX; r++)
-				ctx.drawImage(gameImages.rockImageHorizTop, r * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-
-			for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++) {
-				ctx.drawImage(gameImages.rockImageVertLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-			}
-
-			for (let rX = rocks[i].x - rocks[i].scaleX + 1; rX < rocks[i].x + rocks[i].scaleX; rX++) {
-				for (let rY = rocks[i].y - rocks[i].scaleY + 1; rY < rocks[i].y + rocks[i].scaleY; rY++) {
-					ctx.drawImage(gameImages.rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-				}
-			}
-
-			for (let r = rocks[i].y-rocks[i].scaleY + 1; r < rocks[i].y+rocks[i].scaleY; r++) {
-				ctx.drawImage(gameImages.rockImageVertRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
-			}
-
-			for (let r = rocks[i].x-rocks[i].scaleX + 1; r < rocks[i].x+rocks[i].scaleX; r++) {
-				ctx.drawImage(gameImages.rockImageHorizBottom, r * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
-			}
-
-			ctx.drawImage(gameImages.rockImageCornerTopRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-			ctx.drawImage(gameImages.rockImageCornerTopLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y - rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-			ctx.drawImage(gameImages.rockImageCornerBottomLeft, (rocks[i].x - rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-			ctx.drawImage(gameImages.rockImageCornerBottomRight, (rocks[i].x + rocks[i].scaleX) * BLOCK_SIZE, (rocks[i].y + rocks[i].scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-		}
-	}
-	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
 }
 
 function main() {
