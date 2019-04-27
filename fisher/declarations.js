@@ -178,14 +178,14 @@ class Hook {
 		if (this._reelIn) {
 			this.reverseHook();
 		} else {
-			if (40 in keysDown) { // DOWN ARROW - Speed up
+			if (40 in keysDown) { // DOWN ARROW (Speed up)
 				sleepTime = 70;
 				keysDown = [];
 			} else {
 				sleepTime = 700;
 			}
 	
-			if (32 in keysDown) { // SPACEBAR - Reel in
+			if (32 in keysDown) { // SPACEBAR (Reel in)
 				if (!this._casting) {
 					PLAYER_REELS++;
 					this._casting = true;
