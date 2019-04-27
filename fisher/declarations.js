@@ -178,31 +178,3 @@ let fishes = [], rocks = [];
 
 keysDown = {};
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
-
-hookImage = new Image();
-hookImage.src = 'img/hook.png';
-hookImageReady = hookImage.onload = () => hookImage.ready = true;
-
-waterImage = new Image();
-waterImage.src = 'img/water.png';
-waterImageReady = waterImage.onload = () => waterImage.ready = true;
-
-lineImage = new Image();
-lineImage.src = 'img/line.png';
-lineImageReady = lineImage.onload = () => lineImage.ready = true;
-
-lineImageLeftDown = new Image();
-lineImageLeftDown.src = 'img/line_left_down.png';
-lineImageLeftDownReady = lineImageLeftDown.onload = () => lineImageLeftDown = true;
-
-lineImageRightDown = new Image();
-lineImageRightDown.src = 'img/line_right_down.png';
-lineImageRightDownReady = lineImageRightDown.onload = () => lineImageRightDown = true;
-
-lineImageLeftUp = new Image();
-lineImageLeftUp.src = 'img/line_left_up.png';
-lineImageLeftUpReady = lineImageLeftUp.onload = () => lineImageLeftUp = true;
-
-lineImageRightUp = new Image();
-lineImageRightUp.src = 'img/line_right_up.png';
-lineImageRightUpReady = lineImageRightUp.onload = () => lineImageRightUp = true;
