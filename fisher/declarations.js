@@ -171,9 +171,6 @@ let hook = {
 	prev: [],
 	casting: false,
 	reelIn: false
-};
-
-let fishes = [], rocks = [];
-let keysDown = {};
+}, fishes = [], rocks = [], keysDown = {};
 
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
