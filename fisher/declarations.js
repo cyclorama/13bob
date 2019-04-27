@@ -52,7 +52,7 @@ function menu() {
 	window.addEventListener('keydown', start);
 }
 
-let start = () => {
+function start() {
 	window.removeEventListener('keydown', start);
 	main();
 };
@@ -72,16 +72,6 @@ function nextLevel() {
 	LEVEL++;
 	loadLevel(LEVEL);
 }
-
-hook = {
-	x: 12,
-	y: 0,
-	startX: 12,
-	startY: 0,
-	prev: [],
-	casting: false,
-	reelIn: false
-};
 
 function reelIn() {
 	sleepTime /= 10;
@@ -174,7 +164,17 @@ class Rock {
 	get scaleY() { return this._scaleY; }
 }
 
-let fishes = [], rocks = [];
+let hook = {
+	x: 12,
+	y: 0,
+	startX: 12,
+	startY: 0,
+	prev: [],
+	casting: false,
+	reelIn: false
+};
 
-keysDown = {};
+let fishes = [], rocks = [];
+let keysDown = {};
+
 addEventListener('keydown', function(e) { keysDown[e.keyCode] = true; }, false);
