@@ -9,12 +9,6 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	for (let j = 0; j < LEVEL_HEIGHT; j++) {
-		for (let i = 0; i < LEVEL_WIDTH; i++) {
-			ctx.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-		}
-	}
-
 	hook.render();
 	renderLine();
 
@@ -26,6 +20,14 @@ function render() {
 		rocks[i].render();
 	}
 	document.getElementById('boat').src = `img/boat${PLAYER_CAUGHT}.png`;
+}
+
+function renderWater() {
+	for (let j = 0; j < LEVEL_HEIGHT; j++) {
+		for (let i = 0; i < LEVEL_WIDTH; i++) {
+			ctx.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		}
+	}
 }
 
 function renderLine() {
