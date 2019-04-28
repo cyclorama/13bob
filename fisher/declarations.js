@@ -389,16 +389,7 @@ class Rock {
 		this._scaleX = scaleX;
 		this._scaleY = scaleY;
 	}
-
-	get x()      { return this._x;      }
-	set x(x)     { this._x = x;         }
-
-	get y()      { return this._y;      }
-	set y(y)     { this._y = y;         }
-
-	get scaleX() { return this._scaleX; }
-	get scaleY() { return this._scaleY; }
-
+	
 	render() {
 		if (this._scaleX == 1 && this._scaleY == 1) {
 			this.renderSingle();
