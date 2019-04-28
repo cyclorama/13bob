@@ -27,7 +27,7 @@ async function* loadLevel() {
 	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
   
 	if (response.status !== 200) {
-		console.log('Looks like there was a problem. Status Code: ' + response.status);
+		console.log(`Looks like there was a problem. Status Code:${response.status}`);
 		return;
 	}
   
@@ -389,7 +389,7 @@ class Rock {
 		this._scaleX = scaleX;
 		this._scaleY = scaleY;
 	}
-	
+
 	render() {
 		if (this._scaleX == 1 && this._scaleY == 1) {
 			this.renderSingle();
