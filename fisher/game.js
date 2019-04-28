@@ -31,5 +31,5 @@ async function main() {
 }
 
 document.getElementById('score').innerText = PLAYER_SCORE;
-loadLevel(LEVEL);
+loadLevel().next();
 menu();
