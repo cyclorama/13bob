@@ -23,22 +23,59 @@ ctx.font               = 'Bold 42px Arial';
 ctx.textAlign          = 'center';
 ctx.fillStyle          = 'white';
 
-function loadLevel(lvl) {
-    let f = new XMLHttpRequest();
-    f.responseType = 'text';
-    f.open('GET', 'levels.json', true);
-    f.onreadystatechange = () => {
-		if (f.readyState == 4 && (f.status === 200 || f.status == 0)) {
-			let json = JSON.parse(f.responseText);
-			for (let i = 0; i < json.levels[lvl].fish.length; i++) {
-				fishes.push(new Fish(json.levels[lvl].fish[i].waypoints));
-			}
-			for (let i = 0; i < json.levels[lvl].rocks.length; i++) {
-				rocks.push(new Rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
-			}
-		}
+const json = async () => {
+	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
+  
+	if (response.status !== 200) {
+		console.log('Looks like there was a problem. Status Code: ' + response.status);
+		return;
 	}
-    f.send(null);
+	
+	return await response.json();
+}
+
+async function* loadLevel() {
+	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
+  
+	if (response.status !== 200) {
+		console.log('Looks like there was a problem. Status Code: ' + response.status);
+		return;
+	}
+  
+	const json = await response.json();
+	let lvl = 0;
+   
+	while (lvl < 8) {
+		music.currentTime = 0;
+		fishes = [];
+		rocks = [];
+		PLAYER_REELS = 0;
+		PLAYER_CAUGHT = 0;
+	
+		for (let i = 0; i < json.levels[lvl].fish.length; i++) {
+			fishes.push(new Fish(json.levels[lvl].fish[i].waypoints));
+		}
+  
+		for (let i = 0; i < json.levels[lvl].rocks.length; i++) {
+			rocks.push(new Rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
+		}
+  
+		if (lvl == 7) {
+			lvl = 0;
+			PLAYER_SCORE = 0;
+			document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
+		} else {
+			lvl++;
+		}
+		yield;
+	}
+	return;
+}
+
+function nextLevel() {	
+	if (loadLevel().next().done) {
+		console.log('game over!');
+	}
 }
 
 function menu() {
@@ -61,17 +98,6 @@ function start() {
 
 function sleep(time) {
 	return new Promise(resolve => setTimeout(resolve, time));
-}
-
-function nextLevel() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	music.currentTime = 0;
-	fishes = [];
-	rocks = [];
-	PLAYER_REELS = 0;
-	PLAYER_CAUGHT = 0;
-	LEVEL++;
-	loadLevel(LEVEL);
 }
 
 let gameImages = {
