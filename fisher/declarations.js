@@ -23,17 +23,6 @@ ctx.font               = 'Bold 42px Arial';
 ctx.textAlign          = 'center';
 ctx.fillStyle          = 'white';
 
-const json = async () => {
-	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
-  
-	if (response.status !== 200) {
-		console.log('Looks like there was a problem. Status Code: ' + response.status);
-		return;
-	}
-	
-	return await response.json();
-}
-
 async function* loadLevel() {
 	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
   
