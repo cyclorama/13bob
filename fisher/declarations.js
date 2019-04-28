@@ -228,10 +228,12 @@ class Hook {
 	moveHook() {
 		if (this._casting && this._y < LEVEL_HEIGHT - 1) {
 			if (37 in keysDown) { // LEFT_ARROW
-				this._x -= 1; keysDown = [];
+				this._x -= 1;
+				keysDown = [];
 			}
 			if (39 in keysDown) { // RIGHT_ARROW
-				this._x += 1; keysDown = [];
+				this._x += 1;
+				keysDown = [];
 			}
 
 			this._prev.push(this._x);
