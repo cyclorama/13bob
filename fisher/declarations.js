@@ -181,9 +181,6 @@ class Hook {
 	get startY()       { return this._startY;   }
 	set startY(startY) { this._startY = startY; }
 
-	get casting()      { return this._casting;  }
-	set casting(cast)  { this._casting = cast;  }
-
 	get prev()         { return this._prev;     }
 
 	get reelIn()       { return this._reelIn;   }
@@ -313,12 +310,6 @@ class Fish {
 
 	get fishImageSrc()    { return this._fishImage.src; }
 	set fishImageSrc(src) { this._fishImage.src = src;  }
-
-	get x()               { return this._x;             }
-	set x(x)              { this._x = x;                }
-
-	get y()               { return this._y;             }
-	set y(y)              { this._y = y;                }
 
 	get waypoints()       { return this._waypoints;     }
 
