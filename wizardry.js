@@ -3,21 +3,21 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'),    new Audio('vibra
                  [ new Audio('vibrations/space.ogg')                                                        ],
                  [ new Audio('vibrations/projector.ogg')                                                    ],
                  [ new Audio('vibrations/chatter.ogg')                                                      ],
-                 [ new Audio('vibrations/inflate.ogg'),         new Audio('vibrations/deflate.ogg')        ]];
-const tracks =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
+                 [ new Audio('vibrations/inflate.ogg'),         new Audio('vibrations/deflate.ogg')        ]],
+tracks       =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
                    '02 Pebbles - Why Do I Believe.mp3',
                    '03 Dee Dee Wilde - Lap of Luxury.mp3',
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
-                   '05 The Jets - The Only Dance.mp3' ];
-const items  =   [ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steam.13bob.net/'], ['-'] ];
-const frame  =   'photos/framed_';
-const nav    =   document.getElementsByClassName('nav');
-let title    =   'E R R S T H E T I C  /  V O L U M E  O N E\n';
-let dir      =   'mixtapes/E R R S T H E T I C/';
-let track    =   new Audio(`${dir}${tracks[[] - []]}`);
-let menu     =   false;
-let tapeP    =   false;
-let trackN   =   [] - [];
+                   '05 The Jets - The Only Dance.mp3' ],
+items        = [ ['+'], [[] + []], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steam.13bob.net/'], ['-'] ],
+frame        = 'photos/framed_',
+nav          = document.getElementsByClassName('nav'),
+dir          = 'mixtapes/E R R S T H E T I C/';
+let title    = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
+track        = new Audio(`${dir}${tracks[[] - []]}`),
+menu         = false,
+tapeP        = false,
+trackN       = [] - [];
 
 const pTape = () => {
 	if (tapeP = !tapeP) {
