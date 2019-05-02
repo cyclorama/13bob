@@ -35,20 +35,20 @@ const pTape = () => {
 	}
 },
 
-const mkHighlight = trackNum => {
+mkHighlight = trackN => {
 	trackT = title.split('\n');
 	title = [] + [];
-	if (trackNum == 1 && trackT[5].includes('>')) { rmHighlight(5); }
-	if (trackNum > 1) { rmHighlight(trackNum - 1); }
-	trackT[trackNum] = `> ${trackT[trackNum]} <`;
+	if (trackN == 1 && trackT[5].includes('>')) { rmHighlight(5); }
+	if (trackN > 1) { rmHighlight(trackN - 1); }
+	trackT[trackN] = `> ${trackT[trackN]} <`;
 	trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []);
 	document.tape.title = title;
 },
 
-rmHighlight = trackNum => trackT[trackNum] = trackT[trackNum].substring(2, trackT[trackNum].length - 2),
+rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
 
-pSound = trackNum => {
-	switch (trackNum) {
+pSound = trackN => {
+	switch (trackN) {
 		case 0  : sounds[0][1].pause(); sounds[0][1].currentTime=0; sounds[0][0].play();  break;
 		case 1  : sounds[0][0].pause(); sounds[0][0].currentTime=0; sounds[0][1].play();  break;
 		case 2  : sounds[1][1].pause(); sounds[1][1].currentTime=0; sounds[1][0].play();  break;
