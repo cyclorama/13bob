@@ -19,15 +19,7 @@ let menu     =   false;
 let tapeP    =   false;
 let trackN   =   [] - [];
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
-tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
-
-[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
-	let i = new Image();
-	i.src = s;
-}));
-
-function pTape() {
+const pTape = () => {
 	if (tapeP = !tapeP) {
 		document.tape.src = `${frame}tape_forward.gif`;
 		track.volume = 0.1;
@@ -41,9 +33,9 @@ function pTape() {
 		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
 		track = new Audio(`${dir}${tracks[trackN]}`);
 	}
-}
+},
 
-function mkHighlight(trackN) {
+const mkHighlight = trackN => {
 	trackT = title.split('\n');
 	title = [] + [];
 	if (trackN == 1 && trackT[5].includes('>')) { rmHighlight(5); }
@@ -51,9 +43,11 @@ function mkHighlight(trackN) {
 	trackT[trackN] = `> ${trackT[trackN]} <`;
 	trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []);
 	document.tape.title = title;
-} function rmHighlight(trackN) { trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2); }
+},
 
-function pSound(trackN) {
+rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
+
+pSound = trackN => {
 	switch (trackN) {
 		case 0  : sounds[0][1].pause(); sounds[0][1].currentTime=0; sounds[0][0].play();  break;
 		case 1  : sounds[0][0].pause(); sounds[0][0].currentTime=0; sounds[0][1].play();  break;
@@ -70,8 +64,16 @@ function pSound(trackN) {
 	}
 }
 
-function pFrame(x, y, z)    { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); }
-function sMenu(o, m)        { document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]-[];for(let i=[]-[];i<items[o].length;i++){fTop+=(i!=[]-[]&&i%3==[]-[]);document.getElementById('menu').innerHTML+=menu?(m==[]-[]?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]-[]&&i%2==[]-[]?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape(); }
-function fib(nt)            { let n1=[]-[],n2=1,nth,c=[]-[];while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;} }
+pFrame = (x, y, z) => { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); },
+sMenu = (o, m) =>     { document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]-[];for(let i=[]-[];i<items[o].length;i++){fTop+=(i!=[]-[]&&i%3==[]-[]);document.getElementById('menu').innerHTML+=menu?(m==[]-[]?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]-[]&&i%2==[]-[]?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape(); },
+fib = nt =>           { let n1=[]-[],n2=1,nth,c=[]-[];while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;} };
+
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
+tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
+
+[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
+	let i = new Image();
+	i.src = s;
+}));
 
 pTape();
