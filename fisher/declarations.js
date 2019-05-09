@@ -63,7 +63,7 @@ async function* loadLevel() {
 
 function nextLevel() {	
 	if (loadLevel().next().done) {
-		console.log('game over!');
+		console.log('Game over!');
 	}
 }
 
