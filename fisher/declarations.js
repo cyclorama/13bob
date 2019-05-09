@@ -222,16 +222,16 @@ class Hook {
 
 	checkCollision() {
 		for (let i = 0; i < rocks.length; i++) {
-			if (this.scaleX == 1) {
-				if (this._x == this._x &&
-					this._y > this._y - this._scaleY - 1 &&
-					this._y < this._y + this._scaleY + 1) {
+			if (rocks[i].scaleX == 1) {
+				if (this._x == rocks[i].x &&
+					this._y > rocks[i].y - rocks[i].scaleY - 1 &&
+					this._y < rocks[i].y + rocks[i].scaleY + 1) {
 					this.reelHook();
 				}
-			} else if (	this._x > this._x - (this._scaleX + 1) &&
-						this._x < this._x + (this._scaleX + 1) &&
-						this._y > this._y - (this._scaleY + 1) &&
-						this._y < this._y + (this._scaleY + 1)) {
+			} else if (this._x > rocks[i].x - (rocks[i].scaleX + 1) &&
+						this._x < rocks[i].x + (rocks[i].scaleX + 1) &&
+						this._y > rocks[i].y - (rocks[i].scaleY + 1) &&
+						this._y < rocks[i].y + (rocks[i].scaleY + 1)) {
 				this.reelHook();
 			}
 		}
@@ -389,6 +389,11 @@ class Rock {
 		this._scaleX = scaleX;
 		this._scaleY = scaleY;
 	}
+
+	get x()      { return this._x;      }
+	get y()      { return this._y;      }
+	get scaleX() { return this._scaleX; }
+	get scaleY() { return this._scaleY; }
 
 	render() {
 		if (this._scaleX == 1 && this._scaleY == 1) {
