@@ -32,29 +32,28 @@ async function* loadLevel() {
 	}
   
 	const json = await response.json();
-	let lvl = 0;
    
-	while (lvl < 8) {
+	while (LEVEL < 8) {
 		music.currentTime = 0;
 		fishes = [];
 		rocks = [];
 		PLAYER_REELS = 0;
 		PLAYER_CAUGHT = 0;
 	
-		for (let i = 0; i < json.levels[lvl].fish.length; i++) {
-			fishes.push(new Fish(json.levels[lvl].fish[i].waypoints));
+		for (let i = 0; i < json.levels[LEVEL].fish.length; i++) {
+			fishes.push(new Fish(json.levels[LEVEL].fish[i].waypoints));
 		}
   
-		for (let i = 0; i < json.levels[lvl].rocks.length; i++) {
-			rocks.push(new Rock(json.levels[lvl].rocks[i].position.x, json.levels[lvl].rocks[i].position.y, json.levels[lvl].rocks[i].scale.x, json.levels[lvl].rocks[i].scale.y));
+		for (let i = 0; i < json.levels[LEVEL].rocks.length; i++) {
+			rocks.push(new Rock(json.levels[LEVEL].rocks[i].position.x, json.levels[LEVEL].rocks[i].position.y, json.levels[LEVEL].rocks[i].scale.x, json.levels[LEVEL].rocks[i].scale.y));
 		}
   
-		if (lvl == 7) {
-			lvl = 0;
+		if (LEVEL == 7) {
+			LEVEL = 0;
 			PLAYER_SCORE = 0;
 			document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
 		} else {
-			lvl++;
+			LEVEL++;
 		}
 		yield;
 	}
