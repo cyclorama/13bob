@@ -9,7 +9,7 @@ tracks       =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
                    '03 Dee Dee Wilde - Lap of Luxury.mp3',
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
                    '05 The Jets - The Only Dance.mp3' ],
-items        = [ ['+'], ['//13bob.net/art'], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steam.13bob.net/'], ['-'] ],
+items        = [ ['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://steam.13bob.net/'], ['-'] ],
 frame        = 'photos/framed_',
 nav          = document.getElementsByClassName('nav'),
 dir          = 'mixtapes/E R R S T H E T I C/';
