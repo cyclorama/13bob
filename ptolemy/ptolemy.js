@@ -19,7 +19,7 @@ window.onload = function() {
 	}, false);
 
 	function init() {
-		mouseDist = (width / 6) + 1;
+		mouseDist = scaleLock + 1;
 	}
 
 	function update() {
