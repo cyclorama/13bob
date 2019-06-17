@@ -3,7 +3,7 @@
 An interactive version of the equilateral triangle corollary derived from Ptolemy's theorem.
 
 ## Screenshot
-![](ss_01.jpg)
+![](ss_0.jpg)
 
 ## Usage
 
