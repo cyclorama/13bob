@@ -13,8 +13,8 @@ window.onload = function() {
 	let movePointX = 0, movePointY = 0;
 	let scaleLock = width / 6;
 
-	canvas.addEventListener('mousemove', function(evt) {
-		let mousePos = getMousePos(canvas, evt);
+	canvas.addEventListener('mousemove', event => {
+		let mousePos = getMousePos(canvas, event);
 		mouseX = mousePos.x; mouseY = mousePos.y;
 	}, false);
 
