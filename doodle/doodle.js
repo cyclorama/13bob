@@ -43,14 +43,14 @@ window.onload = () => {
 	}, false);
 
 	function init() {
-		context.font = `${centerY / 10}px arial`;
+		context.font = `${centerY / 8}px arial`;
 		context.textAlign = 'center';
 		context.fillStyle = 'white';
 
 		['PRESS SPACE', 'APPUYER SUR ESPACE', 'LEERTASTE DRÜCKEN', 'PAINA TILAA', 'TRYK PÅ PLADS',
 		'TRYCK PÅ MELLANSLAG', 'ПРЕСС ПРОСТРАНСТВО', 'اضغط على زر المسافة', '按空格', 'プレススペース',
 		'보도 자료', 'ΠΑΤΉΣΤΕ ΚΕΝΌ', 'לחץ רווח', 'स्पेस बार दबाये'].forEach((text, i) => {
-			context.fillText(text, centerX, 70 + ((centerY / 10) * i));
+			context.fillText(text, centerX, 70 + ((centerY / 8) * i));
 		});
 	}
 
