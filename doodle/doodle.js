@@ -17,9 +17,9 @@ window.onload = () => {
 				scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
 				fill      = Math.floor(Math.random() * 2),
 				colour    = colours[Math.floor(Math.random() * Math.floor(colours.length - 1))],
-				bezStartX = Math.floor(Math.random() * 2) == 0 ? winWidth : 0,
+				bezStartX = Math.floor(Math.random() * 2) == 0 ? winWidth  : 0,
 				bezStartY = Math.floor(Math.random() * 2) == 0 ? winHeight : 0,
-				bezEndX   = bezStartX == winWidth ? 0 : winWidth,
+				bezEndX   = bezStartX == winWidth  ? 0 : winWidth,
 				bezEndY   = bezStartY == winHeight ? 0 : winHeight;
 				conX      = (bezEndX - bezStartX) / 2;
 				conY      = (bezEndY - bezStartY) / 2;
@@ -50,7 +50,7 @@ window.onload = () => {
 		['PRESS SPACE', 'APPUYER SUR ESPACE', 'LEERTASTE DRÜCKEN', 'PAINA TILAA', 'TRYK PÅ PLADS',
 		'TRYCK PÅ MELLANSLAG', 'ПРЕСС ПРОСТРАНСТВО', 'اضغط على زر المسافة', '按空格', 'プレススペース',
 		'보도 자료', 'ΠΑΤΉΣΤΕ ΚΕΝΌ', 'לחץ רווח', 'स्पेस बार दबाये'].forEach((text, i) => {
-			context.fillText(text, centerX, 70 + (40 * i));
+			context.fillText(text, centerX, 70 + ((centerY / 10) * i));
 		});
 	}
 
