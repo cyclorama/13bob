@@ -43,7 +43,7 @@ window.onload = function() {
 	}, false);
 
 	function init() {
-		context.font = '40px arial';
+		context.font = `${centerY / 10}px arial`;
 		context.textAlign = 'center';
 		context.fillStyle = 'white';
 
