@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = () => {
 	const canvas = document.getElementById('canvas'),
 	context = canvas.getContext('2d'),
 	winWidth = canvas.width = window.innerWidth,
