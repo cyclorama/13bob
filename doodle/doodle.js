@@ -5,10 +5,11 @@ window.onload = () => {
 	winHeight = canvas.height = window.innerHeight,
 	centerX = winWidth / 2, centerY = winHeight / 2,
 	colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'];
-	let numOfShapes = 13; 
+	let numOfShapes;
 
 	window.addEventListener('keyup', event => {
 		if (event.keyCode == 32) {
+			numOfShapes = Math.floor(Math.random() * 100);
 			clearScreen();
 			context.fillStyle = colours[Math.floor(Math.random() * Math.floor(colours.length ))];
 			context.fillRect(0, 0, canvas.width, canvas.height);
