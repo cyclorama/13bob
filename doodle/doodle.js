@@ -22,8 +22,8 @@ window.onload = () => {
 				bezStartX = Math.floor(Math.random() * Math.floor(winWidth)),
 				bezStartY = Math.floor(Math.random() * Math.floor(winHeight)),
 				bezEndX   = Math.floor(Math.random() * Math.floor(winWidth)),
-				bezEndY   = Math.floor(Math.random() * Math.floor(winHeight));
-				conX      = Math.floor(Math.random() * Math.floor(winWidth));
+				bezEndY   = Math.floor(Math.random() * Math.floor(winHeight)),
+				conX      = Math.floor(Math.random() * Math.floor(winWidth)),
 				conY      = Math.floor(Math.random() * Math.floor(winHeight));
 
 				switch (Math.floor(Math.random() * Math.floor(4))) {
