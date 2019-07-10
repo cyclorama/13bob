@@ -18,7 +18,7 @@ window.onload = () => {
 			for (let i = 0; i < numOfShapes; i++) {
 				let width     = Math.floor(Math.random() * winWidth),
 				    height    = Math.floor(Math.random() * winHeight),
-				    scale     = Math.floor(Math.random() * (winHeight * 0.3)),
+				    scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
 				    fill      = Math.floor(Math.random() * 2),
 				    colour    = colours[Math.floor(Math.random() * colours.length)],
 				    bezStartX = Math.floor(Math.random() * winWidth),
@@ -121,6 +121,6 @@ window.onload = () => {
 		context.closePath();
 		context.stroke();
 	}
-	
+
 	init();
 }
