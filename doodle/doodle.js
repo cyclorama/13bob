@@ -4,25 +4,27 @@ window.onload = () => {
 	winWidth = canvas.width = window.innerWidth,
 	winHeight = canvas.height = window.innerHeight,
 	centerX = winWidth / 2, centerY = winHeight / 2,
-	colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+	colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'];
 	let numOfShapes = 200; 
 
 	window.addEventListener('keyup', event => {
 		if (event.keyCode == 32) {
 			clearScreen();
+			context.fillStyle = colours[Math.floor(Math.random() * Math.floor(colours.length ))];
+			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			for (let i = 0; i < numOfShapes; i++) {
 				let width = Math.floor(Math.random() * Math.floor(winWidth)),
 				height    = Math.floor(Math.random() * Math.floor(winHeight)),
 				scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
 				fill      = Math.floor(Math.random() * 2),
-				colour    = colours[Math.floor(Math.random() * Math.floor(colours.length - 1))],
-				bezStartX = Math.floor(Math.random() * 2) == 0 ? winWidth  : 0,
-				bezStartY = Math.floor(Math.random() * 2) == 0 ? winHeight : 0,
-				bezEndX   = bezStartX == winWidth  ? 0 : winWidth,
-				bezEndY   = bezStartY == winHeight ? 0 : winHeight;
-				conX      = (bezEndX - bezStartX) / 2;
-				conY      = (bezEndY - bezStartY) / 2;
+				colour    = colours[Math.floor(Math.random() * Math.floor(colours.length))],
+				bezStartX = Math.floor(Math.random() * Math.floor(winWidth)),
+				bezStartY = Math.floor(Math.random() * Math.floor(winHeight)),
+				bezEndX   = Math.floor(Math.random() * Math.floor(winWidth)),
+				bezEndY   = Math.floor(Math.random() * Math.floor(winHeight));
+				conX      = Math.floor(Math.random() * Math.floor(winWidth));
+				conY      = Math.floor(Math.random() * Math.floor(winHeight));
 
 				switch (Math.floor(Math.random() * Math.floor(4))) {
 					case 0:
