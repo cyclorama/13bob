@@ -12,23 +12,23 @@ window.onload = () => {
 			let numOfShapes = Math.floor(Math.random() * 100);
 
 			clearScreen();
-			context.fillStyle = colours[Math.floor(Math.random() * Math.floor(colours.length ))];
+			context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
 			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			for (let i = 0; i < numOfShapes; i++) {
-				let width     = Math.floor(Math.random() * Math.floor(winWidth)),
-				    height    = Math.floor(Math.random() * Math.floor(winHeight)),
-				    scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
+				let width     = Math.floor(Math.random() * winWidth),
+				    height    = Math.floor(Math.random() * winHeight),
+				    scale     = Math.floor(Math.random() * (winHeight * 0.3)),
 				    fill      = Math.floor(Math.random() * 2),
-				    colour    = colours[Math.floor(Math.random() * Math.floor(colours.length))],
-				    bezStartX = Math.floor(Math.random() * Math.floor(winWidth)),
-				    bezStartY = Math.floor(Math.random() * Math.floor(winHeight)),
-				    bezEndX   = Math.floor(Math.random() * Math.floor(winWidth)),
-				    bezEndY   = Math.floor(Math.random() * Math.floor(winHeight)),
-				    conX      = Math.floor(Math.random() * Math.floor(winWidth)),
-				    conY      = Math.floor(Math.random() * Math.floor(winHeight));
+				    colour    = colours[Math.floor(Math.random() * colours.length)],
+				    bezStartX = Math.floor(Math.random() * winWidth),
+				    bezStartY = Math.floor(Math.random() * winHeight),
+				    bezEndX   = Math.floor(Math.random() * winWidth),
+				    bezEndY   = Math.floor(Math.random() * winHeight),
+				    conX      = Math.floor(Math.random() * winWidth),
+				    conY      = Math.floor(Math.random() * winHeight);
 
-				switch (Math.floor(Math.random() * Math.floor(4))) {
+				switch (Math.floor(Math.random() * 4)) {
 					case 0:
 						drawCircle(width, height, scale, colour, fill);
 						break;
