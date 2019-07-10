@@ -16,17 +16,17 @@ window.onload = () => {
 			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			for (let i = 0; i < numOfShapes; i++) {
-				let width = Math.floor(Math.random() * Math.floor(winWidth)),
-				height    = Math.floor(Math.random() * Math.floor(winHeight)),
-				scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
-				fill      = Math.floor(Math.random() * 2),
-				colour    = colours[Math.floor(Math.random() * Math.floor(colours.length))],
-				bezStartX = Math.floor(Math.random() * Math.floor(winWidth)),
-				bezStartY = Math.floor(Math.random() * Math.floor(winHeight)),
-				bezEndX   = Math.floor(Math.random() * Math.floor(winWidth)),
-				bezEndY   = Math.floor(Math.random() * Math.floor(winHeight)),
-				conX      = Math.floor(Math.random() * Math.floor(winWidth)),
-				conY      = Math.floor(Math.random() * Math.floor(winHeight));
+				let width     = Math.floor(Math.random() * Math.floor(winWidth)),
+				    height    = Math.floor(Math.random() * Math.floor(winHeight)),
+				    scale     = Math.floor(Math.random() * Math.floor(winHeight * 0.3)),
+				    fill      = Math.floor(Math.random() * 2),
+				    colour    = colours[Math.floor(Math.random() * Math.floor(colours.length))],
+				    bezStartX = Math.floor(Math.random() * Math.floor(winWidth)),
+				    bezStartY = Math.floor(Math.random() * Math.floor(winHeight)),
+				    bezEndX   = Math.floor(Math.random() * Math.floor(winWidth)),
+				    bezEndY   = Math.floor(Math.random() * Math.floor(winHeight)),
+				    conX      = Math.floor(Math.random() * Math.floor(winWidth)),
+				    conY      = Math.floor(Math.random() * Math.floor(winHeight));
 
 				switch (Math.floor(Math.random() * Math.floor(4))) {
 					case 0:
