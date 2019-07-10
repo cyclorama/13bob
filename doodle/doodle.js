@@ -1,15 +1,16 @@
 window.onload = () => {
-	const canvas = document.getElementById('canvas'),
-	context = canvas.getContext('2d'),
-	winWidth = canvas.width = window.innerWidth,
-	winHeight = canvas.height = window.innerHeight,
-	centerX = winWidth / 2, centerY = winHeight / 2,
-	colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'];
-	let numOfShapes;
+	const canvas    = document.getElementById('canvas'),
+	      context   = canvas.getContext('2d'),
+	      winWidth  = canvas.width = window.innerWidth,
+	      winHeight = canvas.height = window.innerHeight,
+	      centerX   = winWidth / 2, centerY = winHeight / 2,
+	      colours   = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'],
+	      fontSize  = centerY / 8;
 
 	window.addEventListener('keyup', event => {
 		if (event.keyCode == 32) {
-			numOfShapes = Math.floor(Math.random() * 100);
+			let numOfShapes = Math.floor(Math.random() * 100);
+
 			clearScreen();
 			context.fillStyle = colours[Math.floor(Math.random() * Math.floor(colours.length ))];
 			context.fillRect(0, 0, canvas.width, canvas.height);
@@ -46,14 +47,14 @@ window.onload = () => {
 	}, false);
 
 	function init() {
-		context.font = `${centerY / 8}px arial`;
+		context.font = `${fontSize}px arial`;
 		context.textAlign = 'center';
 		context.fillStyle = 'white';
 
 		['PRESS SPACE', 'APPUYER SUR ESPACE', 'LEERTASTE DRÜCKEN', 'PAINA TILAA', 'TRYK PÅ PLADS',
 		'TRYCK PÅ MELLANSLAG', 'ПРЕСС ПРОСТРАНСТВО', 'اضغط على زر المسافة', '按空格', 'プレススペース',
 		'보도 자료', 'ΠΑΤΉΣΤΕ ΚΕΝΌ', 'לחץ רווח', 'स्पेस बार दबाये'].forEach((text, i) => {
-			context.fillText(text, centerX, 70 + ((centerY / 8) * i));
+			context.fillText(text, centerX, 70 + (fontSize * i));
 		});
 	}
 
