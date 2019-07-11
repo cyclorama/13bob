@@ -43,7 +43,6 @@ window.onload = () => {
 						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
 						break;
 				}
-
 				if (fill) context.fill();
 			}
 	}, false);
