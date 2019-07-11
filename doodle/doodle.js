@@ -7,7 +7,7 @@ window.onload = () => {
 	      colours   = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'],
 	      fontSize  = centerY / 8;
 
-	['click', 'keydown', 'mousemove', 'scroll'].forEach(event => document.addEventListener(event, genCanvas));
+	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
 
 	function init() {
 		context.font = `${fontSize}px arial`;
