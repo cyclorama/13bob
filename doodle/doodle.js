@@ -25,7 +25,7 @@ window.onload = () => {
 				    conX      = Math.floor(Math.random() * winWidth),
 				    conY      = Math.floor(Math.random() * winHeight);
 
-				context.lineWidth = Math.floor(Math.random() * 50);
+				context.lineWidth = Math.floor(Math.random() * 25);
 				context.strokeStyle = colours[Math.floor(Math.random() * colours.length)];
 				context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
 
