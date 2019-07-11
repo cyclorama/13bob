@@ -8,36 +8,36 @@ window.onload = () => {
 	      fontSize  = centerY / 8;
 
 	window.addEventListener('keyup', event => {
-		let numOfShapes = Math.floor(Math.random() * 100);
+		let numOfShapes = getRand(100);
 
 			clearScreen();
-			context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
+			context.fillStyle = colours[getRand(colours.length)];
 			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			for (let i = 0; i < numOfShapes; i++) {
-				let width     = Math.floor(Math.random() * winWidth),
-				    height    = Math.floor(Math.random() * winHeight),
-				    bezStartX = Math.floor(Math.random() * winWidth),
-				    bezStartY = Math.floor(Math.random() * winHeight),
-				    bezEndX   = Math.floor(Math.random() * winWidth),
-				    bezEndY   = Math.floor(Math.random() * winHeight),
-				    conX      = Math.floor(Math.random() * winWidth),
-				    conY      = Math.floor(Math.random() * winHeight),
-				    fill      = Math.floor(Math.random() * 2);
+				let width     = getRand(winWidth),
+				    height    = getRand(winHeight),
+				    bezStartX = getRand(winWidth),
+				    bezStartY = getRand(winHeight),
+				    bezEndX   = getRand(winWidth),
+				    bezEndY   = getRand(winHeight),
+				    conX      = getRand(winWidth),
+				    conY      = getRand(winHeight),
+				    fill      = getRand(2);
 
-				context.lineWidth = Math.floor(Math.random() * 25);
-				context.strokeStyle = colours[Math.floor(Math.random() * colours.length)];
-				context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
+				context.lineWidth = getRand(25);
+				context.strokeStyle = colours[getRand(colours.length)];
+				context.fillStyle = colours[getRand(colours.length)];
 
-				switch (Math.floor(Math.random() * 4)) {
+				switch (getRand(4)) {
 					case 0:
-						drawCircle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), fill);
+						drawCircle(width, height, getRand(winHeight * 0.3), fill);
 						break;
 					case 1:
-						drawRectangle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), Math.floor(Math.random() * (winHeight * 0.3)), fill);
+						drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
 						break;
 					case 2:
-						drawTriangle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), Math.floor(Math.random() * (winHeight * 0.3)), fill);
+						drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
 						break;
 					case 3:
 						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
@@ -56,6 +56,10 @@ window.onload = () => {
 		'TRYCK', 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
 			context.fillText(text, centerX, 70 + (fontSize * i));
 		});
+	}
+
+	function getRand(range) {
+		return Math.floor(Math.random() * range);
 	}
 
 	function clearScreen() {
