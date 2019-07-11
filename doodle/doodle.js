@@ -102,6 +102,5 @@ window.onload = () => {
 		context.closePath();
 		context.stroke();
 	}
-
 	init();
 }
