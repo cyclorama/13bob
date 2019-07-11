@@ -11,7 +11,7 @@ window.onload = () => {
 		let numOfShapes = getRand(100);
 
 			clearScreen();
-			context.fillStyle = colours[getRand(colours.length)];
+			context.fillStyle = document.body.style.backgroundColor = colours[getRand(colours.length)];
 			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			for (let i = 0; i < numOfShapes; i++) {
@@ -51,6 +51,8 @@ window.onload = () => {
 		context.font = `${fontSize}px arial`;
 		context.textAlign = 'center';
 		context.fillStyle = 'white';
+
+		document.body.style.backgroundColor = 'black';
 
 		['PRESS', 'PRESSE', 'DRÜCKEN SIE', 'LEHDISTÖ', 'TRYKKE',
 		'TRYCK', 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
