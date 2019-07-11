@@ -7,56 +7,7 @@ window.onload = () => {
 	      colours   = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'],
 	      fontSize  = centerY / 8;
 
-	window.addEventListener('keyup', event => {
-		let numOfShapes = getRand(100);
-
-			clearScreen();
-			context.fillStyle = document.body.style.backgroundColor = colours[getRand(colours.length)];
-			context.fillRect(0, 0, canvas.width, canvas.height);
-
-			for (let i = 0; i < numOfShapes; i++) {
-				let width     = getRand(winWidth),
-				    height    = getRand(winHeight),
-				    bezStartX = getRand(winWidth),
-				    bezStartY = getRand(winHeight),
-				    bezEndX   = getRand(winWidth),
-				    bezEndY   = getRand(winHeight),
-				    conX      = getRand(winWidth),
-				    conY      = getRand(winHeight),
-				    fill      = getRand(2);
-
-				context.lineWidth = getRand(25);
-				context.strokeStyle = colours[getRand(colours.length)];
-				context.fillStyle = colours[getRand(colours.length)];
-
-				switch (getRand(4)) {
-					case 0:
-						drawCircle(width, height, getRand(winHeight * 0.3), fill);
-						break;
-					case 1:
-						drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
-						break;
-					case 2:
-						drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
-						break;
-					case 3:
-						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
-						break;
-				}
-				if (fill) context.fill();
-			}
-
-			let w = getRand(winWidth), h = getRand(winHeight),
-				imageData = context.createImageData(w, h);
-
-				for (let i = 0; i < imageData.data.length; i += 4) {
-					imageData.data[i + 0] = getRand(255);
-					imageData.data[i + 1] = getRand(255);
-					imageData.data[i + 2] = getRand(255);
-					imageData.data[i + 3] = 255;
-				}
-				context.putImageData(imageData, w, h);
-	}, false);
+	['click', 'keydown', 'mousemove'].forEach((event) => document.addEventListener(event, genCanvas));
 
 	function init() {
 		context.font = `${fontSize}px arial`;
@@ -69,6 +20,57 @@ window.onload = () => {
 		'TRYCK', 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
 			context.fillText(text, centerX, 70 + (fontSize * i));
 		});
+	}
+
+	function genCanvas() {
+		let numOfShapes = getRand(100);
+
+		clearScreen();
+		context.fillStyle = document.body.style.backgroundColor = colours[getRand(colours.length)];
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		for (let i = 0; i < numOfShapes; i++) {
+			let width     = getRand(winWidth),
+			    height    = getRand(winHeight),
+			    bezStartX = getRand(winWidth),
+			    bezStartY = getRand(winHeight),
+			    bezEndX   = getRand(winWidth),
+			    bezEndY   = getRand(winHeight),
+			    conX      = getRand(winWidth),
+			    conY      = getRand(winHeight),
+			    fill      = getRand(2);
+
+			context.lineWidth = getRand(25);
+			context.strokeStyle = colours[getRand(colours.length)];
+			context.fillStyle = colours[getRand(colours.length)];
+
+			switch (getRand(4)) {
+				case 0:
+					drawCircle(width, height, getRand(winHeight * 0.3), fill);
+					break;
+				case 1:
+					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
+					break;
+				case 2:
+					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
+					break;
+				case 3:
+					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
+					break;
+			}
+			if (fill) context.fill();
+		}
+
+		let w = getRand(winWidth), h = getRand(winHeight),
+			imageData = context.createImageData(w, h);
+
+		for (let i = 0; i < imageData.data.length; i += 4) {
+			imageData.data[i + 0] = getRand(255);
+			imageData.data[i + 1] = getRand(255);
+			imageData.data[i + 2] = getRand(255);
+			imageData.data[i + 3] = 255;
+		}
+		context.putImageData(imageData, w, h);
 	}
 
 	function getRand(range) {
