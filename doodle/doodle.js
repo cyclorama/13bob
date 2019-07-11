@@ -8,8 +8,7 @@ window.onload = () => {
 	      fontSize  = centerY / 8;
 
 	window.addEventListener('keyup', event => {
-		if (event.keyCode == 32) {
-			let numOfShapes = Math.floor(Math.random() * 100);
+		let numOfShapes = Math.floor(Math.random() * 100);
 
 			clearScreen();
 			context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
@@ -18,9 +17,7 @@ window.onload = () => {
 			for (let i = 0; i < numOfShapes; i++) {
 				let width     = Math.floor(Math.random() * winWidth),
 				    height    = Math.floor(Math.random() * winHeight),
-				    scale     = Math.floor(Math.random() * (winHeight * 0.3)),
 				    fill      = Math.floor(Math.random() * 2),
-				    colour    = colours[Math.floor(Math.random() * colours.length)],
 				    bezStartX = Math.floor(Math.random() * winWidth),
 				    bezStartY = Math.floor(Math.random() * winHeight),
 				    bezEndX   = Math.floor(Math.random() * winWidth),
@@ -28,22 +25,25 @@ window.onload = () => {
 				    conX      = Math.floor(Math.random() * winWidth),
 				    conY      = Math.floor(Math.random() * winHeight);
 
+				context.lineWidth = Math.floor(Math.random() * 50);
+				context.strokeStyle = colours[Math.floor(Math.random() * colours.length)];
+				context.fillStyle = colours[Math.floor(Math.random() * colours.length)];
+
 				switch (Math.floor(Math.random() * 4)) {
 					case 0:
-						drawCircle(width, height, scale, colour, fill);
+						drawCircle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), fill);
 						break;
 					case 1:
-						drawRectangle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), Math.floor(Math.random() * (winHeight * 0.3)), colour, fill);
+						drawRectangle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), Math.floor(Math.random() * (winHeight * 0.3)), fill);
 						break;
 					case 2:
-						drawTriangle(width, height, scale, colour, fill);
+						drawTriangle(width, height, Math.floor(Math.random() * (winHeight * 0.3)), Math.floor(Math.random() * (winHeight * 0.3)), fill);
 						break;
 					case 3:
 						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
 						break;
 				}
 			}
-		}
 	}, false);
 
 	function init() {
@@ -51,9 +51,8 @@ window.onload = () => {
 		context.textAlign = 'center';
 		context.fillStyle = 'white';
 
-		['PRESS SPACE', 'APPUYER SUR ESPACE', 'LEERTASTE DRÜCKEN', 'PAINA TILAA', 'TRYK PÅ PLADS',
-		'TRYCK PÅ MELLANSLAG', 'ПРЕСС ПРОСТРАНСТВО', 'اضغط على زر المسافة', '按空格', 'プレススペース',
-		'보도 자료', 'ΠΑΤΉΣΤΕ ΚΕΝΌ', 'לחץ רווח', 'स्पेस बार दबाये'].forEach((text, i) => {
+		['PRESS', 'PRESSE', 'DRÜCKEN SIE', 'LEHDISTÖ', 'TRYKKE',
+		'TRYCK', 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
 			context.fillText(text, centerX, 70 + (fontSize * i));
 		});
 	}
@@ -63,9 +62,7 @@ window.onload = () => {
 		context.fillRect(0, 0, canvas.width, canvas.height);
 	}
 
-	function drawLine(x1, y1, x2, y2, colour) {
-		context.strokeStyle = colour;
-		context.lineWidth = 5;
+	function drawLine(x1, y1, x2, y2) {
 		context.beginPath();
 		context.moveTo(x1, y1);
 		context.lineTo(x2, y2);
@@ -74,53 +71,44 @@ window.onload = () => {
 	}
 
 	function drawCircle(x, y, radius, colour, fill) {
-		context.strokeStyle = colour;
-		context.lineWidth = 5;
 		context.beginPath();
 		context.arc(x, y, radius, 0, 2 * Math.PI);
 		context.closePath();
 		context.stroke();
 
 		if (fill) {
-			context.fillStyle = colour;
 			context.fill();
 		}
 	}
 
-	function drawRectangle(x, y, width, height, colour, fill) {
-		context.strokeStyle = colour;
+	function drawRectangle(x, y, width, height, fill) {
 		context.strokeRect(x, y, width, height);
 
 		if (fill) {
-			context.fillStyle = colour;
 			context.fillRect(x, y, width, height);
 		}
 	}
 
-	function drawTriangle(x, y, radius, colour, fill) {
-		context.strokeStyle = colour;
-		context.lineWidth = 5;
+	function drawTriangle(x, y, width, height, fill) {
 		context.beginPath();
 		context.moveTo(x, y);
-		context.lineTo(x - radius / 2, y);
-		context.lineTo(x , y - radius);
-		context.lineTo(x + radius / 2, y);
+		context.lineTo(x - width / 2, y);
+		context.lineTo(x , y - height);
+		context.lineTo(x + width / 2, y);
 		context.closePath();
 		context.stroke();
 
 		if (fill) { 
-			context.fillStyle = colour;
 			context.fill();
 		}
 	}
 
-	function drawBezierCurve(cp1x, cp1y, cp2x, cp2y, x, y, colour) {
-		context.strokeStyle = colour;
+	function drawBezierCurve(cp1x, cp1y, cp2x, cp2y, x, y) {
 		context.beginPath();
 		context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
 		context.closePath();
 		context.stroke();
 	}
-	
+
 	init();
 }
