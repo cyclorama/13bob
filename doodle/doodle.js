@@ -17,13 +17,13 @@ window.onload = () => {
 			for (let i = 0; i < numOfShapes; i++) {
 				let width     = Math.floor(Math.random() * winWidth),
 				    height    = Math.floor(Math.random() * winHeight),
-				    fill      = Math.floor(Math.random() * 2),
 				    bezStartX = Math.floor(Math.random() * winWidth),
 				    bezStartY = Math.floor(Math.random() * winHeight),
 				    bezEndX   = Math.floor(Math.random() * winWidth),
 				    bezEndY   = Math.floor(Math.random() * winHeight),
 				    conX      = Math.floor(Math.random() * winWidth),
-				    conY      = Math.floor(Math.random() * winHeight);
+				    conY      = Math.floor(Math.random() * winHeight),
+				    fill      = Math.floor(Math.random() * 2);
 
 				context.lineWidth = Math.floor(Math.random() * 25);
 				context.strokeStyle = colours[Math.floor(Math.random() * colours.length)];
