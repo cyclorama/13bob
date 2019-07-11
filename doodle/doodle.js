@@ -55,7 +55,6 @@ window.onload = () => {
 					imageData.data[i + 2] = getRand(255);
 					imageData.data[i + 3] = 255;
 				}
-
 				context.putImageData(imageData, w, h);
 	}, false);
 
