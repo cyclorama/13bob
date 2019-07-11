@@ -43,6 +43,19 @@ window.onload = () => {
 						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
 						break;
 				}
+
+				let w = getRand(winWidth), h = getRand(winHeight),
+				    imageData = context.createImageData(w, h);
+
+				for (let i = 0; i < imageData.data.length; i += 4) {
+					imageData.data[i + 0] = getRand(255);
+					imageData.data[i + 1] = getRand(255);
+					imageData.data[i + 2] = getRand(255);
+					imageData.data[i + 3] = 255;
+				}
+
+				context.putImageData(imageData, w, h);
+
 				if (fill) context.fill();
 			}
 	}, false);
