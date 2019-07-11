@@ -43,6 +43,8 @@ window.onload = () => {
 						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
 						break;
 				}
+
+				if (fill) context.fill();
 			}
 	}, false);
 
@@ -70,26 +72,18 @@ window.onload = () => {
 		context.stroke();
 	}
 
-	function drawCircle(x, y, radius, colour, fill) {
+	function drawCircle(x, y, radius, colour) {
 		context.beginPath();
 		context.arc(x, y, radius, 0, 2 * Math.PI);
 		context.closePath();
 		context.stroke();
-
-		if (fill) {
-			context.fill();
-		}
 	}
 
-	function drawRectangle(x, y, width, height, fill) {
+	function drawRectangle(x, y, width, height) {
 		context.strokeRect(x, y, width, height);
-
-		if (fill) {
-			context.fillRect(x, y, width, height);
-		}
 	}
 
-	function drawTriangle(x, y, width, height, fill) {
+	function drawTriangle(x, y, width, height) {
 		context.beginPath();
 		context.moveTo(x, y);
 		context.lineTo(x - width / 2, y);
@@ -97,10 +91,6 @@ window.onload = () => {
 		context.lineTo(x + width / 2, y);
 		context.closePath();
 		context.stroke();
-
-		if (fill) { 
-			context.fill();
-		}
 	}
 
 	function drawBezierCurve(cp1x, cp1y, cp2x, cp2y, x, y) {
