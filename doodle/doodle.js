@@ -11,9 +11,9 @@ window.onload = () => {
 	function init() {
 		context.font = `${fontSize}px arial`;
 		context.textAlign = 'center';
-		context.fillStyle = 'white';
+		context.fillStyle = 'rgb(255, 255, 255)';
 
-		document.body.style.backgroundColor = 'black';
+		document.body.style.backgroundColor = 'rgb(0, 0, 0)';
 
 		['PRESS', 'PRESSE', 'DRÜCKEN SIE', 'LEHDISTÖ', 'TRYKKE', 'TRYCK',
 		 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
