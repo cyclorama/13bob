@@ -17,7 +17,7 @@ window.onload = () => {
 
 		['PRESS', 'PRESSE', 'DRÜCKEN SIE', 'LEHDISTÖ', 'TRYKKE', 'TRYCK',
 		 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) =>
-		 	context.fillText(text, centerX, (centerY / 6) + (fontSize * i));
+		 	context.fillText(text, centerX, (centerY / 6) + (fontSize * i)));
 	}
 
 	function genCanvas() {
