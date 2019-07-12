@@ -4,7 +4,6 @@ window.onload = () => {
 	      winWidth  = canvas.width = window.innerWidth,
 	      winHeight = canvas.height = window.innerHeight,
 	      centerX   = winWidth / 2, centerY = winHeight / 2,
-	      colours   = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white'],
 	      fontSize  = centerY / 8;
 
 	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
@@ -26,7 +25,7 @@ window.onload = () => {
 		let numOfShapes = getRand(25);
 
 		clearScreen();
-		context.fillStyle = document.body.style.backgroundColor = colours[getRand(colours.length)];
+		context.fillStyle = document.body.style.backgroundColor = `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		for (let i = 0; i < numOfShapes; i++) {
@@ -41,21 +40,21 @@ window.onload = () => {
 			    fill      = getRand(2);
 
 			context.lineWidth = getRand(25);
-			context.strokeStyle = colours[getRand(colours.length)];
-			context.fillStyle = colours[getRand(colours.length)];
+			context.strokeStyle = `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
+			context.fillStyle = `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
 
 			switch (getRand(4)) {
 				case 0:
-					drawCircle(width, height, getRand(winHeight * 0.3), fill);
+					drawCircle(width, height, getRand(winHeight * 0.3));
 					break;
 				case 1:
-					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
+					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
 				case 2:
-					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3), fill);
+					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
 				case 3:
-					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX, 'white');
+					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX);
 					break;
 			}
 			if (fill) context.fill();
@@ -102,7 +101,7 @@ window.onload = () => {
 		context.stroke();
 	}
 
-	function drawRectangle(x, y, width, height) {
+	function drawRectangle(x, y, width, height, colour) {
 		context.strokeRect(x, y, width, height);
 	}
 
