@@ -61,16 +61,21 @@ window.onload = () => {
 			if (fill) context.fill();
 		}
 
-		let w = getRand(winWidth), h = getRand(winHeight),
-			imageData = context.createImageData(w, h);
+		let numOfFilters = getRand(numOfShapes);
 
-		for (let i = 0; i < imageData.data.length; i += 4) {
-			imageData.data[i + 0] = getRand(255);
-			imageData.data[i + 1] = getRand(255);
-			imageData.data[i + 2] = getRand(255);
-			imageData.data[i + 3] = 255;
+		for (let i = 0; i < numOfFilters; i++) {
+			let x = getRand(winWidth), y = getRand(winHeight),
+			    w = getRand(winWidth), h = getRand(winHeight),
+			    imageData = context.getImageData(x, y, w, h);
+
+			for (let j = 0; j < imageData.data.length; j += 4) {
+				imageData.data[j + 0] = 255 - imageData.data[j + 0];
+				imageData.data[j + 1] = 255 - imageData.data[j + 1];
+				imageData.data[j + 2] = 255 - imageData.data[j + 2];
+				imageData.data[j + 3] = 255;
+			}
+			context.putImageData(imageData, x, y);
 		}
-		context.putImageData(imageData, w, h);
 	}
 
 	function getRand(range) {
