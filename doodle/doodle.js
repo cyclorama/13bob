@@ -9,7 +9,7 @@ window.onload = () => {
 	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
 
 	function init() {
-		context.font = `${fontSize}px arial`;
+		context.font = `Bold ${fontSize}px Arial`;
 		context.textAlign = 'center';
 		context.fillStyle = 'rgb(255, 255, 255)';
 
