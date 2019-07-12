@@ -16,9 +16,8 @@ window.onload = () => {
 		document.body.style.backgroundColor = 'rgb(0, 0, 0)';
 
 		['PRESS', 'PRESSE', 'DRÜCKEN SIE', 'LEHDISTÖ', 'TRYKKE', 'TRYCK',
-		 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) => {
-			context.fillText(text, centerX, (centerY / 6) + (fontSize * i));
-		});
+		 'НАЖМИТЕ', 'صحافة', '按', '押す', '프레스', 'ΤΎΠΟΣ', 'ללחוץ', 'दबाएँ'].forEach((text, i) =>
+		 	context.fillText(text, centerX, (centerY / 6) + (fontSize * i));
 	}
 
 	function genCanvas() {
