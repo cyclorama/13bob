@@ -101,7 +101,7 @@ window.onload = () => {
 		context.stroke();
 	}
 
-	function drawRectangle(x, y, width, heights) {
+	function drawRectangle(x, y, width, height) {
 		context.strokeRect(x, y, width, height);
 	}
 
