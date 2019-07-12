@@ -21,7 +21,7 @@ window.onload = () => {
 	}
 
 	function genCanvas() {
-		let numOfShapes = getRand(25), rgb () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
+		let numOfShapes = getRand(25), rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
 
 		clearScreen();
 		context.fillStyle = document.body.style.backgroundColor = rbg();
