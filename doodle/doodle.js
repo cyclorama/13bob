@@ -21,10 +21,10 @@ window.onload = () => {
 	}
 
 	function genCanvas() {
-		let numOfShapes = getRand(25), rgb = () => return `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
+		let numOfShapes = getRand(25), rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
 
 		clearScreen();
-		context.fillStyle = document.body.style.backgroundColor = rbg();
+		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		for (let i = 0; i < numOfShapes; i++) {
@@ -39,8 +39,8 @@ window.onload = () => {
 			    fill      = getRand(2);
 
 			context.lineWidth = getRand(25);
-			context.strokeStyle = rbg();
-			context.fillStyle = rbg();
+			context.strokeStyle = rgb();
+			context.fillStyle = rgb();
 
 			switch (getRand(4)) {
 				case 0:
