@@ -94,14 +94,14 @@ window.onload = () => {
 		context.stroke();
 	}
 
-	function drawCircle(x, y, radius, colour) {
+	function drawCircle(x, y, radius) {
 		context.beginPath();
 		context.arc(x, y, radius, 0, 2 * Math.PI);
 		context.closePath();
 		context.stroke();
 	}
 
-	function drawRectangle(x, y, width, height, colour) {
+	function drawRectangle(x, y, width, heights) {
 		context.strokeRect(x, y, width, height);
 	}
 
