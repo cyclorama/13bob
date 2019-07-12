@@ -71,7 +71,7 @@ function menu() {
 	'↓ TO SPEED UP',
 	'[SPACE] TO REEL OUT & IN',
 	'[PRESS ANY KEY TO PLAY]'].forEach((txt, i) =>
-		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150);
+		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150));
 	
 	window.addEventListener('keydown', start);
 }
