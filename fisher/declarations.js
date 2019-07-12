@@ -1,5 +1,5 @@
 const canvas           = document.createElement('canvas');
-const ctx              = canvas.getContext('2d');
+const context          = canvas.getContext('2d');
 canvas.width           = window.innerHeight;
 canvas.height          = canvas.width;
 canvas.setAttribute('style', 'border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;');
@@ -19,9 +19,9 @@ const music            = new Audio('sound/the_fishing_hole_8bit.ogg');
 const reel             = new Audio('sound/reel_in.ogg');
 music.volume           = 0.25;
 reel.volume            = 0.75;
-ctx.font               = 'Bold 42px Arial';
-ctx.textAlign          = 'center';
-ctx.fillStyle          = 'white';
+context.font           = 'Bold 42px Arial';
+context.textAlign      = 'center';
+context.fillStyle      = 'rgb(255, 255, 255)';
 
 async function* loadLevel() {
 	const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
@@ -71,13 +71,13 @@ function menu() {
 	'↓ TO SPEED UP',
 	'[SPACE] TO REEL OUT & IN',
 	'[PRESS ANY KEY TO PLAY]'].forEach((txt, i) =>
-		ctx.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150));
+		context.fillText(txt, canvas.width / 2, canvas.height / 2 + (i * 100) - 150));
 	
-	window.addEventListener('keydown', start);
+	addEventListener('keydown', start);
 }
 
 function start() {
-	window.removeEventListener('keydown', start);
+	removeEventListener('keydown', start);
 	main();
 };
 
@@ -122,7 +122,7 @@ Object.entries(gameImages).forEach(image => {
 function renderWater() {
 	for (let j = 0; j < LEVEL_HEIGHT; j++) {
 		for (let i = 0; i < LEVEL_WIDTH; i++) {
-			ctx.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+			context.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 		}
 	}
 }
@@ -130,13 +130,13 @@ function renderWater() {
 function renderLine() {
 	for (let i = 0; i < hook.prev.length; i += 2) {
 		if (hook.prev[i] > hook.prev[i + 2]) {
-			ctx.drawImage(gameImages.lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.lineImageLeftDown, (hook.prev[i] - 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.lineImageLeftUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		} else if (hook.prev[i] < hook.prev[i + 2]) {
-			ctx.drawImage(gameImages.lineImageRightDown, (hook.prev[i] + 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.lineImageRightUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.lineImageRightDown, (hook.prev[i] + 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.lineImageRightUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		} else {
-			ctx.drawImage(gameImages.lineImage, hook.prev[i] * BLOCK_SIZE, hook.prev[i + 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.lineImage, hook.prev[i] * BLOCK_SIZE, hook.prev[i + 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		}
 	}
 	fixArtifact();
@@ -144,13 +144,13 @@ function renderLine() {
 
 function fixArtifact() {
 	if (hook.x == hook.prev[hook.prev.length - 2] + 1) {
-		ctx.drawImage(gameImages.lineImageRightDown, (hook.prev[hook.prev.length - 2] + 1) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		ctx.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		ctx.drawImage(gameImages.lineImageRightUp, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.lineImageRightDown, (hook.prev[hook.prev.length - 2] + 1) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.lineImageRightUp, (hook.prev[hook.prev.length-2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	} else if (hook.x == hook.prev[hook.prev.length - 2] - 1) {
-		ctx.drawImage(gameImages.lineImageLeftDown, (hook.prev[hook.prev.length - 2] - 1) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		ctx.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-		ctx.drawImage(gameImages.lineImageLeftUp, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.lineImageLeftDown, (hook.prev[hook.prev.length - 2] - 1) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.waterImage, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.lineImageLeftUp, (hook.prev[hook.prev.length - 2]) * BLOCK_SIZE, hook.prev[hook.prev.length - 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 }
 
@@ -213,7 +213,7 @@ class Hook {
 	}
 
 	render() {
-		ctx.drawImage(gameImages.hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.hookImage, hook.x * BLOCK_SIZE, hook.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 
 	checkCollision() {
@@ -321,7 +321,7 @@ class Fish {
 
 	render() {
 		if (!this._onBoat) {
-			ctx.drawImage(this._fishImage, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(this._fishImage, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 		}
 	}
 
@@ -404,46 +404,46 @@ class Rock {
 	}
 
 	renderSingle() {
-		ctx.drawImage(gameImages.rockImageSingle, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+		context.drawImage(gameImages.rockImageSingle, this._x * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 
 	renderHorizontal() {
 			for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++)
-				ctx.drawImage(gameImages.rockImageHoriz, r * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
+				context.drawImage(gameImages.rockImageHoriz, r * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
 
-			ctx.drawImage(gameImages.rockImageLeft, (this._x - this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.rockImageRight, (this._x + this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.rockImageLeft, (this._x - this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.rockImageRight, (this._x + this._scaleX) * BLOCK_SIZE, this._y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 
 	renderVertical() {
 			for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
-				ctx.drawImage(gameImages.rockImageVert, this._x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
+				context.drawImage(gameImages.rockImageVert, this._x * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
 
-			ctx.drawImage(gameImages.rockImageUp, this._x * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-			ctx.drawImage(gameImages.rockImageDown, this._x * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.rockImageUp, this._x * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+			context.drawImage(gameImages.rockImageDown, this._x * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 	}
 
 	renderBlock() {
 		for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++)
-			ctx.drawImage(gameImages.rockImageHorizTop, r * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+			context.drawImage(gameImages.rockImageHorizTop, r * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
 		for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
-			ctx.drawImage(gameImages.rockImageVertLeft, (this._x - this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+			context.drawImage(gameImages.rockImageVertLeft, (this._x - this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
 		for (let rX = this._x - this._scaleX + 1; rX < this._x + this._scaleX; rX++) 
 			for (let rY = this._y - this._scaleY + 1; rY < this._y + this._scaleY; rY++) 
-				ctx.drawImage(gameImages.rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+				context.drawImage(gameImages.rockImageCenter, rX * BLOCK_SIZE, rY * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 
 		for (let r = this._y - this._scaleY + 1; r < this._y + this._scaleY; r++)
-			ctx.drawImage(gameImages.rockImageVertRight, (this._x + this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
+			context.drawImage(gameImages.rockImageVertRight, (this._x + this._scaleX) * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE + 1);
 
 		for (let r = this._x - this._scaleX + 1; r < this._x + this._scaleX; r++) 
-			ctx.drawImage(gameImages.rockImageHorizBottom, r * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
+			context.drawImage(gameImages.rockImageHorizBottom, r * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE);
 
-		ctx.drawImage(gameImages.rockImageCornerTopRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-		ctx.drawImage(gameImages.rockImageCornerTopLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-		ctx.drawImage(gameImages.rockImageCornerBottomLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-		ctx.drawImage(gameImages.rockImageCornerBottomRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		context.drawImage(gameImages.rockImageCornerTopRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		context.drawImage(gameImages.rockImageCornerTopLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y - this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		context.drawImage(gameImages.rockImageCornerBottomLeft, (this._x - this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
+		context.drawImage(gameImages.rockImageCornerBottomRight, (this._x + this._scaleX) * BLOCK_SIZE, (this._y + this._scaleY) * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
 	}
 }
 
