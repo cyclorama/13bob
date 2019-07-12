@@ -23,7 +23,7 @@ window.onload = () => {
 	}
 
 	function genCanvas() {
-		let numOfShapes = getRand(100);
+		let numOfShapes = getRand(50);
 
 		clearScreen();
 		context.fillStyle = document.body.style.backgroundColor = colours[getRand(colours.length)];
