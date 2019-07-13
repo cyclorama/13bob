@@ -38,7 +38,7 @@ window.onload = () => {
 			    conY      = getRand(winHeight),
 			    fill      = getRand(2);
 
-			context.lineWidth = getRand(25);
+			context.lineWidth = getRand(50);
 			context.strokeStyle = rgb();
 			context.fillStyle = rgb();
 
