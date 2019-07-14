@@ -9,7 +9,7 @@ window.onload = () => {
 	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
 	addEventListener('resize', () => {
 		winWidth  = canvas.width = window.innerWidth;
-		winHeight = canvas.height = window.innerHeight
+		winHeight = canvas.height = window.innerHeight;
 		genCanvas();
 	});
 
