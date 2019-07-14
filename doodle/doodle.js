@@ -1,12 +1,17 @@
 window.onload = () => {
-	const canvas    = document.getElementById('canvas'),
-	      context   = canvas.getContext('2d'),
-	      winWidth  = canvas.width = window.innerWidth,
-	      winHeight = canvas.height = window.innerHeight,
+	const canvas    = document.getElementById('canvas');
+	let   winWidth  = canvas.width = window.innerWidth,
+	      winHeight = canvas.height = window.innerHeight;
+	const context   = canvas.getContext('2d'),
 	      centerX   = winWidth / 2, centerY = winHeight / 2,
 	      fontSize  = centerY / 8;
 
 	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
+	addEventListener('resize', () => {
+		winWidth  = canvas.width = window.innerWidth;
+		winHeight = canvas.height = window.innerHeight
+		genCanvas();
+	});
 
 	function init() {
 		context.font = `Bold ${fontSize}px Arial`;
