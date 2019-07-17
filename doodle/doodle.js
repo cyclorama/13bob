@@ -69,13 +69,32 @@ window.onload = () => {
 		for (let i = 0; i < numOfFilters; i++) {
 			let x = getRand(winWidth), y = getRand(winHeight),
 			    w = getRand(winWidth), h = getRand(winHeight),
-			    imageData = context.getImageData(x, y, w, h);
+			    imageData;
 
-			for (let j = 0; j < imageData.data.length; j += 4) {
-				imageData.data[j + 0] = 255 - imageData.data[j + 0];
-				imageData.data[j + 1] = 255 - imageData.data[j + 1];
-				imageData.data[j + 2] = 255 - imageData.data[j + 2];
-				imageData.data[j + 3] = 255;
+			switch (getRand(2)) {
+				case 0:
+					let scale = winHeight * 0.3;
+					imageData = context.getImageData(x, y, scale, scale);
+
+					for (let j = 0; j < imageData.data.length; j += 4) {
+						let imgX = (j / 4) % scale, imgY = (j / 4) / scale;
+
+						if (getDistance(x + imgX, y + imgY, x + (scale / 2), y + (scale / 2)) <= scale / 2) {
+							imageData.data[j + 0] = 255 - imageData.data[j + 0];
+							imageData.data[j + 1] = 255 - imageData.data[j + 1];
+							imageData.data[j + 2] = 255 - imageData.data[j + 2];
+							imageData.data[j + 3] = 255;
+						}
+					}
+					break;
+				case 1:
+					for (let j = 0; j < imageData.data.length; j += 4) {
+						imageData.data[j + 0] = 255 - imageData.data[j + 0];
+						imageData.data[j + 1] = 255 - imageData.data[j + 1];
+						imageData.data[j + 2] = 255 - imageData.data[j + 2];
+						imageData.data[j + 3] = 255;
+					}
+					break;
 			}
 			context.putImageData(imageData, x, y);
 		}
@@ -124,6 +143,10 @@ window.onload = () => {
 		context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
 		context.closePath();
 		context.stroke();
+	}
+
+	function getDistance(x1, y1, x2, y2) {
+		return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
 	}
 	init();
 }
