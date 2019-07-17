@@ -75,9 +75,9 @@ window.onload = () => {
 					imageData = context.getImageData(x, y, scale, scale);
 
 					for (let j = 0; j < imageData.data.length; j += 4) {
-						let imgX = (j / 4) % scale, imgY = (j / 4) / scale;
+						let imgX = (j / 4) % scale, imgY = (j / 4) / scale, radius = scale / 2;
 
-						if (getDistance(x + imgX, y + imgY, x + (scale / 2), y + (scale / 2)) <= scale / 2) {
+						if (getDistance(x + imgX, y + imgY, x + radius, y + radius) <= radius) {
 							imageData.data[j + 0] = 255 - imageData.data[j + 0];
 							imageData.data[j + 1] = 255 - imageData.data[j + 1];
 							imageData.data[j + 2] = 255 - imageData.data[j + 2];
