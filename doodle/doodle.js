@@ -67,19 +67,19 @@ window.onload = () => {
 		let numOfFilters = getRand(numOfShapes);
 
 		for (let i = 0; i < numOfFilters; i++) {
-			let x = getRand(winWidth), y = getRand(winHeight),
-			    w = getRand(winWidth), h = getRand(winHeight),
-			    imageData;
+			let x = getRand(winWidth), y = getRand(winHeight), imageData;
 
 			switch (getRand(2)) {
 				case 0:
-					let scale = winHeight * 0.3;
+					let scale = Math.floor(winHeight * 0.3),
+					    imgCenterX = x + (scale / 2),
+					    imgCenterY = y + (scale / 2);
 					imageData = context.getImageData(x, y, scale, scale);
 
 					for (let j = 0; j < imageData.data.length; j += 4) {
 						let imgX = (j / 4) % scale, imgY = (j / 4) / scale;
 
-						if (getDistance(x + imgX, y + imgY, x + (scale / 2), y + (scale / 2)) <= scale / 2) {
+						if (getDistance(x + imgX, y + imgY, imgCenterX, imgCenterY) <= scale / 2) {
 							imageData.data[j + 0] = 255 - imageData.data[j + 0];
 							imageData.data[j + 1] = 255 - imageData.data[j + 1];
 							imageData.data[j + 2] = 255 - imageData.data[j + 2];
@@ -88,6 +88,9 @@ window.onload = () => {
 					}
 					break;
 				case 1:
+			    	let w = getRand(winWidth), h = getRand(winHeight),
+					imageData = context.getImageData(x, y, w, h);
+
 					for (let j = 0; j < imageData.data.length; j += 4) {
 						imageData.data[j + 0] = 255 - imageData.data[j + 0];
 						imageData.data[j + 1] = 255 - imageData.data[j + 1];
