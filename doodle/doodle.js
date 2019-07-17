@@ -86,8 +86,8 @@ window.onload = () => {
 					}
 					break;
 				case 1:
-			    	let w = getRand(winWidth), h = getRand(winHeight),
-					imageData = context.getImageData(x, y, w, h);
+			    	let w = getRand(winWidth), h = getRand(winHeight);
+			    	imageData = context.getImageData(x, y, w, h);
 
 					for (let j = 0; j < imageData.data.length; j += 4) {
 						imageData.data[j + 0] = 255 - imageData.data[j + 0];
