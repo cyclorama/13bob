@@ -1,4 +1,4 @@
-{
+
     const h1 = document.querySelector('h1');
     
     function sleep(time) { return new Promise(resolve => setTimeout(resolve, time)) };
@@ -11,4 +11,3 @@
     }
 
     asd();
-}
