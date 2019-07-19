@@ -1,5 +1,7 @@
 {
-    const h1 = document.querySelector('h1'), sleep = time => new Promise(resolve => setTimeout(resolve, time));
+    const h1 = document.querySelector('h1');
+    
+    function sleep(time) { return new Promise(resolve => setTimeout(resolve, time)) };
 
     async function asd() {
         ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'].forEach(colour => {
