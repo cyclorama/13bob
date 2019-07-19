@@ -5,4 +5,4 @@
         h1.innerHTML = `<a href="//13bob.net/"><font color=\'${colour}\'>13bob</font></a>`;
         await sleep(750);
     });
-});
+})();
