@@ -6,15 +6,13 @@
     await sleep(1000);
     h1.style.animation = 'none';
 
-    while (position < 12) {
-        html = '';
+    while (position < 12) { html = '';
         for (let i = 0; i < colours.length; i++) {
-
             if (position - i > title.length) {
                 i++;
                 continue;
             }
-
+            
             if (title[position - i] != null)
                 html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
         }
