@@ -21,5 +21,4 @@
         await sleep(750);
     }
 
-    document.style.animation = 'fade 1s';
 })();
