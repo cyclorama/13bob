@@ -5,7 +5,6 @@
 
     await sleep(1000);
     h1.style.animation = 'none';
-    document.style.animation = 'none';
 
     while (c < 12) {
 
