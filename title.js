@@ -13,8 +13,11 @@
                 continue;
             }
 
-            if (title[position - i] != null)
-                html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
+            if (title[position - i] == null) {
+                break;
+            }
+            
+            html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
         }
         position++;
         h1.innerHTML = title.substring(0, position - title.length - 2) + html + title.substring(position);
