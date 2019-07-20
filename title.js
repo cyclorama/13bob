@@ -1,27 +1,28 @@
 (async () => {
     const h1 = document.querySelector('h1'), sleep = time => new Promise(resolve => setTimeout(resolve, time)),
     colours  = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], title = '13bob';
-    let c = 0, html;
+    let position = 0, html;
 
     await sleep(1000);
     h1.style.animation = 'none';
 
-    while (c < 12) {
+    while (position < 12) {
         html = '';
         for (let i = 0; i < colours.length; i++) {
 
-            if (c - i > title.length) {
+            if (position - i > title.length) {
                 i++;
                 continue;
             }
 
-            if (title[c - i] != null) {
-                html = `<font color="${colours[i]}">${title[c - i]}</font>` + html;
+            if (title[position - i] != null) {
+                html = `<font color="${colours[i]}">${title[position - i]}</font>` + html + title.substring(c + 1);
+                
             }
         }
 
         await sleep(1000);
-        c++;
+        position++;
 
         h1.innerHTML = html;
     }
