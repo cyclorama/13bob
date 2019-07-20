@@ -3,8 +3,8 @@
     colours  = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], title = '13bob';
     let c = 0;
 
-    //h1.style.animation = 'none';
     await sleep(1000);
+    h1.style.animation = 'none';
 
     while (c < 12) {
 
