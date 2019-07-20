@@ -18,7 +18,7 @@
 
     for (const colour of colours) {
         h1.innerHTML = `<a href="//13bob.net/"><font color=\'${colour}\'>13bob</font></a>`;
-        await sleep(250);
+        await sleep(500);
     }
 
 })();
