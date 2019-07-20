@@ -12,7 +12,7 @@
 
         }
 
-        await sleep(750);
+        //await sleep(750);
         c++;
     }
 
