@@ -21,5 +21,6 @@
 
         await sleep(35);
     }
+    h1.innerHTML = '<a href="//13bob.net/">' + h1.innerHTML + '</a>';
     h1.style.animation = 'heartbeat 1s alternate infinite';
 })();
