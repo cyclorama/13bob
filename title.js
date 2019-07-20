@@ -17,11 +17,11 @@
             }
 
             if (title[c - i] != null) {
-                html += title.substring() + `<font color="${colours[i]}">${title[c - i]}` + title.substring(c + 1);
+                html += `- <font color="${colours[i]}">${title[c - i]} -`;
             }
         }
 
-        await sleep(2000);
+        await sleep(1000);
         c++;
 
         h1.innerHTML = html;
