@@ -16,7 +16,7 @@
             }
 
             if (title[position - i] != null) {
-                html = `<font color="${colours[i]}">${title[position - i]}</font>` + html.substring(0, position) + title.substring(position + 1);
+                html = `<font color="${colours[i]}">${title[position - i]}</font>` + html + title.substring(position + 1);
                 
             }
         }
