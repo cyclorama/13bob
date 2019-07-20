@@ -21,6 +21,5 @@
 
         await sleep(50);
     }
-
     h1.style.animation = 'heartbeat 1s alternate infinite';
 })();
