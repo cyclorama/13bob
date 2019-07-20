@@ -7,7 +7,7 @@ function update() {
 }
 
 function render() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	hook.render();
 	renderLine();
