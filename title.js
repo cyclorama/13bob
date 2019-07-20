@@ -1,6 +1,7 @@
 (async () => {
     const h1 = document.querySelector('h1'), sleep = time => new Promise(resolve => setTimeout(resolve, time)),
     colours  = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], title = '13bob';
+    let c = 0;
 
     h1.style.animation = 'none';
     await sleep(1000);
