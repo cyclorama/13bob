@@ -15,14 +15,12 @@
                 continue;
             }
 
-            if (title[position - i] != null) {
+            if (title[position - i] != null)
                 html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
-            }
         }
-
-        await sleep(3000);
         position++;
+        h1.innerHTML = title.substring(0, position - 13) + html + title.substring(position);
 
-        h1.innerHTML = title.substring(0, position - 12) + html + title.substring(position);
+        await sleep(1000);
     }
 })();
