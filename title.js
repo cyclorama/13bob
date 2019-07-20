@@ -6,19 +6,24 @@
     await sleep(1000);
     h1.style.animation = 'none';
 
+    let html = '';
+
     while (c < 12) {
 
-        for (const char of title) {
-
+        if (c - i > title.length) {
+            i++;
+            continue;
         }
 
-        //await sleep(750);
+        for (let i = 0; i < colours.length; i++) {
+            if (title[c - i] != null) {
+                html += title.substring() + `<font color="${colours[i]}">${title[c - i]}` + title.substring(c + 1);
+            }
+        }
+
+        await sleep(2000);
         c++;
-    }
 
-    for (const colour of colours) {
-        h1.innerHTML = `<a href="//13bob.net/"><font color=\'${colour}\'>13bob</font></a>`;
-        await sleep(500);
+        h1.innerHTML = html;
     }
-
 })();
