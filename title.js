@@ -8,16 +8,14 @@
 
     while (position < 12) { html = '';
         for (let i = 0; i < colours.length; i++) {
-            if (position - i > title.length) {
-                i++;
+            if (position - i > title.length)
                 continue;
-            }
 
             if (title[position - i] != null)
                 html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
         }
         position++;
-        h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`;
+        h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 1)}${html}${title.substring(position)}</a>`;
 
         await sleep(35);
     }
