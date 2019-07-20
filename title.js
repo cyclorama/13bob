@@ -21,7 +21,8 @@
         }
 
         await sleep(3000);
+        position++;
 
-        h1.innerHTML = title.substring(0, position - 12) + html + title.substring(position++);
+        h1.innerHTML = title.substring(0, position - 12) + html + title.substring(position);
     }
 })();
