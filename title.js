@@ -19,6 +19,6 @@
         position++;
         h1.innerHTML = title.substring(0, position - title.length - 2) + html + title.substring(position);
 
-        await sleep(20);
+        await sleep(50);
     }
 })();
