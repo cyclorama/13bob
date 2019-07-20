@@ -23,6 +23,6 @@
         await sleep(3000);
         position++;
 
-        h1.innerHTML = `${html}${title.substring(position)}`;
+        h1.innerHTML = html + title.substring(position);
     }
 })();
