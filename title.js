@@ -9,13 +9,13 @@
     let html = '';
 
     while (c < 12) {
-
-        if (c - i > title.length) {
-            i++;
-            continue;
-        }
-
         for (let i = 0; i < colours.length; i++) {
+
+            if (c - i > title.length) {
+                i++;
+                continue;
+            }
+
             if (title[c - i] != null) {
                 html += title.substring() + `<font color="${colours[i]}">${title[c - i]}` + title.substring(c + 1);
             }
