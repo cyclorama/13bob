@@ -17,13 +17,12 @@
 
             if (title[position - i] != null) {
                 html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
-                
             }
         }
 
         await sleep(3000);
         position++;
 
-        h1.innerHTML = html;
+        h1.innerHTML = html + title.substring(position + 1);
     }
 })();
