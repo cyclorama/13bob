@@ -5,6 +5,7 @@
 
     await sleep(1000);
     h1.style.animation = 'none';
+    document.style.animation = 'none';
 
     while (c < 12) {
 
@@ -20,4 +21,6 @@
         h1.innerHTML = `<a href="//13bob.net/"><font color=\'${colour}\'>13bob</font></a>`;
         await sleep(750);
     }
+
+    document.style.animation = 'fade 1s';
 })();
