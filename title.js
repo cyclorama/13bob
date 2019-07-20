@@ -21,7 +21,7 @@
             }
         }
 
-        await sleep(1000);
+        await sleep(3000);
         position++;
 
         h1.innerHTML = html;
