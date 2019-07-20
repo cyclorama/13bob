@@ -17,7 +17,7 @@
                 html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
         }
         position++;
-        h1.innerHTML = title.substring(0, position - 11) + html + title.substring(position);
+        h1.innerHTML = title.substring(-position) + html + title.substring(position);
 
         await sleep(1000);
     }
