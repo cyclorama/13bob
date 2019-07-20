@@ -1,6 +1,6 @@
 (async () => {
     const h1 = document.querySelector('h1');
-    for await (let html of () => {
+    for await (let html of async () => {
         let i = 0;
         const colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'],
             sleep = time => new Promise(resolve => setTimeout(resolve, time));
