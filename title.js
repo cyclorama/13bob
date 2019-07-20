@@ -17,7 +17,7 @@
             }
 
             if (title[c - i] != null) {
-                html += `- <font color="${colours[i]}">${title[c - i]} -`;
+                html = `<font color="${colours[i]}">${title[c - i]} - ` + html;
             }
         }
 
