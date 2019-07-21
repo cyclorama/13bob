@@ -38,7 +38,7 @@ h1 {
 h2 {
     font-size: 35px;
     font-family: 'Press Start 2P', cursive;
-    animation: spacing_two 1s;
+    animation: heartbeat 1s alternate infinite;
 }
 
 body {
