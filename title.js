@@ -1,6 +1,5 @@
-(async (title, position, html, colours) => { // Genesis 9:13 — I do set my bow in the cloud, and it shall be for a token of a covenant between me and the earth.
-    const h1 = document.querySelector('h1'), sleep = time => new Promise(resolve => setTimeout(resolve, time));
-    
+(async (title, position, html, colours, sleep) => { // Genesis 9:13 — I do set my bow in the cloud, and it shall be for a token of a covenant between me and the earth.
+    const h1 = document.querySelector('h1');
     await sleep(1000);
     h1.style.animation = 'none';
 
@@ -14,8 +13,7 @@
         }
         position++;
         h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`;
-
         await sleep(35);
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
-})('13bob', 0, '', ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']);
+})('13bob', 0, '', ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], () => new Promise(resolve => setTimeout(resolve, time)));
