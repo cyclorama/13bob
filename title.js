@@ -18,4 +18,5 @@
         await sleep(35);
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
+    
 })('13bob', 0, '', ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], time => new Promise(resolve => setTimeout(resolve, time)));
