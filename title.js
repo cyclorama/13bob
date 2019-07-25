@@ -19,4 +19,4 @@
         await sleep(35);
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
-})(h1.textContent, 0, '');
+})('13bob', 0, '');
