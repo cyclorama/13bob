@@ -10,7 +10,7 @@
                 continue;
 
             if (title[position - i] != null)
-                html = `<font color="${colours[i]}">${title[position - i]}</font>` + html;
+                html = `<font color="${colours[i]}">${title[position - i]}</font>${html}`;
         }
         position++;
         h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`;
@@ -18,5 +18,5 @@
         await sleep(35);
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
-    
+
 })('13bob', 0, '', ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], time => new Promise(resolve => setTimeout(resolve, time)));
