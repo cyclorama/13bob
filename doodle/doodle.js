@@ -49,6 +49,8 @@ window.onload = () => {
 
 			switch (getRand(4)) {
 				case 0:
+					drawLine(width, height, getRand(winWidth), getRand(winHeight));
+				case 0:
 					drawCircle(width, height, getRand(winHeight * 0.3));
 					break;
 				case 1:
@@ -58,7 +60,7 @@ window.onload = () => {
 					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
 				case 3:
-					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndX);
+					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
 					break;
 			}
 			if (fill) context.fill();
@@ -75,7 +77,7 @@ window.onload = () => {
 					imageData = context.getImageData(x, y, scale, scale);
 
 					for (let j = 0; j < imageData.data.length; j += 4) {
-						let imgX = (j / 4) % scale, imgY = (j / 4) / scale, radius = scale / 2;
+                        let imgX = (j / 4) % scale, imgY = (j / 4) / scale, radius = scale / 2;
 
 						if (getDistance(x + imgX, y + imgY, x + radius, y + radius) <= radius) {
 							imageData.data[j + 0] = 255 - imageData.data[j + 0];
