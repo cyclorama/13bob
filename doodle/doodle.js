@@ -49,17 +49,22 @@ window.onload = () => {
 
 			switch (getRand(5)) {
 				case 0:
+				console.log("0");
 					drawLine(width, height, getRand(winWidth), getRand(winHeight));
 				case 1:
+				console.log("1");
 					drawCircle(width, height, getRand(winHeight * 0.3));
 					break;
 				case 2:
+				console.log("2");
 					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
 				case 3:
+				console.log("3");
 					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
 				case 4:
+				console.log("4");
 					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
 					break;
 			}
