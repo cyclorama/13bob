@@ -47,19 +47,19 @@ window.onload = () => {
 			context.strokeStyle = rgb();
 			context.fillStyle = rgb();
 
-			switch (getRand(4)) {
+			switch (getRand(5)) {
 				case 0:
 					drawLine(width, height, getRand(winWidth), getRand(winHeight));
-				case 0:
+				case 1:
 					drawCircle(width, height, getRand(winHeight * 0.3));
 					break;
-				case 1:
+				case 2:
 					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
-				case 2:
+				case 3:
 					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
 					break;
-				case 3:
+				case 4:
 					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
 					break;
 			}
