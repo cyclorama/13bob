@@ -69,17 +69,27 @@ window.onload = () => {
 
 		let numOfFilters = getRand(numOfShapes);
 
-		context.globalCompositeOperation = ['source-over', 'source-in', 'source-out',
-                                            'source-atop', 'destination-over', 'destination-in',
-                                            'destination-out', 'destination-atop', 'lighter',
-                                            'copy', 'xor', 'multiply',
-                                            'screen', 'overlay', 'darken',
-                                            'lighten', 'color-dodge', 'color-burn',
-                                            'hard-light', 'soft-light', 'difference',
-                                            'exclusion', 'hue', 'saturation',
-                                            'color', 'luminosity'][getRand(26)];
-
 		for (let i = 0; i < numOfFilters; i++) {
+			let width     = getRand(winWidth),
+			height    = getRand(winHeight),
+			bezStartX = getRand(winWidth),
+			bezStartY = getRand(winHeight),
+			bezEndX   = getRand(winWidth),
+			bezEndY   = getRand(winHeight),
+			conX      = getRand(winWidth),
+			conY      = getRand(winHeight),
+			fill      = getRand(2);
+
+			context.globalCompositeOperation = ['source-over', 'source-in', 'source-out',
+			'source-atop', 'destination-over', 'destination-in',
+			'destination-out', 'destination-atop', 'lighter',
+			'copy', 'xor', 'multiply',
+			'screen', 'overlay', 'darken',
+			'lighten', 'color-dodge', 'color-burn',
+			'hard-light', 'soft-light', 'difference',
+			'exclusion', 'hue', 'saturation',
+			'color', 'luminosity'][getRand(26)];
+
 			switch (getRand(5)) {
 				case 0:
 					drawLine(width, height, getRand(winWidth), getRand(winHeight));
@@ -96,8 +106,8 @@ window.onload = () => {
 					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
 					break;
 			}
+			if (fill) context.fill();
 		}
-		if (fill) context.fill();
 	}
 
 	function getRand(range) {
