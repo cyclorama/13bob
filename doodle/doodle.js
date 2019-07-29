@@ -82,6 +82,7 @@ window.onload = () => {
 			}
 			stage++;
 		}
+		stage = 0;
 	}
 
 	function getRand(range) {
