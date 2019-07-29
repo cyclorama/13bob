@@ -33,7 +33,7 @@ window.onload = () => {
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
-		while (stage < 1) {
+		while (stage < 2) {
 			const numOfShapes = getRand(25);
 
 			context.globalCompositeOperation = stage < 1 ? 'none' : [
