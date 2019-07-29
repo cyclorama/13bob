@@ -65,6 +65,7 @@ window.onload = () => {
 				switch (getRand(5)) {
 					case 0:
 						drawLine(width, height, getRand(winWidth), getRand(winHeight));
+						break;
 					case 1:
 						drawCircle(width, height, getRand(winHeight * 0.3));
 						break;
