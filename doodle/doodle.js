@@ -31,6 +31,7 @@ window.onload = () => {
 		clearScreen();
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
+		context.globalCompositeOperation = 'none';
 
 		for (let i = 0; i < numOfShapes; i++) {
 			let width     = getRand(winWidth),
@@ -68,39 +69,35 @@ window.onload = () => {
 
 		let numOfFilters = getRand(numOfShapes);
 
+		context.globalCompositeOperation = ['source-over', 'source-in', 'source-out',
+											'source-atop', 'destination-over', 'destination-in',
+											'destination-out', 'destination-atop', 'lighter',
+											'copy', 'xor', 'multiply',
+											'screen', 'overlay', 'darken',
+											'lighten', 'color-dodge', 'color-burn',
+											'hard-light', 'soft-light', 'difference',
+											'exclusion', 'hue', 'saturation',
+											'color', 'luminosity'][getRand(26)];
+
 		for (let i = 0; i < numOfFilters; i++) {
-			let x = getRand(winWidth), y = getRand(winHeight), imageData;
-
-			switch (getRand(2)) {
+			switch (getRand(5)) {
 				case 0:
-					let scale = Math.floor(winHeight * 0.3);
-					imageData = context.getImageData(x, y, scale, scale);
-
-					for (let j = 0; j < imageData.data.length; j += 4) {
-                        let imgX = (j / 4) % scale, imgY = (j / 4) / scale, radius = scale / 2;
-
-						if (getDistance(x + imgX, y + imgY, x + radius, y + radius) <= radius) {
-							imageData.data[j + 0] = 255 - imageData.data[j + 0];
-							imageData.data[j + 1] = 255 - imageData.data[j + 1];
-							imageData.data[j + 2] = 255 - imageData.data[j + 2];
-							imageData.data[j + 3] = 255;
-						}
-					}
-					break;
+					drawLine(width, height, getRand(winWidth), getRand(winHeight));
 				case 1:
-			    	let w = getRand(winWidth), h = getRand(winHeight);
-			    	imageData = context.getImageData(x, y, w, h);
-
-					for (let j = 0; j < imageData.data.length; j += 4) {
-						imageData.data[j + 0] = 255 - imageData.data[j + 0];
-						imageData.data[j + 1] = 255 - imageData.data[j + 1];
-						imageData.data[j + 2] = 255 - imageData.data[j + 2];
-						imageData.data[j + 3] = 255;
-					}
+					drawCircle(width, height, getRand(winHeight * 0.3));
+					break;
+				case 2:
+					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
+					break;
+				case 3:
+					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
+					break;
+				case 4:
+					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
 					break;
 			}
-			context.putImageData(imageData, x, y);
 		}
+		if (fill) context.fill();
 	}
 
 	function getRand(range) {
