@@ -37,7 +37,7 @@ window.onload = () => {
 			const numOfShapes = getRand(25);
 
 			context.globalCompositeOperation = stage < 1 ? 'none' : [
-            'source-over', 'source-in', 'source-out',
+			'source-over', 'source-in', 'source-out',
 			'source-atop', 'destination-over', 'destination-in',
 			'destination-out', 'destination-atop', 'lighter',
 			'copy', 'xor', 'multiply',
