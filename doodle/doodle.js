@@ -48,15 +48,15 @@ window.onload = () => {
 			'color', 'luminosity'][getRand(26)];
 
 			for (let i = 0; i < numOfShapes; i++) {
-				let width     = getRand(winWidth),
-					height    = getRand(winHeight),
-					bezStartX = getRand(winWidth),
-					bezStartY = getRand(winHeight),
-					bezEndX   = getRand(winWidth),
-					bezEndY   = getRand(winHeight),
-					conX      = getRand(winWidth),
-					conY      = getRand(winHeight),
-					fill      = getRand(2);
+				const width     = getRand(winWidth),
+					  height    = getRand(winHeight),
+					  bezStartX = getRand(winWidth),
+					  bezStartY = getRand(winHeight),
+					  bezEndX   = getRand(winWidth),
+					  bezEndY   = getRand(winHeight),
+					  conX      = getRand(winWidth),
+					  conY      = getRand(winHeight),
+					  fill      = getRand(2);
 	
 				context.lineWidth = getRand(50);
 				context.strokeStyle = rgb();
