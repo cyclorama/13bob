@@ -1,7 +1,8 @@
 window.onload = () => {
 	const canvas    = document.getElementById('canvas');
 	let   winWidth  = canvas.width = window.innerWidth,
-	      winHeight = canvas.height = window.innerHeight;
+		  winHeight = canvas.height = window.innerHeight,
+		  stage     = 0;
 	const context   = canvas.getContext('2d'),
 	      centerX   = winWidth / 2, centerY = winHeight / 2,
 	      fontSize  = centerY / 8;
@@ -26,61 +27,15 @@ window.onload = () => {
 	}
 
 	function genCanvas() {
-		let numOfShapes = getRand(25), rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
-
 		clearScreen();
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		context.globalCompositeOperation = 'none';
 
-		for (let i = 0; i < numOfShapes; i++) {
-			let width     = getRand(winWidth),
-			    height    = getRand(winHeight),
-			    bezStartX = getRand(winWidth),
-			    bezStartY = getRand(winHeight),
-			    bezEndX   = getRand(winWidth),
-			    bezEndY   = getRand(winHeight),
-			    conX      = getRand(winWidth),
-			    conY      = getRand(winHeight),
-			    fill      = getRand(2);
-
-			context.lineWidth = getRand(50);
-			context.strokeStyle = rgb();
-			context.fillStyle = rgb();
-
-			switch (getRand(5)) {
-				case 0:
-					drawLine(width, height, getRand(winWidth), getRand(winHeight));
-				case 1:
-					drawCircle(width, height, getRand(winHeight * 0.3));
-					break;
-				case 2:
-					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
-					break;
-				case 3:
-					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
-					break;
-				case 4:
-					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
-					break;
-			}
-			if (fill) context.fill();
-		}
-
-		let numOfFilters = getRand(numOfShapes);
-
-		for (let i = 0; i < numOfFilters; i++) {
-			let width     = getRand(winWidth),
-			height    = getRand(winHeight),
-			bezStartX = getRand(winWidth),
-			bezStartY = getRand(winHeight),
-			bezEndX   = getRand(winWidth),
-			bezEndY   = getRand(winHeight),
-			conX      = getRand(winWidth),
-			conY      = getRand(winHeight),
-			fill      = getRand(2);
-
-			context.globalCompositeOperation = ['source-over', 'source-in', 'source-out',
+		while (stage < 1) {
+			let numOfShapes = getRand(25), rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
+			
+			context.globalCompositeOperation = stage < 1 ? 'none' : [
+            'source-over', 'source-in', 'source-out',
 			'source-atop', 'destination-over', 'destination-in',
 			'destination-out', 'destination-atop', 'lighter',
 			'copy', 'xor', 'multiply',
@@ -90,23 +45,39 @@ window.onload = () => {
 			'exclusion', 'hue', 'saturation',
 			'color', 'luminosity'][getRand(26)];
 
-			switch (getRand(5)) {
-				case 0:
-					drawLine(width, height, getRand(winWidth), getRand(winHeight));
-				case 1:
-					drawCircle(width, height, getRand(winHeight * 0.3));
-					break;
-				case 2:
-					drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
-					break;
-				case 3:
-					drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
-					break;
-				case 4:
-					drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
-					break;
+			for (let i = 0; i < numOfShapes; i++) {
+				let width     = getRand(winWidth),
+					height    = getRand(winHeight),
+					bezStartX = getRand(winWidth),
+					bezStartY = getRand(winHeight),
+					bezEndX   = getRand(winWidth),
+					bezEndY   = getRand(winHeight),
+					conX      = getRand(winWidth),
+					conY      = getRand(winHeight),
+					fill      = getRand(2);
+	
+				context.lineWidth = getRand(50);
+				context.strokeStyle = rgb();
+				context.fillStyle = rgb();
+	
+				switch (getRand(5)) {
+					case 0:
+						drawLine(width, height, getRand(winWidth), getRand(winHeight));
+					case 1:
+						drawCircle(width, height, getRand(winHeight * 0.3));
+						break;
+					case 2:
+						drawRectangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
+						break;
+					case 3:
+						drawTriangle(width, height, getRand(winHeight * 0.3), getRand(winHeight * 0.3));
+						break;
+					case 4:
+						drawBezierCurve(bezStartX, bezStartY, conX, conY, bezEndX, bezEndY);
+						break;
+				}
+				if (fill) context.fill();
 			}
-			if (fill) context.fill();
 		}
 	}
 
