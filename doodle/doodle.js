@@ -27,13 +27,15 @@ window.onload = () => {
 	}
 
 	function genCanvas() {
+		const rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
+
 		clearScreen();
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		while (stage < 1) {
-			let numOfShapes = getRand(25), rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
-			
+			const numOfShapes = getRand(25);
+
 			context.globalCompositeOperation = stage < 1 ? 'none' : [
             'source-over', 'source-in', 'source-out',
 			'source-atop', 'destination-over', 'destination-in',
@@ -78,6 +80,7 @@ window.onload = () => {
 				}
 				if (fill) context.fill();
 			}
+			stage++;
 		}
 	}
 
