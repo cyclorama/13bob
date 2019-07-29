@@ -36,17 +36,6 @@ window.onload = () => {
 		while (stage < 2) {
 			const numOfShapes = getRand(25);
 
-			context.globalCompositeOperation = stage < 1 ? 'none' : [
-			'source-over', 'source-in', 'source-out',
-			'source-atop', 'destination-over', 'destination-in',
-			'destination-out', 'destination-atop', 'lighter',
-			'copy', 'xor', 'multiply',
-			'screen', 'overlay', 'darken',
-			'lighten', 'color-dodge', 'color-burn',
-			'hard-light', 'soft-light', 'difference',
-			'exclusion', 'hue', 'saturation',
-			'color', 'luminosity'][getRand(26)];
-
 			for (let i = 0; i < numOfShapes; i++) {
 				const width     = getRand(winWidth),
 					  height    = getRand(winHeight),
@@ -57,6 +46,17 @@ window.onload = () => {
 					  conX      = getRand(winWidth),
 					  conY      = getRand(winHeight),
 					  fill      = getRand(2);
+
+				context.globalCompositeOperation = stage < 1 ? 'none' : [
+				'source-over', 'source-in', 'source-out',
+				'source-atop', 'destination-over', 'destination-in',
+				'destination-out', 'destination-atop', 'lighter',
+				'copy', 'xor', 'multiply',
+				'screen', 'overlay', 'darken',
+				'lighten', 'color-dodge', 'color-burn',
+				'hard-light', 'soft-light', 'difference',
+				'exclusion', 'hue', 'saturation',
+				'color', 'luminosity'][getRand(26)];
 	
 				context.lineWidth = getRand(50);
 				context.strokeStyle = rgb();
