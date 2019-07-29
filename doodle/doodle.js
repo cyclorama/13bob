@@ -33,8 +33,6 @@ window.onload = () => {
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
-		console.log(stage);
-
 		while (stage < 2) {
 			const numOfShapes = getRand(25);
 
