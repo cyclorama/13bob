@@ -5,7 +5,8 @@ window.onload = () => {
 		  stage     = 0;
 	const context   = canvas.getContext('2d'),
 	      centerX   = winWidth / 2, centerY = winHeight / 2,
-	      fontSize  = centerY / 8;
+		  fontSize  = centerY / 8,
+		  getRand   = range => Math.floor(Math.random() * range);
 
 	['click', 'keydown', 'mousemove', 'wheel'].forEach(event => document.addEventListener(event, genCanvas));
 	addEventListener('resize', () => {
@@ -84,10 +85,6 @@ window.onload = () => {
 			stage++;
 		}
 		stage = 0;
-	}
-
-	function getRand(range) {
-		return Math.floor(Math.random() * range);
 	}
 
 	function clearScreen() {
