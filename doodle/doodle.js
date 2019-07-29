@@ -29,8 +29,7 @@ window.onload = () => {
 
 	function genCanvas() {
 		const rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
-
-		clearScreen();
+		
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -85,11 +84,6 @@ window.onload = () => {
 			stage++;
 		}
 		stage = 0;
-	}
-
-	function clearScreen() {
-		context.fillStyle = 'black';
-		context.fillRect(0, 0, canvas.width, canvas.height);
 	}
 
 	function drawLine(x1, y1, x2, y2) {
