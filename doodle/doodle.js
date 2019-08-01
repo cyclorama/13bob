@@ -29,7 +29,6 @@ window.onload = () => {
 
 	function genCanvas() {
 		const rgb = () => `rgb(${getRand(255)},${getRand(255)},${getRand(255)})`;
-		
 		context.fillStyle = document.body.style.backgroundColor = rgb();
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -58,9 +57,9 @@ window.onload = () => {
 				'exclusion', 'hue', 'saturation',
 				'color', 'luminosity'][getRand(26)];
 	
-				context.lineWidth = getRand(50);
+				context.lineWidth   = getRand(50);
 				context.strokeStyle = rgb();
-				context.fillStyle = rgb();
+				context.fillStyle   = rgb();
 	
 				switch (getRand(5)) {
 					case 0:
