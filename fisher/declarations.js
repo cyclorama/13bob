@@ -449,4 +449,4 @@ class Rock {
 
 let hook = new Hook(), fishes = [], rocks = [], keysDown = {};
 
-addEventListener('keydown', e => keysDown[e.keyCode] = true, false);
+addEventListener('keydown', e => keysDown[e.keyCode] = true);
