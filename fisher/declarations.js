@@ -1,27 +1,27 @@
-const canvas           = document.createElement('canvas');
-const context          = canvas.getContext('2d');
-canvas.width           = window.innerHeight;
-canvas.height          = canvas.width;
-canvas.setAttribute('style', 'border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;');
-document.body.appendChild(canvas);
-const LEVEL_WIDTH      = 25;
-const LEVEL_HEIGHT     = 25;
-let LEVEL              = 0;
-let BLOCK_SIZE         = canvas.width / LEVEL_WIDTH;
-let sleepTime          = 700;
-let PLAYER_REELS       = 0;
-let PLAYER_CAUGHT      = 0;
-let PLAYER_SCORE       = 0;
-let PLAYER_SCORE_CHECK = 0;
-let scores             = [];
-let displayScores      = false;
-const music            = new Audio('sound/the_fishing_hole_8bit.ogg');
-const reel             = new Audio('sound/reel_in.ogg');
-music.volume           = 0.25;
-reel.volume            = 0.75;
-context.font           = 'Bold 42px Arial';
-context.textAlign      = 'center';
-context.fillStyle      = 'rgb(255, 255, 255)';
+const canvas             = document.createElement('canvas');
+const context            = canvas.getContext('2d');
+      canvas.width       = window.innerHeight;
+      canvas.height      = canvas.width;
+      canvas.setAttribute('style', 'border-style:solid;border-width:9px;padding:0px 6px 6px 6px;position:absolute;left:50%;width:25%;margin-left:-12.5%;');
+      document.body      .appendChild(canvas);
+const LEVEL_WIDTH        = 25,
+      LEVEL_HEIGHT       = 25;
+let   LEVEL              = 0,
+      BLOCK_SIZE         = canvas.width / LEVEL_WIDTH,
+      sleepTime          = 700,
+      PLAYER_REELS       = 0,
+      PLAYER_CAUGHT      = 0,
+      PLAYER_SCORE       = 0,
+      PLAYER_SCORE_CHECK = 0,
+      scores             = [],
+      displayScores      = false;
+const music              = new Audio('sound/the_fishing_hole_8bit.ogg'),
+      reel               = new Audio('sound/reel_in.ogg');
+music.volume             = 0.25;
+reel.volume              = 0.75;
+context.font             = 'Bold 42px Arial';
+context.textAlign        = 'center';
+context.fillStyle        = 'rgb(255, 255, 255)';
 
 async function* loadLevel() {
     const response = await fetch('levels.json').catch(err => console.log('Fetch Error :-S', err));
