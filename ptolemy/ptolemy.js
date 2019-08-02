@@ -15,7 +15,7 @@ window.onload = () => {
 
 	canvas.addEventListener('mousemove', event => {
 		let mousePos = getMousePos(canvas, event);
-		mouseX = mousePos.x; mouseY = mousePos.y;
+		    mouseX   = mousePos.x; mouseY = mousePos.y;
 	}, false);
 
 	function init() {
@@ -23,7 +23,7 @@ window.onload = () => {
 	}
 
 	function update() {
-		if (mouseX != null) mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
+		if (mouseX != null)        mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
 		if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
 
 		movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
@@ -67,7 +67,7 @@ window.onload = () => {
 
 	function drawLine(x1, y1, x2, y2, colour) {
 		context.strokeStyle = colour;
-		context.lineWidth = 5;
+		context.lineWidth   = 5;
 		context.beginPath();
 		context.moveTo(x1, y1);
 		context.lineTo(x2, y2);
@@ -77,7 +77,7 @@ window.onload = () => {
 
 	function drawCircle(x, y, radius, colour) {
 		context.strokeStyle = colour;
-		context.lineWidth = 5;
+		context.lineWidth   = 5;
 		context.beginPath();
 		context.arc(x, y, radius, 0, 2 * Math.PI);
 		context.closePath();
@@ -91,7 +91,7 @@ window.onload = () => {
 
 	function drawTriangle(x, y, radius, colour) {
 		context.strokeStyle = colour;
-		context.lineWidth = 5;
+		context.lineWidth   = 5;
 		context.beginPath();
 		context.moveTo(x, y - radius);
 		context.lineTo(x + pointAX, y + pointAY);
@@ -114,10 +114,8 @@ window.onload = () => {
 	}
 
 	function getCoordFromAngle(angle, distance) {
-		angle *= Math.PI / 180;
-		return {
-			x: distance * Math.cos(angle),
-			y: distance * Math.sin(angle)
+		angle *= Math.PI / 180; return {
+			x: distance * Math.cos(angle), y: distance * Math.sin(angle)
 		};
 	}
 
