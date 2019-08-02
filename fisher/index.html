@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="icon" href="//13bob.net/world.gif">
-		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-		<style>
-			@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-			@keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
-			* {	animation: fade 1.6180257510729614s; overflow: hidden; }
-			img { 
-			    image-rendering: optimizeSpeed;             /* Stop smoothing		*/
-			    image-rendering: -moz-crisp-edges;          /* Firefox				*/
-			    image-rendering: -o-crisp-edges;            /* Opera				*/
-			    image-rendering: -webkit-optimize-contrast; /* Chrome and Safari	*/
-			    image-rendering: pixelated;                 /* Chrome				*/
-			    image-rendering: optimize-contrast;         /* CSS3 Proposed		*/
-			    -ms-interpolation-mode: nearest-neighbor;   /* IE8+					*/
-			}
-			#boat {
-				position: absolute;
-				margin-top: 28%;
-				left: 50%;
-				width: 25%;
-				margin-left: -12.5%;
-				animation: scale 1.6180257510729614s;
-			}
-			#score {
-				font-family: 'Press Start 2P', cursive;
-				font-size: 120px;
-				font-weight: bold;
-				color: black;
-				position: center;
-				padding: 43%;
-				margin-left: 30px;
-			}
-		</style>
-		<title>13bob > Fisher</title>
-	</head>
-	<body bgcolor="#037B9D">
-		<script src="declarations.js"></script>
-		<center><img id="boat" src="img/boat0.png"></center>
-		<center><div id="score"></div></center>
-		<script src="game.js"></script>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="//13bob.net/world.gif">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <style>
+            @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes scale { from { transform: scale(0.0, 0.0); } to { transform: scale(1.0, 1.0); } }
+            * {	animation: fade 1.6180257510729614s; overflow: hidden; }
+            img { 
+                image-rendering: optimizeSpeed;             /* Stop smoothing		*/
+                image-rendering: -moz-crisp-edges;          /* Firefox				*/
+                image-rendering: -o-crisp-edges;            /* Opera				*/
+                image-rendering: -webkit-optimize-contrast; /* Chrome and Safari	*/
+                image-rendering: pixelated;                 /* Chrome				*/
+                image-rendering: optimize-contrast;         /* CSS3 Proposed		*/
+                -ms-interpolation-mode: nearest-neighbor;   /* IE8+					*/
+            }
+            #boat {
+                position: absolute;
+                margin-top: 28%;
+                left: 50%;
+                width: 25%;
+                margin-left: -12.5%;
+                animation: scale 1.6180257510729614s;
+            }
+            #score {
+                font-family: 'Press Start 2P', cursive;
+                font-size: 120px;
+                font-weight: bold;
+                color: black;
+                position: center;
+                padding: 43%;
+                margin-left: 30px;
+            }
+        </style>
+        <title>13bob > Fisher</title>
+    </head>
+    <body bgcolor="#037B9D">
+        <script src="declarations.js"></script>
+        <center><img id="boat" src="img/boat0.png"></center>
+        <center><div id="score"></div></center>
+        <script src="game.js"></script>
+    </body>
 </html>
