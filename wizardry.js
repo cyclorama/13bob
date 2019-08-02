@@ -65,8 +65,8 @@ pSound = trackN => {
 }
 
 pFrame = (x, y, z) => { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); },
-sMenu = (o, m) =>     { document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]-[];for(let i=[]-[];i<items[o].length;i++){fTop+=(i!=[]-[]&&i%3==[]-[]);document.getElementById('menu').innerHTML+=menu?(m==[]-[]?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]-[]&&i%2==[]-[]?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape(); },
-fib = nt =>           { let n1=[]-[],n2=1,nth,c=[]-[];while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;} };
+sMenu  = (o, m) =>     { document.getElementById('menu').innerHTML='';menu=!menu;let fTop=[]-[];for(let i=[]-[];i<items[o].length;i++){fTop+=(i!=[]-[]&&i%3==[]-[]);document.getElementById('menu').innerHTML+=menu?(m==[]-[]?`<a style='padding:13em;' href='${items[o][i]}'><img style='${i>2?`margin-top:${(400*fTop)-1000}px;`:''}' id='menu' src='${items[o][i]}/logo.png'/></a>${i!=[]-[]&&i%2==[]-[]?'<br>':''}`:m==1?`<video onclick='sMenu(${o},1)' style='z-index:13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>`:m==2?`<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>`:''):'';}if(!track.paused)pTape(); },
+fib    = nt =>           { let n1=[]-[],n2=1,nth,c=[]-[];while(c<nt){console.log(`${n1} (φ = ${n2/n1})`);nth=n1+n2;n1=n2;n2=nth;c++;} };
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
