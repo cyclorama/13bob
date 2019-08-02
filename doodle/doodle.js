@@ -16,7 +16,7 @@ window.onload = () => {
     });
 
     function init() {
-        context.font = `Bold ${fontSize}px Arial`;
+        context.font      = `Bold ${fontSize}px Arial`;
         context.textAlign = 'center';
         context.fillStyle = 'rgb(255, 255, 255)';
 
