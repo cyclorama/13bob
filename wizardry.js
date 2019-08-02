@@ -4,20 +4,20 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'),    new Audio('vibra
                  [ new Audio('vibrations/projector.ogg')                                                    ],
                  [ new Audio('vibrations/chatter.ogg')                                                      ],
                  [ new Audio('vibrations/inflate.ogg'),         new Audio('vibrations/deflate.ogg')        ]],
-tracks       =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
+      tracks =   [ '01 Strawberry Switchblade - Who Knows What Love Is.mp3',
                    '02 Pebbles - Why Do I Believe.mp3',
                    '03 Dee Dee Wilde - Lap of Luxury.mp3',
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
                    '05 The Jets - The Only Dance.mp3' ],
-items        = [ ['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://twitter.13bob.net/'], ['-'] ],
-frame        = 'photos/framed_',
-nav          = document.getElementsByClassName('nav'),
-dir          = 'mixtapes/E R R S T H E T I C/';
-let title    = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
-track        = new Audio(`${dir}${tracks[[] - []]}`),
-menu         = false,
-tapeP        = false,
-trackN       = [] - [];
+      items  = [ ['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'], [''], ['http://twitter.13bob.net/'], ['-'] ],
+      frame  = 'photos/framed_',
+      nav    = document.getElementsByClassName('nav'),
+      dir    = 'mixtapes/E R R S T H E T I C/';
+let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
+      track  = new Audio(`${dir}${tracks[[] - []]}`),
+      menu   = false,
+      tapeP  = false,
+      trackN = [] - [];
 
 const pTape = () => {
     if (tapeP = !tapeP) {
