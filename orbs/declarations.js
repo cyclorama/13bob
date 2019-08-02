@@ -1,128 +1,125 @@
-vector = {
-	_x: 1,
-	_y: 0,
+class Vector2 {
+    constructor(x, y) {
+        this._x = x;
+        this._y = y;
+    }
 
-	create: function(x, y) {
-		let obj = Object.create(this);
-		obj.setX(x);
-		obj.setY(y);
-		return obj;
-	},
+    get x()  { return this._x; }
+    set x(x) { this._x = x;    }
 
-	setX: function(val) {
-		this._x = val;
-	},
+    get y()  { return this._y; }
+    set y(y) { this._y = y;    }
 
-	getX: function() {
-		return this._x;
-	},
+    setAngle(angle) {
+        const length = this.getLength();
+        this._x = Math.cos(angle) * length;
+        this._y = Math.cos(angle) * length;
+    }
 
-	setY: function(val) {
-		this._y = val;
-	},
+    getAngle() {
+        return Math.atan2(this._y, this._x);
+    }
 
-	getY: function() {
-		return this._y;
-	},
-
-	setAngle: function(angle) {
-		let length = this.getLength();
+    setLength(length) {
+        const angle = this.getAngle();
 		this._x = Math.cos(angle) * length;
 		this._y = Math.sin(angle) * length;
-	},
+    }
+    
+    getLength() {
+        return Math.sqrt(this._x * this._x + this._y * this._y);
+    }
 
-	getAngle: function() {
-		return Math.atan2(this._y, this._x);
-	},
+    add(v2) {
+        return new Vector2(this._x + v2.x, this._y + v2.y);
+    }
 
-	setLength: function(length) {
-		let angle = this.getAngle();
-		this._x = Math.cos(angle) * length;
-		this._y = Math.sin(angle) * length;
-	},
+    subtract(v2) {
+        return new Vector2(this._x - v2.x, this._y - v2.y);
+    }
 
-	getLength: function() {
-		return Math.sqrt(this._x * this._x + this._y * this._y);
-	},
+    multiply(scalar) {
+        return new Vector2(this._x * scalar, this._y * scalar);
+    }
 
-	add: function(v2) {
-		return vector.create(this._x + v2.getX(), this._y + v2.getY());
-	},
+    divide(scalar) {
+        return new Vector2(this._x / scalar, this._y / scalar);
+    }
 
-	subtract: function(v2) {
-		return vector.create(this._x - v2.getX(), this._y - v2.getY());
-	},
+    addTo(v2) {
+        this._x += v2.x;
+        this._y += v2.y;
+    }
 
-	multiply: function(val) {
-		return vector.create(this._x * val, this._y * val);
-	},
+    subtractFrom(v2) {
+        this._x -= v2.x;
+        this._y -= v2.y;
+    }
 
-	divide: function(val) {
-		return vector.create(this._x / val, this._y / val);
-	},
+    multiplyBy(scalar) {
+        this._x *= scalar;
+        this._y *= scalar;
+    }
 
-	addTo: function(v2) {
-		this._x += v2.getX();
-		this._y += v2.getY();
-	},
+    divideBy(scalar) {
+        this._x /= scalar;
+        this._y /= scalar;
+    }
+}
 
-	subtractFrom: function(v2) {
-		this._x -= v2.getX();
-		this._y -= v2.getY();
-	},
+class Particle {
+    constructor(x, y, speed, direction, gravity) {
+        this._x         = x;
+        this._y         = y;
+        this._speed     = speed;
+        this._direction = direction;
+        this._gravity   = gravity;
 
-	multiplyBy: function(val) {
-		this._x *= val;
-		this._y *= val;
-	},
+        this._position  = new Vector3(this._x, this._y);
+        this._velocity  = new Vector3(0, 0);
+        this._velocity  .setLength(speed);
+        this._velocity  .setAngle(direction);
+        this._gravity   = new Vector2(0, gravity || 0);
 
-	divideBy: function(val) {
-		this._x /= val;
-		this._y /= val;
-	}
-};
+        this._mass      =  1;
+        this._radius    =  0;
+        this._bounce    = -1;
+        this._friction  =  1;
+    }
 
-particle = {
-	position: null,
-	velocity: null,
-	mass: 1,
-	radius: 0,
-	bounce: -1,
-	friction: 1,
+    get position()    { return this._position; }
+    set position(pos) { this._position = pos;  }
 
-	create: function(x, y, speed, direction, grav) {
-		let obj = Object.create(this);
-		obj.position = vector.create(x, y);
-		obj.velocity = vector.create(0, 0);
-		obj.velocity.setLength(speed);
-		obj.velocity.setAngle(direction);
-		obj.gravity = vector.create(0, grav || 0);
-		return obj;
-	},
+    get velocity()    { return this._velocity; }
+    set velocity(vel) { this._velocity = vel;  }
 
-	accelerate: function(accel) {
-		this.velocity.addTo(accel);
-	},
+    get speed()       { return this._speed;    }
+    set speed(val)    { this._speed = val;     }
 
-	update: function() {
-		this.velocity.multiplyBy(this.friction);
-		this.velocity.addTo(this.gravity);
-		this.position.addTo(this.velocity);
-	},
+    accelerate(val)   {
+        this.velocity.addTo(val);
+    }
 
-	angleTo: function(p2) {
-		return Math.atan2(p2.position.getY() - this.position.getY(), p2.position.getX() - this.position.getX());
-	},
+    update() {
+        this._velocity.multiplyBy(this._friction);
+        this._velocity.addTo(this._gravity);
+        this._position.addTo(this._velocity);
+    }
 
-	distanceTo: function(p2) {
-		let dx = p2.position.getX() - this.position.getX(), dy = p2.position.getY() - this.position.getY();
-		return Math.sqrt(dx * dx + dy * dy);
-	},
+    angleTo(p2) {
+        return Math.atan2(p2.position.y - this._position.y, p2.position.x - this._position.x);
+    }
 
-	gravitateTo: function(p2) {
-		let grav = vector.create(0, 0), dist = this.distanceTo(p2);
-		grav.setLength(p2.mass / (dist * dist));
-		grav.setAngle(this.angleTo(p2));
-		this.velocity.addTo(grav);
-	}
-};
+    distanceTo(p2) {
+        let dx = p2.position.x - this._position.x, dy = p2.position.y - this._position.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    gravitateTo(p2) {
+        let   gravity  = new Vector2(0, 0);
+        const distance = this.distanceTo(p2);
+		gravity.setLength(p2.mass / (distance * distance));
+		gravity.setAngle(this.angleTo(p2));
+		this._velocity.addTo(gravity);
+    }
+}
