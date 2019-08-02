@@ -29,16 +29,16 @@ window.onload = () => {
 		movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
 		movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
-		pointAX = getCoordFromAngle(150, mouseDist).x;
-		pointAY = getCoordFromAngle(150, mouseDist).y;
-		pointBX = getCoordFromAngle(30, mouseDist).x;
-		pointBY = getCoordFromAngle(30, mouseDist).y;
-		pointCX = getCoordFromAngle(270, mouseDist).x;
-		pointCY = getCoordFromAngle(270, mouseDist).y;
+		pointAX    = getCoordFromAngle(150, mouseDist).x;
+		pointAY    = getCoordFromAngle(150, mouseDist).y;
+		pointBX    = getCoordFromAngle(30, mouseDist).x;
+		pointBY    = getCoordFromAngle(30, mouseDist).y;
+		pointCX    = getCoordFromAngle(270, mouseDist).x;
+		pointCY    = getCoordFromAngle(270, mouseDist).y;
 
-		pDist = getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
-		qDist = getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
-		rDist = getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
+		pDist      = getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
+		qDist      = getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
+		rDist      = getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
 		pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
 		pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
