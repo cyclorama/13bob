@@ -30,22 +30,6 @@ class Vector2 {
         return Math.sqrt(this._x * this._x + this._y * this._y);
     }
 
-    add(v2) {
-        return new Vector2(this._x + v2.x, this._y + v2.y);
-    }
-
-    subtract(v2) {
-        return new Vector2(this._x - v2.x, this._y - v2.y);
-    }
-
-    multiply(scalar) {
-        return new Vector2(this._x * scalar, this._y * scalar);
-    }
-
-    divide(scalar) {
-        return new Vector2(this._x / scalar, this._y / scalar);
-    }
-
     addTo(v2) {
         this._x += v2.x;
         this._y += v2.y;
@@ -74,13 +58,11 @@ class Particle {
         this._speed     = speed;
         this._direction = direction;
         this._gravity   = gravity;
-
         this._position  = new Vector3(this._x, this._y);
         this._velocity  = new Vector3(0, 0);
         this._velocity  .setLength(speed);
         this._velocity  .setAngle(direction);
         this._gravity   = new Vector2(0, gravity || 0);
-
         this._mass      =  1;
         this._radius    =  0;
         this._bounce    = -1;
@@ -95,6 +77,9 @@ class Particle {
 
     get speed()       { return this._speed;    }
     set speed(val)    { this._speed = val;     }
+
+    get mass()        { return this._mass;     }
+    set mass(m)       { this._mass = m;        }
 
     accelerate(val)   {
         this.velocity.addTo(val);
