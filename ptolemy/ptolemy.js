@@ -14,9 +14,10 @@ window.onload = () => {
 	scaleLock = width / 6;
 
 	canvas.addEventListener('mousemove', event => {
-		let mousePos = getMousePos(canvas, event);
-		    mouseX   = mousePos.x; mouseY = mousePos.y;
-	}, false);
+        const mousePos = getMousePos(canvas, event);
+              mouseX   = mousePos.x;
+              mouseY   = mousePos.y;
+	});
 
 	function init() {
 		mouseDist = scaleLock + 1;
@@ -102,7 +103,7 @@ window.onload = () => {
 	}
 
 	function getMousePos(canvas, evt) {
-		let rect = canvas.getBoundingClientRect();
+		const rect = canvas.getBoundingClientRect();
 		return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
 	}
 
