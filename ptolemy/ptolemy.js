@@ -103,10 +103,7 @@ window.onload = () => {
 
 	function getMousePos(canvas, evt) {
 		let rect = canvas.getBoundingClientRect();
-		return {
-			x: evt.clientX - rect.left,
-			y: evt.clientY - rect.top
-		};
+		return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
 	}
 
 	function getDistance(x1, y1, x2, y2) {
