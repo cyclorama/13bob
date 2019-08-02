@@ -13,7 +13,7 @@ window.onload = () => {
 	movePointX = 0, movePointY = 0,
 	scaleLock = width / 6;
 
-	canvas.addEventListener('mousemove', event => {
+    canvas.addEventListener('mousemove', event => {
         const mousePos = getMousePos(canvas, event);
               mouseX   = mousePos.x;
               mouseY   = mousePos.y;
