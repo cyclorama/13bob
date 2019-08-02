@@ -1,16 +1,16 @@
 window.onload = () => {
-	const canvas = document.getElementById('canvas'),
-	context = canvas.getContext('2d'),
-	width = canvas.width = window.innerWidth,
-	height = canvas.height = window.innerHeight,
-	centerX = width / 2, centerY = height / 2;
-	let mouseX, mouseY, mouseDist,
-	pointAX, pointAY,
-	pointBX, pointBY,
-	pointCX, pointCY,
-	pDist, qDist, rDist,
-	autoX = 0, autoY = 0, pointAutoX, pointAutoY,
-	movePointX = 0, movePointY = 0,
+    const canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d'),
+    width = canvas.width = window.innerWidth,
+    height = canvas.height = window.innerHeight,
+    centerX = width / 2, centerY = height / 2;
+    let mouseX, mouseY, mouseDist,
+    pointAX, pointAY,
+    pointBX, pointBY,
+    pointCX, pointCY,
+    pDist, qDist, rDist,
+    autoX = 0, autoY = 0, pointAutoX, pointAutoY,
+    movePointX = 0, movePointY = 0,
     scaleLock = width / 6;
     
     canvas.addEventListener('mousemove', event => {
@@ -19,109 +19,109 @@ window.onload = () => {
               mouseY   = mousePos.y;
     });
 
-	function init() {
-		mouseDist = scaleLock + 1;
-	}
+    function init() {
+        mouseDist = scaleLock + 1;
+    }
 
-	function update() {
-		if (mouseX != null)        mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
-		if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
+    function update() {
+        if (mouseX != null)        mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
+        if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
 
-		movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
-		movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
+        movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
+        movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
-		pointAX    = getCoordFromAngle(150, mouseDist).x;
-		pointAY    = getCoordFromAngle(150, mouseDist).y;
-		pointBX    = getCoordFromAngle(30, mouseDist).x;
-		pointBY    = getCoordFromAngle(30, mouseDist).y;
-		pointCX    = getCoordFromAngle(270, mouseDist).x;
-		pointCY    = getCoordFromAngle(270, mouseDist).y;
+        pointAX    = getCoordFromAngle(150, mouseDist).x;
+        pointAY    = getCoordFromAngle(150, mouseDist).y;
+        pointBX    = getCoordFromAngle(30, mouseDist).x;
+        pointBY    = getCoordFromAngle(30, mouseDist).y;
+        pointCX    = getCoordFromAngle(270, mouseDist).x;
+        pointCY    = getCoordFromAngle(270, mouseDist).y;
 
-		pDist      = getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
-		qDist      = getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
-		rDist      = getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
+        pDist      = getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
+        qDist      = getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
+        rDist      = getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
-		pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
-		pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
-	}
+        pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
+        pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
+    }
 
-	function render() {
-		clearScreen();
-		drawCircle(centerX, centerY, mouseDist, 'white');
-		drawTriangle(centerX, centerY, mouseDist, 'red');
-		drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan');                              // P
-		drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow');                    // Q
-		drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta');                   // R
-		drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan');            // P
-		drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow');   // Q
-		drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, 'magenta'); // R
-		drawCircle(centerX + pointBX, centerY + pointBY, 2, 'magenta');
-		drawCircle(centerX + pointAX, centerY + pointAY, 2, 'yellow');
-		drawCircle(centerX, centerY - mouseDist, 2, 'cyan');
-		drawCircle(movePointX, movePointY, 2, 'white');
-	}
+    function render() {
+        clearScreen();
+        drawCircle(centerX, centerY, mouseDist, 'white');
+        drawTriangle(centerX, centerY, mouseDist, 'red');
+        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan');                              // P
+        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow');                    // Q
+        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta');                   // R
+        drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan');            // P
+        drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow');   // Q
+        drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, 'magenta'); // R
+        drawCircle(centerX + pointBX, centerY + pointBY, 2, 'magenta');
+        drawCircle(centerX + pointAX, centerY + pointAY, 2, 'yellow');
+        drawCircle(centerX, centerY - mouseDist, 2, 'cyan');
+        drawCircle(movePointX, movePointY, 2, 'white');
+    }
 
-	function clearScreen() {
-		context.fillStyle = 'black';
-		context.fillRect(0, 0, canvas.width, canvas.height);
-	}
+    function clearScreen() {
+        context.fillStyle = 'black';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
-	function drawLine(x1, y1, x2, y2, colour) {
-		context.strokeStyle = colour;
-		context.lineWidth   = 5;
-		context.beginPath();
-		context.moveTo(x1, y1);
-		context.lineTo(x2, y2);
-		context.closePath();
-		context.stroke();
-	}
+    function drawLine(x1, y1, x2, y2, colour) {
+        context.strokeStyle = colour;
+        context.lineWidth   = 5;
+        context.beginPath();
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.closePath();
+        context.stroke();
+    }
 
-	function drawCircle(x, y, radius, colour) {
-		context.strokeStyle = colour;
-		context.lineWidth   = 5;
-		context.beginPath();
-		context.arc(x, y, radius, 0, 2 * Math.PI);
-		context.closePath();
-		context.stroke();
-	}
+    function drawCircle(x, y, radius, colour) {
+        context.strokeStyle = colour;
+        context.lineWidth   = 5;
+        context.beginPath();
+        context.arc(x, y, radius, 0, 2 * Math.PI);
+        context.closePath();
+        context.stroke();
+    }
 
-	function drawRectangle(x, y, width, height, colour) {
-		context.fillStyle = colour;
-		context.fillRect(x, y, width, height);
-	}
+    function drawRectangle(x, y, width, height, colour) {
+        context.fillStyle = colour;
+        context.fillRect(x, y, width, height);
+    }
 
-	function drawTriangle(x, y, radius, colour) {
-		context.strokeStyle = colour;
-		context.lineWidth   = 5;
-		context.beginPath();
-		context.moveTo(x, y - radius);
-		context.lineTo(x + pointAX, y + pointAY);
-		context.lineTo(x + pointBX, y + pointBY);
-		context.lineTo(x + pointCX, y + pointCY);
-		context.closePath();
-		context.stroke();
-	}
+    function drawTriangle(x, y, radius, colour) {
+        context.strokeStyle = colour;
+        context.lineWidth   = 5;
+        context.beginPath();
+        context.moveTo(x, y - radius);
+        context.lineTo(x + pointAX, y + pointAY);
+        context.lineTo(x + pointBX, y + pointBY);
+        context.lineTo(x + pointCX, y + pointCY);
+        context.closePath();
+        context.stroke();
+    }
 
-	function getMousePos(canvas, evt) {
-		const rect = canvas.getBoundingClientRect();
-		return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
-	}
+    function getMousePos(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
+    }
 
-	function getDistance(x1, y1, x2, y2) {
-		return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-	}
+    function getDistance(x1, y1, x2, y2) {
+        return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+    }
 
-	function getCoordFromAngle(angle, distance) {
-		angle *= Math.PI / 180; return {
-			x: distance * Math.cos(angle), y: distance * Math.sin(angle)
-		};
-	}
+    function getCoordFromAngle(angle, distance) {
+        angle *= Math.PI / 180; return {
+            x: distance * Math.cos(angle), y: distance * Math.sin(angle)
+        };
+    }
 
-	function anim() {
-		requestAnimationFrame(anim);
-		render();
-		update();
-	}
-	anim();
-	init();
+    function anim() {
+        requestAnimationFrame(anim);
+        render();
+        update();
+    }
+    anim();
+    init();
 }
