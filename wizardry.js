@@ -20,48 +20,48 @@ tapeP        = false,
 trackN       = [] - [];
 
 const pTape = () => {
-	if (tapeP = !tapeP) {
-		document.tape.src = `${frame}tape_forward.gif`;
-		track.volume = 0.1;
-		track.play();
-		track.onended = () => { pTape(); pTape(); };
-		mkHighlight(trackN + 1);
-	} else {
-		document.tape.src = `${frame}tape.gif`;
-		track.pause();
-		track.currentTime = [] - [];
-		trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
-		track = new Audio(`${dir}${tracks[trackN]}`);
-	}
+    if (tapeP = !tapeP) {
+        document.tape.src = `${frame}tape_forward.gif`;
+        track.volume = 0.1;
+        track.play();
+        track.onended = () => { pTape(); pTape(); };
+        mkHighlight(trackN + 1);
+    } else {
+        document.tape.src = `${frame}tape.gif`;
+        track.pause();
+        track.currentTime = [] - [];
+        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
+        track = new Audio(`${dir}${tracks[trackN]}`);
+    }
 },
 
 mkHighlight = trackN => {
-	trackT = title.split('\n');
-	title = [] + [];
-	if (trackN == 1 && trackT[5].includes('>')) { rmHighlight(5); }
-	if (trackN > 1) { rmHighlight(trackN - 1); }
-	trackT[trackN] = `> ${trackT[trackN]} <`;
-	trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []);
-	document.tape.title = title;
+    trackT = title.split('\n');
+    title = [] + [];
+    if (trackN == 1 && trackT[5].includes('>')) { rmHighlight(5); }
+    if (trackN > 1) { rmHighlight(trackN - 1); }
+    trackT[trackN] = `> ${trackT[trackN]} <`;
+    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []);
+    document.tape.title = title;
 },
 
 rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
 
 pSound = trackN => {
-	switch (trackN) {
-		case 0  : sounds[0][1].pause(); sounds[0][1].currentTime=0; sounds[0][0].play();  break;
-		case 1  : sounds[0][0].pause(); sounds[0][0].currentTime=0; sounds[0][1].play();  break;
-		case 2  : sounds[1][1].pause(); sounds[1][1].currentTime=0; sounds[1][0].play();  break;
-		case 3  : sounds[1][0].pause(); sounds[1][0].currentTime=0; sounds[1][1].play();  break;
-		case 10 : sounds[5][1].pause(); sounds[5][1].currentTime=0; sounds[5][0].play();  break;
-		case 11 : sounds[5][0].pause(); sounds[5][0].currentTime=0; sounds[5][1].play();  break;
-		case 5  : sounds[2][0].pause(); sounds[2][0].currentTime=0;                       break;
-		case 7  : sounds[3][0].pause(); sounds[3][0].currentTime=0;                       break;
-		case 9  : sounds[4][0].pause(); sounds[4][0].currentTime=0;                       break;
-		case 4  : sounds[2][0].play();                                                    break;
-		case 6  : sounds[3][0].play();                                                    break;
-		case 8  : sounds[4][0].play();                                                    break;
-	}
+    switch (trackN) {
+        case 0  : sounds[0][1].pause(); sounds[0][1].currentTime=0; sounds[0][0].play();  break;
+        case 1  : sounds[0][0].pause(); sounds[0][0].currentTime=0; sounds[0][1].play();  break;
+        case 2  : sounds[1][1].pause(); sounds[1][1].currentTime=0; sounds[1][0].play();  break;
+        case 3  : sounds[1][0].pause(); sounds[1][0].currentTime=0; sounds[1][1].play();  break;
+        case 10 : sounds[5][1].pause(); sounds[5][1].currentTime=0; sounds[5][0].play();  break;
+        case 11 : sounds[5][0].pause(); sounds[5][0].currentTime=0; sounds[5][1].play();  break;
+        case 5  : sounds[2][0].pause(); sounds[2][0].currentTime=0;                       break;
+        case 7  : sounds[3][0].pause(); sounds[3][0].currentTime=0;                       break;
+        case 9  : sounds[4][0].pause(); sounds[4][0].currentTime=0;                       break;
+        case 4  : sounds[2][0].play();                                                    break;
+        case 6  : sounds[3][0].play();                                                    break;
+        case 8  : sounds[4][0].play();                                                    break;
+    }
 }
 
 pFrame = (x, y, z) => { document.getElementById(x).src=`${frame}${x}${z==0?'_forward':z==1?'_reverse':''}.gif`;pSound(y); },
@@ -72,8 +72,8 @@ sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
-	let i = new Image();
-	i.src = s;
+    let i = new Image();
+    i.src = s;
 }));
 
 pTape();
