@@ -1,17 +1,18 @@
 window.onload = () => {
-    const canvas = document.getElementById('canvas'),
-    context = canvas.getContext('2d'),
-    width = canvas.width = window.innerWidth,
-    height = canvas.height = window.innerHeight,
-    centerX = width / 2, centerY = height / 2;
-    let mouseX, mouseY, mouseDist,
-    pointAX, pointAY,
-    pointBX, pointBY,
-    pointCX, pointCY,
-    pDist, qDist, rDist,
-    autoX = 0, autoY = 0, pointAutoX, pointAutoY,
-    movePointX = 0, movePointY = 0,
-    scaleLock = width / 6;
+    const canvas  = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          width   = canvas.width = window.innerWidth,
+          height  = canvas.height = window.innerHeight,
+          centerX = width / 2, centerY = height / 2;
+    let   mouseX, mouseY, mouseDist,
+          pointAX, pointAY,
+          pointBX, pointBY,
+          pointCX, pointCY,
+          pDist, qDist, rDist,
+          autoX = 0, autoY = 0,
+          pointAutoX, pointAutoY,
+          movePointX = 0, movePointY = 0,
+          scaleLock = width / 6;
     
     canvas.addEventListener('mousemove', event => {
         const mousePos = getMousePos(canvas, event);
