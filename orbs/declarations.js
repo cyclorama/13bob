@@ -13,7 +13,7 @@ class Vector2 {
     setAngle(angle) {
         const length = this.getLength();
         this._x = Math.cos(angle) * length;
-        this._y = Math.cos(angle) * length;
+        this._y = Math.sin(angle) * length;
     }
 
     getAngle() {
