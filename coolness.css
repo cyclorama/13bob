@@ -5,52 +5,52 @@
 @keyframes scale       { from {      transform:  scale(0.0, 0.0); } to {      transform: scale(1.0, 1.0); } }
 
 a:link {
-    color: white;
+              color: white;
     text-decoration: none;
 }
 
 a:visited {
-    color: white;
+              color: white;
     text-decoration: none;
 }
 
 a:hover {
-    color: white;
+              color: white;
     text-decoration: none;
-    cursor: url(little_finger.cur), pointer;
+             cursor: url(little_finger.cur), pointer;
 }
 
 a:active {
-    color: white;
+              color: white;
     text-decoration: none;
 }
 
 h1 {
-    text-align: center;
-    height: 1em;
-    margin: auto;
-    padding: 0.13em;
-    font-size: 175px;
+     text-align: center;
+         height: 1em;
+         margin: auto;
+        padding: 0.13em;
+      font-size: 175px;
     font-family: 'Press Start 2P', cursive;
-    animation: spacing_one 1s, heartbeat 1s alternate infinite;
+      animation: spacing_one 1s, heartbeat 1s alternate infinite;
 }
 
 h2 {
-    font-size: 35px;
+      font-size: 35px;
     font-family: 'Press Start 2P', cursive;
-    animation: spacing_two 1s;
+      animation: spacing_two 1s;
 }
 
 body {
-    color: white;
-    overflow-x: hidden;
-    cursor: url(open_hand.cur), pointer;
-    font-family: 'Press Start 2P', cursive;
-    background-color: black;
-    background-image: url(space.gif);
-    background-repeat: repeat;
+                    color: white;
+               overflow-x: hidden;
+                   cursor: url(open_hand.cur), pointer;
+              font-family: 'Press Start 2P', cursive;
+         background-color: black;
+         background-image: url(space.gif);
+        background-repeat: repeat;
     background-attachment: fixed;
-    animation: scale 1s, fade 1s;
+                animation: scale 1s, fade 1s;
 }
 
 ::-webkit-scrollbar { 
@@ -62,22 +62,22 @@ img {
 }
 
 img.nav {
-    margin:0px 0px 0px -15px;
+           margin: 0px 0px 0px -15px;
     border-radius: 50px;
-    cursor: url(little_finger.cur), pointer;
+           cursor: url(little_finger.cur), pointer;
 }
 
 img#menu {
-    z-index: 13;
-    position: absolute;
-    margin-left: -200px;
-    margin-top: -56em;
-    margin-right: auto;
+          z-index: 13;
+         position: absolute;
+      margin-left: -200px;
+       margin-top: -56em;
+     margin-right: auto;
     margin-bottom: auto;
 }
 
 iframe {
-    padding: 0.333em;
+      padding: 0.333em;
     animation: scale 1s;
 }
 
@@ -86,40 +86,44 @@ video:hover {
 }
 
 #video_background {
-    position: fixed;
-    top: 50%; left: 50%;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto; z-index: -100;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
+             position: fixed;
+                  top: 50%;
+                 left: 50%;
+            min-width: 100%;
+           min-height: 100%;
+                width: auto;
+               height: auto;
+              z-index: -100;
+        -ms-transform: translateX(-50%) translateY(-50%);
+       -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover;
+            transform: translateX(-50%) translateY(-50%);
+      background-size: cover;
 }
 
 div#error {
-    padding: 0.404em;
+      padding: 0.404em;
     font-size: 50px;
     animation: spacing_two 1s;
 }
 
 textarea {
-    color: white;
+               color: white;
     background-color: black;
-    border: 1px solid white;
-    overflow: auto;
-    outline: none;
-    resize: none;
-    font-family: "Verdana", Geneva, sans-serif;
+              border: 1px solid white;
+            overflow: auto;
+             outline: none;
+              resize: none;
+         font-family: "Verdana", Geneva, sans-serif;
 }
 
 input[type=submit] {
-    color: white;
+               color: white;
     background-color: black;
-    border: 1px solid white;
-    font-weight: bold; 
-    padding: 13px;
-    cursor: url(little_finger.cur), pointer;
+              border: 1px solid white;
+         font-weight: bold; 
+             padding: 13px;
+              cursor: url(little_finger.cur), pointer;
 }
 
 div.blockchain-btn {
