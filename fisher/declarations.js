@@ -35,10 +35,10 @@ async function* loadLevel() {
    
     while (LEVEL < 8) {
         music.currentTime = 0;
-        fishes = [];
-        rocks = [];
-        PLAYER_REELS = 0;
-        PLAYER_CAUGHT = 0;
+        fishes            = [];
+        rocks             = [];
+        PLAYER_REELS      = 0;
+        PLAYER_CAUGHT     = 0;
     
         for (let i = 0; i < json.levels[LEVEL].fish.length; i++) {
             fishes.push(new Fish(json.levels[LEVEL].fish[i].waypoints));
@@ -49,21 +49,20 @@ async function* loadLevel() {
         }
   
         if (LEVEL == 7) {
-            LEVEL = 0;
+            LEVEL        = 0;
             PLAYER_SCORE = 0;
             document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
-        } else {
+        } else
             LEVEL++;
-        }
+            
         yield;
     }
     return;
 }
 
 function nextLevel() {	
-    if (loadLevel().next().done) {
+    if (loadLevel().next().done)
         console.log('Game over!');
-    }
 }
 
 function menu() {
@@ -86,45 +85,43 @@ function sleep(time) {
 }
 
 let gameImages = {
-    hookImage: 'hook',
-    waterImage: 'water',
-    lineImage: 'line',
-    lineImageLeftDown: 'line_left_down',
-    lineImageRightDown: 'line_right_down',
-    lineImageLeftUp: 'line_left_up',
-    lineImageRightUp: 'line_right_up',
-    fishImageLeft: 'fish_left',
-    fishImageRight: 'fish_right',
-    rockImageSingle: 'rock_single',
-    rockImageCornerTopLeft: 'rock_corner_top_left',
-    rockImageCornerTopRight: 'rock_corner_top_right',
-    rockImageCornerBottomLeft: 'rock_corner_bottom_left',
+                     hookImage: 'hook',
+                    waterImage: 'water',
+                     lineImage: 'line',
+             lineImageLeftDown: 'line_left_down',
+            lineImageRightDown: 'line_right_down',
+               lineImageLeftUp: 'line_left_up',
+              lineImageRightUp: 'line_right_up',
+                 fishImageLeft: 'fish_left',
+                fishImageRight: 'fish_right',
+               rockImageSingle: 'rock_single',
+        rockImageCornerTopLeft: 'rock_corner_top_left',
+       rockImageCornerTopRight: 'rock_corner_top_right',
+     rockImageCornerBottomLeft: 'rock_corner_bottom_left',
     rockImageCornerBottomRight: 'rock_corner_bottom_right',
-    rockImageLeft: 'rock_left',
-    rockImageHorizTop: 'rock_horiz_top',
-    rockImageHoriz: 'rock_horiz',
-    rockImageHorizBottom: 'rock_horiz_bottom',
-    rockImageRight: 'rock_right',
-    rockImageCenter: 'rock_center',
-    rockImageUp: 'rock_up',
-    rockImageVertLeft: 'rock_vert_left',
-    rockImageVert: 'rock_vert',
-    rockImageVertRight: 'rock_vert_right',
-    rockImageDown: 'rock_down'
+                 rockImageLeft: 'rock_left',
+             rockImageHorizTop: 'rock_horiz_top',
+                rockImageHoriz: 'rock_horiz',
+          rockImageHorizBottom: 'rock_horiz_bottom',
+                rockImageRight: 'rock_right',
+               rockImageCenter: 'rock_center',
+                   rockImageUp: 'rock_up',
+             rockImageVertLeft: 'rock_vert_left',
+                 rockImageVert: 'rock_vert',
+            rockImageVertRight: 'rock_vert_right',
+                 rockImageDown: 'rock_down'
 };
 
 Object.entries(gameImages).forEach(image => {
-    gameImages[image[0]] = new Image();
-    gameImages[image[0]].src = `img/${image[1]}.png`;
+    gameImages[image[0]]        = new Image();
+    gameImages[image[0]].src    = `img/${image[1]}.png`;
     gameImages[image[0]].onload = () => gameImages[image[0]].ready = true;
 });
 
 function renderWater() {
-    for (let j = 0; j < LEVEL_HEIGHT; j++) {
-        for (let i = 0; i < LEVEL_WIDTH; i++) {
+    for (let j = 0; j < LEVEL_HEIGHT; j++)
+        for (let i = 0; i < LEVEL_WIDTH; i++)
             context.drawImage(gameImages.waterImage, i * BLOCK_SIZE, j * BLOCK_SIZE, BLOCK_SIZE + 1, BLOCK_SIZE + 1);
-        }
-    }
 }
 
 function renderLine() {
@@ -135,9 +132,8 @@ function renderLine() {
         } else if (hook.prev[i] < hook.prev[i + 2]) {
             context.drawImage(gameImages.lineImageRightDown, (hook.prev[i] + 1) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
             context.drawImage(gameImages.lineImageRightUp, (hook.prev[i]) * BLOCK_SIZE, (hook.prev[i + 1]) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-        } else {
+        } else
             context.drawImage(gameImages.lineImage, hook.prev[i] * BLOCK_SIZE, hook.prev[i + 1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-        }
     }
     fixArtifact();
 }
@@ -156,13 +152,13 @@ function fixArtifact() {
 
 class Hook {
     constructor() {
-        this._x = 12;
-        this._y = 0;
-        this._startX = this._x,
-        this._startY = this._y,
-        this._prev = [],
-        this._casting =  false,
-        this._reelIn = false
+        this._x       = 12;
+        this._y       = 0;
+        this._startX  = this._x,
+        this._startY  = this._y,
+        this._prev    = [],
+        this._casting = false,
+        this._reelIn  = false
     }
 
     get x()            { return this._x;        }
@@ -187,10 +183,9 @@ class Hook {
         } else {
             if (40 in keysDown) { // DOWN_ARROW
                 sleepTime = 70;
-                keysDown = [];
-            } else {
+                keysDown  = [];
+            } else
                 sleepTime = 700;
-            }
     
             if (32 in keysDown) { // SPACEBAR
                 if (!this._casting) {
@@ -201,7 +196,7 @@ class Hook {
                 } else {
                     sleepTime /= 10;
                     this._casting = false;
-                    this._reelIn = true;
+                    this._reelIn  = true;
                     music.pause();
                     reel.play();
                     keysDown = [];
@@ -236,12 +231,12 @@ class Hook {
     moveHook() {
         if (this._casting && this._y < LEVEL_HEIGHT - 1) {
             if (37 in keysDown) { // LEFT_ARROW
-                this._x -= 1;
-                keysDown = [];
+                this._x  -= 1;
+                keysDown  = [];
             }
             if (39 in keysDown) { // RIGHT_ARROW
-                this._x += 1;
-                keysDown = [];
+                this._x  += 1;
+                keysDown  = [];
             }
 
             this._prev.push(this._x);
@@ -255,9 +250,9 @@ class Hook {
             this._y = this._prev.pop();
             this._x = this._prev.pop();
         } else {
-            this._casting = false;
-            this._reelIn = false;
-            sleepTime *= 10;
+            this._casting  = false;
+            this._reelIn   = false;
+            sleepTime     *= 10;
 
             if (this._x == this._startX && this._y == this._startY) {
                 reel.pause();
@@ -267,7 +262,7 @@ class Hook {
                     PLAYER_SCORE += PLAYER_CAUGHT / PLAYER_REELS; // Calculate score
                     document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
                     if (LEVEL == 7) {
-                        LEVEL = -1;
+                        LEVEL        = -1;
                         PLAYER_SCORE = 0;
                         document.getElementById('score').innerText = parseInt(PLAYER_SCORE);
                         nextLevel();
@@ -280,8 +275,8 @@ class Hook {
     }
 
     reelHook() {
-        sleepTime /= 10;
-        this._reelIn = true;
+        sleepTime    /= 10;
+        this._reelIn  = true;
         music.pause();
         reel.play();
     }
@@ -350,30 +345,25 @@ class Fish {
             if (this._x < this._waypoints[this._point].x) {
                 this._x++;
 
-                if (this._fishImageSrc != gameImages.fishImageRight.src) {
+                if (this._fishImageSrc != gameImages.fishImageRight.src)
                     this._fishImage = gameImages.fishImageRight;
-                }
             }
 
             if (this._x > this._waypoints[this._point].x) {
                 this._x--;
 
-                if (this._fishImageSrc != gameImages.fishImageLeft.src) {
+                if (this._fishImageSrc != gameImages.fishImageLeft.src)
                     this._fishImage = gameImages.fishImageLeft;
-                }
             }
 
-            if (this._x == this._waypoints[this._point].x && this._y < this._waypoints[this._point].y) {
+            if (this._x == this._waypoints[this._point].x && this._y < this._waypoints[this._point].y)
                 this._y++;
-            }
 
-            if (this._x == this._waypoints[this._point].x && this._y > this._waypoints[this._point].y) {
+            if (this._x == this._waypoints[this._point].x && this._y > this._waypoints[this._point].y)
                 this._y--;
-            }
 
-            if (this._x == this._waypoints[this._point].x && this._y == this._waypoints[this._point].y) {
+            if (this._x == this._waypoints[this._point].x && this._y == this._waypoints[this._point].y)
                 this._point += (this._point < this._waypoints.length - 1) ? 1 : -(this._waypoints.length - 1);
-            }
         }
     }
 }
