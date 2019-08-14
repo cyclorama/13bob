@@ -24,7 +24,7 @@ const pTape = () => {
         document.tape.src = `${frame}tape_forward.gif`,
         track.volume = 0.1,
         track.play(),
-        track.onended = () => pTape(), pTape(),
+        track.onended = () => { pTape(), pTape() },
         mkHighlight(trackN + 1);
     } else {
         document.tape.src = `${frame}tape.gif`,
