@@ -1,8 +1,7 @@
 (async (title, position, html, colours, sleep) => { // Genesis 9:13 — I do set my bow in the cloud, and it shall be for a token of a covenant between me and the earth.
     const h1 = document.querySelector('h1');
 
-    await sleep(1000);
-    h1.style.animation = 'none';
+    await sleep(1000).then(() => h1.style.animation = 'none');
 
     while (position < 12) { html = '';
         for (let i = 0; i < colours.length; i++) {
