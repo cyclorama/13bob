@@ -87,14 +87,14 @@ fib = nt => {
         console.log(`${n1} (φ = ${n2 / n1})`);
         [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
     }
-};
+},
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.1));
-tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.1)),
+tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`),
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
     let i = new Image();
     i.src = s;
-}));
+})),
 
 pTape();
