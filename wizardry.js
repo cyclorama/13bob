@@ -21,27 +21,27 @@ let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
 
 const pTape = () => {
     if (tapeP = !tapeP) {
-        document.tape.src = `${frame}tape_forward.gif`;
-        track.volume = 0.1;
-        track.play();
-        track.onended = () => { pTape(); pTape(); };
+        document.tape.src = `${frame}tape_forward.gif`,
+        track.volume = 0.1,
+        track.play(),
+        track.onended = () => pTape(), pTape(),
         mkHighlight(trackN + 1);
     } else {
-        document.tape.src = `${frame}tape.gif`;
-        track.pause();
-        track.currentTime = [] - [];
-        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [];
+        document.tape.src = `${frame}tape.gif`,
+        track.pause(),
+        track.currentTime = [] - [],
+        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [],
         track = new Audio(`${dir}${tracks[trackN]}`);
     }
 },
 
 mkHighlight = trackN => {
-    trackT = title.split('\n');
-    title = [] + [];
-    if (trackN == 1 && trackT[5].includes('>')) { rmHighlight(5); }
-    if (trackN > 1) { rmHighlight(trackN - 1); }
-    trackT[trackN] = `> ${trackT[trackN]} <`;
-    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []);
+    trackT = title.split('\n'),
+    title  = [] + [];
+    if (trackN == 1 && trackT[5].includes('>')) rmHighlight(5);
+    if (trackN > 1) rmHighlight(trackN - 1);
+    trackT[trackN] = `> ${trackT[trackN]} <`,
+    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []),
     document.tape.title = title;
 },
 
@@ -64,12 +64,9 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => {
-    document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.gif`;
-    pSound(y);
-},
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.gif`, pSound(y) },
 
-sMenu = (o, m) => { menu = !menu;
+sMenu = (o, m) => { menu = !menu,
     document.getElementById('menu').innerHTML = '';
     let fTop = [] - [];
 
