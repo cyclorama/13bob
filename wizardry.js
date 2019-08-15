@@ -85,7 +85,7 @@ fib = nt => {
     let n1 = [] - [], n2 = 1, nth, c = [] - [];
     while (c < nt) {
         console.log(`${n1} (φ = ${n2 / n1})`);
-        [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
+        [, n1] = [nth = n1 + n2, n2 = nth], c++;
     }
 },
 
