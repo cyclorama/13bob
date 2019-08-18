@@ -37,7 +37,7 @@ const pTape = () => {
 },
 
 mkHighlight = trackN => {
-    trackT = title.split('\n'), trackLen = trackT.length - 1, title = [] + [];
+    trackT = title.split('\n'), trackLen = trackT.length - 2, title = [] + [];
     if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
     if (trackN > 1) rmHighlight(trackN - 1);
     trackT[trackN] = `> ${trackT[trackN]} <`,
