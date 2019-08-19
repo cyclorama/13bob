@@ -59,7 +59,7 @@ window.onload = () => {
                 drawText('+', ((centerX / 2) + 75)  - (mouseDist / 2), centerY);
                 drawText('=', ((centerX / 2) + 175) - (mouseDist / 2), centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (cond[0] / 2), 50, cond[0], colours[i]);
-                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (cond[base[0] - base[1]] / 2), 50, cond[base[0] - base[1]], colours[base[0]]);
+                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (cond[base[1] - base[0]] / 2), 50, cond[base[1] - base[0]], colours[base[0]]);
                 drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (cond[base[1]] / 2), 50, cond[base[1]], colours[base[1]]);
             }
         });
