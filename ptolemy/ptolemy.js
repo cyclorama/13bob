@@ -55,7 +55,7 @@ window.onload = () => {
         drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]); // R
 
 
-        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach(i, cond => {
+        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
             if (cond[0] = cond[1] + cond[2]) {
                 drawText('=', (centerX / 2) + 150, centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[i]);
