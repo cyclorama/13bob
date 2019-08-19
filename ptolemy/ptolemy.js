@@ -54,7 +54,7 @@ window.onload = () => {
         drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]);
         drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]);
 
-        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
+        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [(i + 1) % cond.length - 1, (i + 2) % cond.length - 1];
                 drawText('+', ((centerX / 2) + 75)  - (mouseDist / 2), centerY);
                 drawText('=', ((centerX / 2) + 175) - (mouseDist / 2), centerY);
