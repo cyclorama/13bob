@@ -50,17 +50,17 @@ window.onload = () => {
         clearScreen();
         drawCircle(centerX, centerY, mouseDist, 'white');
         drawTriangle(centerX, centerY, mouseDist, 'red');
-        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, colours[0]);         // P
-        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]); // Q
-        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]); // R
+        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, colours[0]);
+        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]);
+        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]);
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
-            if (cond[0] > cond[1] && cond[0] > cond[2]) { const bases = [(i + 1) % cond.length, (i + 2) % cond.length];
-                drawText('+', ((centerX / 2) + 75)   - (mouseDist / 2), centerY);
+            if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [(i + 1) % cond.length - 1, (i + 2) % cond.length - 1];
+                drawText('+', ((centerX / 2) + 75)  - (mouseDist / 2), centerY);
                 drawText('=', ((centerX / 2) + 175) - (mouseDist / 2), centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (cond[0] / 2), 50, cond[0], colours[i]);
-                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (cond[bases[0]] / 2), 50, cond[bases[0]], colours[bases[0]]);
-                drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (cond[bases[1]] / 2), 50, cond[bases[1]], colours[bases[1]]);
+                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (cond[base[0]] / 2), 50, cond[base[0]], colours[base[0]]);
+                drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (cond[base[1]] / 2), 50, cond[base[1]], colours[base[1]]);
             }
         });
 
