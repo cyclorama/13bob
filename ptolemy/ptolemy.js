@@ -57,11 +57,11 @@ window.onload = () => {
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) {
-                drawText('+',  (centerX / 2) + 50, centerY);
+                drawText('+',  (centerX / 2) + 50,  centerY);
                 drawText('=',  (centerX / 2) + 150, centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[i]);
-                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[1 % i]);
-                drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[2 % i]);
+                drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[Math.abs((i + 1) - cond.length)]);
+                drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[Math.abs((i + 2) - cond.length)]);
             }
         });
 
