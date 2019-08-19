@@ -3,7 +3,8 @@ window.onload = () => {
           context = canvas.getContext('2d'),
           width   = canvas.width = window.innerWidth,
           height  = canvas.height = window.innerHeight,
-          centerX = width / 2, centerY = height / 2;
+          centerX = width / 2, centerY = height / 2,
+          colours = ['cyan', 'yellow', 'magenta'];
     let   mouseX, mouseY, mouseDist,
           pointAX, pointAY,
           pointBX, pointBY,
@@ -16,8 +17,7 @@ window.onload = () => {
     
     canvas.addEventListener('mousemove', event => {
         const mousePos = getMousePos(canvas, event);
-              mouseX   = mousePos.x;
-              mouseY   = mousePos.y;
+        mouseX = mousePos.x, mouseY = mousePos.y;
     });
 
     function init() {
@@ -33,8 +33,8 @@ window.onload = () => {
 
         pointAX    = getCoordFromAngle(150, mouseDist).x;
         pointAY    = getCoordFromAngle(150, mouseDist).y;
-        pointBX    = getCoordFromAngle(30, mouseDist).x;
-        pointBY    = getCoordFromAngle(30, mouseDist).y;
+        pointBX    = getCoordFromAngle(30,  mouseDist).x;
+        pointBY    = getCoordFromAngle(30,  mouseDist).y;
         pointCX    = getCoordFromAngle(270, mouseDist).x;
         pointCY    = getCoordFromAngle(270, mouseDist).y;
 
@@ -50,21 +50,38 @@ window.onload = () => {
         clearScreen();
         drawCircle(centerX, centerY, mouseDist, 'white');
         drawTriangle(centerX, centerY, mouseDist, 'red');
-        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, 'cyan');                              // P
-        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, 'yellow');                    // Q
-        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, 'magenta');                   // R
-        drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, 'cyan');            // P
-        drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, 'yellow');   // Q
-        drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, 'magenta'); // R
-        drawCircle(centerX + pointBX, centerY + pointBY, 2, 'magenta');
-        drawCircle(centerX + pointAX, centerY + pointAY, 2, 'yellow');
-        drawCircle(centerX, centerY - mouseDist, 2, 'cyan');
+        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, colours[0]);         // P
+        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]); // Q
+        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]); // R
+
+
+        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach(cond, i => {
+            if (cond[0] = cond[1] + cond[2]) {
+                drawText('=', (centerX / 2) + 150, centerY);
+                drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[i]);
+                drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[1]);
+                drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[2]);
+            }
+        });
+
+        //drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[0]);         // P
+        //drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, colours[1]);  // Q
+        //drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, colours[2]); // R
+
+        drawCircle(centerX + pointBX, centerY + pointBY, 2, colours[2]);
+        drawCircle(centerX + pointAX, centerY + pointAY, 2, colours[1]);
+        drawCircle(centerX, centerY - mouseDist, 2, colours[0]);
         drawCircle(movePointX, movePointY, 2, 'white');
     }
 
     function clearScreen() {
         context.fillStyle = 'black';
         context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawText(txt, x, y) {
+        context.font = '22px Verdana';
+        context.fillText(txt, x, y);
     }
 
     function drawLine(x1, y1, x2, y2, colour) {
