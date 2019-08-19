@@ -76,8 +76,9 @@ window.onload = () => {
     }
 
     function drawText(txt, x, y) {
-        context.font = '22px Verdana';
+        context.font      = '22px Verdana';
         context.textAlign = 'center';
+        context.fillStyle = 'white';
         context.fillText(txt, x, y);
     }
 
