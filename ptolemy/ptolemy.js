@@ -54,7 +54,6 @@ window.onload = () => {
         drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]); // Q
         drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]); // R
 
-
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) {
                 drawText('+',  (centerX / 2) + 50,  centerY);
@@ -65,10 +64,6 @@ window.onload = () => {
             }
         });
 
-        //drawRectangle((centerX / 2) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[0]);         // P
-        //drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (qDist / 2), 50, qDist, colours[1]);  // Q
-        //drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (rDist / 2), 50, rDist, colours[2]); // R
-
         drawCircle(centerX + pointBX, centerY + pointBY, 2, colours[2]);
         drawCircle(centerX + pointAX, centerY + pointAY, 2, colours[1]);
         drawCircle(centerX, centerY - mouseDist, 2, colours[0]);
@@ -77,12 +72,12 @@ window.onload = () => {
 
     function clearScreen() {
         context.fillStyle = 'black';
-        context.textAlign = 'center';
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     function drawText(txt, x, y) {
         context.font = '22px Verdana';
+        context.textAlign = 'center';
         context.fillText(txt, x, y);
     }
 
