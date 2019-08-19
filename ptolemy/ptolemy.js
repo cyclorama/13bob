@@ -56,8 +56,8 @@ window.onload = () => {
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const bases = [(i + 1) % cond.length, (i + 2) % cond.length];
-                drawText('+', ((centerX / 2) + 0)   - (mouseDist / 2), centerY);
-                drawText('=', ((centerX / 2) + 150) - (mouseDist / 2), centerY);
+                drawText('+', ((centerX / 2) + 75)   - (mouseDist / 2), centerY);
+                drawText('=', ((centerX / 2) + 175) - (mouseDist / 2), centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (cond[0] / 2), 50, cond[0], colours[i]);
                 drawRectangle(((centerX / 2) + 0)   - (mouseDist / 2), centerY - (cond[bases[0]] / 2), 50, cond[bases[0]], colours[bases[0]]);
                 drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (cond[bases[1]] / 2), 50, cond[bases[1]], colours[bases[1]]);
