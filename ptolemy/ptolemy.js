@@ -57,7 +57,7 @@ window.onload = () => {
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, pDist, qDist]].forEach((cond, i) => {
             if (cond[0] = cond[1] + cond[2]) {
-                drawText('=', (centerX / 2) + 150, centerY);
+                drawText('=',  (centerX / 2) + 150, centerY);
                 drawRectangle(((centerX / 2) + 200) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[i]);
                 drawRectangle(((centerX / 2) + 50) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[1]);
                 drawRectangle(((centerX / 2) + 100) - (mouseDist / 2), centerY - (pDist / 2), 50, pDist, colours[2]);
@@ -76,6 +76,7 @@ window.onload = () => {
 
     function clearScreen() {
         context.fillStyle = 'black';
+        context.textAlign = 'center';
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
 
