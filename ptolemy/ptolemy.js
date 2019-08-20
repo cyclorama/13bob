@@ -20,7 +20,7 @@ window.onload = () => {
         mouseX = mousePos.x, mouseY = mousePos.y;
     });
 
-    canvas.addEventListener('resize', () => {
+    addEventListener('resize', () => {
         width  = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         centerX = width / 2, centerY = height / 2;
