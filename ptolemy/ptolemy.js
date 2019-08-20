@@ -1,11 +1,11 @@
 window.onload = () => {
     const canvas  = document.getElementById('canvas'),
           context = canvas.getContext('2d'),
-          width   = canvas.width = window.innerWidth,
-          height  = canvas.height = window.innerHeight,
           centerX = width / 2, centerY = height / 2,
           colours = ['cyan', 'yellow', 'magenta'];
-    let   mouseX, mouseY, mouseDist,
+    let   width   = canvas.width = window.innerWidth,
+          height  = canvas.height = window.innerHeight,
+          mouseX, mouseY, mouseDist,
           pointAX, pointAY,
           pointBX, pointBY,
           pointCX, pointCY,
@@ -44,7 +44,7 @@ window.onload = () => {
     }
 
     class Widgit {
-        constructor(position, ) {
+        constructor(position) {
 
         }
     }
