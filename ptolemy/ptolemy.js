@@ -23,6 +23,7 @@ window.onload = () => {
     canvas.addEventListener('resize', () => {
         width  = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
+        centerX = width / 2, centerY = height / 2;
         render();
     });
 
