@@ -20,12 +20,29 @@ window.onload = () => {
         mouseX = mousePos.x, mouseY = mousePos.y;
     });
 
+    class Vector2 {
+        constructor(x, y) {
+            this._x = x;
+            this._y = y;
+        }
+
+        get x()  { return this._x; }
+        set x(x) { this._x = x;    }
+
+        get y()  { return this._y; }
+        set y(y) { this._y = y;    }
+
+        static getDistance(x1, y1, x2, y2) {
+            return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        }
+    }
+
     function init() {
         mouseDist = scaleLock + 1;
     }
 
     function update() {
-        if (mouseX != null)        mouseDist = getDistance(mouseX, mouseY, width / 2, height / 2);
+        if (mouseX != null)        mouseDist = Vector2.getDistance(mouseX, mouseY, width / 2, height / 2);
         if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
 
         movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
@@ -38,9 +55,9 @@ window.onload = () => {
         pointCX    = getCoordFromAngle(270, mouseDist).x;
         pointCY    = getCoordFromAngle(270, mouseDist).y;
 
-        pDist      = getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
-        qDist      = getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
-        rDist      = getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
+        pDist      = Vector2.getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
+        qDist      = Vector2.getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
+        rDist      = Vector2.getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
         pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
         pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
@@ -121,10 +138,6 @@ window.onload = () => {
     function getMousePos(canvas, evt) {
         const rect = canvas.getBoundingClientRect();
         return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
-    }
-
-    function getDistance(x1, y1, x2, y2) {
-        return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
 
     function getCoordFromAngle(angle, distance) {
