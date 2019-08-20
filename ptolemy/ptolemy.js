@@ -1,10 +1,10 @@
 window.onload = () => {
     const canvas  = document.getElementById('canvas'),
           context = canvas.getContext('2d'),
-          centerX = width / 2, centerY = height / 2,
           colours = ['cyan', 'yellow', 'magenta'];
     let   width   = canvas.width = window.innerWidth,
           height  = canvas.height = window.innerHeight,
+          centerX = width / 2, centerY = height / 2,
           mouseX, mouseY, mouseDist,
           pointAX, pointAY,
           pointBX, pointBY,
