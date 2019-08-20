@@ -24,6 +24,7 @@ window.onload = () => {
         width  = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         centerX = width / 2, centerY = height / 2;
+        scaleLock = width / 6;
         render();
     });
 
