@@ -20,7 +20,7 @@ window.onload = () => {
         mouseX = mousePos.x, mouseY = mousePos.y;
     });
 
-    class Vector2 {
+    class Vec2 {
         constructor(x, y) {
             this._x = x;
             this._y = y;
@@ -42,7 +42,7 @@ window.onload = () => {
     }
 
     function update() {
-        if (mouseX != null)        mouseDist = Vector2.getDistance(mouseX, mouseY, width / 2, height / 2);
+        if (mouseX != null)        mouseDist = Vec2.getDistance(mouseX, mouseY, width / 2, height / 2);
         if (mouseDist > scaleLock) mouseDist = scaleLock + 1;
 
         movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
@@ -55,9 +55,9 @@ window.onload = () => {
         pointCX    = getCoordFromAngle(270, mouseDist).x;
         pointCY    = getCoordFromAngle(270, mouseDist).y;
 
-        pDist      = Vector2.getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
-        qDist      = Vector2.getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
-        rDist      = Vector2.getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
+        pDist      = Vec2.getDistance(centerX, centerY - mouseDist, movePointX, movePointY);
+        qDist      = Vec2.getDistance(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
+        rDist      = Vec2.getDistance(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
         pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
         pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
