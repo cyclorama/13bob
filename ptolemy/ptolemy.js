@@ -20,6 +20,12 @@ window.onload = () => {
         mouseX = mousePos.x, mouseY = mousePos.y;
     });
 
+    canvas.addEventListener('resize', () => {
+        width  = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        render();
+    });
+
     class Vec2 {
         constructor(x, y) {
             this._x = x;
