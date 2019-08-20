@@ -47,7 +47,7 @@ window.onload = () => {
 
     class Widgit {
         constructor(position) {
-
+            
         }
     }
 
@@ -73,7 +73,7 @@ window.onload = () => {
         qDist      = Vec2.getDistanceFromCoords(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
         rDist      = Vec2.getDistanceFromCoords(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
-        pointAutoX = (width / 2) + getCoordFromAngle(autoX++, mouseDist).x;
+        pointAutoX = (width / 2)  + getCoordFromAngle(autoX++, mouseDist).x;
         pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
     }
 
