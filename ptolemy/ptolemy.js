@@ -46,7 +46,20 @@ window.onload = () => {
     }
 
     class Widgit {
-        constructor(position) {
+        constructor(position, calls) {
+            this._position = position;
+            this._calls    = calls;
+
+            if (calls.length == 0) {
+                delete this;
+            }
+        }
+
+        update() {
+
+        }
+
+        render() {
             
         }
     }
@@ -85,7 +98,7 @@ window.onload = () => {
         drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]);
         drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]);
 
-        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((cond, i) => {
+        [ [pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist] ].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [i != 0 ? 2 : 1, i != 0 ? 1 : 2, (i + 1) % 3, (i + 2) % 3];
                 drawText('+', centerX + 36,  400 + centerY);
                 drawText('=', centerX + 86,  400 + centerY);
