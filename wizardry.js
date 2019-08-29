@@ -23,7 +23,7 @@ let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
 const pTape = () => {
     if (tapeP = !tapeP) {
         document.tape.src = `${frame}tape_forward.gif`,
-        track.volume      = 0.1,
+        track.volume      = 0.05,
         track.play(),
         track.onended = () => { pTape(), pTape() },
         mkHighlight(trackN + 1);
@@ -89,7 +89,7 @@ fib = nt => {
     }
 },
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.1)),
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`),
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
