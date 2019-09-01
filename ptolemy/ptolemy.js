@@ -98,8 +98,8 @@ window.onload = () => {
                 drawText('+', -68 + centerX + 36,  centerY);
                 drawText('=', -68 + centerX + 111,  centerY);
                 drawRectangle(-68 + centerX + 125, centerY - (cond[0] / 8), 50, cond[0] / 4, colours[i]);
-                drawRectangle(-68 + centerX + 25,   centerY - (cond[base[0]]) / 8, 50, cond[base[0]] / 4, colours[base[2]]);
-                drawRectangle(-68 + centerX + 100,  centerY - (cond[base[1]]) / 8, 50, cond[base[1]] / 4, colours[base[3]]);
+                drawRectangle(-68 + centerX + 0,   centerY - (cond[base[0]]) / 8, 50, cond[base[0]] / 4, colours[base[2]]);
+                drawRectangle(-68 + centerX + 50,  centerY - (cond[base[1]]) / 8, 50, cond[base[1]] / 4, colours[base[3]]);
             }
         });
 
