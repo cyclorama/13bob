@@ -92,11 +92,6 @@ window.onload = () => {
 
     function render() {
         clearScreen();
-        drawCircle(centerX, centerY, mouseDist, 'white');
-        drawTriangle(centerX, centerY, mouseDist, 'red');
-        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, colours[0]);
-        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]);
-        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]);
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [i != 0 ? 2 : 1, i != 0 ? 1 : 2, (i + 1) % 3, (i + 2) % 3];
@@ -107,6 +102,12 @@ window.onload = () => {
                 drawRectangle(-68 + centerX + 50,  centerY - (cond[base[1]]) / 8, 25, cond[base[1]] / 4, colours[base[3]]);
             }
         });
+
+        drawCircle(centerX, centerY, mouseDist, 'white');
+        drawTriangle(centerX, centerY, mouseDist, 'red');
+        drawLine(centerX, centerY - mouseDist, movePointX, movePointY, colours[0]);
+        drawLine(centerX + pointAX, centerY + pointAY, movePointX, movePointY, colours[1]);
+        drawLine(centerX + pointBX, centerY + pointBY, movePointX, movePointY, colours[2]);
 
         drawCircle(centerX + pointBX, centerY + pointBY, 2, colours[2]);
         drawCircle(centerX + pointAX, centerY + pointAY, 2, colours[1]);
