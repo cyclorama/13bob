@@ -45,25 +45,6 @@ window.onload = () => {
         }
     }
 
-    class Widgit {
-        constructor(position, calls) {
-            this._position = position;
-            this._calls    = calls;
-
-            if (calls.length == 0) {
-                delete this;
-            }
-        }
-
-        update() {
-
-        }
-
-        render() {
-            
-        }
-    }
-
     function init() {
         mouseDist = scaleLock + 1;
     }
