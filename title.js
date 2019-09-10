@@ -1,5 +1,5 @@
 (async (title, position, html, colours, sleep) => { // Genesis 9:13 — I do set my bow in the cloud, and it shall be for a token of a covenant between me and the earth.
-    $(this).ready(() => {
+    $(this).ready(async () => {
         await sleep(1000).then(() => $("h1").css('animation', 'none'));
 
         while (position < 12) { html = '';
