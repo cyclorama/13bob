@@ -7,7 +7,7 @@
                 if (position - i > title.length) continue;
                 if (title[position - i] != null) html = `<font color="${colours[i]}">${title[position - i]}</font>${html}`;
             }
-            await sleep(35).then(() => $("h1").text(`<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`, position++));
+            await sleep(35).then(() => $("h1").html(`<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`, position++));
         }
         $("h1").css('animation', 'heartbeat 1s alternate infinite');
       });
