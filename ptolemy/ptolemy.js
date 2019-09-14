@@ -101,7 +101,7 @@ window.onload = () => {
     }
 
     function drawText(txt, x, y) {
-        context.font      = '17px Verdana';
+        context.font      = 'Bold 17px Verdana';
         context.textAlign = 'center';
         context.fillStyle = 'white';
         context.fillText(txt, x, y);
