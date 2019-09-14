@@ -67,7 +67,7 @@ window.onload = () => {
         qDist      = Vec2.getDistanceFromCoords(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
         rDist      = Vec2.getDistanceFromCoords(centerX + pointBX, centerY + pointBY, movePointX, movePointY);
 
-        pointAutoX = (width / 2)  + getCoordFromAngle(autoX++, mouseDist).x;
+        pointAutoX = (width  / 2) + getCoordFromAngle(autoX++, mouseDist).x;
         pointAutoY = (height / 2) + getCoordFromAngle(autoY++, mouseDist).y;
     }
 
@@ -78,9 +78,9 @@ window.onload = () => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [i != 0 ? 2 : 1, i != 0 ? 1 : 2, (i + 1) % 3, (i + 2) % 3];
                 drawText('+', -80 + centerX +  36,  centerY);
                 drawText('=', -80 + centerX +  111, centerY);
-                drawRectangle(-80 + centerX +  125, centerY - (cond[0] / 8), 50, cond[0] / 4, colours[i]);
-                drawRectangle(-80 + centerX + -25,  centerY - (cond[base[0]]) / 8, 50, cond[base[0]] / 4, colours[base[2]]);
-                drawRectangle(-80 + centerX +  50,  centerY - (cond[base[1]]) / 8, 50, cond[base[1]] / 4, colours[base[3]]);
+                drawRectangle(-80 + centerX +  125, centerY - (cond[0]        / 8), 50, cond[0]       / 4, colours[i]);
+                drawRectangle(-80 + centerX + -25,  centerY - (cond[base[0]]) / 8,  50, cond[base[0]] / 4, colours[base[2]]);
+                drawRectangle(-80 + centerX +  50,  centerY - (cond[base[1]]) / 8,  50, cond[base[1]] / 4, colours[base[3]]);
             }
         });
 
