@@ -76,10 +76,10 @@ window.onload = () => {
 
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((cond, i) => {
             if (cond[0] > cond[1] && cond[0] > cond[2]) { const base = [i != 0 ? 2 : 1, i != 0 ? 1 : 2, (i + 1) % 3, (i + 2) % 3];
-                drawText('+       =', centerX +   -6, centerY);
-                drawRectangle(-80   + centerX +  125, centerY - (cond[0]        / 8), 50, cond[0]       / 4, colours[i]);
-                drawRectangle(-80   + centerX +  -25, centerY - (cond[base[0]]) / 8 , 50, cond[base[0]] / 4, colours[base[2]]);
-                drawRectangle(-80   + centerX +   50, centerY - (cond[base[1]]) / 8 , 50, cond[base[1]] / 4, colours[base[3]]);
+                drawText('+        =', centerX +   -6, centerY);
+                drawRectangle(-80    + centerX +  125, centerY - (cond[0]        / 8), 50, cond[0]       / 4, colours[i]);
+                drawRectangle(-80    + centerX +  -25, centerY - (cond[base[0]]) / 8 , 50, cond[base[0]] / 4, colours[base[2]]);
+                drawRectangle(-80    + centerX +   50, centerY - (cond[base[1]]) / 8 , 50, cond[base[1]] / 4, colours[base[3]]);
             }
         });
 
@@ -101,7 +101,7 @@ window.onload = () => {
     }
 
     function drawText(txt, x, y) {
-        context.font      = '22px Verdana';
+        context.font      = '20px Verdana';
         context.textAlign = 'center';
         context.fillStyle = 'white';
         context.fillText(txt, x, y);
