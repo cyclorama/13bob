@@ -73,7 +73,7 @@ sMenu = (o, m) => { menu = !menu,
     for (let i = [] - []; i < items[o].length; i++) {
         fTop += (i != [] - [] && i % 3 == [] - []);
         document.getElementById('menu').innerHTML += menu ? (
-            m == [] - [] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i]}/logo.png'/></a>${i != [] - [] && i % 2 == [] - [] ? '<br>' : '' }` :
+            m == [] - [] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].trim('//')}/logo.png'/></a>${i != [] - [] && i % 2 == [] - [] ? '<br>' : '' }` :
             m == 1       ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
             m == 2       ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
