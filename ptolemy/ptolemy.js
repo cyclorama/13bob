@@ -74,8 +74,8 @@ window.onload = () => {
     function render() {
         clearScreen();
 
-        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((cnd, i) => {
-            if (cnd[0] > cnd[1] && cnd[0] > cnd[2]) { const y = i != 0 ? [2, 1] : [1, 2], c = n => (i + n) % 3;
+        [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((param, i) => {
+            if (param[0] > param[1] && param[0] > param[2]) { const y = i != 0 ? [2, 1] : [1, 2], c = n => (i + n) % 3;
                 drawText('+          =', centerX +   -5, centerY);
                 drawRectangle(-80      + centerX +  125, centerY - (cond[0]     / 8), 50, cond[0]    / 4, colours[i]);
                 drawRectangle(-80      + centerX +  -25, centerY - (cond[y[0]]) / 8 , 50, cond[y[0]] / 4, colours[c(1)]);
