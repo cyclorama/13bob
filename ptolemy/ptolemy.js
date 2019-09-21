@@ -77,9 +77,9 @@ window.onload = () => {
         [[pDist, qDist, rDist], [qDist, pDist, rDist], [rDist, qDist, pDist]].forEach((p, i) => {
             if (p[0] > p[1] && p[0] > p[2]) { const y = i != 0 ? [2, 1] : [1, 2], c = n => (i + n) % 3;
                 drawText('+          =', centerX +   -5, centerY);
-                drawRectangle(-80      + centerX +  125, centerY - (cond[0]     / 8), 50, cond[0]    / 4, colours[i]);
-                drawRectangle(-80      + centerX +  -25, centerY - (cond[y[0]]) / 8 , 50, cond[y[0]] / 4, colours[c(1)]);
-                drawRectangle(-80      + centerX +   50, centerY - (cond[y[1]]) / 8 , 50, cond[y[1]] / 4, colours[c(2)]);
+                drawRectangle(-80      + centerX +  125, centerY - (p[0]     / 8), 50, p[0]    / 4, colours[i]);
+                drawRectangle(-80      + centerX +  -25, centerY - (p[y[0]]) / 8 , 50, p[y[0]] / 4, colours[c(1)]);
+                drawRectangle(-80      + centerX +   50, centerY - (p[y[1]]) / 8 , 50, p[y[1]] / 4, colours[c(2)]);
             }
         });
 
