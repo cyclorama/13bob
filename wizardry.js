@@ -9,16 +9,16 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
                    '03 Dee Dee Wilde - Lap of Luxury.mp3',
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
                    '05 The Jets - The Only Dance.mp3' ],
-      items  = [ ['+'                                        ], ['//13bob.net/words'  ], ['fisher', 'slingshoot', 'ptolemy'],
-                 ['//spotify.13bob.net', '//steam.13bob.net' ], ['//twitter.13bob.net'], ['-'                              ] ],
+      items  = [ ['+'                                                                                     ], ['//13bob.net/words'  ], ['fisher', 'slingshoot', 'ptolemy'],
+                 ['//spotify.13bob.net', '//rym.13bob.net', '//letterboxd.13bob.net', '//steam.13bob.net' ], ['//twitter.13bob.net'], ['-'                              ] ],
       frame  = 'photos/framed_',
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
-      track  = new Audio(`${dir}${tracks[[] - []]}`),
+      track  = new Audio(`${dir}${tracks[0]}`),
       menu   = false,
       tapeP  = false,
-      trackN = [] - [];
+      trackN = 0;
 
 const pTape = () => {
     if (tapeP = !tapeP) {
@@ -30,8 +30,8 @@ const pTape = () => {
     } else {
         document.tape.src = `${frame}tape.gif`,
         track.pause(),
-        track.currentTime = [] - [],
-        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [],
+        track.currentTime = 0,
+        trackN = trackN < tracks.length - 1 ? trackN + 1 : 0,
         track = new Audio(`${dir}${tracks[trackN]}`);
     }
 },
@@ -68,12 +68,12 @@ pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ?
 
 sMenu = (o, m) => { menu = !menu,
     document.getElementById('menu').innerHTML = '';
-    let fTop = [] - [];
+    let fTop = 0;
 
-    for (let i = [] - []; i < items[o].length; i++) {
-        fTop += (i != [] - [] && i % 3 == [] - []);
+    for (let i = 0; i < items[o].length; i++) {
+        fTop += (i != 0 && i % 3 == 0);
         document.getElementById('menu').innerHTML += menu ? (
-            m == [] - [] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != [] - [] && i % 2 == [] - [] ? '<br>' : '' }` :
+            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != 0 && i % 2 == 0 ? '<br>' : '' }` :
             m == 1       ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
             m == 2       ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
@@ -82,7 +82,7 @@ sMenu = (o, m) => { menu = !menu,
 },
 
 fib = nt => {
-    let n1 = [] - [], n2 = 1, nth, c = [] - [];
+    let n1 = 0, n2 = 1, nth, c = 0;
     while (c < nt) {
         console.log(`${n1} (φ = ${n2 / n1})`);
         [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
