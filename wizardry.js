@@ -9,8 +9,8 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
                    '03 Dee Dee Wilde - Lap of Luxury.mp3',
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
                    '05 The Jets - The Only Dance.mp3' ],
-      items  = [ ['+'                                        ], ['//13bob.net/words'  ], ['fisher', 'slingshoot', 'ptolemy'],
-                 ['//spotify.13bob.net', '//steam.13bob.net' ], ['//twitter.13bob.net'], ['-'                              ] ],
+      items  = [ ['+'                                                                                     ], ['//13bob.net/words'  ], ['fisher', 'slingshoot', 'ptolemy'],
+                 ['//spotify.13bob.net', '//rym.13bob.net', '//letterboxd.13bob.net', '//steam.13bob.net' ], ['//twitter.13bob.net'], ['-'                              ] ],
       frame  = 'photos/framed_',
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
@@ -41,7 +41,7 @@ mkHighlight = trackN => {
     if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
     if (trackN > 1) rmHighlight(trackN - 1);
     trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : ''),
+    trackT.forEach((t, i) => title += trackT[i + 1] ? t + '\n' : ''),
     document.tape.title = title;
 },
 
