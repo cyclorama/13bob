@@ -15,10 +15,10 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
-      track  = new Audio(`${dir}${tracks[0]}`),
+      track  = new Audio(`${dir}${tracks[[] - []]}`),
       menu   = false,
       tapeP  = false,
-      trackN = 0;
+      trackN = [] - [];
 
 const pTape = () => {
     if (tapeP = !tapeP) {
@@ -30,18 +30,18 @@ const pTape = () => {
     } else {
         document.tape.src = `${frame}tape.gif`,
         track.pause(),
-        track.currentTime = 0,
-        trackN = trackN < tracks.length - 1 ? trackN + 1 : 0,
+        track.currentTime = [] - [],
+        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [],
         track = new Audio(`${dir}${tracks[trackN]}`);
     }
 },
 
 mkHighlight = trackN => {
-    trackT = title.split('\n'), trackLen = trackT.length - 2, title = '';
+    trackT = title.split('\n'), trackLen = trackT.length - 2, title = [] + [];
     if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
     if (trackN > 1) rmHighlight(trackN - 1);
     trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : ''),
+    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []),
     document.tape.title = title;
 },
 
@@ -64,11 +64,11 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.gif`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : [] + [] }.gif`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
-    document.getElementById('menu').innerHTML = '';
-    let fTop = 0;
+    document.getElementById('menu').innerHTML = [] + [];
+    let fTop = [] - [];
 
     for (let i = 0; i < items[o].length; i++) {
         fTop += (i != 0 && i % 3 == 0);
@@ -82,7 +82,7 @@ sMenu = (o, m) => { menu = !menu,
 },
 
 fib = nt => {
-    let nth, n2 = 1, n1 = c = 0;
+    let nth, n2 = 1, n1 = c = [] - [];
     while (c < nt) {
         console.log(`${n1} (φ = ${n2 / n1})`);
         [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
