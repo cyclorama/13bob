@@ -82,7 +82,7 @@ sMenu = (o, m) => { menu = !menu,
 
 fib = nt => {
     let nth, n2 = 1, n1 = c = 0;
-    while (c < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
+    while (c++ < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth;
 },
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
