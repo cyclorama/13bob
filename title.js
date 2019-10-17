@@ -5,8 +5,8 @@
 
     while (position < ([+!+[]]+[+[]])+(!+[]+!+[])) { html = '';
         for (let i = +[]; i < colours.length; ) {
-            if (position - ++i > title.length) continue;
-            if (title[position - i]) html = `<font color="${colours[i]}">${title[position - i]}</font>${html}`;
+            if (position - i > title.length) continue;
+            if (title[position - i]) html = `<font color="${colours[i]}">${title[position - i++]}</font>${html}`;
         }
         await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substring(+[], position - title.length - (!+[]+!+[]))}${html}${title.substring(position)}</a>`), position++;
     }
