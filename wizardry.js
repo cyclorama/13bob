@@ -16,8 +16,8 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
       dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
       track  = new Audio(`${dir}${tracks[+[]]}`),
-      menu   = false,
-      tapeP  = false,
+      menu   = ![],
+      tapeP  = ![],
       trackN = +[];
 
 const pTape = () => {
@@ -45,7 +45,7 @@ mkHighlight = trackN => {
     document.tape.title = title;
 },
 
-rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
+rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(!+[]+!+[], trackT[trackN].length - (!+[]+!+[])),
 
 pSound = trackN => {
     switch (trackN) {
