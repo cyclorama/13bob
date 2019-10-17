@@ -4,9 +4,9 @@
     await sleep(1000).then(() => h1.style.animation = 'none');
 
     while (position < 12) { html = '';
-        for (let i = 0; i < colours.length; ) {
+        for (let i = 0; i < colours.length; i++) {
             if (position - i > title.length) continue;
-            if (title[position - i]) html = `<font color="${colours[i]}">${title[position - i++]}</font>${html}`;
+            if (title[position - i]) html = `<font color="${colours[i]}">${title[position]}</font>${html}`;
         }
         await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`, position++);
     }
