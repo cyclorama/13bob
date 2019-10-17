@@ -73,9 +73,9 @@ sMenu = (o, m) => { menu = !menu,
     for (let i = +[]; i < items[o].length; i++) {
         fTop += (i != +[] && i % 3 == +[]);
         document.getElementById('menu').innerHTML += menu ? (
-            m == +[] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != +[] && i % 2 == +[] ? '<br>' : '' }` :
+            m == +[] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > !+[]+!+[] ? `margin-top: ${(400 * fTop) - 1000}px;` : [] + [] }' id='menu' src='${items[o][i].replace('//', [] + [])}/logo.png'/></a>${i != +[] && i % !+[]+!+[] == +[] ? '<br>' : [] + [] }` :
             m == +!+[] ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
-            m == !+[]+!+[] ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
+            m == !+[]+!+[] ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : [] + []) : [] + [] ;
         }
         if (!track.paused) pTape();
 },
