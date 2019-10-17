@@ -37,11 +37,11 @@ const pTape = () => {
 },
 
 mkHighlight = trackN => {
-    trackT = title.split('\n'), trackLen = trackT.length - 2, title = [] + [];
+    trackT = title.split('\n'), trackLen = trackT.length - 2, title = []+[];
     if (trackN == (+!+[]) && trackT[trackLen].includes('>')) rmHighlight(trackLen);
     if (trackN > (+!+[])) rmHighlight(trackN - (+!+[]));
     trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + (+!+[])] != null ? t + '\n' : [] + []),
+    trackT.forEach((t, i) => title += trackT[i + (+!+[])] != null ? t + '\n' : []+[]),
     document.tape.title = title;
 },
 
@@ -64,18 +64,18 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == +[] ? '_forward' : z == +!+[] ? '_reverse' : [] + [] }.gif`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == +[] ? '_forward' : z == +!+[] ? '_reverse' : []+[] }.gif`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
-    document.getElementById('menu').innerHTML = [] + [];
+    document.getElementById('menu').innerHTML = []+[];
     let fTop = +[];
 
     for (let i = +[]; i < items[o].length; i++) {
         fTop += (i != +[] && i % 3 == +[]);
         document.getElementById('menu').innerHTML += menu ? (
-            m == +[] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > !+[]+!+[] ? `margin-top: ${(400 * fTop) - 1000}px;` : [] + [] }' id='menu' src='${items[o][i].replace('//', [] + [])}/logo.png'/></a>${i != +[] && i % !+[]+!+[] == +[] ? '<br>' : [] + [] }` :
+            m == +[] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > !+[]+!+[] ? `margin-top: ${(400 * fTop) - 1000}px;` : []+[] }' id='menu' src='${items[o][i].replace('//', []+[])}/logo.png'/></a>${i != +[] && i % !+[]+!+[] == +[] ? '<br>' : []+[] }` :
             m == +!+[] ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
-            m == !+[]+!+[] ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : [] + []) : [] + [] ;
+            m == !+[]+!+[] ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : []+[]) : []+[] ;
         }
         if (!track.paused) pTape();
 },
