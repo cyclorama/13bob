@@ -8,7 +8,7 @@
             if (position - i > title.length) continue;
             if (title[position - i]) html = `<font color="${colours[i]}">${title[position - i++]}</font>${html}`;
         }
-        await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`), position++;
+        await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, position - title.length - 2)}${html}${title.substring(position)}</a>`, position++);
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
 
