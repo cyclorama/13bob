@@ -15,10 +15,10 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
-      track  = new Audio(`${dir}${tracks[[] - []]}`),
+      track  = new Audio(`${dir}${tracks[+[]]}`),
       menu   = false,
       tapeP  = false,
-      trackN = [] - [];
+      trackN = +[];
 
 const pTape = () => {
     if (tapeP = !tapeP) {
@@ -26,22 +26,22 @@ const pTape = () => {
         track.volume      = 0.05,
         track.play(),
         track.onended = () => { pTape(), pTape() },
-        mkHighlight(trackN + 1);
+        mkHighlight(trackN + (+!+[]));
     } else {
         document.tape.src = `${frame}tape.gif`,
         track.pause(),
-        track.currentTime = [] - [],
-        trackN = trackN < tracks.length - 1 ? trackN + 1 : [] - [],
+        track.currentTime = +[],
+        trackN = trackN < tracks.length - (+!+[]) ? trackN + (+!+[]) : +[],
         track = new Audio(`${dir}${tracks[trackN]}`);
     }
 },
 
 mkHighlight = trackN => {
     trackT = title.split('\n'), trackLen = trackT.length - 2, title = [] + [];
-    if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
-    if (trackN > 1) rmHighlight(trackN - 1);
+    if (trackN == (+!+[]) && trackT[trackLen].includes('>')) rmHighlight(trackLen);
+    if (trackN > (+!+[])) rmHighlight(trackN - (+!+[]));
     trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : [] + []),
+    trackT.forEach((t, i) => title += trackT[i + (+!+[])] != null ? t + '\n' : [] + []),
     document.tape.title = title;
 },
 
@@ -64,16 +64,16 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : [] + [] }.gif`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == +[] ? '_forward' : z == +!+[] ? '_reverse' : [] + [] }.gif`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
     document.getElementById('menu').innerHTML = [] + [];
-    let fTop = [] - [];
+    let fTop = +[];
 
-    for (let i = 0; i < items[o].length; i++) {
-        fTop += (i != 0 && i % 3 == 0);
+    for (let i = +[]; i < items[o].length; i++) {
+        fTop += (i != +[] && i % 3 == +[]);
         document.getElementById('menu').innerHTML += menu ? (
-            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != 0 && i % 2 == 0 ? '<br>' : '' }` :
+            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != +[] && i % 2 == +[] ? '<br>' : '' }` :
             m == 1 ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
             m == 2 ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
@@ -82,11 +82,8 @@ sMenu = (o, m) => { menu = !menu,
 },
 
 fib = nt => {
-    let nth, n2 = 1, n1 = c = [] - [];
-    while (c < nt) {
-        console.log(`${n1} (φ = ${n2 / n1})`);
-        [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
-    }
+    let nth, n2 = +!+[], n1 = c = +[];
+    while (c < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
 },
 
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
