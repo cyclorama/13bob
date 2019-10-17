@@ -15,10 +15,10 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
-      track  = new Audio(`${dir}${tracks[+[]]}`),
-      menu   = ![],
-      tapeP  = ![],
-      trackN = +[];
+      track  = new Audio(`${dir}${tracks[0]}`),
+      menu   = false,
+      tapeP  = false,
+      trackN = 0;
 
 const pTape = () => {
     if (tapeP = !tapeP) {
@@ -26,26 +26,26 @@ const pTape = () => {
         track.volume      = 0.05,
         track.play(),
         track.onended = () => { pTape(), pTape() },
-        mkHighlight(trackN + (+!+[]));
+        mkHighlight(trackN + 1);
     } else {
         document.tape.src = `${frame}tape.gif`,
         track.pause(),
-        track.currentTime = +[],
-        trackN = trackN < tracks.length - (+!+[]) ? trackN + (+!+[]) : +[],
+        track.currentTime = 0,
+        trackN = trackN < tracks.length - 1 ? trackN + 1 : 0,
         track = new Audio(`${dir}${tracks[trackN]}`);
     }
 },
 
 mkHighlight = trackN => {
-    trackT = title.split('\n'), trackLen = trackT.length - 2, title = []+[];
-    if (trackN == (+!+[]) && trackT[trackLen].includes('>')) rmHighlight(trackLen);
-    if (trackN > (+!+[])) rmHighlight(trackN - (+!+[]));
+    trackT = title.split('\n'), trackLen = trackT.length - 2, title = '';
+    if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
+    if (trackN > 1) rmHighlight(trackN - 1);
     trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + (+!+[])] != null ? t + '\n' : []+[]),
+    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : ''),
     document.tape.title = title;
 },
 
-rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(!+[]+!+[], trackT[trackN].length - (!+[]+!+[])),
+rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
 
 pSound = trackN => {
     switch (trackN) {
@@ -64,24 +64,24 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == +[] ? '_forward' : z == +!+[] ? '_reverse' : []+[] }.gif`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.gif`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
-    document.getElementById('menu').innerHTML = []+[];
-    let fTop = +[];
+    document.getElementById('menu').innerHTML = '';
+    let fTop = 0;
 
-    for (let i = +[]; i < items[o].length; i++) {
-        fTop += (i != +[] && i % 3 == +[]);
+    for (let i = 0; i < items[o].length; i++) {
+        fTop += (i != 0 && i % 3 == 0);
         document.getElementById('menu').innerHTML += menu ? (
-            m == +[] ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > !+[]+!+[] ? `margin-top: ${(400 * fTop) - 1000}px;` : []+[] }' id='menu' src='${items[o][i].replace('//', []+[])}/logo.png'/></a>${i != +[] && i % !+[]+!+[] == +[] ? '<br>' : []+[] }` :
-            m == +!+[] ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
-            m == !+[]+!+[] ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : []+[]) : []+[] ;
+            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : []+[] }' id='menu' src='${items[o][i].replace('//', '')}/logo.png'/></a>${i != 0 && i % 2 == 0 ? '<br>' : '' }` :
+            m == 1 ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
+            m == 2 ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
         if (!track.paused) pTape();
 },
 
 fib = nt => {
-    let nth, n2 = +!+[], n1 = c = +[];
+    let nth, n2 = 1, n1 = c = 0;
     while (c < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth, c++;
 },
 
