@@ -3,7 +3,7 @@
 
     await sleep(1000).then(() => h1.style.animation = 'none');
 
-    while (position < 12) { html = '';
+    while (position < [+!+[]]+[+[]] + !+[]+!+[]) { html = '';
         for (let i = 0; i < colours.length; i++) {
             if (position - i > title.length) continue;
             if (title[position - i]) html = `<font color="${colours[i]}">${title[position - i]}</font>${html}`;
