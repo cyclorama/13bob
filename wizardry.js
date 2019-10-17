@@ -77,7 +77,7 @@ sMenu = (o, m) => { menu = !menu,
             m == 1 ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
             m == 2 ? `<img src='load.jpg' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
-        if (!track.paused) pTape();
+    if (!track.paused) pTape();
 },
 
 fib = nt => {
