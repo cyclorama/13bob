@@ -15,6 +15,10 @@ window.onload = () => {
           movePointX = 0, movePointY = 0,
           scaleLock = width / 6;
     
+    class Vec2 {
+        static getDistanceFromCoords = (x1, y1, x2, y2) => Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+    }
+
     canvas.addEventListener('mousemove', event => {
         const mousePos = getMousePos(canvas, event);
         mouseX = mousePos.x, mouseY = mousePos.y;
@@ -27,10 +31,6 @@ window.onload = () => {
         scaleLock = width / 6;
         render();
     });
-
-    class Vec2 {
-        static getDistanceFromCoords = (x1, y1, x2, y2) => Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-    }
 
     function init() {
         mouseDist = scaleLock + 1;
