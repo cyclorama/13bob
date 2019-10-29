@@ -29,20 +29,7 @@ window.onload = () => {
     });
 
     class Vec2 {
-        constructor(x, y) {
-            this._x = x;
-            this._y = y;
-        }
-
-        get x()  { return this._x; }
-        set x(x) { this._x = x;    }
-
-        get y()  { return this._y; }
-        set y(y) { this._y = y;    }
-
-        static getDistanceFromCoords(x1, y1, x2, y2) {
-            return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-        }
+        static getDistanceFromCoords = (x1, y1, x2, y2) => Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
 
     function init() {
