@@ -1,181 +1,183 @@
 window.onload = function() {
-	let canvas = document.getElementById('canvas'),
-		ctx = canvas.getContext('2d'),
-		width = canvas.width = window.innerWidth,
-		height = canvas.height = window.innerHeight,
-		blockSize = canvas.width / 100,
-		centerX = (window.innerWidth / blockSize) / 2,
-		centerY = (window.innerHeight / blockSize) / 2,
-		levels = [
-		[ [ [centerX, centerY / 2.5], [centerX, centerY / 1.4],[centerX / 1.5, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
-		[ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ],
-		[ [ [centerX + 4, centerY], [centerX, centerY / 4.5], [centerX * 0.75, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ],
-		[ [ [centerX, centerY + 2], [centerX, centerY / 4.5], [centerX * 1.25, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ],
-		[ [ [centerX * 0.5, centerY], [centerX, centerY / 4.5], [centerX * 1.25, centerY] ], [ [centerX * 0.75, centerY, 25, 200] ] ]
-		], lvl = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
-		ball = particle.create(width / 2, height / 2, 0, 0, 0);
-		ball.radius = 10;
-		ball.mass = 10;
-		attract = false,
-		mouseX = 0,
-		mouseY = 0,
-		particles = [], walls = [],
-		targetX = 0,
-		targetY = 0,
-		pressedOrbX = 0,
-		pressedOrbY = 0;
+    let canvas      = document.getElementById('canvas'),
+        ctx         = canvas.getContext('2d'),
+        width       = canvas.width = window.innerWidth,
+        height      = canvas.height = window.innerHeight,
+        blockSize   = canvas.width / 100,
+        centerX     = (window.innerWidth / blockSize) / 2,
+        centerY     = (window.innerHeight / blockSize) / 2,
 
-		sineWave = new Pizzicato.Sound({
-			source: 'wave',
-		    options: {
-		    	frequency: -1,
-		    	volume: 0.05
-		    }
-		});
+        levels = [
+        [ [ [centerX, centerY / 2.5], [centerX, centerY / 1.4],[centerX / 1.5, centerY] ], [ [centerX, centerY * 0.55, 400, 25] ] ],
+        [ [ [centerX, centerY / 4], [centerX, centerY / 2], [centerX * 1.25, centerY] ], [ [centerX, centerY * 0.75, 400, 25] ] ],
+        [ [ [centerX + 4, centerY], [centerX, centerY / 4.5], [centerX * 0.75, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ],
+        [ [ [centerX, centerY + 2], [centerX, centerY / 4.5], [centerX * 1.25, centerY] ], [ [centerX + 1.85, centerY, 25, 200] ] ],
+        [ [ [centerX * 0.5, centerY], [centerX, centerY / 4.5], [centerX * 1.25, centerY] ], [ [centerX * 0.75, centerY, 25, 200] ] ]
+        ],
 
-	function loadLevel(lvl) {
-		targetX = levels[lvl][0][0][0]; // First particle is always the target
-		targetY = levels[lvl][0][0][1]; // ''
+        lvl         = 0, // levels[level_number][0 - orbs, 1 - walls][0 - orb/wall one, 1 - orb/wall two, 2 - orb/wall three][0 - x, 1 - y, 2 - width, 3 - height]
+        ball        = new Particle(width / 2, height / 2, 0, 0, 0);
+        ball.radius = 10;
+        ball.mass   = 10;
+        attract     = false,
+        mouseX      = 0,
+        mouseY      = 0,
+        particles   = [], walls = [],
+        targetX     = 0,
+        targetY     = 0,
+        pressedOrbX = 0,
+        pressedOrbY = 0;
 
-		console.clear();
-		console.log(`target {\nx: ${targetX * blockSize}\ny: ${targetY * blockSize}\n}`);
+        sineWave = new Pizzicato.Sound({
+            source: 'wave',
+            options: {
+                frequency: -1,
+                volume: 0.05
+            }
+        });
 
-		levels[lvl][0].forEach((orb, i) => {
-			console.log(`orb[${i}] {\nx: ${orb[0] * blockSize}\ny: ${orb[1] * blockSize}\n}`);
-			let p = particle.create(orb[0] * blockSize, orb[1] * blockSize, 0, 0, 0);
-			p.radius = 20;
-			p.mass = 1000;
-			particles.push(p);
-		});
+    function loadLevel(lvl) {
+        //targetX = levels[lvl][0][0][0]; // First particle is always the target
+        //targetY = levels[lvl][0][0][1]; // ''
 
-		levels[lvl][1].forEach((wall, i) => {
-			console.log(`wall[${i}] {\nx: ${wall[0] * blockSize}\ny: ${wall[1] * blockSize}\nwidth: ${wall[2]}\nheight: ${wall[3]}\n}`);
-			walls.push(wall);
-		})
-	}
+        for (let i = 0; i < levels[lvl][0].length; i++) {
+            let p    = new Particle(levels[lvl][0][i][0] * blockSize, levels[lvl][0][i][1] * blockSize, 0, 0, 0);
+            p.radius = 20;
+            p.mass   = 1000;
+            particles.push(p);
+        }
 
-	function reset() {
-		ball.position.setX(width / 2);
-		ball.position.setY(height / 2);
-		ball.velocity = vector.create(0, 0);
-	}
+        for (let i = 0; i < levels[lvl][1].length; i++) {
+            walls.push(levels[lvl][1][i]);
+        }
+    }
 
-	function init() {
-		document.body.addEventListener('mousemove', event => {
-			mouseX = event.clientX, mouseY = event.clientY;
-		});
+    function reset() {
+        ball.position.x = width / 2;
+        ball.position.y = height / 2;
+        ball.velocity = new Vector2(0, 0);
+    }
 
-		document.body.addEventListener('mousedown', event => {
-			particles.forEach((p, i) => {
-				if (i != 0 && p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
-					pressedOrbX = p.position.getX();
-					pressedOrbY = p.position.getY();
-					attract = true;
-					sineWave.play();
-				}
-			});
-		});
+    function init() {
+        document.body.addEventListener('mousemove', event => {
+            mouseX = event.clientX, mouseY = event.clientY;
+        });
 
-		document.body.addEventListener('mouseup', event => {
-			attract = false;
-			sineWave.stop();
-		});
+        document.body.addEventListener('mousedown', event => {
+            for (let i = 0; i < particles.length; i++) {
+                if (i != 0 && particles[i].distanceTo(new Particle(mouseX, mouseY, 0, 0, 0)) <= particles[i].radius) {
+                    pressedOrbX = particles[i].position.x;
+                    pressedOrbY = particles[i].position.y;
+                    attract = true;
+                    sineWave.play();
+                }
+            }
+        });
 
-		loadLevel(lvl);
-	}
+        document.body.addEventListener('mouseup', event => {
+            attract = false;
+            sineWave.stop();
+        });
 
-	function update() {
-		ball.update();
+        loadLevel(lvl);
+    }
 
-		if (attract) {
-			particles.forEach(p => {
-				if (p.distanceTo(particle.create(mouseX, mouseY, 0, 0, 0)) <= p.radius) {
-					sineWave.frequency = ball.distanceTo(p);
-					ball.gravitateTo(p);
-				}
-			});
-		}
+    function update() {
+        ball.update();
 
-		particles.forEach((p, i) => {
-			if (i == 0 && p.distanceTo(ball) <= p.radius + ball.radius) {
-				particles = [];
-				walls = [];
-				ball.position.setX(width / 2);
-				ball.position.setY(height / 2);
-				ball.velocity = vector.create(0, 0);
-				lvl++;
-				loadLevel(lvl);
-			} else if (p.distanceTo(ball) <= ball.radius + p.radius) {
-				ball.position.setX(width / 2);
-				ball.position.setY(height / 2);
-				ball.velocity = vector.create(0, 0);
-			}
-		});
+        if (attract) {
+            for (let i = 0; i < particles.length; i++) {
+                if (particles[i].distanceTo(new Particle(mouseX, mouseY, 0, 0, 0)) <= particles[i].radius) {
+                    sineWave.frequency = ball.distanceTo(particles[i]);
+                    ball.gravitateTo(particles[i]);
+                }
+            }
+        }
 
-		walls.forEach(wall => {
-			if (ball.position.getX() > ((wall[0] * blockSize) - (wall[2] / 2)) - ball.radius &&
-				ball.position.getY() > ((wall[1] * blockSize) - (wall[3] / 2)) - ball.radius &&
-				ball.position.getX() < ((wall[0] * blockSize) + (wall[2] / 2)) + ball.radius &&
-				ball.position.getY() < ((wall[1] * blockSize) + (wall[3] / 2)) + ball.radius) {
-				reset();
-			}
-		});
+        for (let i = 0; i < particles.length; i++) {
+            if (i == 0 && particles[i].distanceTo(ball) <= particles[i].radius + ball.radius) {
+                particles = [];
+                walls = [];
+                ball.position.x = width / 2;
+                ball.position.y = height / 2;
+                ball.velocity = new Vector2(0, 0);
+                lvl++;
+                loadLevel(lvl);
+            } else if (particles[i].distanceTo(ball) <= ball.radius + particles[i].radius) {
+                ball.position.x = width / 2;
+                ball.position.y = height / 2;
+                ball.velocity = new Vector2(0, 0);
+            }
+        }
 
-		if (ball.position.getX() < 0 ||
-			ball.position.getY() < 0 ||
-			ball.position.getX() > width ||
-			ball.position.getY() > height) {
-			reset();
-		}
-	}
+        for (let i = 0; i < walls.length; i++) {
+            if (ball.position.x > ((walls[i][0] * blockSize) - (walls[i][2] / 2)) - ball.radius &&
+            ball.position.y > ((walls[i][1] * blockSize) - (walls[i][3] / 2)) - ball.radius &&
+            ball.position.x < ((walls[i][0] * blockSize) + (walls[i][2] / 2)) + ball.radius &&
+            ball.position.y < ((walls[i][1] * blockSize) + (walls[i][3] / 2)) + ball.radius) {
+            reset(); }
+        }
 
-	function render() {
-		ctx.fillStyle = 'navy';
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+        if (ball.position.x < 0 ||
+            ball.position.y < 0 ||
+            ball.position.x > width ||
+            ball.position.y > height) {
+            reset();
+        }
+    }
 
-		ctx.fillStyle = 'white';
-		ctx.font = "50px Arial";
-		ctx.fillText(`${lvl}`, 100, 100);
+    function render() {
+        ctx.fillStyle = 'navy';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-		if (attract) {
-			ctx.strokeStyle = '#ff0000';
-			ctx.beginPath();
-			ctx.moveTo(ball.position.getX(), ball.position.getY());
-			ctx.lineTo(pressedOrbX, pressedOrbY);
-			ctx.stroke();
-			ctx.closePath();
+        ctx.fillStyle = 'white';
+        ctx.font = '50px Arial';
+        ctx.fillText(`${lvl}`, 100, 100);
 
-			ctx.beginPath();
-			ctx.arc(pressedOrbX, pressedOrbY, 35 - Math.sin((Math.PI / 180) * ball.distanceTo(particle.create(pressedOrbX, pressedOrbY, 0, 0, 0)) * 20), 0, 2 * Math.PI);
-			ctx.stroke(); 
-			ctx.closePath();
-		}
+        if (attract) {
+            ctx.strokeStyle = '#ff0000';
+            ctx.beginPath();
+            ctx.moveTo(ball.position.x, ball.position.y);
+            ctx.lineTo(pressedOrbX, pressedOrbY);
+            ctx.stroke();
+            ctx.closePath();
 
-		ctx.lineWidth = 2;
-		ctx.fillStyle = 'white';
-		ctx.beginPath();
-		ctx.arc(ball.position.getX(), ball.position.getY(), ball.radius, 0, Math.PI * 2, false);
-		ctx.fill();
-		ctx.stroke();
-		ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(pressedOrbX, pressedOrbY, 35 - Math.sin((Math.PI / 180) * ball.distanceTo(new Particle(pressedOrbX, pressedOrbY, 0, 0, 0)) * 20), 0, 2 * Math.PI);
+            ctx.stroke(); 
+            ctx.closePath();
+        }
 
-		particles.forEach((p, i) => {
-			ctx.beginPath();
-			ctx.arc(p.position.getX(), p.position.getY(), p.radius, 0, Math.PI * 2, false);
-			ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(ball.position.x, ball.position.y, ball.radius, 0, Math.PI * 2, false);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
 
-			ctx.strokeStyle = i == 0 ? '#ff0000' : '#ffffff';
+        for (let i = 0; i < particles.length; i++) {
+            ctx.beginPath();
+            ctx.arc(particles[i].position.x, particles[i].position.y, particles[i].radius, 0, Math.PI * 2, false);
+            ctx.fill();
+            ctx.strokeStyle = i == 0 ? '#ff0000' : '#ffffff';
+            ctx.stroke();
+            ctx.closePath();
+        }
 
-			ctx.stroke();
-			ctx.closePath();
-		});
+        for (let i = 0; i < walls.length; i++) {
+            ctx.beginPath();
+            ctx.fillRect((walls[i][0] * blockSize) - (walls[i][2] / 2), (walls[i][1] * blockSize) - (walls[i][3] / 2), walls[i][2], walls[i][3]);
+            ctx.strokeRect((walls[i][0] * blockSize) - (walls[i][2] / 2), (walls[i][1] * blockSize) - (walls[i][3] / 2), walls[i][2], walls[i][3]);
+            ctx.closePath();
+        }
+    }
 
-		walls.forEach(wall => {
-			ctx.beginPath();
-			ctx.fillRect((wall[0] * blockSize) - (wall[2] / 2), (wall[1] * blockSize) - (wall[3] / 2), wall[2], wall[3]);
-			ctx.strokeRect((wall[0] * blockSize) - (wall[2] / 2), (wall[1] * blockSize) - (wall[3] / 2), wall[2], wall[3]);
-			ctx.closePath();
-		});
-	}		
-	function anim() { requestAnimationFrame(anim); render(); update(); } anim(); init();
+    function anim() {
+        requestAnimationFrame(anim);
+        render();
+        update();
+    }
+    anim();
+    init();
 }
