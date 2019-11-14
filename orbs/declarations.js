@@ -22,8 +22,8 @@ class Vector2 {
 
     setLength(length) {
         const angle = this.getAngle();
-		this._x = Math.cos(angle) * length;
-		this._y = Math.sin(angle) * length;
+        this._x = Math.cos(angle) * length;
+        this._y = Math.sin(angle) * length;
     }
     
     getLength() {
@@ -58,8 +58,8 @@ class Particle {
         this._speed     = speed;
         this._direction = direction;
         this._gravity   = gravity;
-        this._position  = new Vector3(this._x, this._y);
-        this._velocity  = new Vector3(0, 0);
+        this._position  = new Vector2(this._x, this._y);
+        this._velocity  = new Vector2(0, 0);
         this._velocity  .setLength(speed);
         this._velocity  .setAngle(direction);
         this._gravity   = new Vector2(0, gravity || 0);
@@ -103,8 +103,8 @@ class Particle {
     gravitateTo(p2) {
         let   gravity  = new Vector2(0, 0);
         const distance = this.distanceTo(p2);
-		gravity.setLength(p2.mass / (distance * distance));
-		gravity.setAngle(this.angleTo(p2));
-		this._velocity.addTo(gravity);
+        gravity.setLength(p2.mass / (distance * distance));
+        gravity.setAngle(this.angleTo(p2));
+        this._velocity.addTo(gravity);
     }
 }
