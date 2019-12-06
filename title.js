@@ -1,4 +1,4 @@
-!async function (title, h1, html, colours, sleep) {
+!async function (title, html, h1, colours, sleep) {
     await sleep(1000).then(() => h1.style.animation = 'none');
 
     for (let pos = 0; pos < title.length + colours.length; ) {
@@ -10,4 +10,4 @@
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
 
-}('13bob', document.querySelector('h1'), '', ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'], time => new Promise(resolve => setTimeout(resolve, time)));
+}('13bob', '', document.querySelector('h1'), ['#C00', '#F90', '#FF0', '#0F0', '#03F', '#306', '#60F'], time => new Promise(resolve => setTimeout(resolve, time)));
