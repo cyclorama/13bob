@@ -10,4 +10,4 @@
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
 
-}('13bob', '', document.querySelector('h1'), ['#C00', '#F90', '#FF0', '#0F0', '#03F', '#306', '#60F'], time => new Promise(resolve => setTimeout(resolve, time)));
+}('13bob', '', document.querySelector('h1'), ['#C00', '#F90', '#FC0', '#3F0', '#06F', '#306', '#60F'], time => new Promise(resolve => setTimeout(resolve, time)));
