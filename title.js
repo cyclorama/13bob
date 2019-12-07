@@ -1,5 +1,5 @@
 !async function (title, h1, colours, sleep) {
-    await sleep(1000).then(() => h1.style.animation = 'none', html = '');
+    await sleep(1000).then(() => h1.style.animation = html = '');
 
     for (let pos = 0; pos < title.length + colours.length; ) {
         for (let col = 0; col < colours.length; col++) {
