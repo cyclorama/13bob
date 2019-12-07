@@ -6,7 +6,7 @@
             if (pos - col > title.length) continue;
             if (title[pos - col]) html = `<font color="${colours[col]}">${title[pos - col]}</font>${html}`;
         }
-        await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substring(0, pos - title.length - 2)}${html}${title.substring(pos)}</a>`, pos++).then(() => html = '');
+        await sleep(35).then(() => h1.innerHTML = `<a href="//13bob.net/">${title.substr(0, pos - title.length - 2)}${html}${title.substr(pos)}</a>`, pos++).then(() => html = '');
     }
     h1.style.animation = 'heartbeat 1s alternate infinite';
 
