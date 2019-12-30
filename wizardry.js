@@ -28,7 +28,7 @@ const pTape = () => {
         track.onended = () => { pTape(), pTape() },
         mkHighlight(trackN + 1);
     } else {
-        document.tape.src = `${frame}tape.gif`,
+        document.tape.src = `${frame}tape.webp`,
         track.pause(),
         track.currentTime = 0,
         trackN = trackN < tracks.length - 1 ? trackN + 1 : 0,
@@ -64,7 +64,7 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.gif`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.webp`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
     document.getElementById('menu').innerHTML = '';
@@ -88,7 +88,7 @@ fib = nt => {
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
 tracks.forEach(song  => title += `[${song.replace('.mp3', '')}]\n`),
 
-[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
+[...nav].forEach(p => [`${frame}${p.id}_forward.webp`, `${frame}${p.id}_reverse.webp`].forEach(s => {
     let i = new Image();
     i.src = s;
 })),
