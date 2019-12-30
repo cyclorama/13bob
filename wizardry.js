@@ -22,7 +22,7 @@ let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
 
 const pTape = () => {
     if (tapeP = !tapeP) {
-        document.tape.src = `${frame}tape_forward.gif`,
+        document.tape.src = `${frame}tape_forward.webp`,
         track.volume      = 0.05,
         track.play(),
         track.onended = () => { pTape(), pTape() },
