@@ -44,8 +44,8 @@ window.onload = () => {
         movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
         [[pointAX, pointAY], [pointBX, pointBY], [pointCX, pointCY]].forEach((angle, i) => {
-            angle[0] = getCoordFromAngle(i * 120, mouseDist).x;
-            angle[1] = getCoordFromAngle(i * 120, mouseDist).y;
+            angle[0] = getCoordFromAngle((150 - (i * 120)) % 360, mouseDist).x;
+            angle[1] = getCoordFromAngle((150 - (i * 120)) % 360, mouseDist).y;
         })
 
         pDist      = Vec2.getDistanceFromCoords(centerX, centerY - mouseDist, movePointX, movePointY);
