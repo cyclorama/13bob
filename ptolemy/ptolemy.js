@@ -43,12 +43,10 @@ window.onload = () => {
         movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
         movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
-        pointAX    = getCoordFromAngle(150, mouseDist).x;
-        pointAY    = getCoordFromAngle(150, mouseDist).y;
-        pointBX    = getCoordFromAngle(30,  mouseDist).x;
-        pointBY    = getCoordFromAngle(30,  mouseDist).y;
-        pointCX    = getCoordFromAngle(270, mouseDist).x;
-        pointCY    = getCoordFromAngle(270, mouseDist).y;
+        [[pointAX, pointAY], [pointBX, pointBY], [pointCX, pointCY]].forEach((angle, i) => {
+            angle[0] = getCoordFromAngle(i * 120, mouseDist).x;
+            angle[1] = getCoordFromAngle(i * 120, mouseDist).y;
+        })
 
         pDist      = Vec2.getDistanceFromCoords(centerX, centerY - mouseDist, movePointX, movePointY);
         qDist      = Vec2.getDistanceFromCoords(centerX + pointAX, centerY + pointAY, movePointX, movePointY);
