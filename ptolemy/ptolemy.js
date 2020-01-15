@@ -43,13 +43,6 @@ window.onload = () => {
         movePointX = mouseDist > scaleLock ? pointAutoX : mouseX;
         movePointY = mouseDist > scaleLock ? pointAutoY : mouseY;
 
-        pointAX    = getCoordFromAngle(150, mouseDist).x;
-        pointAY    = getCoordFromAngle(150, mouseDist).y;
-        pointBX    = getCoordFromAngle(30,  mouseDist).x;
-        pointBY    = getCoordFromAngle(30,  mouseDist).y;
-        pointCX    = getCoordFromAngle(270, mouseDist).x;
-        pointCY    = getCoordFromAngle(270, mouseDist).y;
-
         [[pointBX, pointBY], [pointAX, pointAY], [pointCX, pointCY]].forEach((angle, i) => {
             angle[0] = getCoordFromAngle(30 + (i * 120), mouseDist).x;
             angle[1] = getCoordFromAngle(30 + (i * 120), mouseDist).y;
