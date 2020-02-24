@@ -1,5 +1,4 @@
 let textArea = document.getElementById("text");
+console.log(textArea.value);
 //textArea.onchange = () => { textArea.value += textArea.value; };
-textArea.oninput = () => { document.getElementById("text").value += textArea.value; };
-
-document.getElementById("text").value = "asd212312312312312312";
+//textArea.oninput = () => { textArea.value += textArea.value; };
