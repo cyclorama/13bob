@@ -1,6 +1,5 @@
 let textArea = document.getElementById("text");
-//textArea.onchange = () => { textArea.value += textArea.value; };
 textArea.oninput = () => {
-    let wordCount = textArea.split(" ").length;
+    let wordCount = textArea.value.split(" ").length;
     console.log(wordCount);
 };
