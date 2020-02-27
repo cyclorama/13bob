@@ -14,5 +14,5 @@ let onInput = () => {
     let wordArrLines = textArea.value.split("\n").filter(el => el != "");
 
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
-    lcSpan.innerHTML = `${wordArrLines.length} line${wordArrLines.length != 1 ? "s" : ""}`;
+    lcSpan.innerHTML = `${wordArrWords.length} line${wordArrWords.length != 1 ? "s" : ""}`;
 };
