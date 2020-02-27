@@ -5,9 +5,16 @@ let lcSpan = document.getElementById("lineCount");
 textArea.oninput = () => onInput();
 
 let onInput = () => {
-    let wordArrSpace = textArea.value.split(" ").filter(el => { return el != "" });
+    let totalWords = 0;
+
+    textArea.value.split("\n").filter(el => {
+            return el != "";
+        }).forEach(line => {
+            totalWords += line.split(" ").length;
+        });
+
     let wordArrNewline = textArea.value.split("\n").filter(el => { return el != "" });
 
-    wcSpan.innerHTML = `${wordArrSpace.length} word${wordArrSpace.length != 1 ? "s" : ""}`;
+    wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
     lcSpan.innerHTML = `${wordArrNewline.length} line${wordArrNewline.length != 1 ? "s" : ""}`;
 };
