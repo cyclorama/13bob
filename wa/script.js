@@ -2,9 +2,7 @@ let textArea = document.getElementById("text");
 let wcSpan = document.getElementById("wordCount");
 let lcSpan = document.getElementById("lineCount");
 
-textArea.oninput = () => onInput();
-
-let onInput = () => {
+textArea.oninput = () => {
     let totalWords = 0;
     let wordArrLines = textArea.value.split("\n").filter(el => el != "");
 
