@@ -9,7 +9,6 @@ let onInput = () => {
 
     let wordArrWords = textArea.value.split("\n").filter(el => el != "").forEach(line => {
             totalWords += line.split(" ").filter(el => el != "").length;
-            console.log(line);
         });
 
     let wordArrLines = textArea.value.split("\n").filter(el => el != "");
