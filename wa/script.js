@@ -13,3 +13,5 @@ let onInput = () => {
     lcSpan.innerHTML = `${wordArrLines.length} line${wordArrLines.length != 1 ? "s" : ""}`;
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
 };
+
+onInput();
