@@ -3,11 +3,11 @@ let textArea = document.getElementById("text"),
     wcSpan   = document.getElementById("wordCount"),
 
 onInput = () => {
-    let totalWords = 0, wordArrLines = textArea.value.split("\n").filter(el => el != "");
+    let totalWords = 0, lineArr = textArea.value.split("\n").filter(el => el != "");
 
-    wordArrLines.forEach(line => totalWords += line.split(" ").filter(el => el != "").length);
+    lineArr.forEach(line => totalWords += line.split(" ").filter(el => el != "").length);
 
-    lcSpan.innerHTML = `${wordArrLines.length} line${wordArrLines.length != 1 ? "s" : ""}`;
+    lcSpan.innerHTML = `${lineArr.length} line${lineArr.length != 1 ? "s" : ""}`;
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
 };
 
