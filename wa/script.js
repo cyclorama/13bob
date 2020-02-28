@@ -1,8 +1,6 @@
-let getElById = id => document.getElementById(id),
-
-textArea = getElById("text"),
-lcSpan   = getElById("lineCount"),
-wcSpan   = getElById("wordCount"),
+let textArea = document.getElementById("text"),
+    lcSpan   = document.getElementById("lineCount"),
+    wcSpan   = document.getElementById("wordCount"),
 
 onInput = () => {
     let totalWords = 0, wordArrLines = textArea.value.split("\n").filter(el => el != "");
