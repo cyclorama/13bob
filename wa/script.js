@@ -16,7 +16,7 @@ onInput = () => {
 
     lcSpan.innerHTML = `${lineArr.length} line${lineArr.length != 1 ? "s" : ""}`;
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
-    bSpan.innerHTML = `${totalBytes} bytes${totalBytes != 1 ? "s" : ""}`;
+    bSpan.innerHTML = `${totalBytes} byte${totalBytes != 1 ? "s" : ""}`;
 };
 
 textArea.oninput = () => onInput();
