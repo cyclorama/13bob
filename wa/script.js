@@ -10,7 +10,6 @@ onInput = () => {
 
     lineArr.forEach(line => {
         totalWords += line.split(" ").filter(el => el != "").length;
-        totalBytes += line.split(" ").filter(el => el != "");
         line.forEach(letter => totalBytes += letter.length);
     });
 
