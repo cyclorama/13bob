@@ -8,6 +8,10 @@ onInput = () => {
         totalBytes = 0,
         lineArr = textArea.value.split("\n").filter(el => el != "");
 
+
+    console.log(lineArr);
+    console.log(lineArr.length);
+    
     totalBytes += lineArr.length == 0 ? -1 : 0;
 
     lineArr.forEach(line => {
