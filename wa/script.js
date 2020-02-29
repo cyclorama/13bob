@@ -8,6 +8,8 @@ onInput = () => {
         totalBytes = 0,
         lineArr = textArea.value.split("\n").filter(el => el != "");
 
+    totalBytes += lineArr.length;
+
     lineArr.forEach(line => {
         line = line.split(" ").filter(el => el != "");
         totalWords += line.length;
