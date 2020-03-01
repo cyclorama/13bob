@@ -6,11 +6,9 @@ let textArea = document.getElementById("text"),
 onInput = () => {
     let textAreaVal = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
 
-    totalLines = textAreaVal.split("\n");
+    totalLines = textAreaVal.split("\n").length;
 
-
-    totalWords = textAreaVal.split(" ").length > 1 ? textAreaVal.split(" ").length : 0;
-
+    totalWords = textAreaVal.split(" ").length > 0 ? textAreaVal.split(" ").length : 0;
 
     totalBytes = textAreaVal.split("").length;
 
