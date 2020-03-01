@@ -8,12 +8,11 @@ onInput = () => {
         totalBytes = 0,
         lineArr = textArea.value.split("\n").filter(el => el != "");
 
-    totalBytes += lineArr.length > 1 ? -1 : 0;
-
     lineArr.forEach(line => {
         line.split("").forEach(char => totalBytes += char.length);
         let wordsArr = line.split(" ").filter(el => el != "");
         totalWords += wordsArr.length;
+        totalBytes++;
     });
 
     lcSpan.innerHTML = `${lineArr.length} line${lineArr.length != 1 ? "s" : ""}`;
