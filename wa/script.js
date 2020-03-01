@@ -4,18 +4,13 @@ let textArea = document.getElementById("text"),
     bSpan    = document.getElementById("byteCount"),
 
 onInput = () => {
-    let totalWords = 0,
-        totalBytes = 0,
-        lineArr = textArea.value.split("\n").filter(el => el != "");
+    let totalLines = 0, totalWords = 0, totalBytes = 0;
 
-    lineArr.forEach((line, i) => {
-        line.split("").forEach(char => totalBytes += char.length);
-        let wordsArr = line.split(" ").filter(el => el != "");
-        totalWords += wordsArr.length;
-        totalBytes += i > 0 ? 1 : 0;
-    });
+    totalLines = textArea.value.split("\n").length - 1;
+    totalWords = textArea.value.split(" ").length - 1;
+    totalBytes = textArea.value.split("").length - 1;
 
-    lcSpan.innerHTML = `${lineArr.length} line${lineArr.length != 1 ? "s" : ""}`;
+    lcSpan.innerHTML = `${totalLines} line${totalLines != 1 ? "s" : ""}`;
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
     bSpan.innerHTML = `${totalBytes} byte${totalBytes != 1 ? "s" : ""}`;
 };
