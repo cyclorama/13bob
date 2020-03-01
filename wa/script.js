@@ -11,7 +11,7 @@ onInput = () => {
     totalBytes += lineArr.length > 1 ? -1 : 0;
 
     lineArr.forEach(line => {
-        line.split().forEach(char => totalBytes += char.length);
+        line.split("").forEach(char => totalBytes += char.length);
         let wordsArr = line.split(" ").filter(el => el != "");
         totalWords += wordsArr.length;
     });
