@@ -4,7 +4,7 @@ let textArea = document.getElementById("text"),
     bSpan    = document.getElementById("byteCount"),
 
 onInput = () => {
-    let textAreaVal = tmpTxt = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
+    let textAreaVal = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
 
     totalLines = textAreaVal.split("\n").length;
     totalWords = textAreaVal != "" ? textAreaVal.split("\n").join(" ").split(" ").filter(elem => elem).length : 0;
