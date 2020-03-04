@@ -8,7 +8,7 @@ onInput = () => {
 
     totalLines = textAreaVal.split("\n").length;
 
-    for (let i = 0; i < textAreaVal.split("\n").length; i++)
+    for (let i = 0; i < textAreaVal.split("\n").length - 1; i++)
         tmpTxt += tmpTxt.replace("\n", " ");
 
     totalWords = textAreaVal != "" ? tmpTxt.split(" ").length : 0;
