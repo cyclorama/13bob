@@ -8,7 +8,7 @@ onInput = () => {
 
     totalLines = textAreaVal.split("\n").length;
 
-    totalWords = textAreaVal != "" ? textAreaVal.split("\n").join(" ").split(" ").length : 0;
+    totalWords = textAreaVal != "" ? textAreaVal.split("\n").join(" ").split(" ").filter(elem => elem).length : 0;
 
     totalBytes = textAreaVal.split("").length;
 
