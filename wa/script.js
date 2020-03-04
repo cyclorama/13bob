@@ -7,7 +7,7 @@ onInput = () => {
     let textAreaVal = tmpTxt = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
 
     totalLines = textAreaVal.split("\n").length;
-    totalWords = textAreaVal != "" ? textAreaVal.split("\n").join(" ").split(" ").filter(elem => elem).length : 0;
+    totalWords = textAreaVal != "" ? textAreaVal.split("\n").join(" ").split(" ").filter(true).length : 0;
     totalBytes = textAreaVal.split("").length;
 
     lcSpan.innerHTML = `${totalLines} line${totalLines != 1 ? "s" : ""}`;
