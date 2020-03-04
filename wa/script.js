@@ -4,10 +4,15 @@ let textArea = document.getElementById("text"),
     bSpan    = document.getElementById("byteCount"),
 
 onInput = () => {
-    let textAreaVal = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
+    let textAreaVal = tmpTxt = textArea.value, totalLines = 0, totalWords = 0, totalBytes = 0;
 
     totalLines = textAreaVal.split("\n").length;
-    totalWords = textAreaVal != "" ? textAreaVal.replace("\n", " ").split(" ").length : 0;
+
+    for (let i = 0; i < textAreaVal.split("\n").length; i++)
+        tmpTxt += tmpTxt.replace("\n", " ");
+
+    totalWords = textAreaVal != "" ? tmpTxt.split(" ").length : 0;
+
     totalBytes = textAreaVal.split("").length;
 
     lcSpan.innerHTML = `${totalLines} line${totalLines != 1 ? "s" : ""}`;
