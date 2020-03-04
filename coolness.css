@@ -33,7 +33,7 @@ h1 {
       font-size: 175px;
     font-family: 'Press Start 2P', cursive;
       animation: spacing_one 1s, heartbeat 1s alternate infinite;
-      font-size: 12em;
+      font-size: 11em;
 }
 
 h2 {
