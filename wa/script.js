@@ -1,10 +1,10 @@
-let textArea = document.getElementById("text"),
-    lcSpan   = document.getElementById("lineCount"),
-    wcSpan   = document.getElementById("wordCount"),
-    bSpan    = document.getElementById("byteCount");
+let textArea = $("#text"),
+    lcSpan   = $("#lineCount"),
+    wcSpan   = $("#wordCount"),
+    bSpan    = $("#byteCount");
 
-textArea.oninput = () => {
-    let textAreaVal = textArea.value,
+textArea.change(() => {
+    let textAreaVal = textArea.text(),
         totalLines  = textAreaVal.split("\n").length,
         totalWords  = textAreaVal ? textAreaVal.split("\n").join(" ").split(" ").filter(Boolean).length : 0,
         totalBytes  = textAreaVal.split("").length;
@@ -12,4 +12,4 @@ textArea.oninput = () => {
     lcSpan.innerHTML = `${totalLines} line${totalLines != 1 ? "s" : ""}`;
     wcSpan.innerHTML = `${totalWords} word${totalWords != 1 ? "s" : ""}`;
     bSpan.innerHTML  = `${totalBytes} byte${totalBytes != 1 ? "s" : ""}`;
-};
+});
