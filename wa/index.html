@@ -1,15 +1,39 @@
-let textArea = $("#text"),
-    lcSpan   = $("#lineCount"),
-    wcSpan   = $("#wordCount"),
-    bSpan    = $("#byteCount");
-
-textArea.change(() => {
-    let textAreaVal = textArea.val(),
-        totalLines  = textAreaVal.split("\n").length,
-        totalWords  = textAreaVal ? textAreaVal.split("\n").join(" ").split(" ").filter(Boolean).length : 0,
-        totalBytes  = textAreaVal.split("").length;
-
-    lcSpan.html(`${totalLines} line${totalLines != 1 ? "s" : ""}`);
-    wcSpan.html(`${totalWords} word${totalWords != 1 ? "s" : ""}`);
-    bSpan.html(`${totalBytes} byte${totalBytes != 1 ? "s" : ""}`);
-});
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Word Analysis">
+        <link rel="icon" href="//13bob.net/world.webp">
+        <link rel="preload" href="//13bob.net/space.webp" as="image">
+        <link rel="stylesheet" type="text/css" href="//13bob.net/coolness.css">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <script async defer src="//13bob.net/jquery-3.4.1.min.js" type="text/javascript"></script>
+        <script async defer src="//13bob.net/wa/script.js" type="text/javascript"></script>
+        <script async defer src="//13bob.net/title.js" type="text/javascript"></script>
+        <script async defer src="//13bob.net/bg.js" type="text/javascript"></script>
+        <title>13bob</title>
+        <style>
+            textarea {
+                font-family: "Verdana";
+                font-size: 1em;
+            }
+            table, th, td {
+                border: 1px solid white;
+            }
+            #info {
+                margin: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1><a href="//13bob.net/">13bob</a></h1>
+        <center>
+            <textarea id="text" rows=30 cols=80 placeholder="Enter text here..."></textarea>
+            <div id="info">
+                <span id="lineCount">1 line</span>, 
+                <span id="wordCount">0 words</span>, 
+                <span id="byteCount">0 bytes</span>
+            </div>
+        </center>
+    </body>
+</html>
