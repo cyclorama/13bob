@@ -4,7 +4,7 @@ let textArea = $("#text"),
     bSpan    = $("#byteCount");
 
 textArea.change(() => {
-    let textAreaVal = textArea.text(),
+    let textAreaVal = textArea.value(),
         totalLines  = textAreaVal.split("\n").length,
         totalWords  = textAreaVal ? textAreaVal.split("\n").join(" ").split(" ").filter(Boolean).length : 0,
         totalBytes  = textAreaVal.split("").length;
