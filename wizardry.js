@@ -103,6 +103,4 @@ window.isMobile = () =>
         false
     )(navigator.userAgent || navigator.vendor || window.opera);
 
-alert(window.isMobile());
-
 pTape();
