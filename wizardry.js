@@ -91,7 +91,7 @@ tracks.forEach(song  => title += `[${song.replace('.mp3', '')}]\n`),
 [...nav].forEach(p => [`${frame}${p.id}_forward.webp`, `${frame}${p.id}_reverse.webp`].forEach(s => {
     let i = new Image();
     i.src = s;
-})),
+}));
 
 window.isMobile = () => {
     (u => {
