@@ -13,7 +13,8 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
                  ['//steam.13bob.net', '//gitlab.13bob.net' ], ['//twitter.13bob.net'], ['-'] ],
       frame  = 'photos/framed_',
       nav    = document.getElementsByClassName('nav'),
-      dir    = 'mixtapes/E R R S T H E T I C/';
+      dir    = 'mixtapes/E R R S T H E T I C/',
+      format = window.isMobile ? 'gif' : 'webp';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
       track  = new Audio(`${dir}${tracks[0]}`),
       menu   = false,
@@ -22,13 +23,13 @@ let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
 
 const pTape = () => {
     if (tapeP = !tapeP) {
-        document.tape.src = `${frame}tape_forward.webp`,
+        document.tape.src = `${frame}tape_forward.${format}`,
         track.volume      = 0.05,
         track.play(),
         track.onended = () => { pTape(), pTape() },
         mkHighlight(trackN + 1);
     } else {
-        document.tape.src = `${frame}tape.webp`,
+        document.tape.src = `${frame}tape.${format}`,
         track.pause(),
         track.currentTime = 0,
         trackN = trackN < tracks.length - 1 ? trackN + 1 : 0,
@@ -64,7 +65,7 @@ pSound = trackN => {
     }
 }
 
-pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.webp`, pSound(y) },
+pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : '' }.${format}`, pSound(y) },
 
 sMenu = (o, m) => { menu = !menu,
     document.getElementById('menu').innerHTML = '';
@@ -73,7 +74,7 @@ sMenu = (o, m) => { menu = !menu,
     for (let i = 0; i < items[o].length; i++) {
         fTop += (i != 0 && i % 3 == 0);
         document.getElementById('menu').innerHTML += menu ? (
-            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.webp'/></a>${i != 0 && i % 2 == 0 ? '<br>' : '' }` :
+            m == 0 ? `<a style='padding: 13em;' href='${items[o][i]}'><img style='${i > 2 ? `margin-top: ${(400 * fTop) - 1000}px;` : '' }' id='menu' src='${items[o][i].replace('//', '')}/logo.${format}'/></a>${i != 0 && i % 2 == 0 ? '<br>' : '' }` :
             m == 1 ? `<video onclick='sMenu(${o}, 1)' style='z-index: 13;' id='video_background' autoplay><source id="vid" src='movies/${items[o][i]}.webm'></video>` :
             m == 2 ? `<img src='load.webp' onload='window.location.href=items[${o}][${i}];'/>` : '') : '' ;
         }
@@ -88,7 +89,7 @@ fib = nt => {
 sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
 tracks.forEach(song  => title += `[${song.replace('.mp3', '')}]\n`),
 
-[...nav].forEach(p => [`${frame}${p.id}_forward.webp`, `${frame}${p.id}_reverse.webp`].forEach(s => {
+[...nav].forEach(p => [`${frame}${p.id}_forward.${format}`, `${frame}${p.id}_reverse.${format}`].forEach(s => {
     let i = new Image();
     i.src = s;
 }));
