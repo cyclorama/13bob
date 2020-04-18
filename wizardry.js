@@ -45,7 +45,7 @@ mkHighlight = trackN => {
     document.tape.title = title;
 },
 
-rmHighlight = trackN => trackT[trackN] = trackT[trackN].substring(2, trackT[trackN].length - 2),
+rmHighlight = trackN => trackT[trackN] = trackT[trackN].substr(2, trackT[trackN].length - 2),
 
 pSound = trackN => {
     switch (trackN) {
