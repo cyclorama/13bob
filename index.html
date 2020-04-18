@@ -24,7 +24,7 @@
             <img onclick="pTape();" name="tape" class="nav"/><div id="menu"></div><!-- ♫ http://13bob.net/mixtapes ♫ -->
         </div>
         <script>
-            document.getElementsByClassName('nav').forEach(n => n.src += window.isMobile() ? 'gif' : 'webp')
+            [...document.getElementsByClassName('nav')].forEach(n => n.src += window.isMobile() ? 'gif' : 'webp');
         </script>
     </body>
 </html>
