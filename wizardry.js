@@ -12,9 +12,9 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
       items  = [ ['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'],
                  ['//steam.13bob.net', '//gitlab.13bob.net' ], ['//twitter.13bob.net'], ['-'] ],
       frame  = 'photos/framed_',
+      format = window.isMobile ? 'gif' : 'webp',
       nav    = document.getElementsByClassName('nav'),
-      dir    = 'mixtapes/E R R S T H E T I C/',
-      format = window.isMobile ? 'gif' : 'webp';
+      dir    = 'mixtapes/E R R S T H E T I C/';
 let   title  = 'E R R S T H E T I C  /  V O L U M E  O N E\n',
       track  = new Audio(`${dir}${tracks[0]}`),
       menu   = false,
