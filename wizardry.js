@@ -103,4 +103,6 @@ window.isMobile = () =>
         false
     )(navigator.userAgent || navigator.vendor || window.opera);
 
+alert(format);
+
 pTape();
