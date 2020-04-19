@@ -48,7 +48,6 @@ body {
               font-family: 'Press Start 2P', cursive;
          background-color: black;
          background-image: url(http://0.13bob.net/0.webp);
-         background-image: url(space.gif);
         background-repeat: repeat;
     background-attachment: fixed;
                 animation: scale 1s, fade 1s;
