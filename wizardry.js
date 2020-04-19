@@ -85,14 +85,6 @@ fib = nt => {
     while (c++ < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth;
 },
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.05)),
-tracks.forEach(song  => title += `[${song.replace('.mp3', '')}]\n`),
-
-[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
-    let i = new Image();
-    i.src = s;
-}));
-
 window.isMobile = () => 
     (u => 
         /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(u)
@@ -101,5 +93,13 @@ window.isMobile = () =>
         ||
         false
     )(navigator.userAgent || navigator.vendor || window.opera);
+
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.05));
+tracks.forEach(song  => title += `[${song.replace('.mp3', '')}]\n`);
+
+[...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
+    let i = new Image();
+    i.src = s;
+}));
 
 pTape();
