@@ -8,5 +8,5 @@ textArea.on("input", () => {
         totalUpper  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toUpperCase()).length,
         totalLower  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toLowerCase()).length;
 
-    statArea.val(`line${totalLines != 1 ? "s" : ""}: ${totalLines}\nword${totalWords != 1 ? "s" : ""}: ${totalWords}\nbyte${totalBytes != 1 ? "s" : ""}: ${totalBytes}\nCHAR${totalUpper != 1 ? "S" : ""}: ${totalUpper}\nchar${totalLower != 1 ? "s" : ""}: ${totalLower}`);
+    statArea.val(`${totalLines} line${totalLines != 1 ? "s" : ""}\n${totalWords} word${totalWords != 1 ? "s" : ""}\n${totalBytes} byte${totalBytes != 1 ? "s" : ""}\n${totalUpper} CHAR${totalUpper != 1 ? "S" : ""}\n${totalLower} char${totalLower != 1 ? "s" : ""}`);
 });
