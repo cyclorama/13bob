@@ -1,4 +1,4 @@
-let textArea = $("#text"), statArea = $("stat");
+let textArea = $("#text"), statArea = $("#stat");
 
 textArea.on("input", () => {
     let textAreaVal = textArea.val(),
