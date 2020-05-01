@@ -10,8 +10,8 @@ textArea.on("input", () => {
         totalLines  = textAreaVal.split("\n").length,
         totalWords  = textAreaVal ? textAreaVal.split("\n").join(" ").split(" ").filter(Boolean).length : 0,
         totalBytes  = textAreaVal.split("").length,
-        totalUpper  = textAreaVal.split("").filter(p => p != " " && p != "\n" && p == p.toUpperCase()).length,
-        totalLower  = textAreaVal.split("").filter(p => p != " " && p != "\n" && p == p.toLowerCase()).length;
+        totalUpper  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toUpperCase()).length,
+        totalLower  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toLowerCase()).length;
 
     lcSpan.html(`${totalLines} line${totalLines != 1 ? "s" : ""}`);
     wcSpan.html(`${totalWords} word${totalWords != 1 ? "s" : ""}`);
