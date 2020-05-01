@@ -2,7 +2,7 @@ let textArea = $("#text"),
     lcSpan   = $("#lineCount"),
     wcSpan   = $("#wordCount"),
     bSpan    = $("#byteCount"),
-    ucSpan   = $("#upperCase"),
+    ucSpan   = $("#upperCount"),
     lwSpan   = $("#lowerCount");
 
 textArea.on("input", () => {
