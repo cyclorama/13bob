@@ -16,6 +16,6 @@ textArea.on("input", () => {
     lcSpan.html(`${totalLines} line${totalLines != 1 ? "s" : ""}`);
     wcSpan.html(`${totalWords} word${totalWords != 1 ? "s" : ""}`);
     bySpan.html(`${totalBytes} byte${totalBytes != 1 ? "s" : ""}`);
-    ucSpan.html(`${totalUpper} CHAR${totalUpper != 1 ? "s" : ""}`);
+    ucSpan.html(`${totalUpper} CHAR${totalUpper != 1 ? "S" : ""}`);
     lwSpan.html(`${totalLower} char${totalLower != 1 ? "s" : ""}`);
 });
