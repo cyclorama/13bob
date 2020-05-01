@@ -1,4 +1,5 @@
 let textArea = $("#text"),
+    statArea = $("stats"),
     lcSpan   = $("#lineCount"),
     wcSpan   = $("#wordCount"),
     bySpan   = $("#byteCount"),
@@ -13,9 +14,10 @@ textArea.on("input", () => {
         totalUpper  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toUpperCase()).length,
         totalLower  = textAreaVal.split("").filter(p => p >= "A" && p <= "z" && p == p.toLowerCase()).length;
 
-    lcSpan.html(`${totalLines} line${totalLines != 1 ? "s" : ""}`);
-    wcSpan.html(`${totalWords} word${totalWords != 1 ? "s" : ""}`);
-    bySpan.html(`${totalBytes} byte${totalBytes != 1 ? "s" : ""}`);
-    ucSpan.html(`${totalUpper} CHAR${totalUpper != 1 ? "S" : ""}`);
-    lwSpan.html(`${totalLower} char${totalLower != 1 ? "s" : ""}`);
+
+    statArea.val(`line${totalLines != 1 ? "s" : ""}: ${totalLines}\n
+                  word${totalWords != 1 ? "s" : ""}: ${totalWords}\n
+                  byte${totalBytes != 1 ? "s" : ""}: ${totalBytes}\n
+                  CHAR${totalUpper != 1 ? "S" : ""}: ${totalUpper}\n
+                  char${totalLower != 1 ? "s" : ""}: ${totalLower}`);
 });
