@@ -1,10 +1,4 @@
-let textArea = $("#text"),
-    statArea = $("stats"),
-    lcSpan   = $("#lineCount"),
-    wcSpan   = $("#wordCount"),
-    bySpan   = $("#byteCount"),
-    ucSpan   = $("#upperCount"),
-    lwSpan   = $("#lowerCount");
+let textArea = $("#text"), statArea = $("stats");
 
 textArea.on("input", () => {
     let textAreaVal = textArea.val(),
