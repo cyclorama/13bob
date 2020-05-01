@@ -1,15 +1,21 @@
 let textArea = $("#text"),
     lcSpan   = $("#lineCount"),
     wcSpan   = $("#wordCount"),
-    bSpan    = $("#byteCount");
+    bSpan    = $("#byteCount"),
+    ucSpan   = $("#upperCase"),
+    lwSpan   = $("#lowerCount");
 
 textArea.on("input", () => {
     let textAreaVal = textArea.val(),
         totalLines  = textAreaVal.split("\n").length,
         totalWords  = textAreaVal ? textAreaVal.split("\n").join(" ").split(" ").filter(Boolean).length : 0,
-        totalBytes  = textAreaVal.split("").length;
+        totalBytes  = textAreaVal.split("").length,
+        totalUpper  = textAreaVal.split("").filter(p => p == p.toUpperCase()),
+        totalLower  = textAreaVal.split("").filter(p => p == p.toLowerCase());
 
     lcSpan.html(`${totalLines} line${totalLines != 1 ? "s" : ""}`);
     wcSpan.html(`${totalWords} word${totalWords != 1 ? "s" : ""}`);
     bSpan.html(`${totalBytes} byte${totalBytes != 1 ? "s" : ""}`);
+    ucSpan.html(`${totalUpper} CHAR${totalUpper != 1 ? "s" : ""}`);
+    lwSpan.html(`${totalLower} char${totalLower != 1 ? "s" : ""}`);
 });
