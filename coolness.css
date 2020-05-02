@@ -57,6 +57,11 @@ body {
                 animation: scale 1s, fade 1s;
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 ::-webkit-scrollbar { 
     display: none;
 }
