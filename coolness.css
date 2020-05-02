@@ -51,7 +51,6 @@ body {
                overflow-x: hidden;
                    cursor: url(open_hand.cur), pointer;
               font-family: 'Press Start 2P', cursive;
-         background-color: black;
          background-image: url(space_foreground.png);
         background-repeat: repeat;
     background-attachment: fixed;
