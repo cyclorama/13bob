@@ -42,7 +42,8 @@ h2 {
 }
 
 html {
-   background-image: url(space_foreground.png);
+   background-image: url(space.gif);
+   background-color: black;
   background-repeat: repeat;
 }
 
@@ -52,7 +53,7 @@ body {
                    cursor: url(open_hand.cur), pointer;
               font-family: 'Press Start 2P', cursive;
          background-color: black;
-         background-image: url(space.gif);
+         background-image: url(space_foreground.png);
         background-repeat: repeat;
     background-attachment: fixed;
                 animation: scale 1s, fade 1s;
