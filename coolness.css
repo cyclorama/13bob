@@ -54,6 +54,7 @@ body {
          background-image: url(space_foreground.png);
         background-repeat: repeat;
     background-attachment: fixed;
+                animation: scale 1s, fade 1s;
 }
 
 html, body {
@@ -66,7 +67,7 @@ html, body {
 }
 
 img {
-    animation: scale 1s, fade 1s;
+    animation: fade 1s;
 }
 
 img.nav {
