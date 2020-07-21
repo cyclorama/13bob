@@ -10,7 +10,7 @@ const sounds = [ [ new Audio('vibrations/horn_forward.ogg'   ), new Audio('vibra
                    '04 Dionne Warwick - Can\'t Hide Love.mp3',
                    '05 The Jets - The Only Dance.mp3' ],
       items  = [ ['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'],
-                 ['', '', ''], [''], ['-'] ],
+                 ['', '', ''], ['twitter.13bob.net'], ['-'] ],
       frame  = 'photos/framed_',
       nav    = document.getElementsByClassName('nav'),
       dir    = 'mixtapes/E R R S T H E T I C/';
