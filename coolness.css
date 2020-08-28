@@ -25,6 +25,13 @@ a:active {
     text-decoration: none;
 }
 
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 h1 {
      text-align: center;
          height: 1em;
