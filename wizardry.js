@@ -3,8 +3,8 @@ const soundDirs = ['vibrations/horn_forward.ogg', 'vibrations/horn_reverse.ogg',
                    'vibrations/space.ogg',
                    'vibrations/projector.ogg',
                    'vibrations/chatter.ogg',
-                   'vibrations/inflate.ogg', 'vibrations/deflate.ogg'];
-const sounds = soundDirs.map(src => {
+                   'vibrations/inflate.ogg', 'vibrations/deflate.ogg'],
+sounds = soundDirs.map(src => {
     const audio = new Audio(src);
     audio.preload = 'auto';
     audio.load();
