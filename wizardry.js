@@ -101,7 +101,7 @@ window.isMobile = () =>
     false
   )(navigator.userAgent || navigator.vendor || window.opera);
 
-sounds.forEach(sound => sound.forEach(property => property.volume = 0.05));
+sounds.forEach(sound => sound.volume = 0.05);
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
