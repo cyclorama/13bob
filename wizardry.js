@@ -6,6 +6,7 @@ const soundDirs = ['vibrations/horn_forward.ogg', 'vibrations/horn_reverse.ogg',
                    'vibrations/inflate.ogg', 'vibrations/deflate.ogg'],
 sounds = soundDirs.map(src => {
     const audio = new Audio(src);
+    audio.volume = 0.05;
     audio.preload = 'auto';
     audio.load();
     return audio;
@@ -101,7 +102,6 @@ window.isMobile = () =>
     false
   )(navigator.userAgent || navigator.vendor || window.opera);
 
-sounds.forEach(sound => sound.volume = 0.05);
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
