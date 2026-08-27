@@ -69,7 +69,7 @@ pSound = trackN => {
     case 6: sounds[3][0].play(); break;
     case 8: sounds[4][0].play(); break;
   }
-};
+},
 
 pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : ''}.gif`, pSound(y) },
 
@@ -90,7 +90,7 @@ sMenu = (o, m) => {
 fib = nt => {
   let nth, n2 = 1, n1 = c = 0;
   while (c++ < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth;
-},
+};
 
 window.isMobile = () =>
   (u =>
