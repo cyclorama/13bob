@@ -1,23 +1,16 @@
-const soundDirs = ['vibrations/horn_forward.ogg', 'vibrations/horn_reverse.ogg',
-                   'vibrations/stretch_forward.ogg', 'vibrations/stretch_reverse.ogg',
-                   'vibrations/space.ogg',
-                   'vibrations/projector.ogg',
-                   'vibrations/chatter.ogg',
-                   'vibrations/inflate.ogg', 'vibrations/deflate.ogg'],
-sounds = soundDirs.map(src => {
-    const audio = new Audio(src);
-    audio.volume = 0.05;
-    audio.preload = 'auto';
-    audio.load();
-    return audio;
-  }
-),
+const sounds = [[new Audio('vibrations/horn_forward.ogg'), new Audio('vibrations/horn_reverse.ogg')],
+[new Audio('vibrations/stretch_forward.ogg'), new Audio('vibrations/stretch_reverse.ogg')],
+[new Audio('vibrations/space.ogg')],
+[new Audio('vibrations/projector.ogg')],
+[new Audio('vibrations/chatter.ogg')],
+[new Audio('vibrations/inflate.ogg'), new Audio('vibrations/deflate.ogg')]],
 tracks = ['01 Strawberry Switchblade - Who Knows What Love Is.mp3',
           '02 Pebbles - Why Do I Believe.mp3',
           '03 Dee Dee Wilde - Lap of Luxury.mp3',
           '04 Dionne Warwick - Can\'t Hide Love.mp3',
           '05 The Jets - The Only Dance.mp3'],
-items = [['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'], ['//spotify.13bob.net'], ['//twitter.13bob.net'], ['-']],
+items = [['+'], ['//13bob.net/words'], ['fisher', 'slingshoot', 'ptolemy'],
+['//spotify.13bob.net'], ['//twitter.13bob.net'], ['-']],
 frame = 'photos/framed_',
 nav = document.getElementsByClassName('nav'),
 dir = 'mixtapes/E R R S T H E T I C/';
@@ -49,8 +42,8 @@ mkHighlight = trackN => {
   if (trackN == 1 && trackT[trackLen].includes('>')) rmHighlight(trackLen);
   if (trackN > 1) rmHighlight(trackN - 1);
   trackT[trackN] = `> ${trackT[trackN]} <`,
-    trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : ''),
-    document.tape.title = title;
+  trackT.forEach((t, i) => title += trackT[i + 1] != null ? t + '\n' : ''),
+  document.tape.title = title;
 },
 
 rmHighlight = trackN => trackT[trackN] = trackT[trackN].substr(2, trackT[trackN].length - 3),
@@ -70,7 +63,7 @@ pSound = trackN => {
     case 6: sounds[3][0].play(); break;
     case 8: sounds[4][0].play(); break;
   }
-},
+}
 
 pFrame = (x, y, z) => { document.getElementById(x).src = `${frame}${x}${z == 0 ? '_forward' : z == 1 ? '_reverse' : ''}.gif`, pSound(y) },
 
@@ -78,6 +71,7 @@ sMenu = (o, m) => {
   menu = !menu,
   document.getElementById('menu').innerHTML = '';
   let fTop = 0;
+
   for (let i = 0; i < items[o].length; i++) {
     fTop += (i != 0 && i % 3 == 0);
     document.getElementById('menu').innerHTML += menu ? (
@@ -91,7 +85,7 @@ sMenu = (o, m) => {
 fib = nt => {
   let nth, n2 = 1, n1 = c = 0;
   while (c++ < nt) console.log(`${n1} (φ = ${n2 / n1})`), [nth, n1] = [n1 + n2, n2], n2 = nth;
-};
+},
 
 window.isMobile = () =>
   (u =>
@@ -102,6 +96,7 @@ window.isMobile = () =>
     false
   )(navigator.userAgent || navigator.vendor || window.opera);
 
+sounds.forEach(sound => sound.forEach(property => property.volume = 0.05));
 tracks.forEach(song => title += `[${song.replace('.mp3', '')}]\n`);
 
 [...nav].forEach(p => [`${frame}${p.id}_forward.gif`, `${frame}${p.id}_reverse.gif`].forEach(s => {
