@@ -4,13 +4,12 @@ const soundDirs = ['vibrations/horn_forward.ogg', 'vibrations/horn_reverse.ogg',
                    'vibrations/projector.ogg',
                    'vibrations/chatter.ogg',
                    'vibrations/inflate.ogg', 'vibrations/deflate.ogg'];
-const sounds = soundDirs.map(group =>
-  group.map(src => {
+const sounds = soundDirs.map(src => {
     const audio = new Audio(src);
     audio.preload = 'auto';
     audio.load();
     return audio;
-  })
+  }
 ),
 tracks = ['01 Strawberry Switchblade - Who Knows What Love Is.mp3',
           '02 Pebbles - Why Do I Believe.mp3',
